@@ -265,7 +265,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="我的博客文章编写"><a href="#我的博客文章编写" class="headerlink" title="我的博客文章编写"></a>我的博客文章编写</h1><h2 id="1-介绍："><a href="#1-介绍：" class="headerlink" title="1.介绍："></a>1.介绍：</h2><p>广义：以 apache hadoop软件为主的生态圈： hive、flume、hbase、kafka、spark、flink<br>狭义：apache hadoop软件</p>
+        <h1 id="hadoop学习"><a href="#hadoop学习" class="headerlink" title="hadoop学习"></a>hadoop学习</h1><h2 id="1-介绍："><a href="#1-介绍：" class="headerlink" title="1.介绍："></a>1.介绍：</h2><p>广义：以 apache hadoop软件为主的生态圈： hive、flume、hbase、kafka、spark、flink<br>狭义：apache hadoop软件</p>
 <pre><code>win =》 百度网盘
 </code></pre>
 <h2 id="2-组成："><a href="#2-组成：" class="headerlink" title="2.组成："></a>2.组成：</h2><pre><code>hdfs 存储 海量的数据
@@ -315,19 +315,16 @@ Apache Hadoop 3.3 and upper supports Java 8 and Java 11 (runtime only)
 [hadoop@bigdata31 app]$ ln -s ./jdk1.8.0_45/ java
 </code></pre>
 <h2 id="软连接："><a href="#软连接：" class="headerlink" title="软连接："></a>软连接：</h2><h3 id="1-切换版本"><a href="#1-切换版本" class="headerlink" title="1.切换版本"></a>1.切换版本</h3><pre><code>配置 先关参数 比较方便
-
-[hadoop@bigdata31 java]$ ll
 </code></pre>
-<p>total 25984<br>drwxr-xr-x. 2 hadoop hadoop     4096 Apr 11  2015 bin  java相关的脚本<br>drwxr-xr-x. 3 hadoop hadoop     4096 Apr 11  2015 include java运行过程中需要的jar<br>drwxr-xr-x. 5 hadoop hadoop     4096 Apr 11  2015 jre<br>drwxr-xr-x. 5 hadoop hadoop     4096 Apr 11  2015 lib java运行过程中需要的jar<br>-rw-r–r–. 1 hadoop hadoop 21099089 Apr 11  2015 src.zip java的源码包</p>
-<p>command not found：<br>    1.whereis<br>    2.which </p>
+<h3 id="hadoop-bigdata31-java-ll"><a href="#hadoop-bigdata31-java-ll" class="headerlink" title="[hadoop@bigdata31 java]$ ll"></a>[hadoop@bigdata31 java]$ ll</h3><h2 id="total-25984"><a href="#total-25984" class="headerlink" title="total 25984"></a>total 25984</h2><h3 id="drwxr-xr-x-2-hadoop-hadoop-4096-Apr-11-2015-bin-java相关的脚本"><a href="#drwxr-xr-x-2-hadoop-hadoop-4096-Apr-11-2015-bin-java相关的脚本" class="headerlink" title="drwxr-xr-x. 2 hadoop hadoop     4096 Apr 11  2015 bin  java相关的脚本"></a>drwxr-xr-x. 2 hadoop hadoop     4096 Apr 11  2015 bin  java相关的脚本</h3><h3 id="drwxr-xr-x-3-hadoop-hadoop-4096-Apr-11-2015-include-java运行过程中需要的jar"><a href="#drwxr-xr-x-3-hadoop-hadoop-4096-Apr-11-2015-include-java运行过程中需要的jar" class="headerlink" title="drwxr-xr-x. 3 hadoop hadoop     4096 Apr 11  2015 include java运行过程中需要的jar"></a>drwxr-xr-x. 3 hadoop hadoop     4096 Apr 11  2015 include java运行过程中需要的jar</h3><h3 id="drwxr-xr-x-5-hadoop-hadoop-4096-Apr-11-2015-jre"><a href="#drwxr-xr-x-5-hadoop-hadoop-4096-Apr-11-2015-jre" class="headerlink" title="drwxr-xr-x. 5 hadoop hadoop     4096 Apr 11  2015 jre"></a>drwxr-xr-x. 5 hadoop hadoop     4096 Apr 11  2015 jre</h3><h3 id="drwxr-xr-x-5-hadoop-hadoop-4096-Apr-11-2015-lib-java运行过程中需要的jar"><a href="#drwxr-xr-x-5-hadoop-hadoop-4096-Apr-11-2015-lib-java运行过程中需要的jar" class="headerlink" title="drwxr-xr-x. 5 hadoop hadoop     4096 Apr 11  2015 lib java运行过程中需要的jar"></a>drwxr-xr-x. 5 hadoop hadoop     4096 Apr 11  2015 lib java运行过程中需要的jar</h3><h3 id="rw-r–r–-1-hadoop-hadoop-21099089-Apr-11-2015-src-zip-java的源码包"><a href="#rw-r–r–-1-hadoop-hadoop-21099089-Apr-11-2015-src-zip-java的源码包" class="headerlink" title="-rw-r–r–. 1 hadoop hadoop 21099089 Apr 11  2015 src.zip java的源码包"></a>-rw-r–r–. 1 hadoop hadoop 21099089 Apr 11  2015 src.zip java的源码包</h3><h3 id="command-not-found："><a href="#command-not-found：" class="headerlink" title="command not found："></a>command not found：</h3><pre><code>1.whereis 
+2.which 
+</code></pre>
 <h3 id="2-配置环境变量-x3D-》-java-里面的脚本-在当前linux任何位置都可以使用"><a href="#2-配置环境变量-x3D-》-java-里面的脚本-在当前linux任何位置都可以使用" class="headerlink" title="2.配置环境变量 &#x3D;》 java 里面的脚本 在当前linux任何位置都可以使用"></a>2.配置环境变量 &#x3D;》 java 里面的脚本 在当前linux任何位置都可以使用</h3><pre><code>    [hadoop@bigdata31 java]$ vim ~/.bashrc
     export JAVA_HOME=/home/hadoop/app/java
     export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
-
-[hadoop@bigdata31 ~]$ java -version
 </code></pre>
-<p>java version “1.8.0_45”<br>Java(TM) SE Runtime Environment (build 1.8.0_45-b14)<br>Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)	</p>
-<h1 id="2-部署hadoop-："><a href="#2-部署hadoop-：" class="headerlink" title="2.部署hadoop ："></a>2.部署hadoop ：</h1><h2 id="1-解压"><a href="#1-解压" class="headerlink" title="1.解压"></a>1.解压</h2><pre><code>[hadoop@bigdata31 software]$ tar -zxvf ./hadoop-3.3.4.tar.gz -C ~/app/
+<h3 id="hadoop-bigdata31-java-version"><a href="#hadoop-bigdata31-java-version" class="headerlink" title="[hadoop@bigdata31 ~]$ java -version"></a>[hadoop@bigdata31 ~]$ java -version</h3><p> java version “1.8.0_45”</p>
+<h3 id="Java-TM-SE-Runtime-Environment-build-1-8-0-45-b14"><a href="#Java-TM-SE-Runtime-Environment-build-1-8-0-45-b14" class="headerlink" title="Java(TM) SE Runtime Environment (build 1.8.0_45-b14)"></a>Java(TM) SE Runtime Environment (build 1.8.0_45-b14)</h3><h3 id="Java-HotSpot-TM-64-Bit-Server-VM-build-25-45-b02-mixed-mode"><a href="#Java-HotSpot-TM-64-Bit-Server-VM-build-25-45-b02-mixed-mode" class="headerlink" title="Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)"></a>Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)</h3><h1 id="2-部署hadoop-："><a href="#2-部署hadoop-：" class="headerlink" title="2.部署hadoop ："></a>2.部署hadoop ：</h1><h2 id="1-解压"><a href="#1-解压" class="headerlink" title="1.解压"></a>1.解压</h2><pre><code>[hadoop@bigdata31 software]$ tar -zxvf ./hadoop-3.3.4.tar.gz -C ~/app/
 </code></pre>
 <h2 id="2-软连接"><a href="#2-软连接" class="headerlink" title="2.软连接"></a>2.软连接</h2><pre><code>    [hadoop@bigdata31 app]$ ln -s ./hadoop-3.3.4/ hadoop
 </code></pre>
