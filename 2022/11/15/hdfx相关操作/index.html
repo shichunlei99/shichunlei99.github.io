@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2022 | Hexo</title>
+  <title>hdfx相关操作 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2022/index.html">
+  <meta name="description" content="补充：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hdfx相关操作">
+<meta property="og:url" content="http://example.com/2022/11/15/hdfx%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="补充：">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-11-15T13:22:45.000Z">
+<meta property="article:modified_time" content="2022-11-15T13:25:49.349Z">
 <meta property="article:author" content="shichunlei99">
 <meta name="twitter:card" content="summary">
   
@@ -152,168 +156,222 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-hdfx相关操作" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      hdfx相关操作
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/15/hdfx%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/" class="archive-article-date">
+
+        
+        <a href="/2022/11/15/hdfx%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/" class="archive-article-date">
   	<time datetime="2022-11-15T13:22:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/15/hdfx%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/">hdfx相关操作</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>补充： </p>
+<span id="more"></span>
+<h1 id="如果部署的hadoop集群有问题-想重新部署："><a href="#如果部署的hadoop集群有问题-想重新部署：" class="headerlink" title="如果部署的hadoop集群有问题 想重新部署："></a>如果部署的hadoop集群有问题 想重新部署：</h1><pre><code>    1.卸载 
+    2.重新配置
+        =》 hdfs data目录删掉 +重新格式化 即可
+</code></pre>
+<p>Local FS ： linux fs<br>S3、hdfs、cos、&#x3D;》 分布式文件系统</p>
+<h1 id="1-HDFS"><a href="#1-HDFS" class="headerlink" title="1.HDFS :"></a>1.HDFS :</h1><h2 id="1-1-hdfs-相关操作"><a href="#1-1-hdfs-相关操作" class="headerlink" title="1.1 hdfs 相关操作"></a>1.1 hdfs 相关操作</h2><pre><code>1.linux 命令 
+2.java code 
+</code></pre>
+<h2 id="1-2-hdfs-操作命令"><a href="#1-2-hdfs-操作命令" class="headerlink" title="1.2 hdfs 操作命令"></a>1.2 hdfs 操作命令</h2><h1 id="查看hdfs-ls："><a href="#查看hdfs-ls：" class="headerlink" title="查看hdfs ls："></a>查看hdfs ls：</h1><pre><code>1.hadoop fs -ls /
+        fs)
+              HADOOP_CLASSNAME=org.apache.hadoop.fs.FsShell
+2.hdfs dfs -ls /
+        dfs)
+  HADOOP_CLASSNAME=org.apache.hadoop.fs.FsShell
+</code></pre>
+<h1 id="创建文件夹：-mkdir"><a href="#创建文件夹：-mkdir" class="headerlink" title="创建文件夹： mkdir"></a>创建文件夹： mkdir</h1><p>hadoop fs -mkdir </p>
+<h2 id="hadoop-bigdata31-bin-hadoop-fs-mkdir-x2F-hdfs01"><a href="#hadoop-bigdata31-bin-hadoop-fs-mkdir-x2F-hdfs01" class="headerlink" title="[hadoop@bigdata31 bin]$ hadoop fs -mkdir &#x2F;hdfs01"></a>[hadoop@bigdata31 bin]$ hadoop fs -mkdir &#x2F;hdfs01</h2><h2 id="hadoop-bigdata31-bin-hadoop-fs-ls-x2F"><a href="#hadoop-bigdata31-bin-hadoop-fs-ls-x2F" class="headerlink" title="[hadoop@bigdata31 bin]$ hadoop fs -ls &#x2F;"></a>[hadoop@bigdata31 bin]$ hadoop fs -ls &#x2F;</h2><p>Found 5 items<br>drwxr-xr-x   - hadoop supergroup          0 2022-11-11 23:03 &#x2F;data<br>drwxr-xr-x   - hadoop supergroup          0 2022-11-15 17:11 &#x2F;hdfs01<br>drwxr-xr-x   - hadoop supergroup          0 2022-11-11 23:08 &#x2F;out<br>drwxr-xr-x   - hadoop supergroup          0 2022-11-14 18:32 &#x2F;out2<br>drwx——   - hadoop supergroup          0 2022-11-14 18:31 &#x2F;tmp</p>
+<h1 id="移动、拷贝-mv-cp"><a href="#移动、拷贝-mv-cp" class="headerlink" title="移动、拷贝 mv cp"></a>移动、拷贝 mv cp</h1><p>[hadoop@bigdata31 bin]$ hadoop fs -mv &#x2F;data &#x2F;hdfs01&#x2F;</p>
+<h1 id="删除-rm"><a href="#删除-rm" class="headerlink" title="删除 rm"></a>删除 rm</h1><p>[-rm [-f] [-r|-R] [-skipTrash] [-safely] <src> …]<br>[hadoop@bigdata31 bin]$ hadoop fs -ls &#x2F;<br>Found 4 items<br>drwxr-xr-x   - hadoop supergroup          0 2022-11-15 17:13 &#x2F;hdfs01<br>drwxr-xr-x   - hadoop supergroup          0 2022-11-11 23:08 &#x2F;out<br>drwxr-xr-x   - hadoop supergroup          0 2022-11-14 18:32 &#x2F;out2<br>drwx——   - hadoop supergroup          0 2022-11-14 18:31 &#x2F;tmp<br>[hadoop@bigdata31 bin]$ hadoop fs -rm -r &#x2F;out<br>Deleted &#x2F;out<br>[hadoop@bigdata31 bin]$ hadoop fs -ls &#x2F;</p>
+<p>-skipTrash : hdfs 回收站</p>
+<p>fs.trash.interval 0  10080 7天</p>
+<property>
+        <name>fs.trash.interval</name>
+        <value>10080</value>
+</property>
 
-        <div class="article-info info-on-right">
-          
-          
+<h1 id="生产上："><a href="#生产上：" class="headerlink" title="生产上："></a>生产上：</h1><pre><code>1.开启回收站 回收站 有效期 至少7天以上 
+</code></pre>
+<h1 id="补充：1-log"><a href="#补充：1-log" class="headerlink" title="补充：1.log"></a>补充：1.log</h1><pre><code>uri：
+    1.hdfs上的文件	
+        hdfs://bigdata32:9000/1.log
+        /1.log
+        [hadoop@bigdata33 ~]$ hadoop fs -ls hdfs://bigdata32:9000/1.log
+        [hadoop@bigdata33 ~]$ hadoop fs -ls /1.log
+    2.local 上的文件=&gt;linux 
+        file:///1.log: 
+        [hadoop@bigdata33 ~]$ hadoop fs -ls file:////home/hadoop/1.log
+</code></pre>
+<h1 id="上传-、下载："><a href="#上传-、下载：" class="headerlink" title="上传 、下载："></a>上传 、下载：</h1><pre><code>put copyfromlocal : 
+</code></pre>
+<p>[hadoop@bigdata33 ~]$ hadoop fs -put .&#x2F;2.log .&#x2F;3.log &#x2F;<br>[hadoop@bigdata33 ~]$ hadoop fs -ls &#x2F;</p>
+<p>[hadoop@bigdata33 ~]$ hadoop fs -copyFromLocal .&#x2F;2.log &#x2F;data<br>[hadoop@bigdata33 ~]$ hadoop fs -ls &#x2F;data</p>
+<pre><code>get copytolocal:
+</code></pre>
+<p>[hadoop@bigdata33 tmp]$ hadoop fs -get &#x2F;data .&#x2F;<br>[hadoop@bigdata33 tmp]$ ll<br>total 4<br>drwxr-xr-x. 2 hadoop hadoop 4096 Nov 15 18:07 data<br>[hadoop@bigdata33 tmp]$ hadoop fs -get &#x2F;data .&#x2F;datahdfs</p>
+<h1 id="chmod-权限"><a href="#chmod-权限" class="headerlink" title="chmod : 权限"></a>chmod : 权限</h1><p>[hadoop@bigdata33 tmp]$ hadoop fs -chmod 664 &#x2F;1.log<br>[hadoop@bigdata33 tmp]$ hadoop fs -ls &#x2F;<br>chown ：拥有者<br>[hadoop@bigdata33 tmp]$ hadoop fs -chown zihang:DL2262 &#x2F;1.log<br>[hadoop@bigdata33 tmp]$ hadoop fs -ls &#x2F;</p>
+<h1 id="查看文件内容：cat"><a href="#查看文件内容：cat" class="headerlink" title="查看文件内容：cat"></a>查看文件内容：cat</h1><p>[hadoop@bigdata33 tmp]$ hadoop fs -cat &#x2F;1.log<br>111<br>222<br>333</p>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/6b0c0fc4f2027e559d7432e88e1e240.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=shichunlei99.github.io/022/11/15/hdfx%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/14/hadoop2/" class="archive-article-date">
-  	<time datetime="2022-11-14T12:05:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-14</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/11/14/hadoop2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">完全分布式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/14/hadoop2/">完全分布式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E9%83%A8%E7%BD%B2%E7%9A%84hadoop%E9%9B%86%E7%BE%A4%E6%9C%89%E9%97%AE%E9%A2%98-%E6%83%B3%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">如果部署的hadoop集群有问题 想重新部署：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-HDFS"><span class="toc-number">2.</span> <span class="toc-text">1.HDFS :</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-hdfs-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 hdfs 相关操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-hdfs-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 hdfs 操作命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bhdfs-ls%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">查看hdfs ls：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%9A-mkdir"><span class="toc-number">4.</span> <span class="toc-text">创建文件夹： mkdir</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hadoop-bigdata31-bin-hadoop-fs-mkdir-x2F-hdfs01"><span class="toc-number">4.1.</span> <span class="toc-text">[hadoop@bigdata31 bin]$ hadoop fs -mkdir &#x2F;hdfs01</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hadoop-bigdata31-bin-hadoop-fs-ls-x2F"><span class="toc-number">4.2.</span> <span class="toc-text">[hadoop@bigdata31 bin]$ hadoop fs -ls &#x2F;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E3%80%81%E6%8B%B7%E8%B4%9D-mv-cp"><span class="toc-number">5.</span> <span class="toc-text">移动、拷贝 mv cp</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%A0%E9%99%A4-rm"><span class="toc-number">6.</span> <span class="toc-text">删除 rm</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E4%B8%8A%EF%BC%9A"><span class="toc-number">7.</span> <span class="toc-text">生产上：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A1-log"><span class="toc-number">8.</span> <span class="toc-text">补充：1.log</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0-%E3%80%81%E4%B8%8B%E8%BD%BD%EF%BC%9A"><span class="toc-number">9.</span> <span class="toc-text">上传 、下载：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#chmod-%E6%9D%83%E9%99%90"><span class="toc-number">10.</span> <span class="toc-text">chmod : 权限</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%EF%BC%9Acat"><span class="toc-number">11.</span> <span class="toc-text">查看文件内容：cat</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/13/hadoop/" class="archive-article-date">
-  	<time datetime="2022-11-13T10:42:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-13</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/13/hadoop/">hadoop</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/12/title/" class="archive-article-date">
-  	<time datetime="2022-11-12T00:44:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/12/title/">我的第一篇博客文章</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/12/hello-world/" class="archive-article-date">
-  	<time datetime="2022-11-11T16:58:49.519Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/12/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -339,8 +397,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
