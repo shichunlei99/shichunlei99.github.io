@@ -8,13 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>java api | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="参数设置的优先级：1.默认配置文件     core-default.xml     hdfs-default.xml     mapred-default.xml     yarn-default.xml 2.生产配置文件     core-site.xml     hdfs-site.xml     mapred-site.xml     yarn-site.xml 3.代码里面设置的参数">
+<meta property="og:type" content="article">
 <meta property="og:title" content="java api">
 <meta property="og:url" content="http://example.com/2022/11/16/java-api/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="参数设置的优先级：1.默认配置文件     core-default.xml     hdfs-default.xml     mapred-default.xml     yarn-default.xml 2.生产配置文件     core-site.xml     hdfs-site.xml     mapred-site.xml     yarn-site.xml 3.代码里面设置的参数">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-16T05:40:34.000Z">
-<meta property="article:modified_time" content="2022-11-16T05:40:34.710Z">
+<meta property="article:modified_time" content="2022-11-16T06:29:14.576Z">
 <meta property="article:author" content="shichunlei99">
 <meta name="twitter:card" content="summary">
   
@@ -174,7 +176,98 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <span id="more"></span>
+<h1 id="参数设置的优先级："><a href="#参数设置的优先级：" class="headerlink" title="参数设置的优先级："></a>参数设置的优先级：</h1><pre><code>1.默认配置文件
+    core-default.xml
+    hdfs-default.xml
+    mapred-default.xml
+    yarn-default.xml
+2.生产配置文件
+    core-site.xml
+    hdfs-site.xml
+    mapred-site.xml
+    yarn-site.xml
+3.代码里面设置的参数
+     Configuration
+
+优先级排序：代码里面设置的参数 》 生产配置文件 》 默认配置文件
+</code></pre>
+<h1 id="1-使用java-api-操作-hdfs在-创建文件夹"><a href="#1-使用java-api-操作-hdfs在-创建文件夹" class="headerlink" title="1.使用java api 操作 hdfs在 创建文件夹"></a>1.使用java api 操作 hdfs在 创建文件夹</h1><pre><code> /data/dt=20221114
+ /data/dt=20221115
+ /data/dt=20221116
+</code></pre>
+<h1 id="2-使用java-api-上传本地-wc-data-到上面三个目录下"><a href="#2-使用java-api-上传本地-wc-data-到上面三个目录下" class="headerlink" title="2.使用java api 上传本地 wc.data 到上面三个目录下"></a>2.使用java api 上传本地 wc.data 到上面三个目录下</h1><h1 id="3-使用java-api-将"><a href="#3-使用java-api-将" class="headerlink" title="3.使用java api 将"></a>3.使用java api 将</h1><pre><code>/data/dt=20221114/wc.data
+/data/dt=20221115/wc.data
+/data/dt=20221116/wc.data
+目录下的文件移动到 指定目录 并进行改名字
+/data/hive/20221114-01.data
+/data/hive/20221115-01.data
+/data/hive/20221116-01.data
+</code></pre>
+<h1 id="创建文件夹-上传-改名字"><a href="#创建文件夹-上传-改名字" class="headerlink" title="创建文件夹  上传 改名字"></a>创建文件夹  上传 改名字</h1><p> path:<br>    hdfspath  上传的path<br>    localpath  本地path<br>    filename   文件名字<br>    renamepath  修改文件的路径的path<br>    renamesufname 修改后文件的结尾<br>    dt         </p>
+<p>hadoop jar &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;DL2262-hdfsapi-1.0.jar <br>com.bigdata.HomeWork01 <br>“&#x2F;data&#x2F;dt&#x3D;” “file:&#x2F;&#x2F;&#x2F;&#x2F;home&#x2F;hadoop” “1.log” “&#x2F;data&#x2F;flink” “-01.data” “20221117”</p>
+<p>start.sh<br>if [ $# -lt 6 ];then<br>    echo “Usage:put file to hdfs”<br>    echo “Usage:$0 <hdfspath> <localpath> <filename> <renamepath> <suffname> <dt>“<br>    echo “Usage:<hdfspath> is hdfs path”<br>    echo “eg:$0 ‘&#x2F;data&#x2F;dt&#x3D;’ ‘file:&#x2F;&#x2F;&#x2F;&#x2F;home&#x2F;hadoop’ ‘1.log’ ‘&#x2F;data&#x2F;flink’ ‘-01.data’ ‘20221117’”<br>    exit;<br>fi</p>
+<p>hadoop jar &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;DL2262-hdfsapi-1.0.jar <br>com.bigdata.HomeWork01 <br>“${1}” “${2}” “${3}” “${4}” “${5}” “${6}”</p>
+<h1 id="HDFS：负责存储数据"><a href="#HDFS：负责存储数据" class="headerlink" title="HDFS：负责存储数据"></a>HDFS：负责存储数据</h1><pre><code>1.文件进行拆分 文件块
+2.存储 拆分 文件块
+</code></pre>
+<h1 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h1><pre><code>hdfs主要存储文件 大文件  不是说 不能存储小文件
+存储小文件 影响hdfs 性能
+</code></pre>
+<h1 id="block-块-："><a href="#block-块-：" class="headerlink" title="block 块 ："></a>block 块 ：</h1><pre><code>1.怎么来的？
+    文件拆分来的 【按照 块大小 进行拆分】
+2.属性：
+    1.块大小 128M blocksize
+    2.块的副本数:
+        1.伪分布式 1
+        2.完全分布式 3
+            1.3  3
+            2.&gt;3 3
+
+本地文件大小：260M
+块大小 ：128m
+
+      块实际存储      规格【块大小】 128M
+</code></pre>
+<p> 第一块	   128M				128M<br> 第二块	   128M				128M<br> 第三块		4M				128M</p>
+<h1 id="S假如："><a href="#S假如：" class="headerlink" title="S假如："></a>S假如：</h1><pre><code>一缸水 260L
+一个瓶子 128l
+</code></pre>
+<p>第一个瓶子  128l   128L<br>第二个瓶子  128l<br>第三个瓶子  4L</p>
+<p>160M 2个副本 问：<br>    1.文件拆分了块在hdfs上存了多少个块？<br>160M：<br>128M  &#x3D;&gt; 1<br>32M   &#x3D;&gt; 1<br>1+1 &#x3D;2 块  * 2 &#x3D; 4个块</p>
+<pre><code>2.实际存储到hdfs 存储的大小是多少？
+    160m * 2 = 320M
+</code></pre>
+<p>[hadoop@bigdata32 subdir0]$ pwd<br>&#x2F;home&#x2F;hadoop&#x2F;data&#x2F;hadoop&#x2F;dfs&#x2F;data&#x2F;current&#x2F;BP-155707757-192.168.41.32-1668441906801&#x2F;current&#x2F;finalized&#x2F;subdir0&#x2F;subdir0</p>
+<p>练习：<br>    hdfs api 完成wordcount 统计</p>
+<p>大数据处理：<br>    1.input<br>    2.处理<br>    3.output</p>
+<pre><code>hdfs 存储一堆文件 让你统计每个单词出现的次数？
+1.input
+    hdfs 一些文件
+    fs.open
+2.处理
+    词频统计
+    1.读取进来的内容 一行一行的 ，按照某个规则指定分隔符 进行拆分 =》一个一个单词
+    2.给每个单词 赋值为1
+        a,a,a,b,b
+     =&gt;
+     	(a,1)
+        (a,1)
+        (a,1)
+        (b,1)
+        (b,1)
+    3.将相同的单词 存起来 一个集合里面
+        进行聚合统计 每个单词出现的次数
+        &lt;a,1,1,1&gt;
+        &lt;b,1,1&gt;
+        =&gt;
+        &lt;a,3&gt;
+        &lt;b,2&gt;
+3.output
+    1.打印到控制台
+    2.输出到hdfs上
+</code></pre>
+
       
 
       
@@ -301,7 +394,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">参数设置的优先级：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8java-api-%E6%93%8D%E4%BD%9C-hdfs%E5%9C%A8-%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">2.</span> <span class="toc-text">1.使用java api 操作 hdfs在 创建文件夹</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8java-api-%E4%B8%8A%E4%BC%A0%E6%9C%AC%E5%9C%B0-wc-data-%E5%88%B0%E4%B8%8A%E9%9D%A2%E4%B8%89%E4%B8%AA%E7%9B%AE%E5%BD%95%E4%B8%8B"><span class="toc-number">3.</span> <span class="toc-text">2.使用java api 上传本地 wc.data 到上面三个目录下</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8java-api-%E5%B0%86"><span class="toc-number">4.</span> <span class="toc-text">3.使用java api 将</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9-%E4%B8%8A%E4%BC%A0-%E6%94%B9%E5%90%8D%E5%AD%97"><span class="toc-number">5.</span> <span class="toc-text">创建文件夹  上传 改名字</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HDFS%EF%BC%9A%E8%B4%9F%E8%B4%A3%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE"><span class="toc-number">6.</span> <span class="toc-text">HDFS：负责存储数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A"><span class="toc-number">7.</span> <span class="toc-text">补充：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#block-%E5%9D%97-%EF%BC%9A"><span class="toc-number">8.</span> <span class="toc-text">block 块 ：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#S%E5%81%87%E5%A6%82%EF%BC%9A"><span class="toc-number">9.</span> <span class="toc-text">S假如：</span></a></li></ol>
                     </div>
                 </span>
             </div>
