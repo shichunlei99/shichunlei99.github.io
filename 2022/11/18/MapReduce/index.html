@@ -16,7 +16,7 @@
 <meta property="og:description" content="MapReduce:">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-18T07:10:41.000Z">
-<meta property="article:modified_time" content="2022-11-18T07:18:33.330Z">
+<meta property="article:modified_time" content="2022-11-19T14:05:07.662Z">
 <meta property="article:author" content="shichunlei99">
 <meta name="twitter:card" content="summary">
   
@@ -235,6 +235,52 @@ reduce: 归约 =》聚合
         (x,3)
         (y,1)
 </code></pre>
+<p>wc案例：<br>    1.mapreduce ：<br>        模板：<br>            1.mapper &#x3D;》 map阶段代码<br>            2.reducer &#x3D;》 reduce阶段的代码<br>            3.driver 定义如何启动map reduce</p>
+<p>(input) &lt;k1, v1&gt; -&gt; map -&gt; &lt;k2, v2&gt; -&gt;  reduce -&gt; &lt;k3, v3&gt; (output)</p>
+<h1 id="mapper阶段："><a href="#mapper阶段：" class="headerlink" title="mapper阶段："></a>mapper阶段：</h1><pre><code>Mapper&lt;KEYIN, VALUEIN, KEYOUT, VALUEOUT&gt;
+    KEYIN：输入数据的key的数据类型
+    VALUEIN：输入数据的value的数据类型
+
+    KEYOUT:输出数据的key的数据类型
+    VALUEOUT:输出数据的value的数据类型
+
+    setup 每个map task 开始会执行一次
+    cleanup  每个map task 结束会执行一次
+</code></pre>
+<h1 id="reduce阶段："><a href="#reduce阶段：" class="headerlink" title="reduce阶段："></a>reduce阶段：</h1><pre><code>Reducer&lt;KEYIN,VALUEIN,KEYOUT,VALUEOUT&gt;
+    KEYIN：输入数据的key的数据类型
+    VALUEIN：输入数据的value的数据类型
+
+    KEYOUT:输出数据的key的数据类型
+    VALUEOUT:输出数据的value的数据类型
+
+mapreduce过程：
+    input output
+    map阶段的输出作为reduce阶段的输入
+</code></pre>
+<h1 id="win"><a href="#win" class="headerlink" title="win:"></a>win:</h1><pre><code>hadoop ：
+    执行里面winutils.exe
+
+配置环境变量
+path
+</code></pre>
+<h1 id="配置日志输出："><a href="#配置日志输出：" class="headerlink" title="配置日志输出："></a>配置日志输出：</h1><pre><code>1.hadoop集群
+    log4j.properties
+</code></pre>
+<p>code &#x3D;》 数据分析 &#x3D;》<br>    99.953% wordcount 变种</p>
+<p>1363157985066 	13726238888	00-FD-07-A4-72-B8:CMCC	120.196.100.82	i02.c.aliimg.com		24	27	10000	20000	200</p>
+<p>时间戳 手机号 	协议	ip 广告url xx xx 上行流量 下行流量 status</p>
+<h1 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h1><pre><code>统计每个手机号的 上行总流量 下行总流量 总流量 ？
+    phone      up         down
+</code></pre>
+<p>sql ：<br>select<br>sum(up) as sum_up,<br>sum(down) as sum_down,<br>sum(up)+sum(down)  as all<br>from xx<br>group by phone</p>
+<p>mr: k v<br>    map:<br>        1.读取每一行数据 拆分<br>            phone      up         down<br>            k        v:up         down<br>    reduce:<br>        phone<br>        k       values&lt;(up         down),(up         down) &gt;</p>
+<pre><code>    聚合：
+        sum_up
+        sum_down
+        all
+    k,sum_up sum_down all
+</code></pre>
 
       
 
@@ -362,7 +408,7 @@ reduce: 归约 =》聚合
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MapReduce"><span class="toc-number">1.</span> <span class="toc-text">MapReduce:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-easily-writing-applications"><span class="toc-number">1.1.</span> <span class="toc-text">1.easily writing applications</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-process-vast-amounts-of-data"><span class="toc-number">1.2.</span> <span class="toc-text">2.process vast amounts of data:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-in-parallel-on-large-clusters-thousands-of-nodes-of-%E3%80%90%E4%BB%A5%E5%B9%B6%E8%A1%8C%E6%96%B9%E5%BC%8F%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E3%80%91"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.in-parallel on large clusters (thousands of nodes) of  【以并行方式处理数据】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-commodity-hardware-in-a-reliable-%E3%80%90%E4%BA%86%E8%A7%A3%E3%80%91"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.commodity hardware in a reliable 【了解】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-fault-tolerant-manner"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.fault-tolerant manner.</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-mapreduce%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">2.mapreduce：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-mapreduce-%E5%8E%BB-%E7%BB%9F%E8%AE%A1wordcount"><span class="toc-number">3.</span> <span class="toc-text">3.mapreduce 去 统计wordcount</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B8%89%E6%AE%B5%E8%AE%BA%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">大数据数据处理三段论：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-mapreduce-%E6%95%B4%E4%B8%AA%E6%B5%81%E7%A8%8B%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">4.mapreduce 整个流程？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%95%B4%E4%B8%AA%E9%98%B6%E6%AE%B5%E9%83%BD%E6%98%AF%E5%AF%B9-kv%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91"><span class="toc-number">5.1.</span> <span class="toc-text">1.整个阶段都是对 kv进行开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%AF%8F%E4%B8%AA%E9%98%B6%E6%AE%B5%E8%BE%93%E5%87%BA%E9%83%BD%E6%98%AFkv"><span class="toc-number">5.2.</span> <span class="toc-text">2.每个阶段输出都是kv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-kv-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-have-to-be-serializable%EF%BC%9A"><span class="toc-number">5.3.</span> <span class="toc-text">3.kv 数据类型 have to be serializable：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-mapreduce-%E4%B8%BA%E4%BE%8B-%E5%88%86%E6%9E%90-wordcount-%E6%A1%88%E4%BE%8B"><span class="toc-number">5.4.</span> <span class="toc-text">4.mapreduce 为例 分析 wordcount 案例</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MapReduce"><span class="toc-number">1.</span> <span class="toc-text">MapReduce:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-easily-writing-applications"><span class="toc-number">1.1.</span> <span class="toc-text">1.easily writing applications</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-process-vast-amounts-of-data"><span class="toc-number">1.2.</span> <span class="toc-text">2.process vast amounts of data:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-in-parallel-on-large-clusters-thousands-of-nodes-of-%E3%80%90%E4%BB%A5%E5%B9%B6%E8%A1%8C%E6%96%B9%E5%BC%8F%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E3%80%91"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.in-parallel on large clusters (thousands of nodes) of  【以并行方式处理数据】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-commodity-hardware-in-a-reliable-%E3%80%90%E4%BA%86%E8%A7%A3%E3%80%91"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.commodity hardware in a reliable 【了解】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-fault-tolerant-manner"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.fault-tolerant manner.</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-mapreduce%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">2.mapreduce：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-mapreduce-%E5%8E%BB-%E7%BB%9F%E8%AE%A1wordcount"><span class="toc-number">3.</span> <span class="toc-text">3.mapreduce 去 统计wordcount</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B8%89%E6%AE%B5%E8%AE%BA%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">大数据数据处理三段论：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-mapreduce-%E6%95%B4%E4%B8%AA%E6%B5%81%E7%A8%8B%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">4.mapreduce 整个流程？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%95%B4%E4%B8%AA%E9%98%B6%E6%AE%B5%E9%83%BD%E6%98%AF%E5%AF%B9-kv%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91"><span class="toc-number">5.1.</span> <span class="toc-text">1.整个阶段都是对 kv进行开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%AF%8F%E4%B8%AA%E9%98%B6%E6%AE%B5%E8%BE%93%E5%87%BA%E9%83%BD%E6%98%AFkv"><span class="toc-number">5.2.</span> <span class="toc-text">2.每个阶段输出都是kv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-kv-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-have-to-be-serializable%EF%BC%9A"><span class="toc-number">5.3.</span> <span class="toc-text">3.kv 数据类型 have to be serializable：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-mapreduce-%E4%B8%BA%E4%BE%8B-%E5%88%86%E6%9E%90-wordcount-%E6%A1%88%E4%BE%8B"><span class="toc-number">5.4.</span> <span class="toc-text">4.mapreduce 为例 分析 wordcount 案例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mapper%E9%98%B6%E6%AE%B5%EF%BC%9A"><span class="toc-number">6.</span> <span class="toc-text">mapper阶段：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#reduce%E9%98%B6%E6%AE%B5%EF%BC%9A"><span class="toc-number">7.</span> <span class="toc-text">reduce阶段：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#win"><span class="toc-number">8.</span> <span class="toc-text">win:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%EF%BC%9A"><span class="toc-number">9.</span> <span class="toc-text">配置日志输出：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%EF%BC%9A"><span class="toc-number">10.</span> <span class="toc-text">需求：</span></a></li></ol>
                     </div>
                 </span>
             </div>
