@@ -16,7 +16,7 @@
 <meta property="og:description" content="hive4">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-12-04T10:59:58.000Z">
-<meta property="article:modified_time" content="2022-12-04T11:04:29.506Z">
+<meta property="article:modified_time" content="2022-12-04T11:14:18.396Z">
 <meta property="article:author" content="shichunlei99">
 <meta name="twitter:card" content="summary">
   
@@ -181,62 +181,78 @@
 <p>pv &#x3D;》 页面浏览量   3个用户 每个人 访问了 10次页面    30<br>uv &#x3D;》 访客次数  3个用户 每个人 访问了 10次页面  3</p>
 <p>create table user_shop(<br>user_id string,<br>shop string<br>)<br>row format delimited fields terminated by ‘,’;</p>
 <p>load data local inpath “&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;data&#x2F;exemple&#x2F;user_shop.txt” into table user_shop;</p>
-<p>需求：<br>    1.每个店铺的uv </p>
-<pre><code>维度：店铺 
+<h1 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h1><pre><code>1.每个店铺的uv 
+
+维度：店铺 
 指标：uv 人数 count()+去重
 </code></pre>
-<p>select<br>shop,<br>count(distinct user_id) as uv<br>from user_shop<br>group by shop;<br>&#x3D;&#x3D;&gt; 去重 group by  </p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>select<br>shop,<br>count(distinct user_id) as uv<br>from user_shop<br>group by shop;<br>&#x3D;&#x3D;&gt; 去重 group by  </p>
 <p>select </p>
 <p>from user_shop</p>
-<p>1.数据清洗 etl ：<br>    1.取出需要的字段<br>    2.取出的column做数据转换或者etl<br>    3.去重<br>2.数据计算<br>    维度<br>    指标</p>
+<h2 id="1-数据清洗-etl-："><a href="#1-数据清洗-etl-：" class="headerlink" title="1.数据清洗 etl ："></a>1.数据清洗 etl ：</h2><pre><code>1.取出需要的字段 
+2.取出的column做数据转换或者etl
+3.去重
+</code></pre>
+<h2 id="2-数据计算"><a href="#2-数据计算" class="headerlink" title="2.数据计算"></a>2.数据计算</h2><pre><code>维度
+指标
+</code></pre>
 <p>select<br>shop,<br>count(user_id) as uv<br>from<br>(<br>    select<br>    shop,<br>    user_id<br>    from user_shop<br>    group by<br>    shop,<br>    user_id<br>) as a<br>group by<br>shop;</p>
-<p>&#x3D;&gt; 一共有多少个店铺？<br>select<br>count(distinct shop) as cnt<br>from user_shop</p>
+<h1 id="x3D-gt-一共有多少个店铺？"><a href="#x3D-gt-一共有多少个店铺？" class="headerlink" title="&#x3D;&gt; 一共有多少个店铺？"></a>&#x3D;&gt; 一共有多少个店铺？</h1><p>select<br>count(distinct shop) as cnt<br>from user_shop</p>
 <pre><code>2.每个店铺访问次数top3 的用户记录 
     输出： 店铺名称 访客id  访问次数
 </code></pre>
-<p>1.每个店铺访问次数 </p>
-<p>2.访问次数排名</p>
-<p>3.top3 店铺名字  访问次数 排名</p>
-<p>select<br>shop,<br>cnt ,<br>rk<br>from<br>(<br>    select<br>    shop,<br>    cnt ,<br>    rank() over( order by cnt desc   ) as rk<br>    from<br>    (<br>        – 每个店铺访问次数<br>        select<br>        shop,<br>        count(1) as cnt<br>        from user_shop<br>        group by shop<br>    ) as a<br>) as a<br>where rk &lt;4;</p>
+<h2 id="1-每个店铺访问次数"><a href="#1-每个店铺访问次数" class="headerlink" title="1.每个店铺访问次数"></a>1.每个店铺访问次数</h2><h2 id="2-访问次数排名"><a href="#2-访问次数排名" class="headerlink" title="2.访问次数排名"></a>2.访问次数排名</h2><h2 id="3-top3-店铺名字-访问次数-排名"><a href="#3-top3-店铺名字-访问次数-排名" class="headerlink" title="3.top3 店铺名字  访问次数 排名"></a>3.top3 店铺名字  访问次数 排名</h2><p>select<br>shop,<br>cnt ,<br>rk<br>from<br>(<br>    select<br>    shop,<br>    cnt ,<br>    rank() over( order by cnt desc   ) as rk<br>    from<br>    (<br>        – 每个店铺访问次数<br>        select<br>        shop,<br>        count(1) as cnt<br>        from user_shop<br>        group by shop<br>    ) as a<br>) as a<br>where rk &lt;4;</p>
 <p>select<br>shop,<br>count(1) as cnt<br>from user_shop<br>group by shop;</p>
-<p>店铺名称 访客id  访问次数 top3 </p>
-<p>1.每个店铺每个访客id访问次数 </p>
-<p>2.访问次数排名</p>
-<p>3.top3 店铺名称 访客id  访问次数</p>
-<p>select<br>shop,<br>user_id,<br>cnt,<br>rk<br>from<br>(<br>    select<br>    shop,<br>    user_id,<br>    cnt,<br>    rank() over(partition by  shop order by cnt desc ) as rk<br>    from<br>    (<br>        – 1.每个店铺每个访客id访问次数<br>        select<br>        shop,<br>        user_id,<br>        count(1) as cnt<br>        from user_shop<br>        group by<br>        shop,<br>        user_id<br>    ) as a<br>) as a<br>where rk &lt;4;</p>
+<h1 id="店铺名称-访客id-访问次数-top3"><a href="#店铺名称-访客id-访问次数-top3" class="headerlink" title="店铺名称 访客id  访问次数 top3"></a>店铺名称 访客id  访问次数 top3</h1><h2 id="1-每个店铺每个访客id访问次数"><a href="#1-每个店铺每个访客id访问次数" class="headerlink" title="1.每个店铺每个访客id访问次数"></a>1.每个店铺每个访客id访问次数</h2><h2 id="2-访问次数排名-1"><a href="#2-访问次数排名-1" class="headerlink" title="2.访问次数排名"></a>2.访问次数排名</h2><h2 id="3-top3-店铺名称-访客id-访问次数"><a href="#3-top3-店铺名称-访客id-访问次数" class="headerlink" title="3.top3 店铺名称 访客id  访问次数"></a>3.top3 店铺名称 访客id  访问次数</h2><p>select<br>shop,<br>user_id,<br>cnt,<br>rk<br>from<br>(<br>    select<br>    shop,<br>    user_id,<br>    cnt,<br>    rank() over(partition by  shop order by cnt desc ) as rk<br>    from<br>    (<br>        – 1.每个店铺每个访客id访问次数<br>        select<br>        shop,<br>        user_id,<br>        count(1) as cnt<br>        from user_shop<br>        group by<br>        shop,<br>        user_id<br>    ) as a<br>) as a<br>where rk &lt;4;</p>
 <p>1 2 3 4 5 6 7  2指标</p>
 <p>1      2指标<br>1 3    2指标<br>123<br>124<br>145<br>156<br>1-7<br>357  </p>
-<p>维度组合分析 sql 关键字 grouping sets</p>
-<p>create table user_shop_log(<br>user_id string,<br>shop string,<br>channle string ,<br>os string<br>)<br>row format delimited fields terminated by ‘,’;</p>
+<h1 id="维度组合分析-sql-关键字-grouping-sets"><a href="#维度组合分析-sql-关键字-grouping-sets" class="headerlink" title="维度组合分析 sql 关键字 grouping sets"></a>维度组合分析 sql 关键字 grouping sets</h1><p>create table user_shop_log(<br>user_id string,<br>shop string,<br>channle string ,<br>os string<br>)<br>row format delimited fields terminated by ‘,’;</p>
 <p>u1,a,h5,andriod<br>u2,b,h5,andriod<br>u1,b,h5,andriod<br>u1,a,h5,andriod<br>u3,c,app,ios<br>u4,b,app,ios<br>u1,a,app,ios<br>u2,c,app,ios<br>u5,b,app,ios<br>u4,b,h5,andriod<br>u6,c,h5,andriod<br>u2,c,h5,andriod<br>u1,b,xiao,ios<br>u2,a,xiao,ios<br>u2,a,xiao,ios<br>u3,a,xiao,ios<br>u5,a,xiao,ios<br>u5,a,xiao,ios<br>u5,a,xiao,ios</p>
 <p>load data  local inpath “&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;data&#x2F;exemple&#x2F;user_log.txt” into table user_shop_log;</p>
-<p>1.每个店铺的访问次数<br>create table rpt_shop_cnt as<br>select<br>shop,<br>count(1) as cnt<br>from user_shop_log<br>group by<br>shop ;<br>2.每个店铺每个用户的访问次数<br>create table rpt_shop_user_cnt as<br>select<br>shop,user_id<br>count(1) as cnt<br>from user_shop_log<br>group by<br>shop,user_id ;<br>3.每个店铺每个用户每个渠道的访问次数<br>create table rpt_shop_channle_cnt as<br>select<br>shop,user_id,channle<br>count(1) as cnt<br>from user_shop_log<br>group by<br>shop,user_id ,channle;<br>4.每个店铺每个用户每个渠道每个操作系统的访问次数<br>5.每个用户每个操作系统的登录次数<br>create table rpt_user_os_cnt as<br>select<br>user_id,os<br>count(1) as cnt<br>from user_shop_log<br>group by<br>user_id,os;<br>6.每个渠道每个操作系统的浏览次数<br>create table rpt_channle_os_cnt as<br>select<br>channle,os<br>count(1) as cnt<br>from user_shop_log<br>group by<br>channle,os;</p>
-<p>维度组合分析：<br>GROUPING SETS</p>
+<h1 id="1-每个店铺的访问次数"><a href="#1-每个店铺的访问次数" class="headerlink" title="1.每个店铺的访问次数"></a>1.每个店铺的访问次数</h1><p>create table rpt_shop_cnt as<br>select<br>shop,<br>count(1) as cnt<br>from user_shop_log<br>group by<br>shop ;</p>
+<h1 id="2-每个店铺每个用户的访问次数"><a href="#2-每个店铺每个用户的访问次数" class="headerlink" title="2.每个店铺每个用户的访问次数"></a>2.每个店铺每个用户的访问次数</h1><p>create table rpt_shop_user_cnt as<br>select<br>shop,user_id<br>count(1) as cnt<br>from user_shop_log<br>group by<br>shop,user_id ;</p>
+<h1 id="3-每个店铺每个用户每个渠道的访问次数"><a href="#3-每个店铺每个用户每个渠道的访问次数" class="headerlink" title="3.每个店铺每个用户每个渠道的访问次数"></a>3.每个店铺每个用户每个渠道的访问次数</h1><p>create table rpt_shop_channle_cnt as<br>select<br>shop,user_id,channle<br>count(1) as cnt<br>from user_shop_log<br>group by<br>shop,user_id ,channle;</p>
+<h1 id="4-每个店铺每个用户每个渠道每个操作系统的访问次数"><a href="#4-每个店铺每个用户每个渠道每个操作系统的访问次数" class="headerlink" title="4.每个店铺每个用户每个渠道每个操作系统的访问次数"></a>4.每个店铺每个用户每个渠道每个操作系统的访问次数</h1><h1 id="5-每个用户每个操作系统的登录次数"><a href="#5-每个用户每个操作系统的登录次数" class="headerlink" title="5.每个用户每个操作系统的登录次数"></a>5.每个用户每个操作系统的登录次数</h1><p>create table rpt_user_os_cnt as<br>select<br>user_id,os<br>count(1) as cnt<br>from user_shop_log<br>group by<br>user_id,os;</p>
+<h1 id="6-每个渠道每个操作系统的浏览次数"><a href="#6-每个渠道每个操作系统的浏览次数" class="headerlink" title="6.每个渠道每个操作系统的浏览次数"></a>6.每个渠道每个操作系统的浏览次数</h1><p>create table rpt_channle_os_cnt as<br>select<br>channle,os<br>count(1) as cnt<br>from user_shop_log<br>group by<br>channle,os;</p>
+<h1 id="维度组合分析："><a href="#维度组合分析：" class="headerlink" title="维度组合分析："></a>维度组合分析：</h1><p>GROUPING SETS</p>
 <p>select<br>user_id,<br>shop ,<br>channle  ,<br>os  ,<br>count(1)<br>from user_shop_log<br>group by<br>user_id,<br>shop ,<br>channle  ,<br>os<br>grouping sets(<br>    (user_id),<br>    (user_id,shop),<br>    (user_id,channle),<br>    (user_id,os),<br>    (user_id,shop,channle),<br>    (user_id,shop,os),<br>    (user_id,shop,channle,os),<br>    (shop),<br>    (shop,channle),<br>    (shop,os),<br>    (shop,channle,os),<br>    (channle),<br>    (channle,os),<br>    (os)<br>);</p>
-<p>列换行 行转列：</p>
-<p>create table t1(<br>name string ,<br>interesting string<br>)<br>row format delimited fields terminated by ‘,’;</p>
+<h1 id="列换行-行转列："><a href="#列换行-行转列：" class="headerlink" title="列换行 行转列："></a>列换行 行转列：</h1><p>create table t1(<br>name string ,<br>interesting string<br>)<br>row format delimited fields terminated by ‘,’;</p>
 <p>zuan,王者荣耀<br>zuan,吃饭<br>zuan,rap<br>zuan,唱歌<br>chaofeng,王者荣耀<br>chaofeng,睡觉<br>chaofeng,方亚</p>
 <p>load data local inpath “&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;data&#x2F;exemple&#x2F;t1.txt” into table t1;</p>
-<p>行转列：<br>    array &#x3D;》 items explode </p>
-<p>列转行<br>    xxxx  &#x3D;&gt; array</p>
+<h2 id="行转列："><a href="#行转列：" class="headerlink" title="行转列："></a>行转列：</h2><pre><code>array =》 items explode 
+</code></pre>
+<h2 id="列转行"><a href="#列转行" class="headerlink" title="列转行"></a>列转行</h2><pre><code>xxxx  =&gt; array
+</code></pre>
 <p>select<br>name,<br>collect_list(interesting) as interestings,<br>concat_ws(“|”,collect_list(interesting)) as interestings_blk<br>from t1<br>group by name ;</p>
-<p>更改 数组元素的 分隔符 </p>
-<p>string：<br>    拼接：<br>        concat  &#x3D;》 字符串拼接<br>            select concat(“zuan”,”|”,”zihang”,”|”,”chaofeng”)<br>                zuan|zihang|chaofeng<br>        concat_ws(string SEP, string A, string B…) &#x3D;》 字符串拼接<br>            select concat_ws(“|”,”zuan”,”zihang”,”chaofeng”)<br>    可变参数 &#x3D;》 array【String】<br>        select concat_ws(“|”,split(“a,a,a”,’,’))<br>        select  split(“a,a,a”,’,’)</p>
-<p>字段类型转换：<br>    前提：<br>        任何数据类型 都可以转换成string<br>        数值类型 string &#x3D;》<br>             1.四则运算 是ok  hive 优化<br>             2.影响排序</p>
+<h1 id="更改-数组元素的-分隔符"><a href="#更改-数组元素的-分隔符" class="headerlink" title="更改 数组元素的 分隔符"></a>更改 数组元素的 分隔符</h1><p>string：<br>    拼接：<br>        concat  &#x3D;》 字符串拼接<br>            select concat(“zuan”,”|”,”zihang”,”|”,”chaofeng”)<br>                zuan|zihang|chaofeng<br>        concat_ws(string SEP, string A, string B…) &#x3D;》 字符串拼接<br>            select concat_ws(“|”,”zuan”,”zihang”,”chaofeng”)<br>    可变参数 &#x3D;》 array【String】<br>        select concat_ws(“|”,split(“a,a,a”,’,’))<br>        select  split(“a,a,a”,’,’)</p>
+<h1 id="字段类型转换："><a href="#字段类型转换：" class="headerlink" title="字段类型转换："></a>字段类型转换：</h1><pre><code>前提： 
+    任何数据类型 都可以转换成string
+    数值类型 string =》
+         1.四则运算 是ok  hive 优化 
+         2.影响排序
+</code></pre>
 <p>sal :<br>1000<br>1500<br>100<br>900<br>9000</p>
 <p>降序排序：<br>9000<br>1500<br>1000<br>900<br>100</p>
 <p>字符串排序： 按照字典序进行排序的 a-z<br>9000<br>900<br>1500<br>1000<br>100</p>
 <p>create table t2(<br>sql string<br>);</p>
 <p>load data local inpath “&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;data&#x2F;exemple&#x2F;t2.txt” into table t2;</p>
-<p>解决思路：<br>    1.修改表<br>    2.类型转换 </p>
+<h1 id="解决思路："><a href="#解决思路：" class="headerlink" title="解决思路："></a>解决思路：</h1><pre><code>1.修改表 
+2.类型转换 
+</code></pre>
 <p>select<br>cast(sql  as bigint ) as sql_alias<br>from t2<br>order by sql_alias;</p>
-<p>2.四大by<br>Order By：<br>    1.全局排序<br>    2.reduce 只有1个</p>
+<h1 id="2-四大by"><a href="#2-四大by" class="headerlink" title="2.四大by"></a>2.四大by</h1><h2 id="Order-By："><a href="#Order-By：" class="headerlink" title="Order By："></a>Order By：</h2><pre><code>1.全局排序
+2.reduce 只有1个
+</code></pre>
 <p>select  *  from emp order by empno;</p>
 <pre><code>hive.mapred.mode =&gt; some risky queries are not allowed to run 【关闭】
             1.order by =&gt; limit 
             2.分区表
 </code></pre>
-<p>Sort By：<br>    1.分区排序<br>    2.reduce task<br>    3.不能保证 全局有序<br>        如果 你的reduce task 个数是1 order by 和sort by 效果是一样的</p>
+<h2 id="Sort-By："><a href="#Sort-By：" class="headerlink" title="Sort By："></a>Sort By：</h2><pre><code>1.分区排序 
+2.reduce task
+3.不能保证 全局有序 
+    如果 你的reduce task 个数是1 order by 和sort by 效果是一样的
+</code></pre>
 <p>reduce 1：<br>10<br>9<br>8</p>
 <p>reduce 2：<br>2<br>1</p>
 <p>select  *  from emp sort by empno;</p>
@@ -245,18 +261,19 @@
     set mapred.reduce.tasks;
 </code></pre>
 <p>insert OVERWRITE LOCAL DIRECTORY ‘&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;data&#x2F;exemple&#x2F;sortby’<br>select  *  from emp sort by empno;</p>
-<p>Distribute By:<br>    数据分发</p>
+<h2 id="Distribute-By"><a href="#Distribute-By" class="headerlink" title="Distribute By:"></a>Distribute By:</h2><pre><code>数据分发
+</code></pre>
 <p>数据：<br>2020,1w<br>2020,2w<br>2020,1w<br>2020,0.5w<br>2021,10w<br>2021,20w<br>2021,19w<br>2021,1.5w<br>2022,1.3w<br>2022,2w<br>2022,1w<br>2022,0.5w</p>
 <p>create table hive_distribute(<br>year string,<br>earning string<br>)<br>row format delimited fields terminated by ‘,’;</p>
 <p>load data local inpath “&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;data&#x2F;exemple&#x2F;distribute.txt” into table hive_distribute;</p>
 <p>– 查询过程中 数据分发  【mr partitioner 相同规则的数据 肯定是在一个reducer中】</p>
 <p>reduce task 2 </p>
 <p>insert OVERWRITE LOCAL DIRECTORY ‘&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;data&#x2F;exemple&#x2F;distribute’<br>select  *  from hive_distribute distribute by year   sort by earning;</p>
-<p>Cluster By :<br>    Cluster By is a short-cut for both Distribute By and Sort By.</p>
+<h2 id="Cluster-By"><a href="#Cluster-By" class="headerlink" title="Cluster By :"></a>Cluster By :</h2><pre><code>Cluster By is a short-cut for both Distribute By and Sort By.
+</code></pre>
 <p>distribute by year   sort by earning &#x3D;&gt; Cluster By 错的 </p>
 <p>distribute by year   sort by year  《&#x3D;》 Cluster By year 正确</p>
-<p>分桶表：</p>
-<pre><code>普通表 路径
+<h2 id="分桶表："><a href="#分桶表：" class="headerlink" title="分桶表："></a>分桶表：</h2><pre><code>普通表 路径
 分区表 路径
 分桶表: 
     hdfs上的文件
@@ -266,8 +283,13 @@
 <p>create table hive_bucket(<br>id int,<br>name string<br>)<br>clustered by (id) into 4 buckets<br>row format delimited fields terminated by “,”;</p>
 <p>load data local inpath “&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;data&#x2F;exemple&#x2F;bucket.txt” into table hive_bucket;</p>
 <p>mapreduce:<br>    hash % reducetask个数</p>
-<p>文件存储格式： 压缩<br>    1.行式存储：<br>        1.一行内容所有的列都在一个 block里面<br>        2.里面的列 掺杂很多数据类型<br>    2.列式存储<br>        按照列进行存储 </p>
-<pre><code>前提： 企业 table 字段 几十个 到几百个 
+<h1 id="文件存储格式：-压缩"><a href="#文件存储格式：-压缩" class="headerlink" title="文件存储格式： 压缩"></a>文件存储格式： 压缩</h1><pre><code>1.行式存储： 
+    1.一行内容所有的列都在一个 block里面 
+    2.里面的列 掺杂很多数据类型
+2.列式存储
+    按照列进行存储 
+
+前提： 企业 table 字段 几十个 到几百个 
 
 行式存储： 
     1.行式存储加载所 是把所有的列都查询出来 再过滤出 用户需要的列 
@@ -287,13 +309,16 @@
     弊端： 
         加载表中所有字段
 </code></pre>
-<p>udf： 之后项目里面讲</p>
-<p>create table hive_distribute_col(<br>year string,<br>earning string<br>)<br>row format delimited fields terminated by ‘,’<br>stored as orc;</p>
+<h2 id="udf：-之后项目里面讲"><a href="#udf：-之后项目里面讲" class="headerlink" title="udf： 之后项目里面讲"></a>udf： 之后项目里面讲</h2><p>create table hive_distribute_col(<br>year string,<br>earning string<br>)<br>row format delimited fields terminated by ‘,’<br>stored as orc;</p>
 <p>load data local inpath “&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;data&#x2F;exemple&#x2F;distribute.txt” into table hive_distribute_col;</p>
 <p>insert into table hive_distribute_col<br>select </p>
 <p>*<br>from hive_distribute;</p>
 <p>列式存储文件 数据量 比 行式存储的数据量少 【前提 都采用压缩】</p>
-<p>作业：<br>    1.了解 hive 中文件存储格式 vs 压缩<br>    2.整理hive目前所学知识点<br>    3.<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37064763/article/details/120673550">https://blog.csdn.net/qq_37064763/article/details/120673550</a> 50道题<br>        不能看答案 实在不行 可以看</p>
+<pre><code>1.了解 hive 中文件存储格式 vs 压缩 
+2.整理hive目前所学知识点 
+3.https://blog.csdn.net/qq_37064763/article/details/120673550 50道题 
+    不能看答案 实在不行 可以看
+</code></pre>
 
       
 
@@ -421,7 +446,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hive4"><span class="toc-number">1.</span> <span class="toc-text">hive4</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hive4"><span class="toc-number">1.</span> <span class="toc-text">hive4</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">需求：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97-etl-%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">1.数据清洗 etl ：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97"><span class="toc-number">3.2.</span> <span class="toc-text">2.数据计算</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#x3D-gt-%E4%B8%80%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E5%BA%97%E9%93%BA%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">&#x3D;&gt; 一共有多少个店铺？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%AF%8F%E4%B8%AA%E5%BA%97%E9%93%BA%E8%AE%BF%E9%97%AE%E6%AC%A1%E6%95%B0"><span class="toc-number">4.1.</span> <span class="toc-text">1.每个店铺访问次数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%AE%BF%E9%97%AE%E6%AC%A1%E6%95%B0%E6%8E%92%E5%90%8D"><span class="toc-number">4.2.</span> <span class="toc-text">2.访问次数排名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-top3-%E5%BA%97%E9%93%BA%E5%90%8D%E5%AD%97-%E8%AE%BF%E9%97%AE%E6%AC%A1%E6%95%B0-%E6%8E%92%E5%90%8D"><span class="toc-number">4.3.</span> <span class="toc-text">3.top3 店铺名字  访问次数 排名</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%97%E9%93%BA%E5%90%8D%E7%A7%B0-%E8%AE%BF%E5%AE%A2id-%E8%AE%BF%E9%97%AE%E6%AC%A1%E6%95%B0-top3"><span class="toc-number">5.</span> <span class="toc-text">店铺名称 访客id  访问次数 top3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%AF%8F%E4%B8%AA%E5%BA%97%E9%93%BA%E6%AF%8F%E4%B8%AA%E8%AE%BF%E5%AE%A2id%E8%AE%BF%E9%97%AE%E6%AC%A1%E6%95%B0"><span class="toc-number">5.1.</span> <span class="toc-text">1.每个店铺每个访客id访问次数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%AE%BF%E9%97%AE%E6%AC%A1%E6%95%B0%E6%8E%92%E5%90%8D-1"><span class="toc-number">5.2.</span> <span class="toc-text">2.访问次数排名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-top3-%E5%BA%97%E9%93%BA%E5%90%8D%E7%A7%B0-%E8%AE%BF%E5%AE%A2id-%E8%AE%BF%E9%97%AE%E6%AC%A1%E6%95%B0"><span class="toc-number">5.3.</span> <span class="toc-text">3.top3 店铺名称 访客id  访问次数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%B4%E5%BA%A6%E7%BB%84%E5%90%88%E5%88%86%E6%9E%90-sql-%E5%85%B3%E9%94%AE%E5%AD%97-grouping-sets"><span class="toc-number">6.</span> <span class="toc-text">维度组合分析 sql 关键字 grouping sets</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%AF%8F%E4%B8%AA%E5%BA%97%E9%93%BA%E7%9A%84%E8%AE%BF%E9%97%AE%E6%AC%A1%E6%95%B0"><span class="toc-number">7.</span> <span class="toc-text">1.每个店铺的访问次数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%AF%8F%E4%B8%AA%E5%BA%97%E9%93%BA%E6%AF%8F%E4%B8%AA%E7%94%A8%E6%88%B7%E7%9A%84%E8%AE%BF%E9%97%AE%E6%AC%A1%E6%95%B0"><span class="toc-number">8.</span> <span class="toc-text">2.每个店铺每个用户的访问次数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%AF%8F%E4%B8%AA%E5%BA%97%E9%93%BA%E6%AF%8F%E4%B8%AA%E7%94%A8%E6%88%B7%E6%AF%8F%E4%B8%AA%E6%B8%A0%E9%81%93%E7%9A%84%E8%AE%BF%E9%97%AE%E6%AC%A1%E6%95%B0"><span class="toc-number">9.</span> <span class="toc-text">3.每个店铺每个用户每个渠道的访问次数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E6%AF%8F%E4%B8%AA%E5%BA%97%E9%93%BA%E6%AF%8F%E4%B8%AA%E7%94%A8%E6%88%B7%E6%AF%8F%E4%B8%AA%E6%B8%A0%E9%81%93%E6%AF%8F%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BF%E9%97%AE%E6%AC%A1%E6%95%B0"><span class="toc-number">10.</span> <span class="toc-text">4.每个店铺每个用户每个渠道每个操作系统的访问次数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E6%AF%8F%E4%B8%AA%E7%94%A8%E6%88%B7%E6%AF%8F%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%99%BB%E5%BD%95%E6%AC%A1%E6%95%B0"><span class="toc-number">11.</span> <span class="toc-text">5.每个用户每个操作系统的登录次数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E6%AF%8F%E4%B8%AA%E6%B8%A0%E9%81%93%E6%AF%8F%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%B5%8F%E8%A7%88%E6%AC%A1%E6%95%B0"><span class="toc-number">12.</span> <span class="toc-text">6.每个渠道每个操作系统的浏览次数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%B4%E5%BA%A6%E7%BB%84%E5%90%88%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-number">13.</span> <span class="toc-text">维度组合分析：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E6%8D%A2%E8%A1%8C-%E8%A1%8C%E8%BD%AC%E5%88%97%EF%BC%9A"><span class="toc-number">14.</span> <span class="toc-text">列换行 行转列：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E8%BD%AC%E5%88%97%EF%BC%9A"><span class="toc-number">14.1.</span> <span class="toc-text">行转列：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%BD%AC%E8%A1%8C"><span class="toc-number">14.2.</span> <span class="toc-text">列转行</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9B%B4%E6%94%B9-%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84-%E5%88%86%E9%9A%94%E7%AC%A6"><span class="toc-number">15.</span> <span class="toc-text">更改 数组元素的 分隔符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%EF%BC%9A"><span class="toc-number">16.</span> <span class="toc-text">字段类型转换：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="toc-number">17.</span> <span class="toc-text">解决思路：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%9B%9B%E5%A4%A7by"><span class="toc-number">18.</span> <span class="toc-text">2.四大by</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Order-By%EF%BC%9A"><span class="toc-number">18.1.</span> <span class="toc-text">Order By：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sort-By%EF%BC%9A"><span class="toc-number">18.2.</span> <span class="toc-text">Sort By：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Distribute-By"><span class="toc-number">18.3.</span> <span class="toc-text">Distribute By:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cluster-By"><span class="toc-number">18.4.</span> <span class="toc-text">Cluster By :</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%A1%B6%E8%A1%A8%EF%BC%9A"><span class="toc-number">18.5.</span> <span class="toc-text">分桶表：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F%EF%BC%9A-%E5%8E%8B%E7%BC%A9"><span class="toc-number">19.</span> <span class="toc-text">文件存储格式： 压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#udf%EF%BC%9A-%E4%B9%8B%E5%90%8E%E9%A1%B9%E7%9B%AE%E9%87%8C%E9%9D%A2%E8%AE%B2"><span class="toc-number">19.1.</span> <span class="toc-text">udf： 之后项目里面讲</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
