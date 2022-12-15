@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>flume | Hexo</title>
+  <title>flume3 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="flume">
+  <meta name="description" content="flum3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="flume">
-<meta property="og:url" content="http://example.com/2022/12/12/flume/index.html">
+<meta property="og:title" content="flume3">
+<meta property="og:url" content="http://example.com/2022/12/15/flume3/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="flume">
+<meta property="og:description" content="flum3">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-12-12T14:21:06.000Z">
-<meta property="article:modified_time" content="2022-12-12T14:23:54.761Z">
+<meta property="article:published_time" content="2022-12-15T03:16:38.000Z">
+<meta property="article:modified_time" content="2022-12-15T03:18:26.387Z">
 <meta property="article:author" content="shichunlei99">
 <meta name="twitter:card" content="summary">
   
@@ -156,193 +156,171 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-flume" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-flume3" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      flume
+      flume3
     </h1>
   
 
         
-        <a href="/2022/12/12/flume/" class="archive-article-date">
-  	<time datetime="2022-12-12T14:21:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-12</time>
+        <a href="/2022/12/15/flume3/" class="archive-article-date">
+  	<time datetime="2022-12-15T03:16:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="flume"><a href="#flume" class="headerlink" title="flume"></a>flume</h1><span id="more"></span>
-<h1 id="1-hadoop-fs-put-x2F-app-log-hdfs-x2F-x2F-bigdata32-9000-x2F-data-x2F"><a href="#1-hadoop-fs-put-x2F-app-log-hdfs-x2F-x2F-bigdata32-9000-x2F-data-x2F" class="headerlink" title="1.hadoop fs -put   .&#x2F;app.log   hdfs:&#x2F;&#x2F;bigdata32:9000&#x2F;data&#x2F;"></a>1.hadoop fs -put   .&#x2F;app.log   hdfs:&#x2F;&#x2F;bigdata32:9000&#x2F;data&#x2F;</h1><pre><code>5min  10min
+        <h1 id="flum3"><a href="#flum3" class="headerlink" title="flum3"></a>flum3</h1><span id="more"></span>
+<p>1.采集日志数据 [自己造] 1w条 ：java shell<br>        采集到hdfs上 采用压缩存储 bzip2</p>
+<pre><code>source: exec taildir
+channle  :mem file
+sink: hdfs  =&gt; bzip2
+</code></pre>
+<p>agent:<br>agent1.sources &#x3D; r1<br>agent1.sinks &#x3D; k1<br>agent1.channels &#x3D; c1</p>
+<p>agent1.sources.r1.type &#x3D; TAILDIR<br>agent1.sources.r1.filegroups &#x3D; f1<br>agent1.sources.r1.filegroups.f1&#x3D;&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;codec.log</p>
+<p>agent1.channels.c1.type &#x3D; memory</p>
+<p>agent1.sinks.k1.type &#x3D; hdfs<br>agent1.sinks.k1.hdfs.path &#x3D; hdfs:&#x2F;&#x2F;bigdata32:9000&#x2F;flume&#x2F;bzip2&#x2F;<br>agent1.sinks.k1.hdfs.fileType&#x3D;CompressedStream<br>agent1.sinks.k1.hdfs.writeFormat&#x3D;Text<br>#文件前后缀<br>agent1.sinks.k1.hdfs.filePrefix&#x3D;events<br>agent1.sinks.k1.hdfs.fileSuffix&#x3D;.bz2<br>agent1.sinks.k1.hdfs.codeC&#x3D;bzip2</p>
+<p>#文件滚动<br>agent1.sinks.k1.hdfs.rollInterval&#x3D;60<br>agent1.sinks.k1.hdfs.rollSize&#x3D;134217728<br>agent1.sinks.k1.hdfs.rollCount&#x3D;100</p>
+<p>agent1.sources.r1.channels &#x3D; c1<br>agent1.sinks.k1.channel &#x3D; c1</p>
+<p>启动：<br>flume-ng agent <br>–name agent1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;taildir-mem-hdfs-bzip2.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>file channel:<br>agent:<br>agent1.sources &#x3D; r1<br>agent1.sinks &#x3D; k1<br>agent1.channels &#x3D; c1</p>
+<p>agent1.sources.r1.type &#x3D; TAILDIR<br>agent1.sources.r1.filegroups &#x3D; f1<br>agent1.sources.r1.filegroups.f1&#x3D;&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;codec01.log</p>
+<p>agent1.channels.c1.type &#x3D; file<br>agent1.channels.c1.checkpointDir &#x3D; &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;checkpoint&#x2F;codec<br>agent1.channels.c1.dataDirs &#x3D; &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;data&#x2F;codec</p>
+<p>agent1.sinks.k1.type &#x3D; hdfs<br>agent1.sinks.k1.hdfs.path &#x3D; hdfs:&#x2F;&#x2F;bigdata32:9000&#x2F;flume&#x2F;bzip2&#x2F;<br>agent1.sinks.k1.hdfs.fileType&#x3D;CompressedStream<br>agent1.sinks.k1.hdfs.writeFormat&#x3D;Text<br>#文件前后缀<br>agent1.sinks.k1.hdfs.filePrefix&#x3D;events<br>agent1.sinks.k1.hdfs.fileSuffix&#x3D;.bz2<br>agent1.sinks.k1.hdfs.codeC&#x3D;bzip2</p>
+<p>#文件滚动<br>agent1.sinks.k1.hdfs.rollInterval&#x3D;60<br>agent1.sinks.k1.hdfs.rollSize&#x3D;134217728<br>agent1.sinks.k1.hdfs.rollCount&#x3D;100</p>
+<p>agent1.sources.r1.channels &#x3D; c1<br>agent1.sinks.k1.channel &#x3D; c1</p>
+<p>启动：<br>flume-ng agent <br>–name agent1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;taildir-file-hdfs-bzip2.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>负载 均衡 ：</p>
+<p>高可用的概念 ：<br>    ha</p>
+<pre><code>nn： 维护hdfs命名空间 =》 存储 整个hdfs 文件块的信息+ client读写请求
+snn： 合并nn上面的镜像文件 =》 存储 整个hdfs 文件块的信息
+        默认 1h小时 3600s
 
-1.缺陷：
-    1.时效性
-    2.完整性
-    3.监控能做吗？ xxl+报警
-    4.安全性
+snn不是nn的热备 冷备
 </code></pre>
-<h1 id="2-flume"><a href="#2-flume" class="headerlink" title="2.flume :"></a>2.flume :</h1><pre><code>收集 日志数据
-A =&gt; B
-数据采集：把数据采集到服务器上
-数据收集：把数据移动到指定位置
+<p>sink：<br>    flume 为了防止sink 发生故障 ，负载均衡：<br>    Sink Processors:<br>        负载：failover<br>        均衡：load_balance:<br>                1.随机发送数据<br>                        random<br>                2.轮循发送数据 ：<br>                        round_robin<br>        Default Sink</p>
+<p>均衡：load_balance:</p>
+<p>需求：<br>    读取1111端口数据 数据发送到 2222端口和3333端口  最终数据输出到 控制台？</p>
+<pre><code>    3个agent ：
+        agent1：
+            source：nc
+            channel :mem
+            sink : avro  两个sink
+
+        agent2：2222端口
+            source：avro
+            channel :mem
+            sink : logger
+        agent3：3333端口
+            source：avro
+            channel :mem
+            sink : logger
 </code></pre>
-<h1 id="数据处理："><a href="#数据处理：" class="headerlink" title="数据处理："></a>数据处理：</h1><pre><code>1.离线处理：批处理
-    数据已经放在那  =》
-2.实时处理：
-    产生一条数据 处理一次
+<p>agent1：<br>agent1.sources &#x3D; r1<br>agent1.sinks &#x3D; k1 k2<br>agent1.channels &#x3D; c1</p>
+<p>agent1.sources.r1.type &#x3D; netcat<br>agent1.sources.r1.bind &#x3D; bigdata32<br>agent1.sources.r1.port &#x3D; 1111</p>
+<p>agent1.channels.c1.type &#x3D; memory</p>
+<p>#定义sink 2222<br>agent1.sinks.k1.type &#x3D; avro<br>agent1.sinks.k1.hostname &#x3D; bigdata32<br>agent1.sinks.k1.port &#x3D; 2222</p>
+<p>#定义sink 3333<br>agent1.sinks.k2.type &#x3D; avro<br>agent1.sinks.k2.hostname &#x3D; bigdata32<br>agent1.sinks.k2.port &#x3D; 3333</p>
+<p>#定义sink processers<br>agent1.sinkgroups &#x3D; g1<br>agent1.sinkgroups.g1.sinks &#x3D; k1 k2<br>agent1.sinkgroups.g1.processor.type &#x3D; load_balance<br>agent1.sinkgroups.g1.processor.backoff &#x3D; true<br>agent1.sinkgroups.g1.processor.selector &#x3D; round_robin</p>
+<p>agent1.sources.r1.channels &#x3D; c1<br>agent1.sinks.k1.channel &#x3D; c1<br>agent1.sinks.k2.channel &#x3D; c1</p>
+<p>agent2：2222端口<br>agent2.sources &#x3D; r1<br>agent2.sinks &#x3D; k1<br>agent2.channels &#x3D; c1</p>
+<p>agent2.sources.r1.type &#x3D; avro<br>agent2.sources.r1.bind &#x3D; bigdata32<br>agent2.sources.r1.port &#x3D; 2222</p>
+<p>agent2.channels.c1.type &#x3D; memory<br>agent2.sinks.k1.type &#x3D; logger</p>
+<p>agent2.sources.r1.channels &#x3D; c1<br>agent2.sinks.k1.channel &#x3D; c1</p>
+<p>agent3: 3333端口<br>agent3.sources &#x3D; r1<br>agent3.sinks &#x3D; k1<br>agent3.channels &#x3D; c1</p>
+<p>agent3.sources.r1.type &#x3D; avro<br>agent3.sources.r1.bind &#x3D; bigdata32<br>agent3.sources.r1.port &#x3D; 3333</p>
+<p>agent3.channels.c1.type &#x3D; memory<br>agent3.sinks.k1.type &#x3D; logger</p>
+<p>agent3.sources.r1.channels &#x3D; c1<br>agent3.sinks.k1.channel &#x3D; c1</p>
+<p>启动agent：<br>    从后往前 启动</p>
+<p>flume-ng agent <br>–name agent3 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;sink&#x2F;agent3.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>flume-ng agent <br>–name agent2 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;sink&#x2F;agent2.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>flume-ng agent <br>–name agent1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;sink&#x2F;agent1.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>telnet bigdata32 1111</p>
+<p>容灾：<br>均衡：load_balance<br>    1.将数据分开 提供并行度的功能 减轻sink 压力<br>    2.如果 第二个或者第三个 agent挂掉  数据都会发送到 没挂的sink 对应的agent上面</p>
+<pre><code>processor.backoff  true
+processor.selector.maxTimeOut
 </code></pre>
-<h1 id="1-官网"><a href="#1-官网" class="headerlink" title="1.官网"></a>1.官网</h1><pre><code>flume.apache.org
+<p>容灾：sink 出现故障<br>    负载  Failover<br>    均衡 load_balance</p>
+<p>agent1：<br>agent1.sources &#x3D; r1<br>agent1.sinks &#x3D; k1 k2<br>agent1.channels &#x3D; c1</p>
+<p>agent1.sources.r1.type &#x3D; netcat<br>agent1.sources.r1.bind &#x3D; bigdata32<br>agent1.sources.r1.port &#x3D; 1111</p>
+<p>agent1.channels.c1.type &#x3D; memory</p>
+<p>#定义sink 2222<br>agent1.sinks.k1.type &#x3D; avro<br>agent1.sinks.k1.hostname &#x3D; bigdata32<br>agent1.sinks.k1.port &#x3D; 2222</p>
+<p>#定义sink 3333<br>agent1.sinks.k2.type &#x3D; avro<br>agent1.sinks.k2.hostname &#x3D; bigdata32<br>agent1.sinks.k2.port &#x3D; 3333</p>
+<p>#定义sink processers<br>agent1.sinkgroups &#x3D; g1<br>agent1.sinkgroups.g1.sinks &#x3D; k1 k2<br>agent1.sinkgroups.g1.processor.type &#x3D; failover<br>agent1.sinkgroups.g1.processor.priority.k1 &#x3D; 5<br>agent1.sinkgroups.g1.processor.priority.k2 &#x3D; 10<br>agent1.sinkgroups.g1.processor.maxpenalty &#x3D; 2000</p>
+<p>agent1.sources.r1.channels &#x3D; c1<br>agent1.sinks.k1.channel &#x3D; c1<br>agent1.sinks.k2.channel &#x3D; c1</p>
+<p>flume-ng agent <br>–name agent1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;sink&#x2F;agent1_failover.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>flume核心组件：<br>    sources<br>        interceptors 拦截器 &#x3D;&gt; 主要处理 采集的数据 数据转换&#x2F;数据清洗的操作<br>        channel selectors   &#x3D;》 采集的数据 发送到哪个 channle<br>    channels<br>    sinks<br>        sink processers &#x3D;》 采集的数据 发送到 哪个sink</p>
+<p>需求：<br>    定一个agent 端口1111采集数据 一个发送到 hdfs<br>        另外一个 发送到 logger</p>
+<pre><code>agent:
 </code></pre>
-<h2 id="1-flume"><a href="#1-flume" class="headerlink" title="1. flume"></a>1. flume</h2><p>   collecting  采集&#x2F;收集  source<br>   aggregating  聚合     channel<br>   moving       移动     sink</p>
-<h2 id="常用三个组件："><a href="#常用三个组件：" class="headerlink" title="常用三个组件："></a>常用三个组件：</h2><pre><code>source
-channel
-sink
-</code></pre>
-<h2 id="2-streaming-data-flows-flume采集数据-实时采集数据"><a href="#2-streaming-data-flows-flume采集数据-实时采集数据" class="headerlink" title="2.streaming data flows  flume采集数据 实时采集数据"></a>2.streaming data flows  flume采集数据 实时采集数据</h2><p>flume使用场景？<br>    1.采集日志数据  &#x3D;》 hdfs</p>
-<h2 id="3-核心概念"><a href="#3-核心概念" class="headerlink" title="3.核心概念"></a>3.核心概念</h2><pre><code>user job：	就是编写agent里面的配置
-</code></pre>
-<p>agent：source channel sink<br>source：采集数据<br>channel: 存储采集过来的数据<br>sink： 把采集来的数据发送出去</p>
-<h2 id="4-部署"><a href="#4-部署" class="headerlink" title="4.部署"></a>4.部署</h2><h3 id="1-解压"><a href="#1-解压" class="headerlink" title="1.解压"></a>1.解压</h3><p>[hadoop@bigdata32 software]$ tar -zxvf .&#x2F;apache-flume-1.9.0-bin.tar.gz -C ~&#x2F;app&#x2F;<br>[hadoop@bigdata32 app]$ ln -s apache-flume-1.9.0-bin&#x2F; flume</p>
-<h3 id="2-环境变量"><a href="#2-环境变量" class="headerlink" title="2.环境变量"></a>2.环境变量</h3><p>#FLUME_HOME<br>export FLUME_HOME&#x3D;&#x2F;home&#x2F;hadoop&#x2F;app&#x2F;flume<br>export PATH&#x3D;${PATH}:${FLUME_HOME}&#x2F;bin</p>
-<h3 id="3-配置flume"><a href="#3-配置flume" class="headerlink" title="3.配置flume"></a>3.配置flume</h3><p>vim flume-env.sh<br>export JAVA_HOME&#x3D;&#x2F;home&#x2F;hadoop&#x2F;app&#x2F;java</p>
-<p>Flume User Guide  &#x3D;》 flume基本使用<br>Flume Developer Guide &#x3D;》二次开发</p>
-<h2 id="5-使用flume"><a href="#5-使用flume" class="headerlink" title="5.使用flume"></a>5.使用flume</h2><pre><code>就是配置agent 配置文件
-</code></pre>
-<p>source：<br>    avro  序列化框架 source    ****<br>    exec  日志文件   **<br>    spooling dir  日志文件  **<br>    taildir Source 日志文件   ****<br>    Kafka Source   **<br>    NetCat TCP  port采集数据 **<br>    Custom 用户自己开发  *</p>
-<p>channel ：<br>    Memory  ****<br>    File    ****<br>    JDBC    *<br>    Kafka   *<br>    Custom 用户自己开发 *<br>sink：<br>    HDFS Sink ****<br>    Hive Sink ****<br>    Logger Sink  打印控制台 **<br>    Avro Sink ****<br>    HBaseSinks *<br>    Kafka Sink ***<br>    Custom Sink 用户自己开发</p>
-<h1 id="如何配置agent？"><a href="#如何配置agent？" class="headerlink" title="如何配置agent？"></a>如何配置agent？</h1><pre><code>用什么查什么
-</code></pre>
-<p>event：<br>    一条数据</p>
-<h2 id="1-需求："><a href="#1-需求：" class="headerlink" title="1.需求："></a>1.需求：</h2><pre><code>通过flume从指定端口中 获取数据 输出到控制台？
-agent：
-source :  NetCat TCP
-channel : Memory
-sink: Logger
-</code></pre>
+<p>agent1.sources &#x3D; r1<br>agent1.sinks &#x3D; k1 k2<br>agent1.channels &#x3D; c1 c2</p>
+<p>agent1.sources.r1.type &#x3D; netcat<br>agent1.sources.r1.bind &#x3D; bigdata32<br>agent1.sources.r1.port &#x3D; 1111</p>
+<p>#0 配置source channle<br>agent1.sources.r1.selector.type &#x3D; replicating<br>agent1.sources.r1.channels &#x3D; c1 c2</p>
+<p>#1.配置两个channel<br>agent1.channels.c1.type &#x3D; memory<br>agent1.channels.c2.type &#x3D; memory</p>
+<p>#定义sink hdfs<br>agent1.sinks.k1.type &#x3D; hdfs<br>agent1.sinks.k1.hdfs.path &#x3D; hdfs:&#x2F;&#x2F;bigdata32:9000&#x2F;flume&#x2F;channel_selector&#x2F;<br>agent1.sinks.k1.hdfs.fileType&#x3D;DataStream<br>agent1.sinks.k1.hdfs.writeFormat&#x3D;Text<br>#文件前后缀<br>agent1.sinks.k1.hdfs.filePrefix&#x3D;events<br>agent1.sinks.k1.hdfs.fileSuffix&#x3D;.log<br>agent1.sinks.k1.hdfs.useLocalTimeStamp&#x3D;true<br>#文件滚动<br>agent1.sinks.k1.hdfs.rollInterval&#x3D;60<br>agent1.sinks.k1.hdfs.rollSize&#x3D;134217728<br>agent1.sinks.k1.hdfs.rollCount&#x3D;1000</p>
+<p>#定义sink logger<br>agent1.sinks.k2.type &#x3D; logger</p>
+<p>#定义 连接<br>agent1.sources.r1.channels &#x3D; c1 c2<br>agent1.sinks.k1.channel &#x3D; c1<br>agent1.sinks.k2.channel &#x3D; c2</p>
+<p>启动agent：<br>flume-ng agent <br>–name agent1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;channle&#x2F;agent_logger_hdfs.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>telnet bigdata32 1111</p>
+<p>channel_selector :<br>    1.replicating &#x3D;&gt; 所有channle 数据发送一致</p>
+<p>作业：<br>    1.三个agent完成 上面的事情：<br>        agent1： 1111接收数据 发送 2222 和3333端口<br>        agent2: 接收2222 数据发送到 logger<br>        agent3: 接收3333 数据发送到 logger</p>
+<p>agent1:<br>agent1.sources &#x3D; r1<br>agent1.sinks &#x3D; k1 k2<br>agent1.channels &#x3D; c1 c2</p>
+<p>agent1.sources.r1.type &#x3D; netcat<br>agent1.sources.r1.bind &#x3D; bigdata32<br>agent1.sources.r1.port &#x3D; 1111</p>
+<p>#0 配置source channle<br>agent1.sources.r1.selector.type &#x3D; replicating<br>agent1.sources.r1.channels &#x3D; c1 c2</p>
+<p>#1.配置两个channel<br>agent1.channels.c1.type &#x3D; memory<br>agent1.channels.c2.type &#x3D; memory</p>
+<p>#定义sink hdfs<br>#定义sink 2222<br>agent1.sinks.k1.type &#x3D; avro<br>agent1.sinks.k1.hostname &#x3D; bigdata32<br>agent1.sinks.k1.port &#x3D; 2222</p>
+<p>#定义sink 3333<br>agent1.sinks.k2.type &#x3D; avro<br>agent1.sinks.k2.hostname &#x3D; bigdata32<br>agent1.sinks.k2.port &#x3D; 3333</p>
+<p>#定义 连接<br>agent1.sources.r1.channels &#x3D; c1 c2<br>agent1.sinks.k1.channel &#x3D; c1<br>agent1.sinks.k2.channel &#x3D; c2</p>
+<p>启动agent：</p>
+<p>flume-ng agent <br>–name agent3 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;one2many&#x2F;agent3.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>flume-ng agent <br>–name agent2 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;one2many&#x2F;agent2.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>flume-ng agent <br>–name agent1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;one2many&#x2F;agent1.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>telnet bigdata32 1111</p>
+<p>event:<br>    header ：打标记<br>    body:数据</p>
 <hr>
+<pre><code>需求：
+    多种日志采集到一个agent里面 之后 通过这个agent进行指定数据分发
+</code></pre>
+<p>agent1:<br>agent1.sources &#x3D; r1<br>agent1.sinks &#x3D; k1<br>agent1.channels &#x3D; c1</p>
+<p>agent1.sources.r1.type &#x3D; netcat<br>agent1.sources.r1.bind &#x3D; bigdata32<br>agent1.sources.r1.port &#x3D; 1111</p>
+<p>#添加一个拦截器 &#x3D;》 数据清洗 + event打标签<br>agent1.sources.r1.interceptors &#x3D; i1<br>agent1.sources.r1.interceptors.i1.type &#x3D; static<br>agent1.sources.r1.interceptors.i1.key &#x3D; dl2262<br>agent1.sources.r1.interceptors.i1.value &#x3D; boy<br>#0 配置source channle<br>agent1.sources.r1.channels &#x3D; c1<br>#1.配置两个channel<br>agent1.channels.c1.type &#x3D; memory<br>#定义sink 2222<br>agent1.sinks.k1.type &#x3D; avro<br>agent1.sinks.k1.hostname &#x3D; bigdata32<br>agent1.sinks.k1.port &#x3D; 2222<br>#定义 连接<br>agent1.sources.r1.channels &#x3D; c1<br>agent1.sinks.k1.channel &#x3D; c1</p>
+<p>agent2:<br>agent2.sources &#x3D; r1<br>agent2.sinks &#x3D; k1<br>agent2.channels &#x3D; c1</p>
+<p>agent2.sources.r1.type &#x3D; netcat<br>agent2.sources.r1.bind &#x3D; bigdata32<br>agent2.sources.r1.port &#x3D; 1112</p>
+<p>#添加一个拦截器 &#x3D;》 数据清洗 + event打标签<br>agent2.sources.r1.interceptors &#x3D; i1<br>agent2.sources.r1.interceptors.i1.type &#x3D; static<br>agent2.sources.r1.interceptors.i1.key &#x3D; dl2262<br>agent2.sources.r1.interceptors.i1.value &#x3D; girl<br>#0 配置source channle<br>agent2.sources.r1.channels &#x3D; c1<br>#1.配置两个channel<br>agent2.channels.c1.type &#x3D; memory<br>#定义sink 2222<br>agent2.sinks.k1.type &#x3D; avro<br>agent2.sinks.k1.hostname &#x3D; bigdata32<br>agent2.sinks.k1.port &#x3D; 2222<br>#定义 连接<br>agent2.sources.r1.channels &#x3D; c1<br>agent2.sinks.k1.channel &#x3D; c1</p>
+<p>agent3:<br>agent3.sources &#x3D; r1<br>agent3.sinks &#x3D; k1<br>agent3.channels &#x3D; c1</p>
+<p>agent3.sources.r1.type &#x3D; netcat<br>agent3.sources.r1.bind &#x3D; bigdata32<br>agent3.sources.r1.port &#x3D; 1113</p>
+<p>#添加一个拦截器 &#x3D;》 数据清洗 + event打标签<br>agent3.sources.r1.interceptors &#x3D; i1<br>agent3.sources.r1.interceptors.i1.type &#x3D; static<br>agent3.sources.r1.interceptors.i1.key &#x3D; dl2262<br>agent3.sources.r1.interceptors.i1.value &#x3D; tea<br>#0 配置source channle<br>agent3.sources.r1.channels &#x3D; c1<br>#1.配置两个channel<br>agent3.channels.c1.type &#x3D; memory<br>#定义sink 2222<br>agent3.sinks.k1.type &#x3D; avro<br>agent3.sinks.k1.hostname &#x3D; bigdata32<br>agent3.sinks.k1.port &#x3D; 2222<br>#定义 连接<br>agent3.sources.r1.channels &#x3D; c1<br>agent3.sinks.k1.channel &#x3D; c1</p>
+<p>agent4:</p>
+<p>agent4.sources &#x3D; r1<br>agent4.sinks &#x3D; k1 k2 k3<br>agent4.channels &#x3D; c1 c2 c3</p>
+<p>agent4.sources.r1.type &#x3D; avro<br>agent4.sources.r1.bind &#x3D; bigdata32<br>agent4.sources.r1.port &#x3D; 2222</p>
+<p>#0 配置source channle<br>agent4.sources.r1.selector.type &#x3D; multiplexing<br>agent4.sources.r1.selector.header &#x3D; dl2262<br>agent4.sources.r1.selector.mapping.boy &#x3D; c1<br>agent4.sources.r1.selector.mapping.girl &#x3D; c2<br>agent4.sources.r1.selector.default &#x3D; c3<br>agent4.sources.r1.channels &#x3D; c1 c2 c3<br>#1.配置两个channel<br>agent4.channels.c1.type &#x3D; memory<br>agent4.channels.c2.type &#x3D; memory<br>agent4.channels.c3.type &#x3D; memory<br>#定义sink logger<br>agent4.sinks.k1.type &#x3D;logger<br>agent4.sinks.k2.type &#x3D;logger<br>agent4.sinks.k3.type &#x3D;logger<br>#定义 连接<br>agent4.sources.r1.channels &#x3D; c1 c2 c3<br>agent4.sinks.k1.channel &#x3D; c1<br>agent4.sinks.k2.channel &#x3D; c2<br>agent4.sinks.k3.channel &#x3D; c3</p>
+<p>启动：<br>flume-ng agent <br>–name agent4 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;many2one&#x2F;agent4.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>flume-ng agent <br>–name agent3 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;many2one&#x2F;agent3.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>flume-ng agent <br>–name agent2 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;many2one&#x2F;agent2.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>flume-ng agent <br>–name agent1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;many2one&#x2F;agent1.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>telnet bigdata32 1111<br>telnet bigdata32 1112<br>telnet bigdata32 1113</p>
+<p>补充:<br>    channle:<br>        1.默认容量<br>            capacity 100<br>        2.事务容量<br>            transactionCapacity 100<br>            souce -》channle<br>             channle &#x3D;》 sink</p>
+<p>监控：<br>    source<br>    channle<br>    sink</p>
+<p>1.手段：<br>    1.flume 提供 ganglia 框架  指标 【需要安装ganglia +  】<br>    2.通过 agent 启动 配置一些参数 http 方式获取  【建议用这个 easy】<br>        json数据 &#x3D;》 http接口数据 &#x3D;》<br>                                    1.前端人员 可视化界面展示<br>                                    2.采集 http接口数据 &#x3D;》 mysql &#x3D;》 可视化</p>
+<p>拿到数据：<br>    javase：api &#x3D;》 url<br>    springboot：<br>    scala ： source api<br>    linux命令：curl</p>
+<p>参数解释：<br>SOURCE：<br>    OpenConnectionCount（打开的连接数）<br>    Type（组件类型）<br>    AppendBatchAcceptedCount（追加到channel中的批数量）<br>    AppendBatchReceivedCount（source端刚刚追加的批数量）<br>    EventAcceptedCount（成功放入channel的event数量）<br>    AppendReceivedCount（source追加目前收到的数量）<br>    StartTime（组件开始时间）<br>    StopTime（组件停止时间）<br>    EventReceivedCount（source端成功收到的event数量）<br>    AppendAcceptedCount（放入channel的event数量）<br>CHANNEL：<br>    EventPutSuccessCount（成功放入channel的event数量）<br>    ChannelFillPercentage（通道使用比例）<br>    Type（组件类型）<br>    EventPutAttemptCount（尝试放入将event放入channel的次数）<br>    ChannelSize（目前在channel中的event数量）<br>    StartTime（组件开始时间）<br>    StopTime（组件停止时间）<br>    EventTakeSuccessCount（从channel中成功取走的event数量）<br>    ChannelCapacity（通道容量）<br>    EventTakeAttemptCount（尝试从channel中取走event的次数）<br>SINK<br>    BatchCompleteCount(完成的批数量)<br>    ConnectionFailedCount（连接失败数）<br>    EventDrainAttemptCount（尝试提交的event数量）<br>    ConnectionCreatedCount（创建连接数）<br>    Type（组件类型）<br>    BatchEmptyCount（批量取空的数量）<br>    ConnectionClosedCount（关闭连接数量）<br>    EventDrainSuccessCount（成功发送event的数量）<br>    StartTime（组件开始时间）<br>    StopTime（组件停止时间）<br>    BatchUnderflowCount（正处于批量处理的batch数）</p>
+<p>如何使用 http+json方式监控 flume ?<br>    需求：<br>        日志文件 &#x3D;》 输出 logger</p>
+<pre><code>agent：
+</code></pre>
 <p>a1.sources &#x3D; r1<br>a1.sinks &#x3D; k1<br>a1.channels &#x3D; c1</p>
-<p>a1.sources.r1.type &#x3D; netcat<br>a1.sources.r1.bind &#x3D; localhost<br>a1.sources.r1.port &#x3D; 44444</p>
-<p>a1.channels.c1.type &#x3D; memory</p>
-<p>a1.sinks.k1.type &#x3D; logger</p>
-<p>a1.sources.r1.channels &#x3D; c1<br>a1.sinks.k1.channel &#x3D; c1</p>
-<hr>
-<p>  启动flume ：</p>
-<p>flume-ng agent <br>–name a1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;nc-mem-logger.conf <br>-Dflume.root.logger&#x3D;info,console</p>
-<pre><code>source data： 安装telnet
-[root@bigdata32 ~]# yum install -y telnet
-
-telnet ip port
-nc -lk ip port
-</code></pre>
-<p>启动 source: 发送数据<br>telnet localhost 44444</p>
-<h2 id="2-生产上flume的使用场景"><a href="#2-生产上flume的使用场景" class="headerlink" title="2.生产上flume的使用场景"></a>2.生产上flume的使用场景</h2><pre><code>1.采集log文件 到 hdfs
-2.采集log文件 到 hive
-3.采集log文件 到 kafka
-
-4.采集kafka数据到hdfs
-5.采集kafka数据到hive
-6.采集数据到下一个agent
-</code></pre>
-<h2 id="3-source-："><a href="#3-source-：" class="headerlink" title="3.source ："></a>3.source ：</h2><pre><code>1.netcat 采集端口数据 =》 学习 测试即可
-2.日志文件
-3.kafka数据
-4.agent里面的数据
-</code></pre>
-<h3 id="3-1-采集日志文件"><a href="#3-1-采集日志文件" class="headerlink" title="3.1 采集日志文件"></a>3.1 采集日志文件</h3><pre><code>1.exec :
-    linux 命令进行采集数据
-        tail -f
-        tail -F 1.log    ****
-
-        1.log  =&gt; 1.log_tmp
-        1.log
-            -F = -f + retry
-2.spooldir ：
-    采集某个文件夹下面的文件
-
-3.taildir  *****
-    采集某个文件夹下面的文件
-    采集某一个文件
-    ”断点续传“
-</code></pre>
-<p>eg:<br>    采集日志数据到控制台打印？<br>        agent：<br>            source :exec<br>            channel : mem<br>            sink:logger</p>
-<p>agent:<br>a1.sources &#x3D; r1<br>a1.sinks &#x3D; k1<br>a1.channels &#x3D; c1</p>
-<p>a1.sources.r1.type &#x3D; exec<br>a1.sources.r1.command &#x3D; tail -F &#x2F;home&#x2F;hadoop&#x2F;1.log</p>
+<p>a1.sources.r1.type &#x3D; TAILDIR<br>a1.sources.r1.filegroups &#x3D; f1<br>a1.sources.r1.filegroups.f1&#x3D;&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;dt01.log</p>
 <p>a1.channels.c1.type &#x3D; memory<br>a1.sinks.k1.type &#x3D; logger</p>
 <p>a1.sources.r1.channels &#x3D; c1<br>a1.sinks.k1.channel &#x3D; c1</p>
-<p>启动flume：<br>flume-ng agent <br>–name a1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;exec-mem-logger.conf <br>-Dflume.root.logger&#x3D;info,console<br>exec：<br>    存在的问题：<br>        1.tail -F<br>        2.采集过的日志内容 flume挂掉了 重启 会导致 数据重复采集</p>
-<p>需求：<br>    采集指定文件夹的内容到控制台 ？<br>    source：spooldir<br>    channel : mem<br>    sink:logger</p>
-<p>agent ：<br>a1.sources &#x3D; r1<br>a1.sinks &#x3D; k1<br>a1.channels &#x3D; c1</p>
-<p>a1.sources.r1.type &#x3D; spooldir<br>a1.sources.r1.spoolDir &#x3D; &#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;flume_data&#x2F;</p>
-<p>a1.channels.c1.type &#x3D; memory<br>a1.sinks.k1.type &#x3D; logger</p>
-<p>a1.sources.r1.channels &#x3D; c1<br>a1.sinks.k1.channel &#x3D; c1</p>
-<p>启动flume：</p>
-<p>flume-ng agent <br>–name a1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;spool-mem-logger.conf <br>-Dflume.root.logger&#x3D;info,console</p>
-<h1 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h1><pre><code>1.log 追加文件内容？
-1.a1.sources.r1.spoolDir 目录下日志文件 已经采集完成 ，
-那么 后续目录下 监控的这个文件内容发生更新 不会继续采集日志
-flume 挂掉
-spool 采集某个目录下，文件名 不运行重复
-
-生产上 不能用。
-</code></pre>
-<h1 id="需求3："><a href="#需求3：" class="headerlink" title="需求3："></a>需求3：</h1><pre><code>采集指定文件以及文件夹的内容 到控制台
-    souce：tairdir
-    channel : mem
-sink:logger
-
-    user_click.log
-    flume_data:
-        1.log
-        2.log
-        3.log
-</code></pre>
-<p>agent:<br>a1.sources &#x3D; r1<br>a1.sinks &#x3D; k1<br>a1.channels &#x3D; c1</p>
-<p>a1.sources.r1.type &#x3D; TAILDIR<br>a1.sources.r1.filegroups &#x3D; f1 f2<br>a1.sources.r1.filegroups.f1&#x3D;&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;user_click.log<br>a1.sources.r1.filegroups.f2&#x3D;&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;flume_data&#x2F;.*.log</p>
-<p>a1.channels.c1.type &#x3D; memory<br>a1.sinks.k1.type &#x3D; logger</p>
-<p>a1.sources.r1.channels &#x3D; c1<br>a1.sinks.k1.channel &#x3D; c1</p>
-<p>启动flume：</p>
-<p>flume-ng agent <br>–name a1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;taildir-mem-logger.conf <br>-Dflume.root.logger&#x3D;info,console</p>
-<p>需求：<br>    采集日志文件 输出hdfs ？<br>    agent：<br>    source ：exec taildir<br>    channel：mem<br>    sink：hdfs</p>
-<p>agent：<br>a1.sources &#x3D; r1<br>a1.sinks &#x3D; k1<br>a1.channels &#x3D; c1</p>
-<p>a1.sources.r1.type &#x3D; TAILDIR<br>a1.sources.r1.filegroups &#x3D; f1<br>a1.sources.r1.filegroups.f1&#x3D;&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;1.log</p>
-<p>a1.channels.c1.type &#x3D; memory</p>
-<p>a1.sinks.k1.type &#x3D; hdfs<br>a1.sinks.k1.hdfs.path&#x3D;hdfs:&#x2F;&#x2F;bigdata32:9000&#x2F;flume&#x2F;log&#x2F;</p>
-<p>a1.sources.r1.channels &#x3D; c1<br>a1.sinks.k1.channel &#x3D; c1</p>
-<p>启动flume :<br>flume-ng agent <br>–name a1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;taildir-mem-hdfs.conf <br>-Dflume.root.logger&#x3D;info,console</p>
-<h1 id="思考："><a href="#思考：" class="headerlink" title="思考："></a>思考：</h1><pre><code>为什么flume 采集数据 到hdfs ？ 文件查看不了？
-flume配置有关：
-    hdfs=》文件存储格式 不是text
-
-    text：
-        1.hdfs.fileType  =》  DataStream
-        2.hdfs.writeFormat =》 Text
-</code></pre>
-<p>linux 1个文件  &#x3D;&gt; flume  &#x3D;&gt; hdfs  几个文件 &#x3D;》 hdfs小文件问题？<br>    flume采集数据hdfs 小文件问题如何解决？<br>        1.hdfs.batchSize  几乎不用</p>
-<pre><code>    2.两大类  了解 不好用
-        1.按照条数 文件发生滚动
-        2.按照时间 文件发送滚动
-    hdfs.round  =》 是否开启文件滚动
-
-    hdfs.rollSize =》 按照条数
-
-    hdfs.roundUnit	=》时间滚动单元 second, minute or hour
-    hdfs.roundValue =》 时间滚动具体值
-
-    3.hdfs.rollInterval =》 按照时间进行文件滚动
-    hdfs.rollSize =》 按照hdfs文件大小进行滚动
-    hdfs.rollCount =》 按照hdfs文件 数据条数进行滚动
-</code></pre>
-<p>agent：<br>a1.sources &#x3D; r1<br>a1.sinks &#x3D; k1<br>a1.channels &#x3D; c1</p>
-<p>a1.sources.r1.type &#x3D; TAILDIR<br>a1.sources.r1.filegroups &#x3D; f1<br>a1.sources.r1.filegroups.f1&#x3D;&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;1.log</p>
-<p>a1.channels.c1.type &#x3D; memory</p>
-<p>a1.sinks.k1.type &#x3D; hdfs<br>a1.sinks.k1.hdfs.path&#x3D;hdfs:&#x2F;&#x2F;bigdata32:9000&#x2F;flume&#x2F;log&#x2F;<br>a1.sinks.k1.hdfs.fileType&#x3D;DataStream<br>a1.sinks.k1.hdfs.writeFormat&#x3D;Text<br>#了解<br>a1.sinks.k1.hdfs.round&#x3D;true<br>a1.sinks.k1.hdfs.roundUnit&#x3D;minute<br>a1.sinks.k1.hdfs.roundValue&#x3D;1</p>
-<p>#文件滚动<br>a1.sinks.k1.hdfs.rollInterval&#x3D;60<br>a1.sinks.k1.hdfs.rollSize&#x3D;134217728<br>a1.sinks.k1.hdfs.rollCount&#x3D;1000</p>
-<p>a1.sources.r1.channels &#x3D; c1<br>a1.sinks.k1.channel &#x3D; c1</p>
-<p>启动flume：<br>flume-ng agent <br>–name a1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;taildir-mem-hdfs-round.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>启动agent：</p>
+<p>flume-ng agent <br>–name a1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;monitor&#x2F;agent.conf <br>-Dflume.root.logger&#x3D;info,console <br>-Dflume.monitoring.type&#x3D;http <br>-Dflume.monitoring.port&#x3D;9527</p>
+<p>flume启动 error  尝试重启 &#x3D;》 pid<br>    json数据</p>
+<p><a target="_blank" rel="noopener" href="http://bigdata32:9527/metrics">http://bigdata32:9527/metrics</a></p>
 
       
 
@@ -427,7 +405,7 @@ flume配置有关：
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=shichunlei99.github.io/022/12/12/flume/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=shichunlei99.github.io/022/12/15/flume3/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -441,18 +419,18 @@ flume配置有关：
   
 <nav id="article-nav">
   
-    <a href="/2022/12/15/flum2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/12/15/zookeeper/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          flum2
+          zookeeper
         
       </div>
     </a>
   
   
-    <a href="/2022/12/09/xxl/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">xxl</div>
+    <a href="/2022/12/15/flum2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">flum2</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -479,7 +457,7 @@ flume配置有关：
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#flume"><span class="toc-number">1.</span> <span class="toc-text">flume</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-hadoop-fs-put-x2F-app-log-hdfs-x2F-x2F-bigdata32-9000-x2F-data-x2F"><span class="toc-number">2.</span> <span class="toc-text">1.hadoop fs -put   .&#x2F;app.log   hdfs:&#x2F;&#x2F;bigdata32:9000&#x2F;data&#x2F;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-flume"><span class="toc-number">3.</span> <span class="toc-text">2.flume :</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">数据处理：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%AE%98%E7%BD%91"><span class="toc-number">5.</span> <span class="toc-text">1.官网</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-flume"><span class="toc-number">5.1.</span> <span class="toc-text">1. flume</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E4%B8%89%E4%B8%AA%E7%BB%84%E4%BB%B6%EF%BC%9A"><span class="toc-number">5.2.</span> <span class="toc-text">常用三个组件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-streaming-data-flows-flume%E9%87%87%E9%9B%86%E6%95%B0%E6%8D%AE-%E5%AE%9E%E6%97%B6%E9%87%87%E9%9B%86%E6%95%B0%E6%8D%AE"><span class="toc-number">5.3.</span> <span class="toc-text">2.streaming data flows  flume采集数据 实时采集数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">5.4.</span> <span class="toc-text">3.核心概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%83%A8%E7%BD%B2"><span class="toc-number">5.5.</span> <span class="toc-text">4.部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%A7%A3%E5%8E%8B"><span class="toc-number">5.5.1.</span> <span class="toc-text">1.解压</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">5.5.2.</span> <span class="toc-text">2.环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AEflume"><span class="toc-number">5.5.3.</span> <span class="toc-text">3.配置flume</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E4%BD%BF%E7%94%A8flume"><span class="toc-number">5.6.</span> <span class="toc-text">5.使用flume</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEagent%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">如何配置agent？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%9C%80%E6%B1%82%EF%BC%9A"><span class="toc-number">6.1.</span> <span class="toc-text">1.需求：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%94%9F%E4%BA%A7%E4%B8%8Aflume%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">6.2.</span> <span class="toc-text">2.生产上flume的使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-source-%EF%BC%9A"><span class="toc-number">6.3.</span> <span class="toc-text">3.source ：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%87%87%E9%9B%86%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6"><span class="toc-number">6.3.1.</span> <span class="toc-text">3.1 采集日志文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%9A"><span class="toc-number">7.</span> <span class="toc-text">注意：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9C%80%E6%B1%823%EF%BC%9A"><span class="toc-number">8.</span> <span class="toc-text">需求3：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%80%83%EF%BC%9A"><span class="toc-number">9.</span> <span class="toc-text">思考：</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#flum3"><span class="toc-number">1.</span> <span class="toc-text">flum3</span></a></li></ol>
                     </div>
                 </span>
             </div>

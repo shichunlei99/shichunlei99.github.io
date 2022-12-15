@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>flume | Hexo</title>
+  <title>zookeeper | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="flume">
+  <meta name="description" content="zookeeper">
 <meta property="og:type" content="article">
-<meta property="og:title" content="flume">
-<meta property="og:url" content="http://example.com/2022/12/12/flume/index.html">
+<meta property="og:title" content="zookeeper">
+<meta property="og:url" content="http://example.com/2022/12/15/zookeeper/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="flume">
+<meta property="og:description" content="zookeeper">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-12-12T14:21:06.000Z">
-<meta property="article:modified_time" content="2022-12-12T14:23:54.761Z">
+<meta property="article:published_time" content="2022-12-15T03:19:29.000Z">
+<meta property="article:modified_time" content="2022-12-15T03:20:15.645Z">
 <meta property="article:author" content="shichunlei99">
 <meta name="twitter:card" content="summary">
   
@@ -156,193 +156,80 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-flume" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-zookeeper" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      flume
+      zookeeper
     </h1>
   
 
         
-        <a href="/2022/12/12/flume/" class="archive-article-date">
-  	<time datetime="2022-12-12T14:21:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-12</time>
+        <a href="/2022/12/15/zookeeper/" class="archive-article-date">
+  	<time datetime="2022-12-15T03:19:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="flume"><a href="#flume" class="headerlink" title="flume"></a>flume</h1><span id="more"></span>
-<h1 id="1-hadoop-fs-put-x2F-app-log-hdfs-x2F-x2F-bigdata32-9000-x2F-data-x2F"><a href="#1-hadoop-fs-put-x2F-app-log-hdfs-x2F-x2F-bigdata32-9000-x2F-data-x2F" class="headerlink" title="1.hadoop fs -put   .&#x2F;app.log   hdfs:&#x2F;&#x2F;bigdata32:9000&#x2F;data&#x2F;"></a>1.hadoop fs -put   .&#x2F;app.log   hdfs:&#x2F;&#x2F;bigdata32:9000&#x2F;data&#x2F;</h1><pre><code>5min  10min
+        <h1 id="zookeeper"><a href="#zookeeper" class="headerlink" title="zookeeper"></a>zookeeper</h1><span id="more"></span>
+<p>hive fetch 抓取策略：<br>    hive调优有关&#x3D;》 没讲<br>sqoop &#x3D;》 datax<br>superset： 数据可视化：<br>    1.大屏 &#x3D;》没有下拉框 数据不全 炫酷<br>    2.报表 &#x3D;》 下拉框 数据很全</p>
+<pre><code>3.图表：
+    1.维度
+    2.指标
+</code></pre>
+<p>1.结果数据 &#x3D;》 可视化<br>2.宽表数据 &#x3D;》 数据可视化【1.维度  2.指标 】<br>    hive<br>        宽表数据 导入 mysql &#x2F;clickhouse </p>
+<p>xxl+报警：<br>    任务定时调度框架 ：xxl+dolphoin<br>        多个任务之间依赖关系 dag图<br>    airflow &#x3D;》不喜欢 </p>
+<p>报警：<br>    1.钉钉、微信、企业微信<br>    2.邮箱、短信、电话<br>    java &#x3D;》 如何发送报警信息 给 邮箱<br>            邮箱：<br>                excel 发送数据<br>    运营商：文档 </p>
+<p>开启本地执行<br>hive.exec.mode.local.auto<br>hive.exec.mode.local.auto.inputbytes.max<br>hive.exec.mode.local.auto.tasks.max<br>hive.exec.mode.local.auto.input.files.max</p>
+<p>fetch 抓取策略：<br>hive.fetch.task.conversion more </p>
+<p>map task数量  不动<br>    切片数：<br>        splitsize<br>        set mapreduce.input.fileinputformat.split.maxsize&#x3D;10	<br>reduce task数量</p>
+<p>set hive.exec.reducers.bytes.per.reducer&#x3D;<br>set hive.exec.reducers.max&#x3D;<br>set mapreduce.job.reduces&#x3D;</p>
+<p>hive.optimize.ppd<br>hive.optimize.cp<br><a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties">https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties</a></p>
+<p>flume：<br>    a&#x3D;&gt;b   event<br>    sources<br>        拦截器<br>        channles selector :<br>            一模一样 rep<br>            多路 mul<br>    channles<br>    sinks<br>        sink process<br>            failover<br>            load_bance:<br>                提高数据发送的并行度 </p>
+<p>需求：<br>    采集日志数据 3 agent 最终收集到 一个agent里面<br>    把收集过来的日志 落盘<br>sink：<br>    file_roll &#x3D;&gt;回去 了解一下 </p>
+<p>监控 ：<br>    1. json方式 channle进行监控 </p>
+<p>zookeeper:<br>    1、官网 ：<a target="_blank" rel="noopener" href="https://zookeeper.apache.org/">https://zookeeper.apache.org/</a><br>    2.是什么？<br>        enables highly reliable distributed coordination.<br>        分布式协调服务 </p>
+<pre><code>hadoop： 
+    hdfs： 
+        namenode 
+        datanode 
+        namenode
+    yarn：
 
-1.缺陷：
-    1.时效性
-    2.完整性
-    3.监控能做吗？ xxl+报警
-    4.安全性
-</code></pre>
-<h1 id="2-flume"><a href="#2-flume" class="headerlink" title="2.flume :"></a>2.flume :</h1><pre><code>收集 日志数据
-A =&gt; B
-数据采集：把数据采集到服务器上
-数据收集：把数据移动到指定位置
-</code></pre>
-<h1 id="数据处理："><a href="#数据处理：" class="headerlink" title="数据处理："></a>数据处理：</h1><pre><code>1.离线处理：批处理
-    数据已经放在那  =》
-2.实时处理：
-    产生一条数据 处理一次
-</code></pre>
-<h1 id="1-官网"><a href="#1-官网" class="headerlink" title="1.官网"></a>1.官网</h1><pre><code>flume.apache.org
-</code></pre>
-<h2 id="1-flume"><a href="#1-flume" class="headerlink" title="1. flume"></a>1. flume</h2><p>   collecting  采集&#x2F;收集  source<br>   aggregating  聚合     channel<br>   moving       移动     sink</p>
-<h2 id="常用三个组件："><a href="#常用三个组件：" class="headerlink" title="常用三个组件："></a>常用三个组件：</h2><pre><code>source
-channel
-sink
-</code></pre>
-<h2 id="2-streaming-data-flows-flume采集数据-实时采集数据"><a href="#2-streaming-data-flows-flume采集数据-实时采集数据" class="headerlink" title="2.streaming data flows  flume采集数据 实时采集数据"></a>2.streaming data flows  flume采集数据 实时采集数据</h2><p>flume使用场景？<br>    1.采集日志数据  &#x3D;》 hdfs</p>
-<h2 id="3-核心概念"><a href="#3-核心概念" class="headerlink" title="3.核心概念"></a>3.核心概念</h2><pre><code>user job：	就是编写agent里面的配置
-</code></pre>
-<p>agent：source channel sink<br>source：采集数据<br>channel: 存储采集过来的数据<br>sink： 把采集来的数据发送出去</p>
-<h2 id="4-部署"><a href="#4-部署" class="headerlink" title="4.部署"></a>4.部署</h2><h3 id="1-解压"><a href="#1-解压" class="headerlink" title="1.解压"></a>1.解压</h3><p>[hadoop@bigdata32 software]$ tar -zxvf .&#x2F;apache-flume-1.9.0-bin.tar.gz -C ~&#x2F;app&#x2F;<br>[hadoop@bigdata32 app]$ ln -s apache-flume-1.9.0-bin&#x2F; flume</p>
-<h3 id="2-环境变量"><a href="#2-环境变量" class="headerlink" title="2.环境变量"></a>2.环境变量</h3><p>#FLUME_HOME<br>export FLUME_HOME&#x3D;&#x2F;home&#x2F;hadoop&#x2F;app&#x2F;flume<br>export PATH&#x3D;${PATH}:${FLUME_HOME}&#x2F;bin</p>
-<h3 id="3-配置flume"><a href="#3-配置flume" class="headerlink" title="3.配置flume"></a>3.配置flume</h3><p>vim flume-env.sh<br>export JAVA_HOME&#x3D;&#x2F;home&#x2F;hadoop&#x2F;app&#x2F;java</p>
-<p>Flume User Guide  &#x3D;》 flume基本使用<br>Flume Developer Guide &#x3D;》二次开发</p>
-<h2 id="5-使用flume"><a href="#5-使用flume" class="headerlink" title="5.使用flume"></a>5.使用flume</h2><pre><code>就是配置agent 配置文件
-</code></pre>
-<p>source：<br>    avro  序列化框架 source    ****<br>    exec  日志文件   **<br>    spooling dir  日志文件  **<br>    taildir Source 日志文件   ****<br>    Kafka Source   **<br>    NetCat TCP  port采集数据 **<br>    Custom 用户自己开发  *</p>
-<p>channel ：<br>    Memory  ****<br>    File    ****<br>    JDBC    *<br>    Kafka   *<br>    Custom 用户自己开发 *<br>sink：<br>    HDFS Sink ****<br>    Hive Sink ****<br>    Logger Sink  打印控制台 **<br>    Avro Sink ****<br>    HBaseSinks *<br>    Kafka Sink ***<br>    Custom Sink 用户自己开发</p>
-<h1 id="如何配置agent？"><a href="#如何配置agent？" class="headerlink" title="如何配置agent？"></a>如何配置agent？</h1><pre><code>用什么查什么
-</code></pre>
-<p>event：<br>    一条数据</p>
-<h2 id="1-需求："><a href="#1-需求：" class="headerlink" title="1.需求："></a>1.需求：</h2><pre><code>通过flume从指定端口中 获取数据 输出到控制台？
-agent：
-source :  NetCat TCP
-channel : Memory
-sink: Logger
-</code></pre>
-<hr>
-<p>a1.sources &#x3D; r1<br>a1.sinks &#x3D; k1<br>a1.channels &#x3D; c1</p>
-<p>a1.sources.r1.type &#x3D; netcat<br>a1.sources.r1.bind &#x3D; localhost<br>a1.sources.r1.port &#x3D; 44444</p>
-<p>a1.channels.c1.type &#x3D; memory</p>
-<p>a1.sinks.k1.type &#x3D; logger</p>
-<p>a1.sources.r1.channels &#x3D; c1<br>a1.sinks.k1.channel &#x3D; c1</p>
-<hr>
-<p>  启动flume ：</p>
-<p>flume-ng agent <br>–name a1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;nc-mem-logger.conf <br>-Dflume.root.logger&#x3D;info,console</p>
-<pre><code>source data： 安装telnet
-[root@bigdata32 ~]# yum install -y telnet
+2.思考： 
+    分布式系统： 
+        多个节点构成的系统 
 
-telnet ip port
-nc -lk ip port
+        hadoop  
+            1.请求服务不需要关系所有节点的服务器地址的 
+            2.统一的服务 ： 
+                hdfs  namenode   namenode  
+                            namespace 
+3.补充： 
 </code></pre>
-<p>启动 source: 发送数据<br>telnet localhost 44444</p>
-<h2 id="2-生产上flume的使用场景"><a href="#2-生产上flume的使用场景" class="headerlink" title="2.生产上flume的使用场景"></a>2.生产上flume的使用场景</h2><pre><code>1.采集log文件 到 hdfs
-2.采集log文件 到 hive
-3.采集log文件 到 kafka
-
-4.采集kafka数据到hdfs
-5.采集kafka数据到hive
-6.采集数据到下一个agent
+<p>2.部署zookeeper<br>    1.单点<br>    2.分布式<br>    zk 的机器部署台数？<br>        2N+1台  奇数台 </p>
+<p>zk：主从架构 </p>
+<pre><code>下载地址：https://dlcdn.apache.org/zookeeper/zookeeper-3.8.0/apache-zookeeper-3.8.0-bin.tar.gz
 </code></pre>
-<h2 id="3-source-："><a href="#3-source-：" class="headerlink" title="3.source ："></a>3.source ：</h2><pre><code>1.netcat 采集端口数据 =》 学习 测试即可
-2.日志文件
-3.kafka数据
-4.agent里面的数据
+<p>解压：<br>[hadoop@bigdata32 software]$ tar -zxvf apache-zookeeper-3.8.0-bin.tar.gz -C ~&#x2F;app&#x2F;<br>[hadoop@bigdata32 app]$ ln -s apache-zookeeper-3.8.0-bin&#x2F; zookeeper<br>配置环境变量：<br>#ZK_HOME<br>export ZK_HOME&#x3D;&#x2F;home&#x2F;hadoop&#x2F;app&#x2F;zookeeper<br>export PATH&#x3D;${PATH}:${ZK_HOME}&#x2F;bin</p>
+<p>单点部署：<br>    1.conf&#x2F;zoo.cfg<br>        dataDir&#x3D;&#x2F;home&#x2F;hadoop&#x2F;data&#x2F;zookeeper</p>
+<pre><code>2.启动zookeeper 单点
+nohup zkServer.sh start &amp;
 </code></pre>
-<h3 id="3-1-采集日志文件"><a href="#3-1-采集日志文件" class="headerlink" title="3.1 采集日志文件"></a>3.1 采集日志文件</h3><pre><code>1.exec :
-    linux 命令进行采集数据
-        tail -f
-        tail -F 1.log    ****
-
-        1.log  =&gt; 1.log_tmp
-        1.log
-            -F = -f + retry
-2.spooldir ：
-    采集某个文件夹下面的文件
-
-3.taildir  *****
-    采集某个文件夹下面的文件
-    采集某一个文件
-    ”断点续传“
+<p>分布式：<br>bigdata32:<br>    1.conf&#x2F;zoo.cfg<br>dataDir&#x3D;&#x2F;home&#x2F;hadoop&#x2F;data&#x2F;zookeeper&#x2F;<br>server.1&#x3D;bigdata32:2888:3888<br>server.2&#x3D;bigdata33:2888:3888<br>server.3&#x3D;bigdata34:2888:3888</p>
+<pre><code>2.myid
+    指定 zk的机器号
+    1
 </code></pre>
-<p>eg:<br>    采集日志数据到控制台打印？<br>        agent：<br>            source :exec<br>            channel : mem<br>            sink:logger</p>
-<p>agent:<br>a1.sources &#x3D; r1<br>a1.sinks &#x3D; k1<br>a1.channels &#x3D; c1</p>
-<p>a1.sources.r1.type &#x3D; exec<br>a1.sources.r1.command &#x3D; tail -F &#x2F;home&#x2F;hadoop&#x2F;1.log</p>
-<p>a1.channels.c1.type &#x3D; memory<br>a1.sinks.k1.type &#x3D; logger</p>
-<p>a1.sources.r1.channels &#x3D; c1<br>a1.sinks.k1.channel &#x3D; c1</p>
-<p>启动flume：<br>flume-ng agent <br>–name a1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;exec-mem-logger.conf <br>-Dflume.root.logger&#x3D;info,console<br>exec：<br>    存在的问题：<br>        1.tail -F<br>        2.采集过的日志内容 flume挂掉了 重启 会导致 数据重复采集</p>
-<p>需求：<br>    采集指定文件夹的内容到控制台 ？<br>    source：spooldir<br>    channel : mem<br>    sink:logger</p>
-<p>agent ：<br>a1.sources &#x3D; r1<br>a1.sinks &#x3D; k1<br>a1.channels &#x3D; c1</p>
-<p>a1.sources.r1.type &#x3D; spooldir<br>a1.sources.r1.spoolDir &#x3D; &#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;flume_data&#x2F;</p>
-<p>a1.channels.c1.type &#x3D; memory<br>a1.sinks.k1.type &#x3D; logger</p>
-<p>a1.sources.r1.channels &#x3D; c1<br>a1.sinks.k1.channel &#x3D; c1</p>
-<p>启动flume：</p>
-<p>flume-ng agent <br>–name a1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;spool-mem-logger.conf <br>-Dflume.root.logger&#x3D;info,console</p>
-<h1 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h1><pre><code>1.log 追加文件内容？
-1.a1.sources.r1.spoolDir 目录下日志文件 已经采集完成 ，
-那么 后续目录下 监控的这个文件内容发生更新 不会继续采集日志
-flume 挂掉
-spool 采集某个目录下，文件名 不运行重复
-
-生产上 不能用。
+<p>其他机器： bigdata33 bigdata34<br>    xsync apache-zookeeper-3.8.0-bin&#x2F;<br>    xsync zookeeper<br>    xsync ~&#x2F;.bashrc</p>
+<pre><code>修改 bigdata33 34 机器上的myid文件
 </code></pre>
-<h1 id="需求3："><a href="#需求3：" class="headerlink" title="需求3："></a>需求3：</h1><pre><code>采集指定文件以及文件夹的内容 到控制台
-    souce：tairdir
-    channel : mem
-sink:logger
-
-    user_click.log
-    flume_data:
-        1.log
-        2.log
-        3.log
-</code></pre>
-<p>agent:<br>a1.sources &#x3D; r1<br>a1.sinks &#x3D; k1<br>a1.channels &#x3D; c1</p>
-<p>a1.sources.r1.type &#x3D; TAILDIR<br>a1.sources.r1.filegroups &#x3D; f1 f2<br>a1.sources.r1.filegroups.f1&#x3D;&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;user_click.log<br>a1.sources.r1.filegroups.f2&#x3D;&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;flume_data&#x2F;.*.log</p>
-<p>a1.channels.c1.type &#x3D; memory<br>a1.sinks.k1.type &#x3D; logger</p>
-<p>a1.sources.r1.channels &#x3D; c1<br>a1.sinks.k1.channel &#x3D; c1</p>
-<p>启动flume：</p>
-<p>flume-ng agent <br>–name a1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;taildir-mem-logger.conf <br>-Dflume.root.logger&#x3D;info,console</p>
-<p>需求：<br>    采集日志文件 输出hdfs ？<br>    agent：<br>    source ：exec taildir<br>    channel：mem<br>    sink：hdfs</p>
-<p>agent：<br>a1.sources &#x3D; r1<br>a1.sinks &#x3D; k1<br>a1.channels &#x3D; c1</p>
-<p>a1.sources.r1.type &#x3D; TAILDIR<br>a1.sources.r1.filegroups &#x3D; f1<br>a1.sources.r1.filegroups.f1&#x3D;&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;1.log</p>
-<p>a1.channels.c1.type &#x3D; memory</p>
-<p>a1.sinks.k1.type &#x3D; hdfs<br>a1.sinks.k1.hdfs.path&#x3D;hdfs:&#x2F;&#x2F;bigdata32:9000&#x2F;flume&#x2F;log&#x2F;</p>
-<p>a1.sources.r1.channels &#x3D; c1<br>a1.sinks.k1.channel &#x3D; c1</p>
-<p>启动flume :<br>flume-ng agent <br>–name a1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;taildir-mem-hdfs.conf <br>-Dflume.root.logger&#x3D;info,console</p>
-<h1 id="思考："><a href="#思考：" class="headerlink" title="思考："></a>思考：</h1><pre><code>为什么flume 采集数据 到hdfs ？ 文件查看不了？
-flume配置有关：
-    hdfs=》文件存储格式 不是text
-
-    text：
-        1.hdfs.fileType  =》  DataStream
-        2.hdfs.writeFormat =》 Text
-</code></pre>
-<p>linux 1个文件  &#x3D;&gt; flume  &#x3D;&gt; hdfs  几个文件 &#x3D;》 hdfs小文件问题？<br>    flume采集数据hdfs 小文件问题如何解决？<br>        1.hdfs.batchSize  几乎不用</p>
-<pre><code>    2.两大类  了解 不好用
-        1.按照条数 文件发生滚动
-        2.按照时间 文件发送滚动
-    hdfs.round  =》 是否开启文件滚动
-
-    hdfs.rollSize =》 按照条数
-
-    hdfs.roundUnit	=》时间滚动单元 second, minute or hour
-    hdfs.roundValue =》 时间滚动具体值
-
-    3.hdfs.rollInterval =》 按照时间进行文件滚动
-    hdfs.rollSize =》 按照hdfs文件大小进行滚动
-    hdfs.rollCount =》 按照hdfs文件 数据条数进行滚动
-</code></pre>
-<p>agent：<br>a1.sources &#x3D; r1<br>a1.sinks &#x3D; k1<br>a1.channels &#x3D; c1</p>
-<p>a1.sources.r1.type &#x3D; TAILDIR<br>a1.sources.r1.filegroups &#x3D; f1<br>a1.sources.r1.filegroups.f1&#x3D;&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;1.log</p>
-<p>a1.channels.c1.type &#x3D; memory</p>
-<p>a1.sinks.k1.type &#x3D; hdfs<br>a1.sinks.k1.hdfs.path&#x3D;hdfs:&#x2F;&#x2F;bigdata32:9000&#x2F;flume&#x2F;log&#x2F;<br>a1.sinks.k1.hdfs.fileType&#x3D;DataStream<br>a1.sinks.k1.hdfs.writeFormat&#x3D;Text<br>#了解<br>a1.sinks.k1.hdfs.round&#x3D;true<br>a1.sinks.k1.hdfs.roundUnit&#x3D;minute<br>a1.sinks.k1.hdfs.roundValue&#x3D;1</p>
-<p>#文件滚动<br>a1.sinks.k1.hdfs.rollInterval&#x3D;60<br>a1.sinks.k1.hdfs.rollSize&#x3D;134217728<br>a1.sinks.k1.hdfs.rollCount&#x3D;1000</p>
-<p>a1.sources.r1.channels &#x3D; c1<br>a1.sinks.k1.channel &#x3D; c1</p>
-<p>启动flume：<br>flume-ng agent <br>–name a1 <br>–conf ${FLUME_HOME}&#x2F;conf <br>–conf-file &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;flume&#x2F;taildir-mem-hdfs-round.conf <br>-Dflume.root.logger&#x3D;info,console</p>
+<p>启动zk<br>    三台机器一起做：<br>    nohup zkServer.sh start &amp;</p>
 
       
 
@@ -427,7 +314,7 @@ flume配置有关：
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=shichunlei99.github.io/022/12/12/flume/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=shichunlei99.github.io/022/12/15/zookeeper/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -441,18 +328,9 @@ flume配置有关：
   
 <nav id="article-nav">
   
-    <a href="/2022/12/15/flum2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          flum2
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/12/09/xxl/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">xxl</div>
+    <a href="/2022/12/15/flume3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">flume3</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -479,7 +357,7 @@ flume配置有关：
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#flume"><span class="toc-number">1.</span> <span class="toc-text">flume</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-hadoop-fs-put-x2F-app-log-hdfs-x2F-x2F-bigdata32-9000-x2F-data-x2F"><span class="toc-number">2.</span> <span class="toc-text">1.hadoop fs -put   .&#x2F;app.log   hdfs:&#x2F;&#x2F;bigdata32:9000&#x2F;data&#x2F;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-flume"><span class="toc-number">3.</span> <span class="toc-text">2.flume :</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">数据处理：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%AE%98%E7%BD%91"><span class="toc-number">5.</span> <span class="toc-text">1.官网</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-flume"><span class="toc-number">5.1.</span> <span class="toc-text">1. flume</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E4%B8%89%E4%B8%AA%E7%BB%84%E4%BB%B6%EF%BC%9A"><span class="toc-number">5.2.</span> <span class="toc-text">常用三个组件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-streaming-data-flows-flume%E9%87%87%E9%9B%86%E6%95%B0%E6%8D%AE-%E5%AE%9E%E6%97%B6%E9%87%87%E9%9B%86%E6%95%B0%E6%8D%AE"><span class="toc-number">5.3.</span> <span class="toc-text">2.streaming data flows  flume采集数据 实时采集数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">5.4.</span> <span class="toc-text">3.核心概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%83%A8%E7%BD%B2"><span class="toc-number">5.5.</span> <span class="toc-text">4.部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%A7%A3%E5%8E%8B"><span class="toc-number">5.5.1.</span> <span class="toc-text">1.解压</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">5.5.2.</span> <span class="toc-text">2.环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AEflume"><span class="toc-number">5.5.3.</span> <span class="toc-text">3.配置flume</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E4%BD%BF%E7%94%A8flume"><span class="toc-number">5.6.</span> <span class="toc-text">5.使用flume</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEagent%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">如何配置agent？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%9C%80%E6%B1%82%EF%BC%9A"><span class="toc-number">6.1.</span> <span class="toc-text">1.需求：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%94%9F%E4%BA%A7%E4%B8%8Aflume%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">6.2.</span> <span class="toc-text">2.生产上flume的使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-source-%EF%BC%9A"><span class="toc-number">6.3.</span> <span class="toc-text">3.source ：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%87%87%E9%9B%86%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6"><span class="toc-number">6.3.1.</span> <span class="toc-text">3.1 采集日志文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%9A"><span class="toc-number">7.</span> <span class="toc-text">注意：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9C%80%E6%B1%823%EF%BC%9A"><span class="toc-number">8.</span> <span class="toc-text">需求3：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%80%83%EF%BC%9A"><span class="toc-number">9.</span> <span class="toc-text">思考：</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#zookeeper"><span class="toc-number">1.</span> <span class="toc-text">zookeeper</span></a></li></ol>
                     </div>
                 </span>
             </div>
