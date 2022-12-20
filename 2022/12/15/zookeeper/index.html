@@ -16,7 +16,7 @@
 <meta property="og:description" content="zookeeper">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-12-15T03:19:29.000Z">
-<meta property="article:modified_time" content="2022-12-15T03:20:15.645Z">
+<meta property="article:modified_time" content="2022-12-20T01:03:39.126Z">
 <meta property="article:author" content="shichunlei99">
 <meta name="twitter:card" content="summary">
   
@@ -213,23 +213,108 @@
 3.补充： 
 </code></pre>
 <p>2.部署zookeeper<br>    1.单点<br>    2.分布式<br>    zk 的机器部署台数？<br>        2N+1台  奇数台 </p>
-<p>zk：主从架构 </p>
+<p>zk：主从架构<br>    leader<br>    follower</p>
 <pre><code>下载地址：https://dlcdn.apache.org/zookeeper/zookeeper-3.8.0/apache-zookeeper-3.8.0-bin.tar.gz
 </code></pre>
 <p>解压：<br>[hadoop@bigdata32 software]$ tar -zxvf apache-zookeeper-3.8.0-bin.tar.gz -C ~&#x2F;app&#x2F;<br>[hadoop@bigdata32 app]$ ln -s apache-zookeeper-3.8.0-bin&#x2F; zookeeper<br>配置环境变量：<br>#ZK_HOME<br>export ZK_HOME&#x3D;&#x2F;home&#x2F;hadoop&#x2F;app&#x2F;zookeeper<br>export PATH&#x3D;${PATH}:${ZK_HOME}&#x2F;bin</p>
-<p>单点部署：<br>    1.conf&#x2F;zoo.cfg<br>        dataDir&#x3D;&#x2F;home&#x2F;hadoop&#x2F;data&#x2F;zookeeper</p>
+<p>单点部署：<br>    1.conf&#x2F;zoo.cfg<br>        dataDir&#x3D;&#x2F;home&#x2F;hadoop&#x2F;data&#x2F;zookeeper&#x2F;</p>
 <pre><code>2.启动zookeeper 单点
 nohup zkServer.sh start &amp;
 </code></pre>
 <p>分布式：<br>bigdata32:<br>    1.conf&#x2F;zoo.cfg<br>dataDir&#x3D;&#x2F;home&#x2F;hadoop&#x2F;data&#x2F;zookeeper&#x2F;<br>server.1&#x3D;bigdata32:2888:3888<br>server.2&#x3D;bigdata33:2888:3888<br>server.3&#x3D;bigdata34:2888:3888</p>
-<pre><code>2.myid
-    指定 zk的机器号
+<pre><code>2.myid 
+    指定 zk的机器号 
     1
 </code></pre>
 <p>其他机器： bigdata33 bigdata34<br>    xsync apache-zookeeper-3.8.0-bin&#x2F;<br>    xsync zookeeper<br>    xsync ~&#x2F;.bashrc</p>
-<pre><code>修改 bigdata33 34 机器上的myid文件
+<pre><code>修改 bigdata33 34 机器上的myid文件 
 </code></pre>
-<p>启动zk<br>    三台机器一起做：<br>    nohup zkServer.sh start &amp;</p>
+<p>启动zk<br>    三台机器一起做：<br>    zkServer.sh start </p>
+<p>脚本编写：<br>    bigdata32机器<br>case $1 in<br>    “start”)</p>
+<pre><code>for host in bigdata32 bigdata33 bigdata34
+do
+echo &quot;====$&#123;host&#125;===&quot;
+ssh $&#123;host&#125; &quot;/home/hadoop/app/zookeeper/bin/zkServer.sh start&quot;
+done
+;;
+</code></pre>
+<p>“stop”)<br>    for host in bigdata32 bigdata33 bigdata34<br>    do<br>    echo “&#x3D;&#x3D;&#x3D;&#x3D;${host}&#x3D;&#x3D;&#x3D;”<br>    ssh ${host} “&#x2F;home&#x2F;hadoop&#x2F;app&#x2F;zookeeper&#x2F;bin&#x2F;zkServer.sh stop”<br>    done<br>    ;;</p>
+<p>“status”)<br>    for host in bigdata32 bigdata33 bigdata34<br>    do<br>    echo “&#x3D;&#x3D;&#x3D;&#x3D;${host}&#x3D;&#x3D;&#x3D;”<br>    ssh ${host} “&#x2F;home&#x2F;hadoop&#x2F;app&#x2F;zookeeper&#x2F;bin&#x2F;zkServer.sh status”<br>    done<br>    ;;<br>    *)<br>    echo “Usage:$0 &lt;start|stop|status&gt;”<br>    ;;<br>esac</p>
+<p>补充：<br>xxl.sh  &#x3D;&gt; window<br>上传 linux<br>    问题： window机器的分隔符 和 linux机器分隔符 不匹配<br>        crlf<br>        lf<br>    vscode:<br>    nodpad++<br>    sublitme<br>    editpuls</p>
+<p>解决：<br>    dos2unix  &#x3D;&gt; windos机器上的文件 格式 转变成linux格式<br>    yum install -y dos2unix  </p>
+<pre><code>dos2unix filename
+</code></pre>
+<p>1.zk是用来做什么的？<br>    1.管理配置信息的 【数据量小】<br>    2.watch(监控) 配置信息的变化 </p>
+<p>2.zk数据模型<br>    1. 一个 树形&#x2F;层级式结构  linux差不多<br>        1.节点&#x2F;目录<br>            0.根节点 &#x2F;<br>            1.目录就是节点<br>            2.节点保存数据的内容<br>            3.zk里面所有的目录 都叫做节点 znode </p>
+<p>3.zkCli.sh<br>    操作 节点 </p>
+<p>1.查看有哪些节点<br>    ls [-s] [-w] [-R] path<br>2.查看节点内容<br>    get &#x2F;zookeeper</p>
+<p>节点：<br>    1.临时节点<br>        节点创建好之后 当前session有效  关闭session 节点就会消失<br>    2.永久节点<br>        节点创建好之后 可以永久存在 </p>
+<pre><code>3.节点：
+    下面可以存放子节点 
+        临时节点  下面不能创建子节点 
+
+4.
+    1.zk 每个节点都有自己id 【不会重复的】
+    2.数据是存放在节点上 
+    3.数据 不是很大的数据 仅仅存放比较小的数据 
+    4.如果存放的数据发生变更 数据版本号也会发生变化
+</code></pre>
+<p>3.创建节点<br>    create [-s] [-e] [-c] [-t ttl] path [data] [acl]</p>
+<pre><code>eg1: 
+    create /dl2262 zihang    =》 默认创建的就是 永久节点 
+
+eg2: 
+    create -e /dl2262-boy zuan   临时节点 ttl 过期时间
+
+eg3: 
+    顺序节点  
+
+    create -s /dl2262/ziyuan
+        -s参数默认会给ziyuan节点后面加一个自增的序列号
+
+eg4: 
+    create /bigdata/a/b/c  不能这样创建  
+
+    zookeeper api： 多级 
+    curator api:多级
+</code></pre>
+<p>4.补充<br>    stat path  &#x3D;》 获取当前节点状态</p>
+<p>stat &#x2F;dl2262<br>cZxid &#x3D; 0x300000002<br>dataVersion &#x3D; 0<br>dataLength &#x3D; 6<br>numChildren &#x3D; 0<br>ephemeralOwner &#x3D; 0x0</p>
+<pre><code>1.数据长度
+2.子节点 
+3.数据版本号 
+4.是否是临时节点  0x0就代表 不是临时节点 =》 永久节点 
+</code></pre>
+<p>5.set 修改数据内容<br>    set &#x2F;dl2262 yuhang</p>
+<pre><code>数据版本 ： 
+    如果版本不对应 就会报错 
+set -v 2 /dl2262 zhiyuan
+</code></pre>
+<p>6.删除节点<br>    [zk: localhost:2181(CONNECTED) 41] ls &#x2F;<br>[dl2262, zookeeper]<br>[zk: localhost:2181(CONNECTED) 42] ls &#x2F;dl2262<br>[ziyuan0000000000, ziyuan0000000001, ziyuan0000000002, ziyuan0000000003, ziyuan0000000004]<br>[zk: localhost:2181(CONNECTED) 43] delete &#x2F;dl2262&#x2F;ziyuan0000000000<br>[zk: localhost:2181(CONNECTED) 44] ls &#x2F;dl2262</p>
+<p>7.监听相关 zk<br>    针对每个节点的操作<br>        1.都有一个 监听器<br>            当你的节点发生变化 就会触发 watch事件  </p>
+<p>zk shell命令：<br>    1.只能监听一次 </p>
+<p>了解：<br>zk api:不行<br>curator api 可以一直监听某个 节点变化 </p>
+<p>eg:<br>    [zk: localhost:2181(CONNECTED) 54] get -w &#x2F;dl2262<br>    [zk: localhost:2181(CONNECTED) 55] set &#x2F;dl2262 doublehappy</p>
+<pre><code>NodeDataChanged
+</code></pre>
+<p>补充：<br>    zk四字命令 &#x3D;》 运维 监控zk 运行情况 </p>
+<pre><code>zk_home/conf/zoo.cfg: 
+    4lw.commands.whitelist=*
+
+zookeeper 对外提供服务的端口 对zk进行监控： 
+    stat 
+        echo stat | nc bigdata32 2181
+    ruok 
+        echo ruok | nc bigdata32 2181
+    dump  
+    conf 
+</code></pre>
+<p>Prometheus &#x3D;&gt; 监控框架<br>    1.组件&#x3D;》报警 </p>
+<p>作业：<br>1.整理 ：<br>    技术点 ： 5-8个问题&#x2F;技术点<br>        linux、shell、mysql、hadoop、hive、flume、sqoop、zk<br>    重点：<br>        hadoop、hive </p>
+<pre><code>试着添加一下 hive调优参数： 
+    1.本地执行
+</code></pre>
+<p>明天提问:<br>    1.a  b </p>
 
       
 
@@ -327,6 +412,15 @@ nohup zkServer.sh start &amp;
 
   
 <nav id="article-nav">
+  
+    <a href="/2022/12/20/kafka/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          kafka
+        
+      </div>
+    </a>
   
   
     <a href="/2022/12/15/flume3/" id="article-nav-older" class="article-nav-link-wrap">

@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hexo</title>
+  <title>kafka | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/page/3/index.html">
+  <meta name="description" content="kafka">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kafka">
+<meta property="og:url" content="http://example.com/2022/12/20/kafka/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="kafka">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-20T01:04:00.000Z">
+<meta property="article:modified_time" content="2022-12-20T01:04:59.557Z">
 <meta property="article:author" content="shichunlei99">
 <meta name="twitter:card" content="summary">
   
@@ -152,34 +156,98 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-hadoop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-kafka" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/11/13/hadoop/">hadoop</a>
+    <h1 class="article-title" itemprop="name">
+      kafka
     </h1>
   
 
         
-        <a href="/2022/11/13/hadoop/" class="archive-article-date">
-  	<time datetime="2022-11-13T10:42:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-13</time>
+        <a href="/2022/12/20/kafka/" class="archive-article-date">
+  	<time datetime="2022-12-20T01:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="hadoopfirstday"><a href="#hadoopfirstday" class="headerlink" title="hadoopfirstday"></a>hadoopfirstday</h1>
-        
-          <a class="article-more-a" href="/2022/11/13/hadoop/#more">more >></a>
-        
+        <h1 id="kafka"><a href="#kafka" class="headerlink" title="kafka"></a>kafka</h1><span id="more"></span>
+<p><a target="_blank" rel="noopener" href="https://archive.apache.org/">https://archive.apache.org/</a></p>
+<p>MQ:消息中间件<br>    java &#x3D;》 rabbitMQ kafka<br>    大数据 &#x3D;》 kafka、pular solar</p>
+<p>kafka：<br>    1.kafka.apache.org<br>        cdk &#x3D;&gt; cdh  </p>
+<p>1.distributed event streaming platform  kafka是一个流式 分布式平台<br>2.构建 实时的数据通道 、流式数据分析、流式的app</p>
+<p>实时处理&#x2F;流式处理：<br>离线处理&#x2F;批处理：</p>
+<p>消息中间件：<br>    1.消息 event  &#x3D;》 数据<br>    2.数据存储的地方 </p>
+<p>2.kafka的特性：<br>    1.HIGH THROUGHPUT  高吞吐量<br>    2.SCALABLE<br>    3.PERMANENT STORAGE 数据过期时间<br>    4.HIGH AVAILABILITY </p>
+<p>3.kafka有哪些特点？<br>    1.发布&amp;订阅<br>    2. store 存储<br>    3. process 	处理 ：<br>        1.kafka后面接一个 实时计算的框架 ： spark&#x2F;flink  正确使用<br>        2. kafkaStreaming 组件 【不要使用】</p>
+<p>4.部署：<br>    1.版本：<br>        1.apache<br>        2.cdk  </p>
+<pre><code>2.版本选择： 
+    1.稳定版本即可  可以选择最新版本【bug就是多】
+    2.根据 Sparkstreaming  来选择kafka的版本 ！！！！
+            1.spark对接kafka 的最低版本 0.10版本  【spark 3.x版本】
+            2.【spark 2.x版本】
+
+            kafka: 
+                0.10 
+                0.11
+            0.11之后的版本
+3.版本选择 
+    建议 kafka 2.2.1  或者 最新版 
+</code></pre>
+<p>5.kafka的架构<br>    kakfa：<br>        生产者(producer)：消息发送端<br>        broker：kafka本身<br>        消费者(consumer)：消息消费端</p>
+<pre><code>flume: 
+    source 、channle、sink	
+</code></pre>
+<p>6.进一步扩展kafka架构<br>    1.broker：kafka集群里面某一个节点<br>    2.event：表示 produce 发送的一条数据<br>    3.broker：<br>        1.topic 主题<br>            1.负责存储events<br>            2.消息订阅和发送基于topic<br>                消息订阅 ：<br>                    消费者 订阅topic：即可以消费topic里面存储的数据<br>                消息发送：<br>                    生产者 往指定topic发送数据<br>            3.kafka中可以有多个topic </p>
+<pre><code>    2.topic： 
+        partition:分区 
+            1.一个topic可以有多个partition
+            2.每个partition是一个有序的队列 =》单分区有序
+            3.partition linux上的文件夹 
+</code></pre>
+<p>数据：<br>    业务数据<br>    日志数据 &#x3D;&gt; flume &#x3D;&gt;kafka </p>
+<p>部署kafka：<br>    1.单点 </p>
+<pre><code>2.分布式
+</code></pre>
+<p>bigdata32机器为主：<br>[hadoop@bigdata32 software]$ tar -zxvf kafka_2.11-2.2.1.tgz -C ~&#x2F;app&#x2F;<br>配置环境变量：<br>#KAFKA_HOME<br>export KAFKA_HOME&#x3D;&#x2F;home&#x2F;hadoop&#x2F;app&#x2F;kafka<br>export PATH&#x3D;${PATH}:${KAFKA_HOME}&#x2F;bin</p>
+<p>配置kafka：<br>vim server.properties<br>broker.id&#x3D;0<br>log.dirs&#x3D;&#x2F;home&#x2F;hadoop&#x2F;data&#x2F;kafka   &#x3D;&gt; kafka存储数据的目录<br>zookeeper.connect&#x3D; bigdata32:2181,bigdata33:2181,bigdata34:2181&#x2F;kafka   &#x3D;&gt; zookeeper地址 </p>
+<p>bigdata32  0<br>bigdata33  1<br>bigdata34  2</p>
+<p>分发bigdata32 &#x3D;》 33 34<br>    修改对应的broker id<br>    [hadoop@bigdata33 config]$ pwd<br>&#x2F;home&#x2F;hadoop&#x2F;app&#x2F;kafka&#x2F;config</p>
+<p>启动kafka：<br>    1.zookeeper 得启动<br>    2.启动kafka<br>kafka-server-start.sh  -daemon $KAFKA_HOME&#x2F;config&#x2F;server.properties</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/6b0c0fc4f2027e559d7432e88e1e240.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -188,16 +256,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/11/13/hadoop/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=shichunlei99.github.io/022/12/20/kafka/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2022/12/15/zookeeper/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">zookeeper</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -212,82 +339,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-title" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/11/12/title/">我的第一篇博客文章</a>
-    </h1>
-  
-
-        
-        <a href="/2022/11/12/title/" class="archive-article-date">
-  	<time datetime="2022-11-12T00:44:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="我的博客文章编写"><a href="#我的博客文章编写" class="headerlink" title="我的博客文章编写"></a>我的博客文章编写</h1>
-        
-          <a class="article-more-a" href="/2022/11/12/title/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/11/12/title/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#kafka"><span class="toc-number">1.</span> <span class="toc-text">kafka</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
+  
+  
+  
 
   
+
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
+
   
 
 
@@ -313,8 +390,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
