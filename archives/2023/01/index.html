@@ -6,17 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>sqoop | Hexo</title>
+  <title>Archives: 2023/1 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="sqoop">
-<meta property="og:type" content="article">
-<meta property="og:title" content="sqoop">
-<meta property="og:url" content="http://example.com/2022/12/06/sqoop/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/archives/2023/01/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="sqoop">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-12-06T05:10:49.000Z">
-<meta property="article:modified_time" content="2022-12-06T05:12:01.880Z">
 <meta property="article:author" content="shichunlei99">
 <meta name="twitter:card" content="summary">
   
@@ -156,309 +152,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-sqoop" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      sqoop
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2023" class="archive-year">2023</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2023/01/03/sparkday01/" class="archive-article-date">
+  	<time datetime="2023-01-03T09:26:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-03</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2023/01/03/sparkday01/">sparkday01</a>
     </h1>
   
 
-        
-        <a href="/2022/12/06/sqoop/" class="archive-article-date">
-  	<time datetime="2022-12-06T05:10:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="sqoop"><a href="#sqoop" class="headerlink" title="sqoop"></a>sqoop</h1><span id="more"></span>
-<p>hadoop<br>hive</p>
-<h1 id="大数据：三件事"><a href="#大数据：三件事" class="headerlink" title="大数据：三件事"></a>大数据：三件事</h1><pre><code>数据采集：采集日志数据 flume、logstush、 采集业务数据：sqoop、datax、实时采集maxwell、flinkcdc
-数据存储 ：Hadoop[hdfs]、hive、hbase【大数据】、数据分析之后的结果数据：mysql、clickhouse、drios
-数据分析：mapreduce[不用]、hive、hbase、spark、flink
-数据可视化：前端开发、自己做、用开源的框架：superset、dataease 
-            echarts env、anv、
-            【很少用】收费：quickbi、sugar
+        <div class="article-info info-on-right">
+          
+          
 
-消息中间键:kafka、pular
-即席查询： 临时查询 
-        sparksql、presto、druid、clickhouse、kylin【cube】
-</code></pre>
-<p>数据种类：<br>    1.业务数据【MySQL、es】app<br>    2.日志数据 【log】 linux磁盘上的：  工作中处理的重点<br>        展现日志、点击日志、跳转日志。。。<br>    3.其他数据</p>
-<p>架构图：<br>    1.业务数据【MySQL】 &#x3D;》sqoop、datax  &#x3D;》 hdfs&#x2F;hive<br>    2.日志数据 【log文件】&#x3D;》flume &#x3D;》 hdfs&#x2F;hive </p>
-<pre><code>3.hive：构建离线数仓： 
-    1.数据分层
-    2.维度建模
-    3.指标输出 
-4.数据可视化
-    hive =》 sqoop =》 mysql/clickhouse =》数据可视化 =&gt; 老板、产品、组内人员开
-</code></pre>
-<p>大数据基础平台【0-1 搭建大数据环境】</p>
-<p>大数据数据平台【基于基础平台  &#x3D;》 升级】 了解：<br>    1.80-99.953 &#x3D;》 sql </p>
-<pre><code>大数据平台开发组
-大数据数据开发： 90%
-    hive
-    1.离线数仓
-    2.实时数仓
-    3.adhoc 临时查询
-大数据etl工程师： 
-    数据抽取、数据清洗、数据转换
-大数据运维工程师： 
-    1.部署、后续维护 
-    2.云原生 docker、k8s 
-大数据算法组：【数据分析师sql+数学统计知识、数据科学家】
-    1.用户画像
-    2.数据挖掘： 
-        python 
-        spark、flink自带的 机器学习组件
-</code></pre>
-<p>新颖：<br>    数据湖&#x3D;》<br>    云原生&#x3D;&gt; docker,k8s<br>        job &#x3D;&gt; yarn 资源隔离  &#x3D;》 k8s 、二次开发 yarn资源分配算法</p>
-<h1 id="Sqoop："><a href="#Sqoop：" class="headerlink" title="Sqoop："></a>Sqoop：</h1><p>官网：<br>    sqoop.apache.org </p>
-<p>sqoop版本：<br>    sqoop1 ：1.4.7  【建议】<br>    sqoop2 ：1.99.7</p>
-<p>1.4.7 &#x3D;&gt; 额外的包 cdh<br>1.4.6 </p>
-<p>1.部署<br>[hadoop@bigdata32 software]$ tar -zxvf sqoop-1.4.7.bin__hadoop-2.6.0.tar.gz -C ~&#x2F;app&#x2F;<br>[hadoop@bigdata32 app]$ ln -s sqoop-1.4.7.bin__hadoop-2.6.0&#x2F; sqoop<br>配置环境变量： </p>
-<p>配置sqoop env：<br>export HADOOP_COMMON_HOME&#x3D;&#x2F;home&#x2F;hadoop&#x2F;app&#x2F;hadoop<br>export HADOOP_MAPRED_HOME&#x3D;&#x2F;home&#x2F;hadoop&#x2F;app&#x2F;hadoop<br>export HIVE_HOME&#x3D;&#x2F;home&#x2F;hadoop&#x2F;app&#x2F;hive<br>添加mysql driver：<br>[hadoop@bigdata32 lib]$ cp mysql-connector-java-5.1.28.jar &#x2F;home&#x2F;hadoop&#x2F;app&#x2F;sqoop&#x2F;lib</p>
-<p>1.查看可用的数据库 【mysql】<br>sqoop list-databases <br>–connect jdbc:mysql:&#x2F;&#x2F;bigdata31:3306  <br>–username root  <br>–password 123456</p>
-<p>2.查看可用的数据库 tables<br>sqoop list-tables <br>–connect jdbc:mysql:&#x2F;&#x2F;bigdata31:3306&#x2F;bigdata  <br>–username root  <br>–password 123456</p>
-<p>数据传输：<br>    1.导入<br>    2.导出 </p>
-<pre><code>参照物 hadoop： 
-    数据导入：import
-    数据导出： export
-</code></pre>
-<p>hadoop fs -ls   vs hadoop fs -ls &#x2F;<br>    &#x2F;user&#x2F;hadoop&#x2F;</p>
-<p>数据导入：import<br>    1.hdfs<br>    2.hive </p>
-<p>import hdfs： </p>
-<p>sqoop import <br>–connect jdbc:mysql:&#x2F;&#x2F;bigdata31:3306&#x2F;hive  <br>–username root  <br>–password 123456 <br>–delete-target-dir <br>–fields-terminated-by ‘\t’ <br>–target-dir &#x2F;sqoop&#x2F;TBLS_Column <br>–mapreduce-job-name ‘mysql_TBLS2hdfs’ <br>–columns ‘TBL_ID,CREATE_TIME,DB_ID,LAST_ACCESS_TIME,OWNER,OWNER_TYPE’ <br>–where ‘TBL_ID&gt;&#x3D; 40’ <br>–table TBLS</p>
-<p>思考：<br>    mysql &#x3D;》 hdfs 那个路径？<br>        &#x2F;user&#x2F;hadoop&#x2F;TBLS<br>    0.是否可以修改 hdfs目标路径？<br>        –target-dir	<br>    1.hdfs文件存储 默认按照, 进行分割？<br>        是否可以进行修改字段之间分割符？<br>        –fields-terminated-by<br>    2.sqoop 默认加载数据的并行度 是4 是否可以进行修改呢？<br>        -m<br>    3.是否可以修改sqoop作业的名字？<br>        –mapreduce-job-name<br>    4.筛选数据范围+字段<br>        –where<br>        –columns<br>    5.table ：<br>        1.pk主键<br>        2.没有主键:<br>            解决：<br>                1.–split-by<br>                2.-m 1<br>    6.添加etl参数【主要处理 空值】<br>    –null-non-string <null-str><br>    –null-string <null-str> </p>
-<pre><code>sqoop mapreduce ： 
-input：inputformat：
-    dbinputformat
-    map task有多少个？ 切片
-</code></pre>
-<p> SELECT t.* FROM <code>emp</code> AS t LIMIT 1<br>1.table 主键<br>    DataDrivenDBInputFormat: BoundingValsQuery:<br>     SELECT MIN(<code>TBL_ID</code>), MAX(<code>TBL_ID</code>) FROM <code>TBLS</code> WHERE ( TBL_ID&gt;&#x3D; 40 )</p>
-<p>2.table 没有主键<br>    1.–split-by  &#x3D;》指定mapreduce 按照哪个字段 进行切片<br>    2.-m 1</p>
-<p>SELECT t.* FROM <code>TBLS</code> AS t LIMIT 1  &#x3D;》 ？确认 mysql 有这张表  </p>
-<p>sqoop import <br>–connect jdbc:mysql:&#x2F;&#x2F;bigdata31:3306&#x2F;bigdata  <br>–username root  <br>–password 123456 <br>–delete-target-dir <br>–target-dir &#x2F;sqoop&#x2F;emp <br>–mapreduce-job-name ‘mysql_TBLS2hdfs’ <br>-m 1 <br>–table emp </p>
-<p>sqoop import <br>–connect jdbc:mysql:&#x2F;&#x2F;bigdata31:3306&#x2F;bigdata  <br>–username root  <br>–password 123456 <br>–delete-target-dir <br>–target-dir &#x2F;sqoop&#x2F;emp <br>–mapreduce-job-name ‘mysql_TBLS2hdfs’ <br>–split-by ‘empno’ <br>–null-non-string 0 <br>–null-string ‘’ <br>–table emp </p>
-<p>sql的方式同步数据：import sql </p>
-<p>sqoop import <br>–connect jdbc:mysql:&#x2F;&#x2F;bigdata31:3306&#x2F;bigdata  <br>–username root  <br>–password 123456 <br>–delete-target-dir <br>–target-dir &#x2F;sqoop&#x2F;emp_sql <br>–mapreduce-job-name ‘mysql_TBLS2hdfs’ <br>–split-by ‘empno’ <br>–null-non-string 0 <br>–null-string ‘’ <br>–query ‘select empno,deptno,ename,sal from emp where $CONDITIONS ‘</p>
-<pre><code>注意： 
-    --query --table 不能一起使用
-</code></pre>
-<p>select empno,deptno,ename,sal from emp where  (1 &#x3D; 0)</p>
-<p>通用性： 封装参数<br>    1.shell脚本<br>    2.sqoop –options-file<br>        sqoop –options-file<br>    3.sqoop job<br>        1.create 创建job<br>        2.list&#x2F;show 查看job<br>        3.exec 执行job </p>
-<p>sqoop job –create mysql_emp2hdfs – <br>import <br>–connect jdbc:mysql:&#x2F;&#x2F;bigdata31:3306&#x2F;bigdata  <br>–username root  <br>–password 123456 <br>–delete-target-dir <br>–target-dir &#x2F;sqoop&#x2F;emp_sql <br>–mapreduce-job-name ‘mysql_TBLS2hdfs’ <br>–split-by ‘empno’ <br>–null-non-string 0 <br>–null-string ‘’ <br>–query ‘select empno,deptno,ename,sal from emp where $CONDITIONS ‘</p>
-<p>sqoop job –list<br>sqoop job –show mysql_emp2hdfs &#x3D;&gt; NoClassDefFoundError: org&#x2F;json&#x2F;JSONObject<br>sqoop job –exec mysql_emp2hdfs</p>
-<p>mysql 2 hive :<br>    hive lib*  &#x3D;&gt; sqoop lib </p>
-<p>可以在hive 自动建表：不要用<br>sqoop import <br>–connect jdbc:mysql:&#x2F;&#x2F;bigdata31:3306&#x2F;bigdata  <br>–username root  <br>–password 123456 <br>–mapreduce-job-name ‘mysql_TBLS2hdfs’ <br>–delete-target-dir <br>–target-dir &#x2F;sqoop&#x2F;emp_tmp <br>-m 1 <br>–query ‘select empno,deptno,ename,sal from emp where $CONDITIONS ‘ <br>–hive-import <br>–hive-overwrite <br>–create-hive-table <br>–hive-database bigdata_hive <br>–hive-table emp_tmp </p>
-<p>mysql 2 hive 普通表：<br>sqoop import <br>–connect jdbc:mysql:&#x2F;&#x2F;bigdata31:3306&#x2F;bigdata  <br>–username root  <br>–password 123456 <br>–mapreduce-job-name ‘mysql_TBLS2hdfs’ <br>–delete-target-dir <br>–target-dir &#x2F;sqoop&#x2F;emp_tmp <br>–fields-terminated-by ‘,’ <br>-m 1 <br>–query ‘select * from emp where $CONDITIONS ‘ <br>–hive-import <br>–hive-overwrite <br>–hive-database bigdata_hive <br>–hive-table emp_sqoop </p>
-<p>分区表：<br>sqoop import <br>–connect jdbc:mysql:&#x2F;&#x2F;bigdata31:3306&#x2F;bigdata  <br>–username root  <br>–password 123456 <br>–mapreduce-job-name ‘mysql_TBLS2hdfs’ <br>–delete-target-dir <br>–target-dir &#x2F;sqoop&#x2F;emp_tmp <br>–fields-terminated-by ‘\t’ <br>-m 1 <br>–query ‘select empno,ename,job,mgr,hiredate,sal,comm from emp where deptno&#x3D;20 and $CONDITIONS ‘ <br>–hive-import <br>–hive-overwrite <br>–hive-database bigdata_hive <br>–hive-table emp_sqoop_p <br>–hive-partition-key deptno <br>–hive-partition-value 20</p>
-<p>通用性脚本：<br>import  hive 普通表 </p>
-<p>测试：<br>.&#x2F;mysql2hive bigdata “select * from emp where deptno&#x3D;20” bigdata_hive emp_sqoop</p>
-<p>数据导出：<br>    export </p>
-<p>hdfs hive ：<br>    hdfs 路径  &#x3D;》 mysql  mysql table </p>
-<p>sqoop export <br>–connect jdbc:mysql:&#x2F;&#x2F;bigdata31:3306&#x2F;bigdata  <br>–username root  <br>–password 123456 <br>–table emp_hdfs <br>–mapreduce-job-name ‘hdfs2mysql’ <br>–fields-terminated-by ‘,’ <br>–export-dir &#x2F;user&#x2F;hive&#x2F;warehouse&#x2F;bigdata_hive.db&#x2F;emp&#x2F;* </p>
-<p>hive emp_tmp:<br>    field.delim \u0001</p>
-<p>sqoop export <br>–connect jdbc:mysql:&#x2F;&#x2F;bigdata31:3306&#x2F;bigdata  <br>–username root  <br>–password 123456 <br>–table emp_hdfs <br>–mapreduce-job-name ‘hdfs2mysql’ <br>–fields-terminated-by ‘\001’ <br>–lines-terminated-by ‘\n’ <br>–input-lines-terminated-by ‘&#x2F;\N’ <br>–input-fields-terminated-by ‘\001’ <br>–export-dir &#x2F;user&#x2F;hive&#x2F;warehouse&#x2F;bigdata_hive.db&#x2F;emp_t&#x2F;* </p>
-<p>\001 &#x3D;&gt; ^</p>
-<p>补充：<br>    1.mapreduce job  历史日志 ：<br>        1. jobhistory 服务开启<br>        2. 日志收集 </p>
-<p>hive table &#x3D;&gt; mysql  多次导入 数据结果不一致？<br>    幂等性 ： 多次操作 数据结果是不变的<br>        mysql &#x3D;》 hive  &#x3D;》 hive-overwrite<br>        hive &#x3D;&gt; mysql  幂等性 如何解决？</p>
-<p>补充：<br>    1.mapreduce job  历史日志 ：<br>        1. jobhistory 服务开启<br>mapreduce.jobhistory.address  0.0.0.0:10020</p>
-<property>
-        <name>mapreduce.jobhistory.address</name>
-        <value>bigdata32:10020</value>
-</property>
-<property>
-        <name>mapreduce.jobhistory.webapp.address</name>
-        <value>bigdata32:19888</value>
-</property>
-
-
-<pre><code>    2. 日志收集 
-</code></pre>
-<property>
-        <name>yarn.log-aggregation-enable</name>
-        <value>true</value>
-</property>
-<property>
-        <name>yarn.log.server.url</name>
-        <value>http://bigdata32:19888/jobhistory/logs</value>
-</property>
-<property>
-        <name>yarn.log-aggregation.retain-seconds</name>
-        <value>259200</value>
-</property>
-
-
-<ol>
-<li><p>jobhistory 服务开启<br>mapred historyserver  [bigdata32]  </p>
-</li>
-<li><p>日志收集<br>yarn timelineserver   [bigdata33]</p>
-</li>
-</ol>
-<p>作业：<br>    1.hdfs hive &#x3D;&gt; mysql  通用性脚本<br>    2.mysql  &#x3D;》 hive 分区表 和 普通表  通用性脚本<br>    3.幂等性  【了解一下】<br>    4.dept表 ：<br>        mysql dept &#x3D;》 hive<br>        hive dept  &#x3D;》 mysql  【保证 数据的幂等性】</p>
-<p>案例<br>xxl superset 报警：钉钉报警 </p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/6b0c0fc4f2027e559d7432e88e1e240.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=shichunlei99.github.io/022/12/06/sqoop/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2022/12/08/superset/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          superset
-        
-      </div>
-    </a>
   
   
-    <a href="/2022/12/04/hive4/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hive4</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sqoop"><span class="toc-number">1.</span> <span class="toc-text">sqoop</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A7%E6%95%B0%E6%8D%AE%EF%BC%9A%E4%B8%89%E4%BB%B6%E4%BA%8B"><span class="toc-number">2.</span> <span class="toc-text">大数据：三件事</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sqoop%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">Sqoop：</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -484,8 +220,8 @@ input：inputformat：
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
