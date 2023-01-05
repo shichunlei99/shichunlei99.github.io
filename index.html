@@ -245,6 +245,136 @@
 
 
   
+    <article id="post-sparkday03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/01/05/sparkday03/">sparkday03</a>
+    </h1>
+  
+
+        
+        <a href="/2023/01/05/sparkday03/" class="archive-article-date">
+  	<time datetime="2023-01-05T07:47:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="sparkday03"><a href="#sparkday03" class="headerlink" title="sparkday03"></a>sparkday03</h1>
+        
+          <a class="article-more-a" href="/2023/01/05/sparkday03/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/01/05/sparkday03/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-sparkday02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/01/05/sparkday02/">sparkday02</a>
+    </h1>
+  
+
+        
+        <a href="/2023/01/05/sparkday02/" class="archive-article-date">
+  	<time datetime="2023-01-05T07:46:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="sparkday02"><a href="#sparkday02" class="headerlink" title="sparkday02"></a>sparkday02</h1>
+        
+          <a class="article-more-a" href="/2023/01/05/sparkday02/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/01/05/sparkday02/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-sparkday01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -265,262 +395,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>大数据：<br>    linux 、 shell、mysql、hadoop、hive、sqoop、superset、xxl、flume、kafka</p>
-<pre><code>sqoop =&gt; datax 、自己开发  数据同步
-xxl  =》 dolphin
-hive =&gt; sparksql
-</code></pre>
-<p>数据：<br>    日志数据：log文件<br>    业务数据：mysql 业务库<br>    其他数据：excel、文本数据</p>
-<p>hive：table  数据仓库<br>    1.日志数据 &#x3D;》采集 &#x3D;》flume&#x3D;》 hdfs&#x2F;hive<br>    2.业务数据 &#x3D;》采集 &#x3D;》 sqoop &#x3D;》 hdfs&#x2F;hive<br>    3. 其他数据  &#x3D;&gt; hadoop fs -put hdfs</p>
-<p>数据分析：<br>    业务周期性：</p>
-<pre><code>1.离线计算：批处理
-    hive：构建离线数仓
-        1.数据分层：把数据解耦
-            ods层：原始数据层
-                ods_xxx_table
-            dwd层： 数据清洗 【脏数据 =》 数据转换】 20张表
-            dws层：宽表层 【dwd层表进行join操作】
-            rpt层、app层：指标、报表层
-                    group by +聚合指标
-
-    业务周期性：T+1  =&gt; 延迟一天处理
-        rpt：
-            dt 			id name sum avg xxx
-            20230102	  =&gt; 6:00-7:00 （]
-            20230101	  =&gt; 5:00-6:00 （]
-    20230103 =》
-        处理的数据 20230102的数据
-
-
-    业务周期性：H+1 =&gt; 延迟一小时处理
-        20230103=》
-            处理的数据 20230103的数据
-        rpt：
-            dt 			hh id name sum avg xxx
-            20230103	7:00  =&gt; 6:00-7:00 （]
-            20230103	6:00  =&gt; 5:00-6:00 （]
-            20230103	5:00
-            ...
-            20230103	1:00
-        sparksql
-2.实时计算：实时处理
-    spark、flink
-
-日志数据 =》 flume =》kafka
-业务数据 =》 maxwell/cannel/flinkcdc =&gt; kafka
-
-kafka + spark/flink/storm
-kafka	实时数仓： 业务周期性  1min 5min 10min
-        ods层：业务数据+ 日志数据
-        dws层：宽表层
-        rpt层： 报表层
-
-topic：
-    ods_xx
-    dws_xx
-    rpt_xx
-
-
-数据可视化展示：
-    前端开发人员：
-
-
-离线计算、实时计算 =》 rpt层 =》 数据存储的库 查询速度一定要快 =》 数据可视化展示
-        离线计算：
-            sqoop =》 mysql/clickhouse/drois  =&gt;  数据可视化展示
-
-        实时计算 =》
-            spark、flink  支持外部数据源 =》 mysql/clickhouse/drois =&gt;  数据可视化展示
-
-
-实时展示：  1min
-    dt 			mm
-    20230103 	09:02  =&gt; 09:01-09:02 (]
-    20230103 	09:01
-    20230103 	09:00
-
-实时指标： 业务周期性 很快
-    s级别出数据 ：
-        1s  3s 5s
-</code></pre>
-<p>spark:<br>1.spark产生背景？<br>    1.mr、hive批处理、离线处理 存在一些局限性：<br>        1.mr api 开发复杂<br>        2.只能做离线计算 不能做实时计算<br>        3.性能不高</p>
-<p>需求： sql  &#x3D;》 mr<br> 会产生多个job去完成一个需求<br>    mr1&#x3D;&gt; mr2 &#x3D;&gt;mr3</p>
-<pre><code>map =&gt; reduce
-map处理完数据 =》 disk 数据落盘 =》 reduce  mr
-kv进行操作 =》 k进行排序
-</code></pre>
-<p>2.什么是spark？<br>    1.spark.apache.org<br>    1.计算引擎 【不关注数据存储】<br>    2.特点<br>        1.Batch&#x2F;streaming data &#x3D;》 批流一体<br>        2.SQL analytics<br>        3.Data science at scale<br>        4.Machine learning</p>
-<pre><code>3.速度快：
-    1.spark基于内存计算
-    2.DAG
-        mr1=&gt;mr2=&gt;mr3
-        算子 链式编程
-    3.pipline 【通道的】
-    4.编程模型 线程级别的
-
-4.易用性：
-    1.开发语言： java、scala、python、sql
-    2.外部数据源
-    3.80多个高级算子 =》 scala算子
-
-    mr =&gt; 去读 mysql 数据
-        1.DBinputformat
-    spark =》
-        封装好了 多种外部数据源
-            jdbc json csv
-
-    mr：
-        map
-        reduce
-    spark ：
-        80
-5.通用性：
-    子模块
-    sparkcore   =》 离线计算
-    sparksql    =》 离线计算
-    sparkstreaming、structstreaming  =》 实时计算
-    mllib  =》 机器学习
-    图计算 =》 图处理
-
-    spark的子模块 之间可以进行交互式使用
-6.运行作业的地方
-    1.yarn  ***
-    2.mesos
-    3.k8s  ***
-    4.standalone[spark本身集群 ]
-</code></pre>
-<p>3.hadoop生态圈  vs  spark 生态圈</p>
-<p>1.Batch：mr、hive     vs  sparkcore、sparksql<br>2.SQL：hive、impala   vs sparksql<br>3.stream：storm       vs sparkstreaming、sss<br>4.MLLib: Mahout       vs  MLlib<br>5.real 存储： HBase、cassandra  vs  DataSouce Api</p>
-<p>思考： spark 能不能替换hadoop？<br>    1.替换不了<br>        spark &#x3D;》 可以mr</p>
-<p>spark版本：<br>    1.spark 1.x<br>            2.x  主流<br>            3.x  主流</p>
-<p>编程模型：<br>sparkcore &#x3D;》 RDD<br>sparksql &#x3D;》 dataframe &amp; dataset<br>sparkstreaming &#x3D;》 DS</p>
-<p>1.sparkcore<br>RDD<br> 1.rdd 开发 降低开发人员的开发成本   vs mr</p>
-<p> 2.什么是rdd ？</p>
-<p> low  level  &#x3D;&gt; mr<br>  high level  &#x3D;&gt; spark 高级算子</p>
-<p>1.resilient distributed dataset (RDD)<br>Represents an immutable,</p>
-<ul>
-<li>partitioned collection of elements that can be operated on in parallel</li>
-</ul>
-<p>1.“弹性 分布式 数据集”<br>2.数据集：<br>    partitions:<br>        元素 &#x3D;》 一条一条的数据<br>3. 可以以并行的方式进行计算</p>
-<p>1.弹性？<br>    容错 &#x3D;》 计算的时候 可以重试</p>
-<p>2.分布式？<br>    1.存储<br>        rdd: 1 2 3 4 5 6<br>            partition1:1 2 3<br>            partition2:4 5<br>            partition3:6</p>
-<pre><code>    bigdata22：partition1
-    bigdata23：partition2
-    bigdata24：partition3
-2.计算
-    对rdd进行操作实际上是操作 rdd分区里面的数据
-
-    rdd: 1 2 3 4 5 6         + 1
-        partition1:1 2 3   + 1
-        partition2:4 5		+ 1
-        partition3:6        + 1
-</code></pre>
-<p>3.数据集：<br>    就是构建rdd本身的数据</p>
-<p>4.immutable 不可变的<br>    scala中： val var<br>    rdda &#x3D;&gt; rddb<br>    不可变&#x3D;》 rdda 通过计算&#x2F;操作得到一个新的rdd</p>
-<p>5.partitioned collection of elements  【rdd 可以被分区存储&#x2F;计算的】</p>
-<pre><code>rdd: 1 2 3 4 5 6
-        partition1:1 2 3
-        partition2:4 5
-        partition3:6
-bigdata22：partition1
-bigdata23：partition2
-bigdata24：partition3
-
-一个rdd是由多个partition所构成
-rdd数据存储是分布式的 ，是跨节点进行存储的
-</code></pre>
-<p>6.elements that can be operated on in parallel &#x3D;》 计算</p>
-<pre><code>    rdd: 1 2 3 4 5 6         + 1
-        partition1:1 2 3   + 1
-        partition2:4 5		+ 1
-        partition3:6        + 1
-
-    对rdd进行操作 就是对rdd底层partition里面的元素进行操作
-</code></pre>
-<p>abstract class RDD[T: ClassTag](<br>    @transient private var _sc: SparkContext,<br>    @transient private var deps: Seq[Dependency[_]]<br>  ) extends Serializable with Logging {</p>
-<p>1.abstract<br>2.T 泛型  &#x3D;》 限定rdd里面数据 是什么类型的<br>    RDD[String]、RDD[Int] 、RDD[Student]<br>3.Serializable 序列化 &#x3D;》数据经过网络传输<br>4.@transient 注解 这个属性就不需要序列化 【了解】</p>
-<p>RDD五大特性！！！！:<br>1.A list of partitions<br>2.A function for computing each split<br>3.A list of dependencies on other RDDs<br>4.Optionally, a Partitioner for key-value RDDs (e.g. to say that the RDD is hash-partitioned)<br>5.Optionally, a list of preferred locations to compute each split on (e.g. block locations for<br>an HDFS file)</p>
-<p>1.rdd底层存储一系列partition<br>2.针对rdd做计算&#x2F;操作其实就是对rdd底层的partition进行计算&#x2F;操作<br>3.rdd之间的依赖关系 （血缘关系）<br>    rdda &#x3D;&gt; rddb<br>    rdd 不可变<br>    rdda &#x3D;&gt; rddb &#x3D;&gt; rddc<br>4.Partitioner &#x3D;&gt; kv类型的rdd</p>
-<pre><code>rdd: 1 2 3 4 5 6
-        partition1:1 2 3
-        partition2:4 5
-        partition3:6
-默认分区：hash
-</code></pre>
-<p>5.数据本地性  &#x3D;》 减少数据传输的网络io  优点<br>    rdd进行操作</p>
-<pre><code>好处：
-    有限把作业调度在数据所在节点 =》 【理想状况】
-    【常见计算】
-        作业调度在别的节点上 ，数据在另外一台节点上吗，
-        只能把数据通过网络把数据传输到 作业所在节点上去进行计算；
-</code></pre>
-<p>1.def getPartitions  一系列partition</p>
-<p>eg：<br>    scala中： List(1,2,3,4).map(_*2) scala list 单机的</p>
-<pre><code>RDD中：
-    数据集
-    rdd.map(_*2)   对每个分区里面的元素做计算 是分布式
-</code></pre>
-<ol start="2">
-<li>def compute</li>
-</ol>
-<p>3.def getDependencies  rdd之间的依赖关系<br>    rdda &#x3D;&gt; rddb &#x3D;&gt; rddc<br>4. val partitioner<br>5.def getPreferredLocations(split: Partition):</p>
-<p>RDD操作：<br>1.构建sparkcore 作业 【idea】<br>添加依赖：<br>    <!--spark-core依赖--><br>    <dependency><br>      <groupId>org.apache.spark</groupId><br>      <artifactId>spark-core_2.12</artifactId><br>      <version>3.2.1</version><br>    </dependency></p>
-<p>mapreduce：<br>    程序入口：job</p>
-<p>Initializing Spark：<br>    1. SparkContext  &#x3D;》 sparkcore 程序入口<br>        tells Spark how to access a cluster.<br>    2.SparkConf  &#x3D;》 指定 spark app 详细信息<br>        1.AppName  &#x3D;&gt; 作业名字<br>        2.Master   &#x3D;》 作业运行在什么地方  spark作业的运行模式<br>            1.local、yarn、standalone、k8s、mesos<br>            工作中：<br>                yarn<br>                k8s<br>                local<br>            code编写测试阶段 ：<br>                local</p>
-<pre><code>spark作业里面只能有一个 sparkcontext
-</code></pre>
-<p>如何指定Master spark作业运行模式？<br>    1.local模式<br>        k 指的是线程数<br>    2.standalone<br>        spark:&#x2F;&#x2F;HOST:PORT<br>    3.yarn<br>        yarn 两种模式：<br>            client模式<br>            cluster模式<br>    4.k8s<br>        k8s:&#x2F;&#x2F;HOST:PORT</p>
-<p> rdd 进行编程:<br> 1.创建rdd<br>    1. parallelize existing collection  &#x3D;》 已经存在的集合<br>    2.referencing a dataset in an external storage system<br>        hdfs、hbase、其他数据存储系统</p>
-<pre><code>    1.外部数据源存储
-        hdfs、local、hbase、s3、cos、
-    2.数据文件类型：
-        text files, SequenceFiles, and any other Hadoop InputFormat.
-</code></pre>
-<p>spark部署： 分布式计算框架<br>    spark app  &#x3D;》 yarn</p>
-<pre><code>spark 不是部署分布式的 client而已 =》 hive
-spark 支持分布式部署 =》 standalone
-</code></pre>
-<p>1.下载安装包<br>2.解压<br>[hadoop@bigdata32 software]$ tar -zxvf .&#x2F;spark-3.3.1-bin-hadoop3.tgz -C ~&#x2F;app&#x2F;<br>3.软连接<br>[hadoop@bigdata32 app]$ ln -s .&#x2F;spark-3.3.1-bin-hadoop3&#x2F;  spark<br>4.环境变量<br>[hadoop@bigdata32 spark]$ vim ~&#x2F;.bashrc<br>[hadoop@bigdata32 spark]$ source ~&#x2F;.bashrc</p>
-<p>spark-core：<br>    脚本：spark-shell</p>
-<p>启动spark-shell ： 测试code<br>    1.web ui &#x3D;》 每个spark作业 <a target="_blank" rel="noopener" href="http://bigdata32:4040/">http://bigdata32:4040</a><br>    2.参数：<br>        –master  &#x3D;》 spark shell 以什么方式去运行</p>
-<pre><code>思考： 为什么spark-shell webui名字 是Spark shell？
-可不可以该？
-
-思考：
-    spark-core 如何触发作业的执行呢？
-思考：
-    task数为什么是2？
-
-
-
-并行度： 并行度高 处理的效率高 【前提 资源够】
-    针对spark处理数据
-        rdd ：
-            partition
-        有多少个partition就有多少个task去处理我们的数据
-
-     1T  =&gt; 1 partion  =&gt; 1 task 1 cpu  =&gt;
-     		10 partition =&gt; 10 task   =&gt;
-
-        跟我们运行模式有关系：
-            local[2] =&gt; rdd 分区默认就是2
-
-创建rdd：
-    1.存在的集合
-    2.外部数据源
-        local、hdfs
-
-spark-core：
-    1.texFile（） =》 hdfs
-    2.mem  =&gt; hdfs
-
-思考： spark =》 hdfs 生成的文件数量 跟什么有关系?
-    mr =&gt; hdfs  reduce task
-
-    spark =&gt; hdfs =&gt; tasks数 =》 parition数
-    rdd 里面parition有多少个 =》 文件落地有多少个文件
-</code></pre>
-
+        <h1 id="sparkday02"><a href="#sparkday02" class="headerlink" title="sparkday02"></a>sparkday02</h1>
+        
+          <a class="article-more-a" href="/2023/01/03/sparkday01/#more">more >></a>
+        
       
 
       
@@ -923,136 +801,6 @@ spark-core：
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/12/09/xxl/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-superset" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/12/08/superset/">superset</a>
-    </h1>
-  
-
-        
-        <a href="/2022/12/08/superset/" class="archive-article-date">
-  	<time datetime="2022-12-08T01:07:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Superset"><a href="#Superset" class="headerlink" title="Superset:"></a>Superset:</h1>
-        
-          <a class="article-more-a" href="/2022/12/08/superset/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/12/08/superset/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-sqoop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/12/06/sqoop/">sqoop</a>
-    </h1>
-  
-
-        
-        <a href="/2022/12/06/sqoop/" class="archive-article-date">
-  	<time datetime="2022-12-06T05:10:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="sqoop"><a href="#sqoop" class="headerlink" title="sqoop"></a>sqoop</h1>
-        
-          <a class="article-more-a" href="/2022/12/06/sqoop/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/12/06/sqoop/">展开全文 >></a>
         </p>
       
 
