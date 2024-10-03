@@ -1,29 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/10/01/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>我的第一篇博客文章</title>
-    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>java api</title>
     <url>/2024/10/02/java-api/</url>
     <content><![CDATA[<h1 id="java-api"><a href="#java-api" class="headerlink" title="java api"></a>java api</h1><span id="more"></span>
@@ -117,6 +94,134 @@
     1.打印到控制台
     2.输出到hdfs上
 </code></pre>
+]]></content>
+  </entry>
+  <entry>
+    <title>我的第一篇博客文章</title>
+    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/10/01/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>数据类型</title>
+    <url>/2024/10/03/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="1-java的数据类型"><a href="#1-java的数据类型" class="headerlink" title="1. java的数据类型"></a>1. java的数据类型</h1><p>基本类型：8个基本类型。 类型首字母小写</p>
+<p>引用类型： 对象类型。</p>
+<h2 id="1-1-八个基本类型"><a href="#1-1-八个基本类型" class="headerlink" title="1.1 八个基本类型"></a>1.1 八个基本类型</h2><p> &#x2F;&#x2F; 0开头时8进制， 0b时二进制， 0x十六进制</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte 字节</td>
+<td>8位，   8bit</td>
+<td>-128-127<br />0111 1111     127<br /><br />1000 0000     -128</td>
+<td>网络传输，文件的大小</td>
+</tr>
+<tr>
+<td>short 短整型</td>
+<td>2byte  16位</td>
+<td>（-2的n-1次方~2的n-1次方-1）</td>
+<td>16位计算机用</td>
+</tr>
+<tr>
+<td>int 整型</td>
+<td>4byte  32位</td>
+<td></td>
+<td>字面量</td>
+</tr>
+<tr>
+<td>long 长整型</td>
+<td>8byte  64位</td>
+<td></td>
+<td>毫秒数（1970-1-1凌晨到现在的毫秒数）</td>
+</tr>
+<tr>
+<td>float 单精度浮点型</td>
+<td>32位</td>
+<td>默认大于整数</td>
+<td>有效位数8位</td>
+</tr>
+<tr>
+<td>double双精度浮点型</td>
+<td>64</td>
+<td></td>
+<td>字面量。 浮点型都<code>不能</code>参与运算</td>
+</tr>
+<tr>
+<td>boolean布尔型</td>
+<td>1bit</td>
+<td>true, false</td>
+<td></td>
+</tr>
+<tr>
+<td>char字符型</td>
+<td>2byte 16位</td>
+<td></td>
+<td>和整数隐式转换， 可以参与运算</td>
+</tr>
+</tbody></table>
+<h2 id="1-2-字符型"><a href="#1-2-字符型" class="headerlink" title="1.2 字符型"></a>1.2 字符型</h2><ul>
+<li>ASCII码: 1byte范围 0~127</li>
+</ul>
+<p>0: 空字符<code> ‘’</code></p>
+<p>32: 空格 <code>&#39; &#39;</code></p>
+<p>49:  字符<code>&#39;1&#39;</code></p>
+<p>65: ‘A’</p>
+<p>97: ‘a’</p>
+<ul>
+<li>转义字符：</li>
+</ul>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">\&#x27;   \&quot;  \r  \n  \t   \\</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Unicode码：  <code>\uFFFF</code> 四个十六进制数表示 两个字节的字符</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test2</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// 定义byte型变量时 a1</span></span><br><span class="line">		<span class="type">byte</span> a1;</span><br><span class="line">		<span class="comment">// （编译时隐式转换） </span></span><br><span class="line">		a1 = <span class="number">127</span>; <span class="comment">// 0开头时8进制， 0b时二进制， 0x十六进制</span></span><br><span class="line">		<span class="comment">// byte a2 = 128; 超过范围</span></span><br><span class="line">		System.out.println(a1);</span><br><span class="line">		<span class="type">short</span> <span class="variable">a3</span> <span class="operator">=</span> <span class="number">1024</span>; <span class="comment">// 字面量常亮数值1024 默认时int型的</span></span><br><span class="line">		System.out.println(a3);		</span><br><span class="line">		<span class="type">long</span> <span class="variable">a4</span> <span class="operator">=</span> <span class="number">120</span>; <span class="comment">// 120 是32位</span></span><br><span class="line">		a4 = <span class="number">120L</span>; <span class="comment">// 120L 是64位</span></span><br><span class="line">		System.out.println(a4);</span><br><span class="line">		System.out.println(<span class="string">&quot;==============================&quot;</span>);</span><br><span class="line">		<span class="type">float</span> <span class="variable">f</span> <span class="operator">=</span> <span class="number">0.12345678901234567f</span>;</span><br><span class="line">		System.out.println(f);</span><br><span class="line">		<span class="type">double</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">0.12345678901234567</span>;</span><br><span class="line">		System.out.println(d);</span><br><span class="line">		System.out.println(<span class="number">0.1</span> + <span class="number">0.2</span>);</span><br><span class="line">		System.out.println(<span class="number">0.1</span> + <span class="number">0.2</span> == <span class="number">0.3</span>);</span><br><span class="line"></span><br><span class="line">		<span class="type">char</span> <span class="variable">a</span> <span class="operator">=</span> <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">		System.out.println(a + <span class="number">0</span>);</span><br><span class="line">		<span class="type">char</span> <span class="variable">a5</span> <span class="operator">=</span> <span class="number">65</span>;</span><br><span class="line">		System.out.println( (<span class="type">char</span>)a5 );</span><br><span class="line">		<span class="type">char</span> <span class="variable">a6</span> <span class="operator">=</span> <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">		System.out.println(a6 + <span class="number">0</span>);</span><br><span class="line">		System.out.println( (<span class="type">char</span>) <span class="number">57</span>);</span><br><span class="line">		System.out.println( <span class="string">&#x27;A&#x27;</span> &gt; <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;==============================&quot;</span>);</span><br><span class="line">		System.out.println( <span class="string">&#x27;\&#x27;&#x27;</span>);</span><br><span class="line">		System.out.println( <span class="string">&#x27;	&#x27;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;==============================&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="type">char</span> <span class="variable">a7</span> <span class="operator">=</span> <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">		System.out.println(a7);</span><br><span class="line">		</span><br><span class="line">		<span class="type">char</span> <span class="variable">a8</span> <span class="operator">=</span> <span class="string">&#x27;丁&#x27;</span>;</span><br><span class="line">		System.out.println(a8 + <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="type">char</span> <span class="variable">a9</span> <span class="operator">=</span> <span class="string">&#x27;\u4E01&#x27;</span>; <span class="comment">// Unicode码</span></span><br><span class="line">		System.out.println(a9);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1-3-基本类型转换"><a href="#1-3-基本类型转换" class="headerlink" title="1.3 基本类型转换"></a>1.3 基本类型转换</h2><p>小 转 大  隐式</p>
+<p>大 转 小  强制转换<code>a = (byte) b;</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">byte</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">11</span>;</span><br><span class="line"></span><br><span class="line">b = a; <span class="comment">// 小 转 大  隐式</span></span><br><span class="line"></span><br><span class="line">a = <span class="number">11</span>;</span><br><span class="line">a = (<span class="type">byte</span>) b; <span class="comment">// 大 转 小  强制转换</span></span><br><span class="line">System.out.println(a);</span><br><span class="line"></span><br><span class="line">a = (<span class="type">byte</span>) <span class="number">128</span>;</span><br><span class="line">System.out.println(a); <span class="comment">// ???</span></span><br><span class="line"></span><br><span class="line">a = (<span class="type">byte</span>) <span class="number">1234</span>;</span><br><span class="line">System.out.println(a); <span class="comment">// ???</span></span><br><span class="line"></span><br><span class="line"><span class="type">float</span> <span class="variable">f1</span> <span class="operator">=</span> <span class="number">1</span>; <span class="comment">// 32int ===&gt; 32浮点</span></span><br><span class="line"><span class="type">long</span> <span class="variable">a1</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">a1 = (<span class="type">long</span>) f1; <span class="comment">// 32浮点  ===&gt; 64long </span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ]]></content>
   </entry>
 </search>
