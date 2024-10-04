@@ -455,6 +455,323 @@ curl localhost:80
 ]]></content>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2024/10/01/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Shell</title>
+    <url>/2024/10/04/Shell/</url>
+    <content><![CDATA[<h1 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h1><span id="more"></span>
+<h2 id="1-什么是shell"><a href="#1-什么是shell" class="headerlink" title="1.什么是shell?"></a>1.什么是shell?</h2><pre><code>1.普通的文件
+2.linux命令组成
+3.编程语言
+</code></pre>
+<h1 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h1><h2 id="2-1-入门"><a href="#2-1-入门" class="headerlink" title="2.1 入门"></a>2.1 入门</h2><pre><code>1.文件命名 结尾 一般都是以 .sh 结尾
+2.文件内容 第一行 #!/bin/bash 
+
+1.编写脚本 
+    wordcount  词频统计
+    helloworld 
+
+[root@bigdata99 shell]# cat wc.sh 
+#!/bin/bash
+echo &quot;www.bigdata.com&quot;
+
+2.运行shell脚本
+    1.sh xxx.sh
+        [root@bigdata99 shell]# sh ./wc.sh 
+        www.bigdata.com
+    2.给脚本赋予 执行权限 
+        chmod 744 ./wc.sh
+        [root@bigdata99 shell]# ./wc.sh 
+        www.bigdata.com
+        [root@bigdata99 shell]# /root/shell/wc.sh
+        www.bigdata.com
+
+3.补充： 
+    debug 
+        1.[root@bigdata99 shell]# cat wc.sh 
+            #!/bin/bash -x
+            echo &quot;www.bigdata.com&quot;
+        2.[root@bigdata99 shell]# sh -x wc.sh 
+        + echo www.bigdata.com
+        www.bigdata.com
+</code></pre>
+<h2 id="2-定义变量-与-引用"><a href="#2-定义变量-与-引用" class="headerlink" title="2.定义变量 与 引用"></a>2.定义变量 与 引用</h2><pre><code>1.变量的命名规范： 
+    1.命名只能使用英文字母、数字、和下划线、不能以数字开头
+    2.中间不能有空格、可以使用下划线
+    3.不能使用linux里面的关键字
+
+2.定义变量
+    key=value
+    注意： 
+        1.=前后不能有空格
+
+    1.静态： 
+        k=v  k=&quot;v&quot; k=&#39;v&#39;
+    2.动态
+        k=`v`
+引用： 
+    $k 
+    $&#123;k&#125;
+
+    场景： 
+        zs  
+            zszhenshuai
+</code></pre>
+<h2 id="3-传递参数"><a href="#3-传递参数" class="headerlink" title="3.传递参数"></a>3.传递参数</h2><pre><code>脚本内获取脚本外的参数  脚本内定一个参数： 格式 $n
+    1.n表示数字
+    2.n=1 作为脚本的第一个参数 n=2作为脚本的第2个参数...
+    3.n=0 获取脚本的名字
+[root@bigdata99 shell]# ./parameter.sh &quot;hello&quot; &quot;zs&quot;
+hello
+zs
+[root@bigdata99 shell]# cat parameter.sh 
+echo &quot;文件名：$0&quot;
+echo &quot;第一个参数：$1&quot;
+echo &quot;第二个参数：$2&quot;
+echo &quot;参数的个数：$#&quot;
+echo &quot;传递的参数作为一个字符串：$*&quot;  
+echo &quot;此脚本运行时的pid：$$&quot;
+
+补充： 
+    ps -ef | grep xxx  =&gt; pid 
+    kill -9 pid 
+</code></pre>
+<h2 id="4-数组"><a href="#4-数组" class="headerlink" title="4.数组"></a>4.数组</h2><pre><code>语法格式： 
+    1.元素 是 空格 进行分割 
+    2.arr=(value1 value2 value3 ...)
+[root@bigdata99 shell]# cat arr.sh 
+arr=(zs lisi ww zl wrm)
+echo &quot;所有数组元素：$&#123;arr[*]&#125;&quot; 
+echo &quot;第2个元素：$&#123;arr[1]&#125;&quot;
+echo &quot;数组元素个数：$&#123;#arr[*]&#125;&quot;
+</code></pre>
+<h2 id="5-流程控制"><a href="#5-流程控制" class="headerlink" title="5.流程控制"></a>5.流程控制</h2><pre><code>分支、循环 
+
+1.if else 语法
+    语法结构： 
+    if condition;then
+        command
+    else 
+        command
+    fi
+
+2.condition 条件判断 
+    [ 表达式 ]
+    1.值判断
+        true false
+
+        = 等于
+        ==等于
+        &lt;= &gt;= &gt; &lt; !=
+        -eq 等于
+        -ne 不等于
+        -lt 小于
+        -gt 大于 
+        -le 小于等于
+        -ge 大于等于
+
+补充： 
+    1.[] 前后要有空格 
+    2.关系表达式 前后要有空格 
+linux 获取上一个命令是否执行成功： 
+    $? 
+        成功 0  true
+        不成功 非0 false
+
+    2.权限判断:
+        -r 
+        -w 
+        -x
+    3.文件类型判断
+        -d 
+        -f 
+        -e 
+</code></pre>
+<p>[root@bigdata99 shell]# cat if.sh<br>a&#x3D;”zs”<br>b&#x3D;”zs”<br>if [ ${a} &#x3D;&#x3D; ${b} ];then<br>    echo “&#x3D;&#x3D;”<br>else<br>    echo “!&#x3D;”<br>fi</p>
+<pre><code>2.if elseif 语法
+语法结构： 
+    if condition;then
+        command
+    elif condition;then
+        command
+    else 
+        command
+    fi
+
+    补充： &amp;&amp; ||
+</code></pre>
+<p>[root@bigdata99 shell]# cat ifelse.sh </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">#统计期末成绩 优良差  </span><br><span class="line">#&gt;=<span class="number">90</span> 优  &gt;=<span class="number">60</span> 良  &lt;<span class="number">60</span> 差</span><br><span class="line"></span><br><span class="line">score=$<span class="number">1</span></span><br><span class="line"><span class="keyword">if</span> [ $&#123;score&#125; -ge <span class="number">90</span> ];then</span><br><span class="line">	echo <span class="string">&quot;优&quot;</span></span><br><span class="line">elif [ $&#123;score&#125; -ge <span class="number">60</span> ];then</span><br><span class="line">	echo <span class="string">&quot;良&quot;</span></span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">	echo <span class="string">&quot;差&quot;</span></span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">	循环： </span><br><span class="line">		<span class="keyword">for</span>、<span class="keyword">while</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>: </span><br><span class="line">		语法结构 </span><br><span class="line">		<span class="keyword">for</span> x in item1 item2 item3 ... itemN</span><br><span class="line">		<span class="keyword">do</span></span><br><span class="line">			command1</span><br><span class="line">			...</span><br><span class="line">		done</span><br><span class="line">	[root<span class="meta">@bigdata99</span> shell]# cat <span class="keyword">for</span>.sh </span><br><span class="line">	<span class="keyword">for</span> x in <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line">	<span class="keyword">do</span> </span><br><span class="line">		echo $&#123;x&#125;</span><br><span class="line">	done</span><br></pre></td></tr></table></figure>
+<pre><code>2. fori 
+    打印 10以内的数字
+    [root@bigdata99 shell]# cat fori.sh 
+    for((i=0;i&lt;10;i++))
+    do
+        echo &quot;value is $&#123;i&#125;&quot;
+    done
+
+3.while
+    语法结构： 
+        while condition
+        do 
+            todo....
+        done
+    案例： 
+        打印 10以内的数字
+    
+    [root@bigdata99 shell]# cat while.sh 
+# 打印 10以内的数字
+
+i=1
+while ((i&lt;=10))
+do
+    echo $&#123;i&#125;
+    let i++
+done
+</code></pre>
+<p>场景：<br>    有一个字符串”zhangsan,lisi,zhaoliu”</p>
+<pre><code>如何分割字符串？ 
+    java  split（&quot;,&quot;） =》 array =》for
+    linux  把, =》 空格    =》 array
+
+
+    1.字符串替换： 
+        str//,/ 
+            =&gt;zhangsan,lisi,zhaoliu
+            =&gt;zhangsan lisi zhaoliu
+    [root@bigdata99 shell]# cat split.sh 
+        str=&quot;zhangsan,lisi,zhaoliu&quot;
+        arr=($&#123;str//,/ &#125;)
+        for var in $&#123;arr[*]&#125;
+        do
+            echo $var
+        done
+    2.IFS变量进行字符串分割【了解】
+</code></pre>
+<h2 id="6-shell里面常用的分析工具"><a href="#6-shell里面常用的分析工具" class="headerlink" title="6.shell里面常用的分析工具"></a>6.shell里面常用的分析工具</h2><pre><code>1.awk 文本分析
+    1.获取列数据 
+        [root@bigdata99 ~]# cat test.log 
+        a b c
+        1 2 3
+        [root@bigdata99 ~]# cat test.log | awk &#39;&#123;print $1&#125;&#39;
+        a
+        1
+        [root@bigdata99 ~]# cat test.log | awk &#39;&#123;print $2&#125;&#39;
+        b
+        2
+        [root@bigdata99 ~]# cat test.log | awk &#39;&#123;print $1,$2&#125;&#39;
+        a b
+        1 2
+    2.获取行数据 
+        [root@bigdata99 ~]# cat test.log | awk &#39;NR==1&#123;print&#125;&#39;
+
+2.sed 
+    文本替换
+    1.文本中a 替换成d 每行第一次遇到a 替换成d  【不常用】
+        sed -i  &#39;s/a/d/&#39;    test.log
+    2.全文替换 
+        sed -i &#39;s/a/d/g&#39; test.log
+    
+    补充： 
+        [root@bigdata99 ~]# cat path.log 
+        p1=/data/log
+        p2=/data/spark
+
+    需求： 
+        p2 值路径 替换成 /root 
+
+        sed -i &#39;s//data/spark//root/g&#39;  path.log  错误的
+        转义： \
+        sed -i &#39;s/\/data\/spark/\/root/g&#39;  path.log
+
+        [root@bigdata99 ~]# cat path.log 
+        p1=/data/log
+        p2=/root
+
+        sed -i &#39;s#/root#/data/spark#g&#39; path.log
+</code></pre>
+<h2 id="1-机器克隆"><a href="#1-机器克隆" class="headerlink" title="1.机器克隆"></a>1.机器克隆</h2><pre><code>1.准备模板机
+    2.网络配置  =&gt; ip 静态ip 
+    网卡： 
+        vim /etc/sysconfig/network-scripts/ifcfg-ens33
+            BOOTPROTO=&quot;static&quot; 
+            ONBOOT=&quot;yes&quot;
+            IPADDR=192.168.41.11
+            GATEWAY=192.168.41.2
+            DNS1=192.168.41.2
+
+    3.机器自带没用的东西 去除掉 
+        1.jdk卸载掉：
+            rpm -qa | grep java
+                xxx 
+                xx
+                x
+            卸载： 
+            rpm -e xxx --nodeps
+            rpm -e xx --nodeps
+            rpm -e x --nodeps
+        2.hostname
+            vim /etc/hostname
+            bigdata11
+        3.内网ip 与hostname 映射
+            vim /etc/hosts
+
+            192.168.41.11 bigdata11
+            192.168.41.12 bigdata12
+            192.168.41.13 bigdata13
+            192.168.41.14 bigdata14
+            192.168.41.15 bigdata15
+            192.168.41.16 bigdata16
+
+        4.防火墙关闭：打开所有端口 
+            systemctl status firewalld
+            systemctl stop firewalld
+            systemctl disable firewalld
+2.vmware 虚拟网络 
+    1.关闭虚拟机
+    2.虚拟网络： 
+        编辑=》虚拟网络=》vm8=》
+            子网ip：192.168.41.0
+            子网掩码：255.255.255.0
+            nat设置：192.168.41.2
+    3.开机：
+        验证内网ip ： ifconfig
+            192.168.41.11 bigdata11
+
+    4.远程登录
+        xshell ： 
+            ip 
+            用户名
+            密码
+            port
+</code></pre>
+<h2 id="2-克隆机器"><a href="#2-克隆机器" class="headerlink" title="2.克隆机器"></a>2.克隆机器</h2><pre><code>    注意： 
+        创建完整克隆
+    1.修改克隆机器的内网ip 
+        vim /etc/sysconfig/network-scripts/ifcfg-ens33
+    2.hostname 
+        vim /etc/hostname
+    3.重启机器 
+</code></pre>
+]]></content>
+  </entry>
+  <entry>
     <title>数据类型</title>
     <url>/2024/10/03/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<h1 id="java的数据类型"><a href="#java的数据类型" class="headerlink" title="java的数据类型"></a>java的数据类型</h1><span id="more"></span>
@@ -561,29 +878,6 @@ curl localhost:80
 ]]></content>
   </entry>
   <entry>
-    <title>我的第一篇博客文章</title>
-    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/10/01/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>java api</title>
     <url>/2024/10/02/java-api/</url>
     <content><![CDATA[<h1 id="java-api"><a href="#java-api" class="headerlink" title="java api"></a>java api</h1><span id="more"></span>
@@ -678,5 +972,10 @@ curl localhost:80
     2.输出到hdfs上
 </code></pre>
 ]]></content>
+  </entry>
+  <entry>
+    <title>我的第一篇博客文章</title>
+    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
