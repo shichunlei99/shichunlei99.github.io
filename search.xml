@@ -455,6 +455,137 @@ curl localhost:80
 ]]></content>
   </entry>
   <entry>
+    <title>MySQL</title>
+    <url>/2024/10/04/MySQL/</url>
+    <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><span id="more"></span>
+<h1 id="使用场景？"><a href="#使用场景？" class="headerlink" title="使用场景？"></a>使用场景？</h1><pre><code>1.java开发人员 业务数据库
+2.大数据组件 元数据 、结果数据 
+</code></pre>
+<h1 id="2-什么是mysql？"><a href="#2-什么是mysql？" class="headerlink" title="2.什么是mysql？"></a>2.什么是mysql？</h1><pre><code>1.关系型数据库： RDBMS  非关系型数据库NoSQL
+    1.存储数据
+    2.查询
+2.类似表格
+3.有行有列
+</code></pre>
+<h1 id="3-背景："><a href="#3-背景：" class="headerlink" title="3.背景："></a>3.背景：</h1><pre><code>处理数据 ：excel 
+mysql： 
+    存储数据，数据分析
+    一堆类似excel的表格
+</code></pre>
+<h1 id="4-官网"><a href="#4-官网" class="headerlink" title="4.官网"></a>4.官网</h1><pre><code>www.mysql.com
+</code></pre>
+<h1 id="5-版本："><a href="#5-版本：" class="headerlink" title="5.版本："></a>5.版本：</h1><pre><code>8.x 不是主流、java团队 
+5.7  it java 大数据 主流
+5.6 目前公司也有
+</code></pre>
+<p>补充：<br>    上传下载：<br>        [root@bigdata31 software]# yum install -y lrzsz</p>
+<pre><code>上传： rz 
+下载 ：sz xxx
+</code></pre>
+<h1 id="6-部署："><a href="#6-部署：" class="headerlink" title="6.部署："></a>6.部署：</h1><pre><code>1.下载安装包  
+    5.7
+    安装包种类：
+        rpm包 ：mysql source code =》 rpm包
+            mysql-5.7.38-1.el7.x86_64.rpm-bundle.tar
+
+        tar包：mysql source code +开发加的mysql代码 =》 编译打包生成 tar包
+
+            mysql-5.7.38-el7-x86_64.tar.gz
+
+准备好了： 
+</code></pre>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">	<span class="number">2.</span>安装部署</span><br><span class="line">		<span class="number">1.</span>上传mysql 安装包</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# ll</span><br><span class="line">			total <span class="number">595272</span></span><br><span class="line">			-rw-r--r--. <span class="number">1</span> root root <span class="number">609556480</span> Aug <span class="number">26</span>  <span class="number">2021</span> mysql-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm-bundle.tar</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# pwd</span><br><span class="line">			/root/software</span><br><span class="line"></span><br><span class="line">		<span class="number">2.</span>部署 </span><br><span class="line">			<span class="number">1.</span>解压</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# tar -xvf ./mysql-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm-bundle.tar </span><br><span class="line">mysql-community-embedded-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-compat-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-devel-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-compat-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-test-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-common-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-devel-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-client-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-server-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<pre><code>2.安装 
+    1.卸载 mariadb 相关的东西
+    [root@bigdata31 software]# rpm -qa | grep mariadb
+</code></pre>
+<p>mariadb-libs-5.5.56-2.el7.x86_64<br>        [root@bigdata31 software]# rpm -e –nodeps mariadb-libs-5.5.56-2.el7.x86_64<br>[root@bigdata31 software]# rpm -qa | grep mariadb</p>
+<pre><code>rpm -ivh mysql-community-common-5.7.28-1.el7.x86_64.rpm 
+注意： 
+    package mariadb-libs conflicts with 
+</code></pre>
+<p>rpm -ivh mysql-community-libs-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-libs-compat-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-client-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-server-5.7.28-1.el7.x86_64.rpm</p>
+<pre><code>3.有一个 配置文件 管控mysql 
+    /etc/my.cnf
+
+    mysql运行日志文件：log-error=/var/log/mysqld.log
+4.初始化mysql 
+        mysqld --initialize --user=mysql
+    
+     A temporary password is generated for root@localhost: rfnYYHj0jc,R
+
+5.启动mysql 
+    systemctl start mysqld 
+    mysql 可以对外提供服务：
+        port： 3306
+6.登录mysql 使用
+    mysql -uroot -prfnYYHj0jc,R
+
+7.修改mysql 软件 root用户 密码
+    set password = password(&#39;123456&#39;);
+8.赋予权限 
+    flush privileges;
+
+补充： 
+    卸载： 
+        1.mysql 停掉 
+            systemctl stop mysqld 
+        2.mysql卸载 
+            rpm -qa | grep mysql
+            rpm -qa | grep mysql | xargs -n1 rpm -e --nodeps 
+        3.linux存储目录删掉 
+            find / -name &quot;*mysql*&quot; 
+            注意：/sys/
+        4.重装
+    
+    mysql 全部卸载重装
+
+
+    shift + alt =&gt;多行编辑
+    alt + tab 
+    rm -rf xx 
+</code></pre>
+<p>mysql 数据库：<br>       excel 表格<br>       win：<br>       	 文件夹：<br>            一堆表格</p>
+<p>MySQL:<br>    数据库：&#x3D;》文件夹 database<br>        一堆表格 table</p>
+<p>远程登录工具：<br>    navcat 【选择】<br>    sqlyog<br>    dbvear工具 【选择】</p>
+<pre><code>root@localhost: 123456
+    只允许 当前机器登录
+root@%: 123456
+</code></pre>
+<p>远程登录访问：<br>    1.修改 mysql 登录 运行用户的ip &#x3D;》 任意ip </p>
+<p>mysql语法：【了解】<br>    1.查看数据库<br>        show databases;<br>    2.切换数据库<br>        use mysql;<br>    3.查看库下面有哪些表<br>        show tables;<br>    4.查看表中数据<br>    select host,user<br>    from user;<br>    5.修改表中数据<br>    update mysql.user set  host&#x3D;”%” where user&#x3D;”root”;<br>    6.刷新权限<br>    flush privileges; </p>
+<p>基本语法：<br>    1.sql进行开发<br>        sql类型：<br>            ddl 数据定义语言 ：create drop  alter<br>            dml 数据操作语言 : insert select update delete<br>            dcl 数据控制语言 :grant [了解]<br>2.查看数据库<br>    SHOW {DATABASES | SCHEMAS}<br>    [LIKE ‘pattern’ | WHERE expr]</p>
+<p>{} 必选参数 | 可选<br>[] 可选<br>    SHOW DATABASES;</p>
+<p>mysql&gt; SHOW DATABASES;<br>+——————–+<br>| Database           |<br>+——————–+<br>| information_schema |<br>| mysql              |<br>| performance_schema |<br>| sys                |<br>+——————–+<br>4 rows in set (0.00 sec)</p>
+<p>3.切换数据库<br>    use dbname;</p>
+<p>4.查看数据库下面的表<br>    SHOW [FULL] TABLES<br>    [{FROM | IN} db_name]<br>    [LIKE ‘pattern’ | WHERE expr]<br>    SHOW TABLES;</p>
+<p>mysql&gt; show tables FROM sys;</p>
+<p>5.创建数据库<br>    CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name<br>    [create_option] …</p>
+<p>create_option: [DEFAULT] {<br>    CHARACTER SET [&#x3D;] charset_name<br>  | COLLATE [&#x3D;] collation_name<br>}</p>
+<p>CREATE DATABASE bigdata;</p>
+<p>6.创建表<br>    excel ： </p>
+<pre><code>字段：column : 
+        1.名称
+        2.字段类型
+</code></pre>
+<p>常用字段类型：<br>    数值类型：<br>        整数：<br>            int 整型<br>            long 长整型<br>        小数：<br>            float 单精度<br>            double 双精度<br>            decimal 小数 &#x3D;》 跟钱挂钩的<br>    字符串：<br>        char 字节  长度 0-255  bigdataxxxxxxx 255<br>        varchar 字符串 长度范围<br>    日期：<br>        date  日期： YYYY-MM-DD<br>        time 时间 ： HH:mm:SS<br>        datetime 年月日时分秒 ： YYYY-MM-DD HH:mm:SS<br>        timestamp 年月日时分秒【时间戳】:YYYY-MM-DD HH:mm:SS</p>
+<p>列的名字、字段的名字<br>mysql&gt; CREATE TABLE user_table(<br>    -&gt; id int(3),<br>    -&gt; name varchar(10),<br>    -&gt; age int(3)<br>    -&gt; );<br>Query OK, 0 rows affected (0.01 sec)</p>
+<p>mysql&gt; show tables;<br>+——————-+<br>| Tables_in_bigdata |<br>+——————-+<br>| user_table        |<br>+——————-+<br>1 row in set (0.00 sec)</p>
+<p>7.表中插入数据 </p>
+<p>INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]<br>    [INTO] tbl_name<br>    [(col_name [, col_name] …)]<br>    {VALUES | VALUE} (value_list) [, (value_list)] …<br>    [ON DUPLICATE KEY UPDATE assignment_list]</p>
+<p>INSERT into user_table (id,name,age)VALUES (1,’zhangsan’,10);</p>
+<p>8.查看数据</p>
+<ul>
+<li>表示所有字段</li>
+</ul>
+<p>select *<br>from user_table;</p>
+<p>select name,age from user_table;</p>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Shell</title>
     <url>/2024/10/04/Shell/</url>
     <content><![CDATA[<h1 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h1><span id="more"></span>
@@ -743,137 +874,6 @@ done
 <h2 id="3-重启机器"><a href="#3-重启机器" class="headerlink" title="3.重启机器"></a>3.重启机器</h2>]]></content>
   </entry>
   <entry>
-    <title>MySQL</title>
-    <url>/2024/10/04/MySQL/</url>
-    <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><span id="more"></span>
-<h1 id="使用场景？"><a href="#使用场景？" class="headerlink" title="使用场景？"></a>使用场景？</h1><pre><code>1.java开发人员 业务数据库
-2.大数据组件 元数据 、结果数据 
-</code></pre>
-<h1 id="2-什么是mysql？"><a href="#2-什么是mysql？" class="headerlink" title="2.什么是mysql？"></a>2.什么是mysql？</h1><pre><code>1.关系型数据库： RDBMS  非关系型数据库NoSQL
-    1.存储数据
-    2.查询
-2.类似表格
-3.有行有列
-</code></pre>
-<h1 id="3-背景："><a href="#3-背景：" class="headerlink" title="3.背景："></a>3.背景：</h1><pre><code>处理数据 ：excel 
-mysql： 
-    存储数据，数据分析
-    一堆类似excel的表格
-</code></pre>
-<h1 id="4-官网"><a href="#4-官网" class="headerlink" title="4.官网"></a>4.官网</h1><pre><code>www.mysql.com
-</code></pre>
-<h1 id="5-版本："><a href="#5-版本：" class="headerlink" title="5.版本："></a>5.版本：</h1><pre><code>8.x 不是主流、java团队 
-5.7  it java 大数据 主流
-5.6 目前公司也有
-</code></pre>
-<p>补充：<br>    上传下载：<br>        [root@bigdata31 software]# yum install -y lrzsz</p>
-<pre><code>上传： rz 
-下载 ：sz xxx
-</code></pre>
-<h1 id="6-部署："><a href="#6-部署：" class="headerlink" title="6.部署："></a>6.部署：</h1><pre><code>1.下载安装包  
-    5.7
-    安装包种类：
-        rpm包 ：mysql source code =》 rpm包
-            mysql-5.7.38-1.el7.x86_64.rpm-bundle.tar
-
-        tar包：mysql source code +开发加的mysql代码 =》 编译打包生成 tar包
-
-            mysql-5.7.38-el7-x86_64.tar.gz
-
-准备好了： 
-</code></pre>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">	<span class="number">2.</span>安装部署</span><br><span class="line">		<span class="number">1.</span>上传mysql 安装包</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# ll</span><br><span class="line">			total <span class="number">595272</span></span><br><span class="line">			-rw-r--r--. <span class="number">1</span> root root <span class="number">609556480</span> Aug <span class="number">26</span>  <span class="number">2021</span> mysql-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm-bundle.tar</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# pwd</span><br><span class="line">			/root/software</span><br><span class="line"></span><br><span class="line">		<span class="number">2.</span>部署 </span><br><span class="line">			<span class="number">1.</span>解压</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# tar -xvf ./mysql-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm-bundle.tar </span><br><span class="line">mysql-community-embedded-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-compat-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-devel-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-compat-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-test-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-common-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-devel-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-client-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-server-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
-<pre><code>2.安装 
-    1.卸载 mariadb 相关的东西
-    [root@bigdata31 software]# rpm -qa | grep mariadb
-</code></pre>
-<p>mariadb-libs-5.5.56-2.el7.x86_64<br>        [root@bigdata31 software]# rpm -e –nodeps mariadb-libs-5.5.56-2.el7.x86_64<br>[root@bigdata31 software]# rpm -qa | grep mariadb</p>
-<pre><code>rpm -ivh mysql-community-common-5.7.28-1.el7.x86_64.rpm 
-注意： 
-    package mariadb-libs conflicts with 
-</code></pre>
-<p>rpm -ivh mysql-community-libs-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-libs-compat-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-client-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-server-5.7.28-1.el7.x86_64.rpm</p>
-<pre><code>3.有一个 配置文件 管控mysql 
-    /etc/my.cnf
-
-    mysql运行日志文件：log-error=/var/log/mysqld.log
-4.初始化mysql 
-        mysqld --initialize --user=mysql
-    
-     A temporary password is generated for root@localhost: rfnYYHj0jc,R
-
-5.启动mysql 
-    systemctl start mysqld 
-    mysql 可以对外提供服务：
-        port： 3306
-6.登录mysql 使用
-    mysql -uroot -prfnYYHj0jc,R
-
-7.修改mysql 软件 root用户 密码
-    set password = password(&#39;123456&#39;);
-8.赋予权限 
-    flush privileges;
-
-补充： 
-    卸载： 
-        1.mysql 停掉 
-            systemctl stop mysqld 
-        2.mysql卸载 
-            rpm -qa | grep mysql
-            rpm -qa | grep mysql | xargs -n1 rpm -e --nodeps 
-        3.linux存储目录删掉 
-            find / -name &quot;*mysql*&quot; 
-            注意：/sys/
-        4.重装
-    
-    mysql 全部卸载重装
-
-
-    shift + alt =&gt;多行编辑
-    alt + tab 
-    rm -rf xx 
-</code></pre>
-<p>mysql 数据库：<br>       excel 表格<br>       win：<br>       	 文件夹：<br>            一堆表格</p>
-<p>MySQL:<br>    数据库：&#x3D;》文件夹 database<br>        一堆表格 table</p>
-<p>远程登录工具：<br>    navcat 【选择】<br>    sqlyog<br>    dbvear工具 【选择】</p>
-<pre><code>root@localhost: 123456
-    只允许 当前机器登录
-root@%: 123456
-</code></pre>
-<p>远程登录访问：<br>    1.修改 mysql 登录 运行用户的ip &#x3D;》 任意ip </p>
-<p>mysql语法：【了解】<br>    1.查看数据库<br>        show databases;<br>    2.切换数据库<br>        use mysql;<br>    3.查看库下面有哪些表<br>        show tables;<br>    4.查看表中数据<br>    select host,user<br>    from user;<br>    5.修改表中数据<br>    update mysql.user set  host&#x3D;”%” where user&#x3D;”root”;<br>    6.刷新权限<br>    flush privileges; </p>
-<p>基本语法：<br>    1.sql进行开发<br>        sql类型：<br>            ddl 数据定义语言 ：create drop  alter<br>            dml 数据操作语言 : insert select update delete<br>            dcl 数据控制语言 :grant [了解]<br>2.查看数据库<br>    SHOW {DATABASES | SCHEMAS}<br>    [LIKE ‘pattern’ | WHERE expr]</p>
-<p>{} 必选参数 | 可选<br>[] 可选<br>    SHOW DATABASES;</p>
-<p>mysql&gt; SHOW DATABASES;<br>+——————–+<br>| Database           |<br>+——————–+<br>| information_schema |<br>| mysql              |<br>| performance_schema |<br>| sys                |<br>+——————–+<br>4 rows in set (0.00 sec)</p>
-<p>3.切换数据库<br>    use dbname;</p>
-<p>4.查看数据库下面的表<br>    SHOW [FULL] TABLES<br>    [{FROM | IN} db_name]<br>    [LIKE ‘pattern’ | WHERE expr]<br>    SHOW TABLES;</p>
-<p>mysql&gt; show tables FROM sys;</p>
-<p>5.创建数据库<br>    CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name<br>    [create_option] …</p>
-<p>create_option: [DEFAULT] {<br>    CHARACTER SET [&#x3D;] charset_name<br>  | COLLATE [&#x3D;] collation_name<br>}</p>
-<p>CREATE DATABASE bigdata;</p>
-<p>6.创建表<br>    excel ： </p>
-<pre><code>字段：column : 
-        1.名称
-        2.字段类型
-</code></pre>
-<p>常用字段类型：<br>    数值类型：<br>        整数：<br>            int 整型<br>            long 长整型<br>        小数：<br>            float 单精度<br>            double 双精度<br>            decimal 小数 &#x3D;》 跟钱挂钩的<br>    字符串：<br>        char 字节  长度 0-255  bigdataxxxxxxx 255<br>        varchar 字符串 长度范围<br>    日期：<br>        date  日期： YYYY-MM-DD<br>        time 时间 ： HH:mm:SS<br>        datetime 年月日时分秒 ： YYYY-MM-DD HH:mm:SS<br>        timestamp 年月日时分秒【时间戳】:YYYY-MM-DD HH:mm:SS</p>
-<p>列的名字、字段的名字<br>mysql&gt; CREATE TABLE user_table(<br>    -&gt; id int(3),<br>    -&gt; name varchar(10),<br>    -&gt; age int(3)<br>    -&gt; );<br>Query OK, 0 rows affected (0.01 sec)</p>
-<p>mysql&gt; show tables;<br>+——————-+<br>| Tables_in_bigdata |<br>+——————-+<br>| user_table        |<br>+——————-+<br>1 row in set (0.00 sec)</p>
-<p>7.表中插入数据 </p>
-<p>INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]<br>    [INTO] tbl_name<br>    [(col_name [, col_name] …)]<br>    {VALUES | VALUE} (value_list) [, (value_list)] …<br>    [ON DUPLICATE KEY UPDATE assignment_list]</p>
-<p>INSERT into user_table (id,name,age)VALUES (1,’zhangsan’,10);</p>
-<p>8.查看数据</p>
-<ul>
-<li>表示所有字段</li>
-</ul>
-<p>select *<br>from user_table;</p>
-<p>select name,age from user_table;</p>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java api</title>
     <url>/2024/10/02/java-api/</url>
     <content><![CDATA[<h1 id="java-api"><a href="#java-api" class="headerlink" title="java api"></a>java api</h1><span id="more"></span>
@@ -988,6 +988,11 @@ root@%: 123456
 ]]></content>
   </entry>
   <entry>
+    <title>我的第一篇博客文章</title>
+    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>数据类型</title>
     <url>/2024/10/03/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<h1 id="java的数据类型"><a href="#java的数据类型" class="headerlink" title="java的数据类型"></a>java的数据类型</h1><span id="more"></span>
@@ -1092,10 +1097,5 @@ root@%: 123456
 
 
 ]]></content>
-  </entry>
-  <entry>
-    <title>我的第一篇博客文章</title>
-    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>
