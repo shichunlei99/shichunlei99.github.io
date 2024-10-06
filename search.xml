@@ -1,168 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>MYSQL2</title>
-    <url>/2024/10/05/MYSQL2/</url>
-    <content><![CDATA[<h1 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h1><span id="more"></span>
-<h1 id="查看表中描述"><a href="#查看表中描述" class="headerlink" title="查看表中描述"></a>查看表中描述</h1><pre><code>desc tablename;
-</code></pre>
-<h1 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h1><pre><code>create 建表规范：
-    1.表名字 一定是英文 不要写中文  汉语拼音
-    2.建表风格
-        1.主键 使用表中第一个字段使用自增主键 本身没有任何 业务意义
-    3.字段的注释
-</code></pre>
-<p>业务字段<br>非业务字段:<br>    1.表创建表用户 vs 更新表用户<br>    2.主键</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create table user_info2(</span><br><span class="line">	id int(3) not null  auto_increment,</span><br><span class="line">	name varchar(10) COMMENT &#x27;用户名称&#x27;,</span><br><span class="line">	age int(3),</span><br><span class="line">	create_user varchar(10),</span><br><span class="line">	create_time timestamp not null default current_timestamp,</span><br><span class="line">	update_user varchar(10),</span><br><span class="line">	update_time  timestamp not null default current_timestamp on update current_timestamp</span><br><span class="line">	,primary key(id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<h1 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]</span><br><span class="line">    [INTO] tbl_name</span><br><span class="line">    [(col_name [, col_name] ...)]</span><br><span class="line">    &#123;VALUES | VALUE&#125; (value_list) [, (value_list)] ...</span><br><span class="line">    [ON DUPLICATE KEY UPDATE assignment_list]</span><br><span class="line">insert into user_info (name,age) VALUES(&#x27;zs&#x27;,18),(&#x27;ls&#x27;,20);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">insert into user_info (name,age) VALUES(&#x27;zs01&#x27;,18),(&#x27;ls01&#x27;,20);</span><br></pre></td></tr></table></figure>
-<p>NULL: 空值<br>    ‘’ ‘null’ ‘NULL’</p>
-<h1 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UPDATE [LOW_PRIORITY] [IGNORE] table_reference</span><br><span class="line">    SET assignment_list</span><br><span class="line">    [WHERE where_condition]</span><br><span class="line">    [ORDER BY ...]</span><br><span class="line">    [LIMIT row_count]</span><br><span class="line">where 过滤</span><br><span class="line">update user_info set age=&#x27;20&#x27;; =》 对整张表</span><br><span class="line">update user_info set age=&#x27;20&#x27; where name=&#x27;zs&#x27; ; 对某条数据</span><br><span class="line"></span><br><span class="line">update 语句 注意： where</span><br></pre></td></tr></table></figure>
-<h1 id="删除一条数据"><a href="#删除一条数据" class="headerlink" title="删除一条数据"></a>删除一条数据</h1><pre><code><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELETE [LOW_PRIORITY] [QUICK] [IGNORE] FROM tbl_name</span><br><span class="line">    [PARTITION (partition_name [, partition_name] ...)]</span><br><span class="line">    [WHERE where_condition]</span><br><span class="line">    [ORDER BY ...]</span><br><span class="line">    [LIMIT row_count]</span><br></pre></td></tr></table></figure>
-</code></pre>
-<p>delete from user_info where id&#x3D;1;<br>注意：<br>    delete 也要考虑 是否加where</p>
-<p>insert into user_info (name,age) VALUES(‘zs’,18),(‘ls’,20);<br>insert into user_info (name,age) VALUES(‘aa’,10),(‘01’,10);<br>insert into user_info (name,age) VALUES(‘bb’,11),(‘02’,20);<br>insert into user_info (name,age) VALUES(‘vv’,12),(‘03’,30);<br>insert into user_info (name,age) VALUES(‘dd’,13),(‘04’,21);</p>
-<p>insert into user_info (name,age) VALUES(‘zs’,19),(‘zs’,21);</p>
-<h1 id="表的字符集："><a href="#表的字符集：" class="headerlink" title="表的字符集："></a>表的字符集：</h1><pre><code>udf8 
-    Incorrect string value: &#39;\xE5\xAD\x90\xE8\x88\xAA...&#39; for column &#39;name
-mysql 5.7版本 默认建表字符集 ：latin1
-解决：修改字符集 、建表直接指定字符集 utf8
-</code></pre>
-<h1 id="6-删除表"><a href="#6-删除表" class="headerlink" title="6.删除表"></a>6.删除表</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	drop table user_info;</span><br><span class="line"></span><br><span class="line">	CREATE TABLE `user_info` (</span><br><span class="line">  `id` int(3) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `name` varchar(10) DEFAULT NULL,</span><br><span class="line">  `age` int(3) DEFAULT NULL,</span><br><span class="line">  `create_user` varchar(10) DEFAULT NULL,</span><br><span class="line">  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,</span><br><span class="line">  `update_user` varchar(10) DEFAULT NULL,</span><br><span class="line">  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB  DEFAULT CHARSET=utf8;</span><br></pre></td></tr></table></figure>
-<h1 id="7-其他语法"><a href="#7-其他语法" class="headerlink" title="7.其他语法"></a>7.其他语法</h1><p>1.where  过滤条件<br>    1. &gt;<br>    2.&lt;<br>    3. &#x3D;<br>    4. and or in not in<br>mysql&gt; select * from user_info where age &gt; 18;<br>select * from user_info where name&#x3D;’子航01’;<br>mysql&gt; select *  from user_info where name&#x3D;’zs’ and age&gt;18;<br>mysql&gt; select *  from user_info where age&gt;20 or name&#x3D;’zs’;</p>
-<p>产品给你 1000个数据值  in<br>select *  from user_info where name&#x3D;’zs’ or name &#x3D; ‘ls’ or name &#x3D;”ww”<br>select *  from user_info where name in (‘zs’,’ls’,’ww’);<br>    not in<br>select *  from user_info where name not in (‘zs’,’ls’,’ww’);</p>
-<h1 id="order-by-排序语法"><a href="#order-by-排序语法" class="headerlink" title="order by 排序语法"></a>order by 排序语法</h1><pre><code>mysql&gt; select *  from user_info order by age;
-
- order by column [asc | desc] ,...
-
-1.默认是升序 
-2. asc desc 降序 
-</code></pre>
-<p>mysql&gt; select *  from user_info order by age ,name desc;</p>
-<h1 id="like语法-模糊查询"><a href="#like语法-模糊查询" class="headerlink" title="like语法 模糊查询"></a>like语法 模糊查询</h1><pre><code>1.like  rlike regexp  正则表达式【了解】
-    1.% 模糊 
-    2.占位符 _
-</code></pre>
-<p>mysql&gt; select *  from user_info where name like ‘%z%’;<br>mysql&gt; select *  from user_info where name like “_s%”;</p>
-<pre><code>insert into user_info (name) VALUES(&#39;zihsssg04&#39;);
-insert into user_info (name) VALUES(&#39;zshsssg04&#39;);
-insert into user_info (name) VALUES(&#39;zshsssg04&#39;);
-insert into user_info (name) VALUES(&#39;zshsssg04&#39;);
-</code></pre>
-<p>需求：<br>    1.name 字母开头是y<br>select  *  from user_info where name like “y%”;<br>    2.name 字母结尾是1<br>select  *  from user_info where name like “%1”;<br>    3.name 含有字母h<br>select  *  from user_info where name like “%h%”;<br>    4.name查询第3个字母是h的数据<br>select  *  from user_info where name like “__h%”;</p>
-<h1 id="合并表"><a href="#合并表" class="headerlink" title="合并表"></a>合并表</h1><pre><code>1.union  去重
-2.union all  不去重
-</code></pre>
-<p>create table a(id int(3),name varchar(4));<br>create table b(id int(3),name varchar(4));</p>
-<p>insert into a values(1,’zs’);<br>insert into b values(1,’zs’);<br>insert into b values(2,’ls’);</p>
-<p>1.union</p>
-<p>select *  from a<br>union<br>select *  from b;</p>
-<p>2.union all<br>select *  from a<br>union  all<br>select *  from b;</p>
-<h1 id="null"><a href="#null" class="headerlink" title="null"></a>null</h1><pre><code>数据清洗 
-    1.过滤null 
-        is null 
-        is not null 
-</code></pre>
-<p>select *  from user_info where age is null;</p>
-<pre><code>    2.null数据进行 【数据转换】
-    update 
-</code></pre>
-<p>数据分析时候 ：<br>    delte 、update </p>
-<p>函数：<br>    处理 null的函数：<br>        1.coalesce()<br>        2.ifnull</p>
-<p>select<br>id<br>,name<br>,coalesce(age,0) as age_alias<br>,create_user<br>,create_time<br>,update_user<br>,update_time<br>from user_info</p>
-<p>select<br>id<br>,name<br>,ifnull(age,0) as age_alias<br>,create_user<br>,create_time<br>,update_user<br>,update_time<br>from user_info</p>
-<h1 id="聚合函数：-指标"><a href="#聚合函数：-指标" class="headerlink" title="聚合函数： 指标"></a>聚合函数： 指标</h1><pre><code>多行数据按照一定规则 进行聚合为一行 
-sum max min avg count 
-理论上：
-    聚合后的行数 &lt;= 聚合前的行数
-</code></pre>
-<p>insert into user_info (name,age) values(“zs”,10);<br>insert into user_info (name,age) values(“zs”,11);<br>insert into user_info (name,age) values(“zs”,12);<br>insert into user_info (name,age) values(“ls”,10);<br>insert into user_info (name,age) values(“ls”,20);<br>insert into user_info (name,age) values(“ls”,30);<br>insert into user_info (name,age) values(“ww”,30);</p>
-<pre><code>1.聚合函数 
-select 
-sum(age) as age_sum,
-max(age) as age_max
-,min(age) as age_min
-,avg(age) as age_avg
-,count(age) as cnt
-from user_info
-
-2.分组语法
-</code></pre>
-<p>词频统计：<br>    wordcount </p>
-<pre><code>x 
-y
-y
-z 
-</code></pre>
-<p>word,1<br>&#x3D;&gt;  对每个单词进行分组  分组<br>    x,&lt;1&gt;<br>    y,&lt;1,1&gt;<br>    z,&lt;1&gt;<br>&#x3D;&gt; 聚合 sum<br>    x,1<br>    y,1+1 &#x3D;2<br>    z,1</p>
-<pre><code>group by  column...
-</code></pre>
-<p>需求：<br>    按照name进行分组，求每组的平均年龄</p>
-<p>分组聚合</p>
-<p>select<br>name,<br>avg(age) as age_avg<br>from user_info<br>group by name</p>
-<pre><code>需求： 
-    user_info 各个name的最大年龄、最小年龄、以及人数？
-</code></pre>
-<p>select<br>name,<br>max(age) as age_max,<br>min(age) as age_min,<br>count(age) as cnt<br>from user_info<br>group by name </p>
-<p>分组聚合:注意：<br>    1.select 字段 和  group by 字段 要对应 【非聚合函数字段】</p>
-<p>select<br>name,<br>id,<br>max(age) as age_max,<br>min(age) as age_min,<br>count(age) as cnt<br>from user_info<br>group by name ,id</p>
-<pre><code>维度不一样： 
-    1.
-        维度： name 
-        指标：最大年龄、最小年龄、以及人数
-    2. 
-         维度： name、id 
-         指标：最大年龄、最小年龄、以及人数
-</code></pre>
-<p>select<br>name,<br>max(age) as age_max,<br>avg(age) as age_avg,<br>count(age) as cnt<br>from user_info<br>group by name </p>
-<p>求：<br>    上面的结果 求： age_avg 大于 18岁的 信息？<br>1.分组聚合 + having<br>select<br>name,<br>max(age) as age_max,<br>avg(age) as age_avg,<br>count(age) as cnt<br>from user_info<br>group by name<br>having age_avg &gt; 18<br>    总结：<br>        条件过滤：<br>            1.where 写在 from 后面<br>            2.having 写在 group by 后面</p>
-<pre><code>上面的结果 求： age_avg 大于 18岁的 信息？
-</code></pre>
-<ol>
-<li>子查询：<br> 查询里面 嵌套查询<br>select<br>name,<br>age_max,<br>age_avg,<br>cnt<br>from<br>(<br> select<br> name,<br> max(age) as age_max,<br> avg(age) as age_avg,<br> count(age) as cnt<br> from user_info<br> group by name<br>) as res<br>where<br> age_avg &gt;18;</li>
-</ol>
-<h1 id="join-多表联查"><a href="#join-多表联查" class="headerlink" title="join 多表联查"></a>join 多表联查</h1><pre><code>种类： 
-    4种 广义上
-内连接、左连接、右连接、全连接
-</code></pre>
-<p>内连接 **<br>左连接 **<br>全连接 *</p>
-<p>create table a1(id int(3),name varchar(10),address varchar(20));<br>create table b1(id int(3),name varchar(10),age int(3));</p>
-<p>insert into a1 values(1,’aa’,”dalian”);<br>insert into a1 values(2,’bb’,”shenyang”);<br>insert into a1 values(4,’dd’,”beijing”);<br>insert into b1 values(1,’aa’,10);<br>insert into b1 values(2,’bb’,20);<br>insert into b1 values(3,’cc’,21);</p>
-<pre><code>1.内连接
-join 
-</code></pre>
-<p>select </p>
-<p>*<br>from a1 join b1<br>on a1.id &#x3D; b1.id	</p>
-<p>select </p>
-<p>*<br>from a1 inner join b1<br>on a1.id &#x3D; b1.id	</p>
-<pre><code>2.左连接
-left join 
-    以左表为主 数据是全的 右表来匹配 匹配不上就是null 
-</code></pre>
-<p>select</p>
-<p>*<br>from a1 left join b1<br>on a1.id &#x3D;b1.id;<br>    3.右连接<br>    right join<br>        以右表为主 数据是全的 左表来匹配 匹配不上就是null<br>select</p>
-<p>*<br>from a1 right join b1<br>on a1.id &#x3D;b1.id;</p>
-<pre><code>4.全连接 -- mysql 不支持全连接
-    左表右表数据是全的，而且没有重复数据
-full join 
-</code></pre>
-<p>select</p>
-<p>*<br>from a1 left join b1<br>on a1.id &#x3D;b1.id<br>union<br>select</p>
-<p>*<br>from a1 right join b1<br>on a1.id &#x3D;b1.id</p>
-<h1 id="查询数据条数-显示限制"><a href="#查询数据条数-显示限制" class="headerlink" title="查询数据条数 显示限制"></a>查询数据条数 显示限制</h1><pre><code>limit 
-场景： 
-    1.显示 避免发生 滚屏效果
-
-    小表 select *  from table ; 几千条数据 
-
-    table： 100M 1PB  1TB
-</code></pre>
-<p>mysql: 极限 &#x3D;》 TB级别 相应速度 s级别 ms级别【添加索引】<br>    1Tb  select *  from table<br>    dba </p>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux</title>
     <url>/2024/10/03/Linux/</url>
     <content><![CDATA[<h1 id="Linux概述："><a href="#Linux概述：" class="headerlink" title="Linux概述："></a>Linux概述：</h1><span id="more"></span>
@@ -722,117 +560,6 @@ connction
       </categories>
   </entry>
   <entry>
-    <title>git2</title>
-    <url>/2024/10/06/git2/</url>
-    <content><![CDATA[<h1 id="git2"><a href="#git2" class="headerlink" title="git2"></a>git2</h1><span id="more"></span>
-<p>练习：<br>    编写一个小项目 ，提交到git本地仓库 </p>
-<pre><code>工作区： 开发代码 
-        =》 git add xxx
-暂存区 ： 暂时存放我们开发的代码文件 
-        =》 git commit 
-本地仓库:存放各个版本的历史
-
--- 前端项目 github 下载 html 项目
-</code></pre>
-<h1 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h1><p>git init music</p>
-<p>2.– 添加一个index.html文件<br>git add index.html<br>git commit -m “Add index.html”<br>git log</p>
-<h1 id="编写其他文件"><a href="#编写其他文件" class="headerlink" title="编写其他文件"></a>编写其他文件</h1><p>git status<br>git add font&#x2F;  icon&#x2F; image&#x2F; music&#x2F;<br>git status<br>git commit -m “Add other data”<br>git status<br>git log</p>
-<h1 id="添加页面样式"><a href="#添加页面样式" class="headerlink" title="添加页面样式"></a>添加页面样式</h1><p>git status<br>git add  script.js  style.css<br>git status<br>git commit -m “Add css&amp;js”<br>git status<br>git log</p>
-<h1 id="修改代码文件"><a href="#修改代码文件" class="headerlink" title="修改代码文件"></a>修改代码文件</h1><p>git status<br>修改了代码文件 新增文件<br>git status<br>git add -u<br>git status<br>git commit -m “Update”<br>git status<br>git log</p>
-<p>补充：<br>    1.git add -u </p>
-<pre><code>2.git log =&gt; 查看版本历史： 
-</code></pre>
-<p>git log  ：<br>    –reflog  &#x3D;》 查看所有操作的 commit 历史</p>
-<h1 id="指定输出格式"><a href="#指定输出格式" class="headerlink" title="指定输出格式"></a>指定输出格式</h1><pre><code>format
-git log --format=oneline 
-git log --oneline [常用]
-
-git log  --oneline --reflog 可以连用 
-git log --oneline -n 2  显示最近几个commit
-
--n 2： 
-    使用场景： 
-        1.commit 特别多的时候 
-        2.分支有关
-</code></pre>
-<h1 id="分支："><a href="#分支：" class="headerlink" title="分支："></a>分支：</h1><pre><code>一个分支一条线 
-默认分支： 
-    主分支：主线 master
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	git branch:</span><br><span class="line">		branch    List, create, or delete branches</span><br><span class="line">	</span><br><span class="line">	git branch [--color[=&lt;when&gt;] | --no-color] [--show-current]</span><br><span class="line">        [-v [--abbrev=&lt;n&gt; | --no-abbrev]]</span><br><span class="line">        [--column[=&lt;options&gt;] | --no-column] [--sort=&lt;key&gt;]</span><br><span class="line">        [--merged [&lt;commit&gt;]] [--no-merged [&lt;commit&gt;]]</span><br><span class="line">        [--contains [&lt;commit&gt;]] [--no-contains [&lt;commit&gt;]]</span><br><span class="line">        [--points-at &lt;object&gt;] [--format=&lt;format&gt;]</span><br><span class="line">        [(-r | --remotes) | (-a | --all)]</span><br><span class="line">        [--list] [&lt;pattern&gt;…​]</span><br><span class="line">git branch [--track[=(direct|inherit)] | --no-track] [-f]</span><br><span class="line">        [--recurse-submodules] &lt;branchname&gt; [&lt;start-point&gt;]</span><br><span class="line">git branch (--set-upstream-to=&lt;upstream&gt; | -u &lt;upstream&gt;) [&lt;branchname&gt;]</span><br><span class="line">git branch --unset-upstream [&lt;branchname&gt;]</span><br><span class="line">git branch (-m | -M) [&lt;oldbranch&gt;] &lt;newbranch&gt;</span><br><span class="line">git branch (-c | -C) [&lt;oldbranch&gt;] &lt;newbranch&gt;</span><br><span class="line">git branch (-d | -D) [-r] &lt;branchname&gt;…​</span><br><span class="line">git branch --edit-description [&lt;branchname&gt;]</span><br></pre></td></tr></table></figure>
-<pre><code>1.创建分支 
-  git branch -c dev  =&gt;默认从master直接复制来的
-2.查看分支 
-    git branch -v
-3.切换分支
-    git checkout dev 
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log --oneline  master  =&gt; 指定查看某个分支的 commit 历史 </span><br><span class="line">git log --oneline --gragh  =&gt; 以图形化界面展示 分支的commit 历史</span><br><span class="line">git log --oneline --gragh --all =&gt; 以图形化界面展示 所有分支 的commit 历史</span><br><span class="line">gitk --all ：</span><br></pre></td></tr></table></figure>
-<pre><code>1.历史树  分支线 
-2.path =》 记录当前commit 变更文件 
-3.tree =》 记录当前commit 下文件结构 
-</code></pre>
-<p>补充： 创建分支同时并切换分支<br>分支： </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout</span><br><span class="line"></span><br><span class="line">git checkout [-b|-B|--orphan] &lt;new-branch&gt;] [&lt;start-point&gt;]</span><br><span class="line">eg: </span><br><span class="line">	创建分支同时并切换分支</span><br><span class="line">git checkout -b bigdata 61b6bb8</span><br><span class="line">git branch -v</span><br><span class="line">gitk --all</span><br><span class="line">vim 1.log</span><br><span class="line"> git add 1.log</span><br><span class="line"> git status</span><br><span class="line">  git commit -m &quot;Add 1.log&quot;</span><br><span class="line">   git log --oneline --graph --all</span><br><span class="line">gitk --all</span><br></pre></td></tr></table></figure>
-
-
-<pre><code>从工作区 =》 本地仓库 ：
-     git branch -c java
-     git checkout java
-     gitk --all
-      vim 1.log
-      git add -u
-       git commit -m &quot;Update 1.log&quot;
-       git log --oneline
-       vim 1.log
-        git status
-        git commit -am &quot;Updata 1.log add 3333&quot;  !!!! 
-
-注意：
-    git commit -am 
-        -a 表示 工作区 暂存区 文件都有的前提下 ，更改工作区文件 可以直接提交到本地仓库 
-            但是 新增文件 不可以
-</code></pre>
-<h1 id="S删除分支"><a href="#S删除分支" class="headerlink" title="S删除分支"></a>S删除分支</h1><pre><code>git branch (-d | -D)  &lt;branchname&gt;…
-    -d： 删除分支之前 要求merge 到主分支 
-    -D: 强制删除分支 
-</code></pre>
-<p>merge： 合并分支<br>    git branch -d java<br>error: The branch ‘java’ is not fully merged.<br>If you are sure you want to delete it, run ‘git branch -D java’</p>
-<pre><code> git branch -D java
- git branch -v
-</code></pre>
-<p>.git文件夹 目录介绍:<br>    1.HEAD 文件 当前项目 正在工作的分支是谁<br>        cat HEAD<br>        ref: refs&#x2F;heads&#x2F;master</p>
-<pre><code>2.config ： 
-    记录项目的一些参数 一些配置信息 
-
-git config --local user.name &quot;zihang&quot;  =》 set 设置参数 
-git config --local user.name           =》 get操作
-
-3.refs/ 
-    heads/  存储的是分支的指向 哪个commit
-
-        commit hash =》 对应存储的文件内容是什么？
-    
-        git cat-file 
-                    -t  =》 文件类型 =》 git存储文件 有关系 
-                    -p  =&gt; 文件内容
-
-    object：是git存储的真正对象 种类有 如下
-        commit：
-            tree  =》 
-                tree =》文件夹
-                blob =》 文件
-            
-        git存储文件高效的原因：
-            不同的文件 只要文件内容有相同的部分 就是一个 blob 
-        
-</code></pre>
-]]></content>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL</title>
     <url>/2024/10/04/MySQL/</url>
     <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><span id="more"></span>
@@ -958,6 +685,168 @@ root@%: 123456
 </ul>
 <p>select *<br>from user_table;</p>
 <p>select name,age from user_table;</p>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MYSQL2</title>
+    <url>/2024/10/05/MYSQL2/</url>
+    <content><![CDATA[<h1 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h1><span id="more"></span>
+<h1 id="查看表中描述"><a href="#查看表中描述" class="headerlink" title="查看表中描述"></a>查看表中描述</h1><pre><code>desc tablename;
+</code></pre>
+<h1 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h1><pre><code>create 建表规范：
+    1.表名字 一定是英文 不要写中文  汉语拼音
+    2.建表风格
+        1.主键 使用表中第一个字段使用自增主键 本身没有任何 业务意义
+    3.字段的注释
+</code></pre>
+<p>业务字段<br>非业务字段:<br>    1.表创建表用户 vs 更新表用户<br>    2.主键</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create table user_info2(</span><br><span class="line">	id int(3) not null  auto_increment,</span><br><span class="line">	name varchar(10) COMMENT &#x27;用户名称&#x27;,</span><br><span class="line">	age int(3),</span><br><span class="line">	create_user varchar(10),</span><br><span class="line">	create_time timestamp not null default current_timestamp,</span><br><span class="line">	update_user varchar(10),</span><br><span class="line">	update_time  timestamp not null default current_timestamp on update current_timestamp</span><br><span class="line">	,primary key(id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h1 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]</span><br><span class="line">    [INTO] tbl_name</span><br><span class="line">    [(col_name [, col_name] ...)]</span><br><span class="line">    &#123;VALUES | VALUE&#125; (value_list) [, (value_list)] ...</span><br><span class="line">    [ON DUPLICATE KEY UPDATE assignment_list]</span><br><span class="line">insert into user_info (name,age) VALUES(&#x27;zs&#x27;,18),(&#x27;ls&#x27;,20);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">insert into user_info (name,age) VALUES(&#x27;zs01&#x27;,18),(&#x27;ls01&#x27;,20);</span><br></pre></td></tr></table></figure>
+<p>NULL: 空值<br>    ‘’ ‘null’ ‘NULL’</p>
+<h1 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UPDATE [LOW_PRIORITY] [IGNORE] table_reference</span><br><span class="line">    SET assignment_list</span><br><span class="line">    [WHERE where_condition]</span><br><span class="line">    [ORDER BY ...]</span><br><span class="line">    [LIMIT row_count]</span><br><span class="line">where 过滤</span><br><span class="line">update user_info set age=&#x27;20&#x27;; =》 对整张表</span><br><span class="line">update user_info set age=&#x27;20&#x27; where name=&#x27;zs&#x27; ; 对某条数据</span><br><span class="line"></span><br><span class="line">update 语句 注意： where</span><br></pre></td></tr></table></figure>
+<h1 id="删除一条数据"><a href="#删除一条数据" class="headerlink" title="删除一条数据"></a>删除一条数据</h1><pre><code><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELETE [LOW_PRIORITY] [QUICK] [IGNORE] FROM tbl_name</span><br><span class="line">    [PARTITION (partition_name [, partition_name] ...)]</span><br><span class="line">    [WHERE where_condition]</span><br><span class="line">    [ORDER BY ...]</span><br><span class="line">    [LIMIT row_count]</span><br></pre></td></tr></table></figure>
+</code></pre>
+<p>delete from user_info where id&#x3D;1;<br>注意：<br>    delete 也要考虑 是否加where</p>
+<p>insert into user_info (name,age) VALUES(‘zs’,18),(‘ls’,20);<br>insert into user_info (name,age) VALUES(‘aa’,10),(‘01’,10);<br>insert into user_info (name,age) VALUES(‘bb’,11),(‘02’,20);<br>insert into user_info (name,age) VALUES(‘vv’,12),(‘03’,30);<br>insert into user_info (name,age) VALUES(‘dd’,13),(‘04’,21);</p>
+<p>insert into user_info (name,age) VALUES(‘zs’,19),(‘zs’,21);</p>
+<h1 id="表的字符集："><a href="#表的字符集：" class="headerlink" title="表的字符集："></a>表的字符集：</h1><pre><code>udf8 
+    Incorrect string value: &#39;\xE5\xAD\x90\xE8\x88\xAA...&#39; for column &#39;name
+mysql 5.7版本 默认建表字符集 ：latin1
+解决：修改字符集 、建表直接指定字符集 utf8
+</code></pre>
+<h1 id="6-删除表"><a href="#6-删除表" class="headerlink" title="6.删除表"></a>6.删除表</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	drop table user_info;</span><br><span class="line"></span><br><span class="line">	CREATE TABLE `user_info` (</span><br><span class="line">  `id` int(3) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `name` varchar(10) DEFAULT NULL,</span><br><span class="line">  `age` int(3) DEFAULT NULL,</span><br><span class="line">  `create_user` varchar(10) DEFAULT NULL,</span><br><span class="line">  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,</span><br><span class="line">  `update_user` varchar(10) DEFAULT NULL,</span><br><span class="line">  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB  DEFAULT CHARSET=utf8;</span><br></pre></td></tr></table></figure>
+<h1 id="7-其他语法"><a href="#7-其他语法" class="headerlink" title="7.其他语法"></a>7.其他语法</h1><p>1.where  过滤条件<br>    1. &gt;<br>    2.&lt;<br>    3. &#x3D;<br>    4. and or in not in<br>mysql&gt; select * from user_info where age &gt; 18;<br>select * from user_info where name&#x3D;’子航01’;<br>mysql&gt; select *  from user_info where name&#x3D;’zs’ and age&gt;18;<br>mysql&gt; select *  from user_info where age&gt;20 or name&#x3D;’zs’;</p>
+<p>产品给你 1000个数据值  in<br>select *  from user_info where name&#x3D;’zs’ or name &#x3D; ‘ls’ or name &#x3D;”ww”<br>select *  from user_info where name in (‘zs’,’ls’,’ww’);<br>    not in<br>select *  from user_info where name not in (‘zs’,’ls’,’ww’);</p>
+<h1 id="order-by-排序语法"><a href="#order-by-排序语法" class="headerlink" title="order by 排序语法"></a>order by 排序语法</h1><pre><code>mysql&gt; select *  from user_info order by age;
+
+ order by column [asc | desc] ,...
+
+1.默认是升序 
+2. asc desc 降序 
+</code></pre>
+<p>mysql&gt; select *  from user_info order by age ,name desc;</p>
+<h1 id="like语法-模糊查询"><a href="#like语法-模糊查询" class="headerlink" title="like语法 模糊查询"></a>like语法 模糊查询</h1><pre><code>1.like  rlike regexp  正则表达式【了解】
+    1.% 模糊 
+    2.占位符 _
+</code></pre>
+<p>mysql&gt; select *  from user_info where name like ‘%z%’;<br>mysql&gt; select *  from user_info where name like “_s%”;</p>
+<pre><code>insert into user_info (name) VALUES(&#39;zihsssg04&#39;);
+insert into user_info (name) VALUES(&#39;zshsssg04&#39;);
+insert into user_info (name) VALUES(&#39;zshsssg04&#39;);
+insert into user_info (name) VALUES(&#39;zshsssg04&#39;);
+</code></pre>
+<p>需求：<br>    1.name 字母开头是y<br>select  *  from user_info where name like “y%”;<br>    2.name 字母结尾是1<br>select  *  from user_info where name like “%1”;<br>    3.name 含有字母h<br>select  *  from user_info where name like “%h%”;<br>    4.name查询第3个字母是h的数据<br>select  *  from user_info where name like “__h%”;</p>
+<h1 id="合并表"><a href="#合并表" class="headerlink" title="合并表"></a>合并表</h1><pre><code>1.union  去重
+2.union all  不去重
+</code></pre>
+<p>create table a(id int(3),name varchar(4));<br>create table b(id int(3),name varchar(4));</p>
+<p>insert into a values(1,’zs’);<br>insert into b values(1,’zs’);<br>insert into b values(2,’ls’);</p>
+<p>1.union</p>
+<p>select *  from a<br>union<br>select *  from b;</p>
+<p>2.union all<br>select *  from a<br>union  all<br>select *  from b;</p>
+<h1 id="null"><a href="#null" class="headerlink" title="null"></a>null</h1><pre><code>数据清洗 
+    1.过滤null 
+        is null 
+        is not null 
+</code></pre>
+<p>select *  from user_info where age is null;</p>
+<pre><code>    2.null数据进行 【数据转换】
+    update 
+</code></pre>
+<p>数据分析时候 ：<br>    delte 、update </p>
+<p>函数：<br>    处理 null的函数：<br>        1.coalesce()<br>        2.ifnull</p>
+<p>select<br>id<br>,name<br>,coalesce(age,0) as age_alias<br>,create_user<br>,create_time<br>,update_user<br>,update_time<br>from user_info</p>
+<p>select<br>id<br>,name<br>,ifnull(age,0) as age_alias<br>,create_user<br>,create_time<br>,update_user<br>,update_time<br>from user_info</p>
+<h1 id="聚合函数：-指标"><a href="#聚合函数：-指标" class="headerlink" title="聚合函数： 指标"></a>聚合函数： 指标</h1><pre><code>多行数据按照一定规则 进行聚合为一行 
+sum max min avg count 
+理论上：
+    聚合后的行数 &lt;= 聚合前的行数
+</code></pre>
+<p>insert into user_info (name,age) values(“zs”,10);<br>insert into user_info (name,age) values(“zs”,11);<br>insert into user_info (name,age) values(“zs”,12);<br>insert into user_info (name,age) values(“ls”,10);<br>insert into user_info (name,age) values(“ls”,20);<br>insert into user_info (name,age) values(“ls”,30);<br>insert into user_info (name,age) values(“ww”,30);</p>
+<pre><code>1.聚合函数 
+select 
+sum(age) as age_sum,
+max(age) as age_max
+,min(age) as age_min
+,avg(age) as age_avg
+,count(age) as cnt
+from user_info
+
+2.分组语法
+</code></pre>
+<p>词频统计：<br>    wordcount </p>
+<pre><code>x 
+y
+y
+z 
+</code></pre>
+<p>word,1<br>&#x3D;&gt;  对每个单词进行分组  分组<br>    x,&lt;1&gt;<br>    y,&lt;1,1&gt;<br>    z,&lt;1&gt;<br>&#x3D;&gt; 聚合 sum<br>    x,1<br>    y,1+1 &#x3D;2<br>    z,1</p>
+<pre><code>group by  column...
+</code></pre>
+<p>需求：<br>    按照name进行分组，求每组的平均年龄</p>
+<p>分组聚合</p>
+<p>select<br>name,<br>avg(age) as age_avg<br>from user_info<br>group by name</p>
+<pre><code>需求： 
+    user_info 各个name的最大年龄、最小年龄、以及人数？
+</code></pre>
+<p>select<br>name,<br>max(age) as age_max,<br>min(age) as age_min,<br>count(age) as cnt<br>from user_info<br>group by name </p>
+<p>分组聚合:注意：<br>    1.select 字段 和  group by 字段 要对应 【非聚合函数字段】</p>
+<p>select<br>name,<br>id,<br>max(age) as age_max,<br>min(age) as age_min,<br>count(age) as cnt<br>from user_info<br>group by name ,id</p>
+<pre><code>维度不一样： 
+    1.
+        维度： name 
+        指标：最大年龄、最小年龄、以及人数
+    2. 
+         维度： name、id 
+         指标：最大年龄、最小年龄、以及人数
+</code></pre>
+<p>select<br>name,<br>max(age) as age_max,<br>avg(age) as age_avg,<br>count(age) as cnt<br>from user_info<br>group by name </p>
+<p>求：<br>    上面的结果 求： age_avg 大于 18岁的 信息？<br>1.分组聚合 + having<br>select<br>name,<br>max(age) as age_max,<br>avg(age) as age_avg,<br>count(age) as cnt<br>from user_info<br>group by name<br>having age_avg &gt; 18<br>    总结：<br>        条件过滤：<br>            1.where 写在 from 后面<br>            2.having 写在 group by 后面</p>
+<pre><code>上面的结果 求： age_avg 大于 18岁的 信息？
+</code></pre>
+<ol>
+<li>子查询：<br> 查询里面 嵌套查询<br>select<br>name,<br>age_max,<br>age_avg,<br>cnt<br>from<br>(<br> select<br> name,<br> max(age) as age_max,<br> avg(age) as age_avg,<br> count(age) as cnt<br> from user_info<br> group by name<br>) as res<br>where<br> age_avg &gt;18;</li>
+</ol>
+<h1 id="join-多表联查"><a href="#join-多表联查" class="headerlink" title="join 多表联查"></a>join 多表联查</h1><pre><code>种类： 
+    4种 广义上
+内连接、左连接、右连接、全连接
+</code></pre>
+<p>内连接 **<br>左连接 **<br>全连接 *</p>
+<p>create table a1(id int(3),name varchar(10),address varchar(20));<br>create table b1(id int(3),name varchar(10),age int(3));</p>
+<p>insert into a1 values(1,’aa’,”dalian”);<br>insert into a1 values(2,’bb’,”shenyang”);<br>insert into a1 values(4,’dd’,”beijing”);<br>insert into b1 values(1,’aa’,10);<br>insert into b1 values(2,’bb’,20);<br>insert into b1 values(3,’cc’,21);</p>
+<pre><code>1.内连接
+join 
+</code></pre>
+<p>select </p>
+<p>*<br>from a1 join b1<br>on a1.id &#x3D; b1.id	</p>
+<p>select </p>
+<p>*<br>from a1 inner join b1<br>on a1.id &#x3D; b1.id	</p>
+<pre><code>2.左连接
+left join 
+    以左表为主 数据是全的 右表来匹配 匹配不上就是null 
+</code></pre>
+<p>select</p>
+<p>*<br>from a1 left join b1<br>on a1.id &#x3D;b1.id;<br>    3.右连接<br>    right join<br>        以右表为主 数据是全的 左表来匹配 匹配不上就是null<br>select</p>
+<p>*<br>from a1 right join b1<br>on a1.id &#x3D;b1.id;</p>
+<pre><code>4.全连接 -- mysql 不支持全连接
+    左表右表数据是全的，而且没有重复数据
+full join 
+</code></pre>
+<p>select</p>
+<p>*<br>from a1 left join b1<br>on a1.id &#x3D;b1.id<br>union<br>select</p>
+<p>*<br>from a1 right join b1<br>on a1.id &#x3D;b1.id</p>
+<h1 id="查询数据条数-显示限制"><a href="#查询数据条数-显示限制" class="headerlink" title="查询数据条数 显示限制"></a>查询数据条数 显示限制</h1><pre><code>limit 
+场景： 
+    1.显示 避免发生 滚屏效果
+
+    小表 select *  from table ; 几千条数据 
+
+    table： 100M 1PB  1TB
+</code></pre>
+<p>mysql: 极限 &#x3D;》 TB级别 相应速度 s级别 ms级别【添加索引】<br>    1Tb  select *  from table<br>    dba </p>
 ]]></content>
       <tags>
         <tag>mysql</tag>
@@ -1252,6 +1141,119 @@ done
 <h2 id="3-重启机器"><a href="#3-重启机器" class="headerlink" title="3.重启机器"></a>3.重启机器</h2>]]></content>
   </entry>
   <entry>
+    <title>我的第一篇博客文章</title>
+    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>git2</title>
+    <url>/2024/10/06/git2/</url>
+    <content><![CDATA[<h1 id="git2"><a href="#git2" class="headerlink" title="git2"></a>git2</h1><span id="more"></span>
+<p>练习：<br>    编写一个小项目 ，提交到git本地仓库 </p>
+<pre><code>工作区： 开发代码 
+        =》 git add xxx
+暂存区 ： 暂时存放我们开发的代码文件 
+        =》 git commit 
+本地仓库:存放各个版本的历史
+
+-- 前端项目 github 下载 html 项目
+</code></pre>
+<h1 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h1><p>git init music</p>
+<p>2.– 添加一个index.html文件<br>git add index.html<br>git commit -m “Add index.html”<br>git log</p>
+<h1 id="编写其他文件"><a href="#编写其他文件" class="headerlink" title="编写其他文件"></a>编写其他文件</h1><p>git status<br>git add font&#x2F;  icon&#x2F; image&#x2F; music&#x2F;<br>git status<br>git commit -m “Add other data”<br>git status<br>git log</p>
+<h1 id="添加页面样式"><a href="#添加页面样式" class="headerlink" title="添加页面样式"></a>添加页面样式</h1><p>git status<br>git add  script.js  style.css<br>git status<br>git commit -m “Add css&amp;js”<br>git status<br>git log</p>
+<h1 id="修改代码文件"><a href="#修改代码文件" class="headerlink" title="修改代码文件"></a>修改代码文件</h1><p>git status<br>修改了代码文件 新增文件<br>git status<br>git add -u<br>git status<br>git commit -m “Update”<br>git status<br>git log</p>
+<p>补充：<br>    1.git add -u </p>
+<pre><code>2.git log =&gt; 查看版本历史： 
+</code></pre>
+<p>git log  ：<br>    –reflog  &#x3D;》 查看所有操作的 commit 历史</p>
+<h1 id="指定输出格式"><a href="#指定输出格式" class="headerlink" title="指定输出格式"></a>指定输出格式</h1><pre><code>format
+git log --format=oneline 
+git log --oneline [常用]
+
+git log  --oneline --reflog 可以连用 
+git log --oneline -n 2  显示最近几个commit
+
+-n 2： 
+    使用场景： 
+        1.commit 特别多的时候 
+        2.分支有关
+</code></pre>
+<h1 id="分支："><a href="#分支：" class="headerlink" title="分支："></a>分支：</h1><pre><code>一个分支一条线 
+默认分支： 
+    主分支：主线 master
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	git branch:</span><br><span class="line">		branch    List, create, or delete branches</span><br><span class="line">	</span><br><span class="line">	git branch [--color[=&lt;when&gt;] | --no-color] [--show-current]</span><br><span class="line">        [-v [--abbrev=&lt;n&gt; | --no-abbrev]]</span><br><span class="line">        [--column[=&lt;options&gt;] | --no-column] [--sort=&lt;key&gt;]</span><br><span class="line">        [--merged [&lt;commit&gt;]] [--no-merged [&lt;commit&gt;]]</span><br><span class="line">        [--contains [&lt;commit&gt;]] [--no-contains [&lt;commit&gt;]]</span><br><span class="line">        [--points-at &lt;object&gt;] [--format=&lt;format&gt;]</span><br><span class="line">        [(-r | --remotes) | (-a | --all)]</span><br><span class="line">        [--list] [&lt;pattern&gt;…​]</span><br><span class="line">git branch [--track[=(direct|inherit)] | --no-track] [-f]</span><br><span class="line">        [--recurse-submodules] &lt;branchname&gt; [&lt;start-point&gt;]</span><br><span class="line">git branch (--set-upstream-to=&lt;upstream&gt; | -u &lt;upstream&gt;) [&lt;branchname&gt;]</span><br><span class="line">git branch --unset-upstream [&lt;branchname&gt;]</span><br><span class="line">git branch (-m | -M) [&lt;oldbranch&gt;] &lt;newbranch&gt;</span><br><span class="line">git branch (-c | -C) [&lt;oldbranch&gt;] &lt;newbranch&gt;</span><br><span class="line">git branch (-d | -D) [-r] &lt;branchname&gt;…​</span><br><span class="line">git branch --edit-description [&lt;branchname&gt;]</span><br></pre></td></tr></table></figure>
+<pre><code>1.创建分支 
+  git branch -c dev  =&gt;默认从master直接复制来的
+2.查看分支 
+    git branch -v
+3.切换分支
+    git checkout dev 
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log --oneline  master  =&gt; 指定查看某个分支的 commit 历史 </span><br><span class="line">git log --oneline --gragh  =&gt; 以图形化界面展示 分支的commit 历史</span><br><span class="line">git log --oneline --gragh --all =&gt; 以图形化界面展示 所有分支 的commit 历史</span><br><span class="line">gitk --all ：</span><br></pre></td></tr></table></figure>
+<pre><code>1.历史树  分支线 
+2.path =》 记录当前commit 变更文件 
+3.tree =》 记录当前commit 下文件结构 
+</code></pre>
+<p>补充： 创建分支同时并切换分支<br>分支： </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout</span><br><span class="line"></span><br><span class="line">git checkout [-b|-B|--orphan] &lt;new-branch&gt;] [&lt;start-point&gt;]</span><br><span class="line">eg: </span><br><span class="line">	创建分支同时并切换分支</span><br><span class="line">git checkout -b bigdata 61b6bb8</span><br><span class="line">git branch -v</span><br><span class="line">gitk --all</span><br><span class="line">vim 1.log</span><br><span class="line"> git add 1.log</span><br><span class="line"> git status</span><br><span class="line">  git commit -m &quot;Add 1.log&quot;</span><br><span class="line">   git log --oneline --graph --all</span><br><span class="line">gitk --all</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>从工作区 =》 本地仓库 ：
+     git branch -c java
+     git checkout java
+     gitk --all
+      vim 1.log
+      git add -u
+       git commit -m &quot;Update 1.log&quot;
+       git log --oneline
+       vim 1.log
+        git status
+        git commit -am &quot;Updata 1.log add 3333&quot;  !!!! 
+
+注意：
+    git commit -am 
+        -a 表示 工作区 暂存区 文件都有的前提下 ，更改工作区文件 可以直接提交到本地仓库 
+            但是 新增文件 不可以
+</code></pre>
+<h1 id="S删除分支"><a href="#S删除分支" class="headerlink" title="S删除分支"></a>S删除分支</h1><pre><code>git branch (-d | -D)  &lt;branchname&gt;…
+    -d： 删除分支之前 要求merge 到主分支 
+    -D: 强制删除分支 
+</code></pre>
+<p>merge： 合并分支<br>    git branch -d java<br>error: The branch ‘java’ is not fully merged.<br>If you are sure you want to delete it, run ‘git branch -D java’</p>
+<pre><code> git branch -D java
+ git branch -v
+</code></pre>
+<p>.git文件夹 目录介绍:<br>    1.HEAD 文件 当前项目 正在工作的分支是谁<br>        cat HEAD<br>        ref: refs&#x2F;heads&#x2F;master</p>
+<pre><code>2.config ： 
+    记录项目的一些参数 一些配置信息 
+
+git config --local user.name &quot;zihang&quot;  =》 set 设置参数 
+git config --local user.name           =》 get操作
+
+3.refs/ 
+    heads/  存储的是分支的指向 哪个commit
+
+        commit hash =》 对应存储的文件内容是什么？
+    
+        git cat-file 
+                    -t  =》 文件类型 =》 git存储文件 有关系 
+                    -p  =&gt; 文件内容
+
+    object：是git存储的真正对象 种类有 如下
+        commit：
+            tree  =》 
+                tree =》文件夹
+                blob =》 文件
+            
+        git存储文件高效的原因：
+            不同的文件 只要文件内容有相同的部分 就是一个 blob 
+        
+</code></pre>
+]]></content>
+  </entry>
+  <entry>
     <title>git</title>
     <url>/2024/10/06/git/</url>
     <content><![CDATA[<h1 id="git"><a href="#git" class="headerlink" title="git"></a>git</h1><span id="more"></span> 
@@ -1345,11 +1347,6 @@ distributed version control system
       <tags>
         <tag>git</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>我的第一篇博客文章</title>
-    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Hello World</title>
