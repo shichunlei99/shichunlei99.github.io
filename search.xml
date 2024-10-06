@@ -560,6 +560,114 @@ connction
       </categories>
   </entry>
   <entry>
+    <title>git2</title>
+    <url>/2024/10/06/git2/</url>
+    <content><![CDATA[<h1 id="git2"><a href="#git2" class="headerlink" title="git2"></a>git2</h1><span id="more"></span>
+<p>练习：<br>    编写一个小项目 ，提交到git本地仓库 </p>
+<pre><code>工作区： 开发代码 
+        =》 git add xxx
+暂存区 ： 暂时存放我们开发的代码文件 
+        =》 git commit 
+本地仓库:存放各个版本的历史
+
+-- 前端项目 github 下载 html 项目
+</code></pre>
+<h1 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h1><p>git init music</p>
+<p>2.– 添加一个index.html文件<br>git add index.html<br>git commit -m “Add index.html”<br>git log</p>
+<h1 id="编写其他文件"><a href="#编写其他文件" class="headerlink" title="编写其他文件"></a>编写其他文件</h1><p>git status<br>git add font&#x2F;  icon&#x2F; image&#x2F; music&#x2F;<br>git status<br>git commit -m “Add other data”<br>git status<br>git log</p>
+<h1 id="添加页面样式"><a href="#添加页面样式" class="headerlink" title="添加页面样式"></a>添加页面样式</h1><p>git status<br>git add  script.js  style.css<br>git status<br>git commit -m “Add css&amp;js”<br>git status<br>git log</p>
+<h1 id="修改代码文件"><a href="#修改代码文件" class="headerlink" title="修改代码文件"></a>修改代码文件</h1><p>git status<br>修改了代码文件 新增文件<br>git status<br>git add -u<br>git status<br>git commit -m “Update”<br>git status<br>git log</p>
+<p>补充：<br>    1.git add -u </p>
+<pre><code>2.git log =&gt; 查看版本历史： 
+</code></pre>
+<p>git log  ：<br>    –reflog  &#x3D;》 查看所有操作的 commit 历史</p>
+<h1 id="指定输出格式"><a href="#指定输出格式" class="headerlink" title="指定输出格式"></a>指定输出格式</h1><pre><code>format
+git log --format=oneline 
+git log --oneline [常用]
+
+git log  --oneline --reflog 可以连用 
+git log --oneline -n 2  显示最近几个commit
+
+-n 2： 
+    使用场景： 
+        1.commit 特别多的时候 
+        2.分支有关
+</code></pre>
+<h1 id="分支："><a href="#分支：" class="headerlink" title="分支："></a>分支：</h1><pre><code>一个分支一条线 
+默认分支： 
+    主分支：主线 master
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	git branch:</span><br><span class="line">		branch    List, create, or delete branches</span><br><span class="line">	</span><br><span class="line">	git branch [--color[=&lt;when&gt;] | --no-color] [--show-current]</span><br><span class="line">        [-v [--abbrev=&lt;n&gt; | --no-abbrev]]</span><br><span class="line">        [--column[=&lt;options&gt;] | --no-column] [--sort=&lt;key&gt;]</span><br><span class="line">        [--merged [&lt;commit&gt;]] [--no-merged [&lt;commit&gt;]]</span><br><span class="line">        [--contains [&lt;commit&gt;]] [--no-contains [&lt;commit&gt;]]</span><br><span class="line">        [--points-at &lt;object&gt;] [--format=&lt;format&gt;]</span><br><span class="line">        [(-r | --remotes) | (-a | --all)]</span><br><span class="line">        [--list] [&lt;pattern&gt;…​]</span><br><span class="line">git branch [--track[=(direct|inherit)] | --no-track] [-f]</span><br><span class="line">        [--recurse-submodules] &lt;branchname&gt; [&lt;start-point&gt;]</span><br><span class="line">git branch (--set-upstream-to=&lt;upstream&gt; | -u &lt;upstream&gt;) [&lt;branchname&gt;]</span><br><span class="line">git branch --unset-upstream [&lt;branchname&gt;]</span><br><span class="line">git branch (-m | -M) [&lt;oldbranch&gt;] &lt;newbranch&gt;</span><br><span class="line">git branch (-c | -C) [&lt;oldbranch&gt;] &lt;newbranch&gt;</span><br><span class="line">git branch (-d | -D) [-r] &lt;branchname&gt;…​</span><br><span class="line">git branch --edit-description [&lt;branchname&gt;]</span><br></pre></td></tr></table></figure>
+<pre><code>1.创建分支 
+  git branch -c dev  =&gt;默认从master直接复制来的
+2.查看分支 
+    git branch -v
+3.切换分支
+    git checkout dev 
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log --oneline  master  =&gt; 指定查看某个分支的 commit 历史 </span><br><span class="line">git log --oneline --gragh  =&gt; 以图形化界面展示 分支的commit 历史</span><br><span class="line">git log --oneline --gragh --all =&gt; 以图形化界面展示 所有分支 的commit 历史</span><br><span class="line">gitk --all ：</span><br></pre></td></tr></table></figure>
+<pre><code>1.历史树  分支线 
+2.path =》 记录当前commit 变更文件 
+3.tree =》 记录当前commit 下文件结构 
+</code></pre>
+<p>补充： 创建分支同时并切换分支<br>分支： </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout</span><br><span class="line"></span><br><span class="line">git checkout [-b|-B|--orphan] &lt;new-branch&gt;] [&lt;start-point&gt;]</span><br><span class="line">eg: </span><br><span class="line">	创建分支同时并切换分支</span><br><span class="line">git checkout -b bigdata 61b6bb8</span><br><span class="line">git branch -v</span><br><span class="line">gitk --all</span><br><span class="line">vim 1.log</span><br><span class="line"> git add 1.log</span><br><span class="line"> git status</span><br><span class="line">  git commit -m &quot;Add 1.log&quot;</span><br><span class="line">   git log --oneline --graph --all</span><br><span class="line">gitk --all</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>从工作区 =》 本地仓库 ：
+     git branch -c java
+     git checkout java
+     gitk --all
+      vim 1.log
+      git add -u
+       git commit -m &quot;Update 1.log&quot;
+       git log --oneline
+       vim 1.log
+        git status
+        git commit -am &quot;Updata 1.log add 3333&quot;  !!!! 
+
+注意：
+    git commit -am 
+        -a 表示 工作区 暂存区 文件都有的前提下 ，更改工作区文件 可以直接提交到本地仓库 
+            但是 新增文件 不可以
+</code></pre>
+<h1 id="S删除分支"><a href="#S删除分支" class="headerlink" title="S删除分支"></a>S删除分支</h1><pre><code>git branch (-d | -D)  &lt;branchname&gt;…
+    -d： 删除分支之前 要求merge 到主分支 
+    -D: 强制删除分支 
+</code></pre>
+<p>merge： 合并分支<br>    git branch -d java<br>error: The branch ‘java’ is not fully merged.<br>If you are sure you want to delete it, run ‘git branch -D java’</p>
+<pre><code> git branch -D java
+ git branch -v
+</code></pre>
+<p>.git文件夹 目录介绍:<br>    1.HEAD 文件 当前项目 正在工作的分支是谁<br>        cat HEAD<br>        ref: refs&#x2F;heads&#x2F;master</p>
+<pre><code>2.config ： 
+    记录项目的一些参数 一些配置信息 
+
+git config --local user.name &quot;zihang&quot;  =》 set 设置参数 
+git config --local user.name           =》 get操作
+
+3.refs/ 
+    heads/  存储的是分支的指向 哪个commit
+
+        commit hash =》 对应存储的文件内容是什么？
+    
+        git cat-file 
+                    -t  =》 文件类型 =》 git存储文件 有关系 
+                    -p  =&gt; 文件内容
+
+    object：是git存储的真正对象 种类有 如下
+        commit：
+            tree  =》 
+                tree =》文件夹
+                blob =》 文件
+            
+        git存储文件高效的原因：
+            不同的文件 只要文件内容有相同的部分 就是一个 blob 
+        
+</code></pre>
+]]></content>
+  </entry>
+  <entry>
     <title>MySQL</title>
     <url>/2024/10/04/MySQL/</url>
     <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><span id="more"></span>
@@ -1141,116 +1249,21 @@ done
 <h2 id="3-重启机器"><a href="#3-重启机器" class="headerlink" title="3.重启机器"></a>3.重启机器</h2>]]></content>
   </entry>
   <entry>
-    <title>我的第一篇博客文章</title>
-    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>git2</title>
-    <url>/2024/10/06/git2/</url>
-    <content><![CDATA[<h1 id="git2"><a href="#git2" class="headerlink" title="git2"></a>git2</h1><span id="more"></span>
-<p>练习：<br>    编写一个小项目 ，提交到git本地仓库 </p>
-<pre><code>工作区： 开发代码 
-        =》 git add xxx
-暂存区 ： 暂时存放我们开发的代码文件 
-        =》 git commit 
-本地仓库:存放各个版本的历史
+    <title>Hello World</title>
+    <url>/2024/10/01/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
--- 前端项目 github 下载 html 项目
-</code></pre>
-<h1 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h1><p>git init music</p>
-<p>2.– 添加一个index.html文件<br>git add index.html<br>git commit -m “Add index.html”<br>git log</p>
-<h1 id="编写其他文件"><a href="#编写其他文件" class="headerlink" title="编写其他文件"></a>编写其他文件</h1><p>git status<br>git add font&#x2F;  icon&#x2F; image&#x2F; music&#x2F;<br>git status<br>git commit -m “Add other data”<br>git status<br>git log</p>
-<h1 id="添加页面样式"><a href="#添加页面样式" class="headerlink" title="添加页面样式"></a>添加页面样式</h1><p>git status<br>git add  script.js  style.css<br>git status<br>git commit -m “Add css&amp;js”<br>git status<br>git log</p>
-<h1 id="修改代码文件"><a href="#修改代码文件" class="headerlink" title="修改代码文件"></a>修改代码文件</h1><p>git status<br>修改了代码文件 新增文件<br>git status<br>git add -u<br>git status<br>git commit -m “Update”<br>git status<br>git log</p>
-<p>补充：<br>    1.git add -u </p>
-<pre><code>2.git log =&gt; 查看版本历史： 
-</code></pre>
-<p>git log  ：<br>    –reflog  &#x3D;》 查看所有操作的 commit 历史</p>
-<h1 id="指定输出格式"><a href="#指定输出格式" class="headerlink" title="指定输出格式"></a>指定输出格式</h1><pre><code>format
-git log --format=oneline 
-git log --oneline [常用]
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-git log  --oneline --reflog 可以连用 
-git log --oneline -n 2  显示最近几个commit
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
--n 2： 
-    使用场景： 
-        1.commit 特别多的时候 
-        2.分支有关
-</code></pre>
-<h1 id="分支："><a href="#分支：" class="headerlink" title="分支："></a>分支：</h1><pre><code>一个分支一条线 
-默认分支： 
-    主分支：主线 master
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	git branch:</span><br><span class="line">		branch    List, create, or delete branches</span><br><span class="line">	</span><br><span class="line">	git branch [--color[=&lt;when&gt;] | --no-color] [--show-current]</span><br><span class="line">        [-v [--abbrev=&lt;n&gt; | --no-abbrev]]</span><br><span class="line">        [--column[=&lt;options&gt;] | --no-column] [--sort=&lt;key&gt;]</span><br><span class="line">        [--merged [&lt;commit&gt;]] [--no-merged [&lt;commit&gt;]]</span><br><span class="line">        [--contains [&lt;commit&gt;]] [--no-contains [&lt;commit&gt;]]</span><br><span class="line">        [--points-at &lt;object&gt;] [--format=&lt;format&gt;]</span><br><span class="line">        [(-r | --remotes) | (-a | --all)]</span><br><span class="line">        [--list] [&lt;pattern&gt;…​]</span><br><span class="line">git branch [--track[=(direct|inherit)] | --no-track] [-f]</span><br><span class="line">        [--recurse-submodules] &lt;branchname&gt; [&lt;start-point&gt;]</span><br><span class="line">git branch (--set-upstream-to=&lt;upstream&gt; | -u &lt;upstream&gt;) [&lt;branchname&gt;]</span><br><span class="line">git branch --unset-upstream [&lt;branchname&gt;]</span><br><span class="line">git branch (-m | -M) [&lt;oldbranch&gt;] &lt;newbranch&gt;</span><br><span class="line">git branch (-c | -C) [&lt;oldbranch&gt;] &lt;newbranch&gt;</span><br><span class="line">git branch (-d | -D) [-r] &lt;branchname&gt;…​</span><br><span class="line">git branch --edit-description [&lt;branchname&gt;]</span><br></pre></td></tr></table></figure>
-<pre><code>1.创建分支 
-  git branch -c dev  =&gt;默认从master直接复制来的
-2.查看分支 
-    git branch -v
-3.切换分支
-    git checkout dev 
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log --oneline  master  =&gt; 指定查看某个分支的 commit 历史 </span><br><span class="line">git log --oneline --gragh  =&gt; 以图形化界面展示 分支的commit 历史</span><br><span class="line">git log --oneline --gragh --all =&gt; 以图形化界面展示 所有分支 的commit 历史</span><br><span class="line">gitk --all ：</span><br></pre></td></tr></table></figure>
-<pre><code>1.历史树  分支线 
-2.path =》 记录当前commit 变更文件 
-3.tree =》 记录当前commit 下文件结构 
-</code></pre>
-<p>补充： 创建分支同时并切换分支<br>分支： </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout</span><br><span class="line"></span><br><span class="line">git checkout [-b|-B|--orphan] &lt;new-branch&gt;] [&lt;start-point&gt;]</span><br><span class="line">eg: </span><br><span class="line">	创建分支同时并切换分支</span><br><span class="line">git checkout -b bigdata 61b6bb8</span><br><span class="line">git branch -v</span><br><span class="line">gitk --all</span><br><span class="line">vim 1.log</span><br><span class="line"> git add 1.log</span><br><span class="line"> git status</span><br><span class="line">  git commit -m &quot;Add 1.log&quot;</span><br><span class="line">   git log --oneline --graph --all</span><br><span class="line">gitk --all</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-
-<pre><code>从工作区 =》 本地仓库 ：
-     git branch -c java
-     git checkout java
-     gitk --all
-      vim 1.log
-      git add -u
-       git commit -m &quot;Update 1.log&quot;
-       git log --oneline
-       vim 1.log
-        git status
-        git commit -am &quot;Updata 1.log add 3333&quot;  !!!! 
-
-注意：
-    git commit -am 
-        -a 表示 工作区 暂存区 文件都有的前提下 ，更改工作区文件 可以直接提交到本地仓库 
-            但是 新增文件 不可以
-</code></pre>
-<h1 id="S删除分支"><a href="#S删除分支" class="headerlink" title="S删除分支"></a>S删除分支</h1><pre><code>git branch (-d | -D)  &lt;branchname&gt;…
-    -d： 删除分支之前 要求merge 到主分支 
-    -D: 强制删除分支 
-</code></pre>
-<p>merge： 合并分支<br>    git branch -d java<br>error: The branch ‘java’ is not fully merged.<br>If you are sure you want to delete it, run ‘git branch -D java’</p>
-<pre><code> git branch -D java
- git branch -v
-</code></pre>
-<p>.git文件夹 目录介绍:<br>    1.HEAD 文件 当前项目 正在工作的分支是谁<br>        cat HEAD<br>        ref: refs&#x2F;heads&#x2F;master</p>
-<pre><code>2.config ： 
-    记录项目的一些参数 一些配置信息 
-
-git config --local user.name &quot;zihang&quot;  =》 set 设置参数 
-git config --local user.name           =》 get操作
-
-3.refs/ 
-    heads/  存储的是分支的指向 哪个commit
-
-        commit hash =》 对应存储的文件内容是什么？
-    
-        git cat-file 
-                    -t  =》 文件类型 =》 git存储文件 有关系 
-                    -p  =&gt; 文件内容
-
-    object：是git存储的真正对象 种类有 如下
-        commit：
-            tree  =》 
-                tree =》文件夹
-                blob =》 文件
-            
-        git存储文件高效的原因：
-            不同的文件 只要文件内容有相同的部分 就是一个 blob 
-        
-</code></pre>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -1349,22 +1362,9 @@ distributed version control system
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/10/01/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
+    <title>我的第一篇博客文章</title>
+    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>java api</title>
