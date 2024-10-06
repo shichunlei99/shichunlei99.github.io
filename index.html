@@ -191,6 +191,183 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://shichunlei99.github.io/2024/10/06/MYSQL3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/scl.png">
+      <meta itemprop="name" content="shichunlei99">
+      <meta itemprop="description" content="涉猎的主要编程语言为 Java、Python、Rust、C++、Go、服务研发和对象存储等。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="scl'Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/10/06/MYSQL3/" class="post-title-link" itemprop="url">MYSQL3</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-10-06 09:52:00 / 修改时间：09:58:59" itemprop="dateCreated datePublished" datetime="2024-10-06T09:52:00+08:00">2024-10-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MYSQL/" itemprop="url" rel="index"><span itemprop="name">MYSQL</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="MYSQL3"><a href="#MYSQL3" class="headerlink" title="MYSQL3"></a>MYSQL3</h1><h1 id="jdbc"><a href="#jdbc" class="headerlink" title="jdbc:"></a>jdbc:</h1><pre><code>java
+db 
+connction
+</code></pre>
+<h1 id="maven部署："><a href="#maven部署：" class="headerlink" title="maven部署："></a>maven部署：</h1><pre><code>1.下载 解压 
+
+2.配置环境变量
+    MAVEN_HOME=D:\sxwang\app\apache-maven-3.8.1
+    PATH=%MAVEN_HOME%\bin
+3.cmd 
+</code></pre>
+<h1 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h1><pre><code>1.创建maven 项目 
+2.src =》 开发代码目录
+3.pom.xml : 
+    添加第三方依赖包
+</code></pre>
+<h1 id="如何获取mysql连接？"><a href="#如何获取mysql连接？" class="headerlink" title="如何获取mysql连接？"></a>如何获取mysql连接？</h1><pre><code>1.url ： 
+    mysql ip 
+    mysql db 
+2.mysql 用户名 
+3.mysql 密码
+</code></pre>
+<h1 id="添加第三方依赖包"><a href="#添加第三方依赖包" class="headerlink" title="添加第三方依赖包:"></a>添加第三方依赖包:</h1><pre><code>mysql的驱动包： 
+    maven进行第三方jar管理： 
+        mysql-
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;5.1.28&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<p>问题：<br>    1.pom.xml:<br>        可能正在下载第三方jar  </p>
+<pre><code>2.更改本地maven 仓库地址 
+    D:\sxwang\app\apache-maven-3.8.1\conf\settings.xml
+</code></pre>
+<h1 id="操作mysql"><a href="#操作mysql" class="headerlink" title="操作mysql:"></a>操作mysql:</h1><pre><code>1.crud 
+ insert、delete、update、select 
+
+    获取连接：
+        1.准备sql
+            1. insert、delete、update
+            2.select
+        2.执行sql
+            1. insert、delete、update
+            2.select
+</code></pre>
+<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL:"></a>MySQL:</h1><pre><code>    1.ddl: 
+        1.alter: 
+            1.db 
+                ALTER &#123;DATABASE | SCHEMA&#125; [db_name]
+                alter database bigdata CHARACTER SET = &#39;utf8&#39;;
+            2.table: 
+                1.添加字段
+                    alter table a1 add column column_add varchar(20) after address;
+                    alter table a1 add column column_add01 varchar(20) first ;
+                2.修改字段：
+                    1.name 
+                    2.type 
+                    alter table a1 CHANGE COLUMN column_add01 column_add01 int(3);
+                3.删除字段：【一般不会发生】 
+                    alter table a1 DROP  column_add01;
+
+        2.truncate  =&gt; 清空表
+            delete
+                1.truncate table a1;
+
+        3.create table 
+            1.CREATE TABLE ... LIKE Statement =&gt; 只拷贝 表结构
+                eg:
+                    CREATE TABLE emp_dev LIKE emp;
+            2.CREATE TABLE ... SELECT Statement =》 比较多 临时查询的结果 临时生成一个表
+                ctas：
+                    CREATE TABLE new_tbl [AS] SELECT * FROM orig_tbl;
+                create table emp_dev01 as select ename,job from emp;
+```		
+    2.dml
+        1.insert 
+        insert into table_name [(columns)]values(value_list,...)
+
+        a b 表结构是一样： 
+            需求： 
+                两张表 ， a有数据，b没有数据 
+                把a表数据导入b数据？ 
+            
+            insert into b (name,age) 
+            select name,age from a;
+
+            emp a1  
+            insert into a1(name,address)
+            select ename,job from emp;
+
+
+
+
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://shichunlei99.github.io/2024/10/05/MYSQL2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -374,10 +551,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-10-04 19:13:39 / 修改时间：19:21:36" itemprop="dateCreated datePublished" datetime="2024-10-04T19:13:39+08:00">2024-10-04</time>
+              <time title="创建时间：2024-10-04 19:13:39" itemprop="dateCreated datePublished" datetime="2024-10-04T19:13:39+08:00">2024-10-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-10-06 09:53:26" itemprop="dateModified" datetime="2024-10-06T09:53:26+08:00">2024-10-06</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -454,10 +637,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-10-03 21:40:51 / 修改时间：21:46:23" itemprop="dateCreated datePublished" datetime="2024-10-03T21:40:51+08:00">2024-10-03</time>
+              <time title="创建时间：2024-10-03 21:40:51" itemprop="dateCreated datePublished" datetime="2024-10-03T21:40:51+08:00">2024-10-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-10-06 09:53:22" itemprop="dateModified" datetime="2024-10-06T09:53:22+08:00">2024-10-06</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -622,7 +811,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-03 20:58:23" itemprop="dateModified" datetime="2024-10-03T20:58:23+08:00">2024-10-03</time>
+                <time title="修改时间：2024-10-06 09:53:25" itemprop="dateModified" datetime="2024-10-06T09:53:25+08:00">2024-10-06</time>
               </span>
 
           <br>
@@ -930,12 +1119,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">27k</span>
+    <span title="站点总字数">29k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">25 分钟</span>
+    <span title="站点阅读时长">26 分钟</span>
 </div>
 <!--
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
