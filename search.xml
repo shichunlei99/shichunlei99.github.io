@@ -617,111 +617,6 @@ full join
       </tags>
   </entry>
   <entry>
-    <title>MYSQL3</title>
-    <url>/2024/10/06/MYSQL3/</url>
-    <content><![CDATA[<h1 id="MYSQL3"><a href="#MYSQL3" class="headerlink" title="MYSQL3"></a>MYSQL3</h1><span id="more"></span>
-<h1 id="jdbc"><a href="#jdbc" class="headerlink" title="jdbc:"></a>jdbc:</h1><pre><code>java
-db 
-connction
-</code></pre>
-<h1 id="maven部署："><a href="#maven部署：" class="headerlink" title="maven部署："></a>maven部署：</h1><pre><code>1.下载 解压 
-
-2.配置环境变量
-    MAVEN_HOME=D:\sxwang\app\apache-maven-3.8.1
-    PATH=%MAVEN_HOME%\bin
-3.cmd 
-</code></pre>
-<h1 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h1><pre><code>1.创建maven 项目 
-2.src =》 开发代码目录
-3.pom.xml : 
-    添加第三方依赖包
-</code></pre>
-<h1 id="如何获取mysql连接？"><a href="#如何获取mysql连接？" class="headerlink" title="如何获取mysql连接？"></a>如何获取mysql连接？</h1><pre><code>1.url ： 
-    mysql ip 
-    mysql db 
-2.mysql 用户名 
-3.mysql 密码
-</code></pre>
-<h1 id="添加第三方依赖包"><a href="#添加第三方依赖包" class="headerlink" title="添加第三方依赖包:"></a>添加第三方依赖包:</h1><pre><code>mysql的驱动包： 
-    maven进行第三方jar管理： 
-        mysql-
-
-        &lt;dependency&gt;
-            &lt;groupId&gt;mysql&lt;/groupId&gt;
-            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-            &lt;version&gt;5.1.28&lt;/version&gt;
-        &lt;/dependency&gt;
-</code></pre>
-<p>问题：<br>    1.pom.xml:<br>        可能正在下载第三方jar  </p>
-<pre><code>2.更改本地maven 仓库地址 
-    D:\sxwang\app\apache-maven-3.8.1\conf\settings.xml
-</code></pre>
-<h1 id="操作mysql"><a href="#操作mysql" class="headerlink" title="操作mysql:"></a>操作mysql:</h1><pre><code>1.crud 
- insert、delete、update、select 
-
-    获取连接：
-        1.准备sql
-            1. insert、delete、update
-            2.select
-        2.执行sql
-            1. insert、delete、update
-            2.select
-</code></pre>
-<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL:"></a>MySQL:</h1><pre><code>    1.ddl: 
-        1.alter: 
-            1.db 
-                ALTER &#123;DATABASE | SCHEMA&#125; [db_name]
-                alter database bigdata CHARACTER SET = &#39;utf8&#39;;
-            2.table: 
-                1.添加字段
-                    alter table a1 add column column_add varchar(20) after address;
-                    alter table a1 add column column_add01 varchar(20) first ;
-                2.修改字段：
-                    1.name 
-                    2.type 
-                    alter table a1 CHANGE COLUMN column_add01 column_add01 int(3);
-                3.删除字段：【一般不会发生】 
-                    alter table a1 DROP  column_add01;
-
-        2.truncate  =&gt; 清空表
-            delete
-                1.truncate table a1;
-
-        3.create table 
-            1.CREATE TABLE ... LIKE Statement =&gt; 只拷贝 表结构
-                eg:
-                    CREATE TABLE emp_dev LIKE emp;
-            2.CREATE TABLE ... SELECT Statement =》 比较多 临时查询的结果 临时生成一个表
-                ctas：
-                    CREATE TABLE new_tbl [AS] SELECT * FROM orig_tbl;
-                create table emp_dev01 as select ename,job from emp;
-```		
-    2.dml
-        1.insert 
-        insert into table_name [(columns)]values(value_list,...)
-
-        a b 表结构是一样： 
-            需求： 
-                两张表 ， a有数据，b没有数据 
-                把a表数据导入b数据？ 
-            
-            insert into b (name,age) 
-            select name,age from a;
-
-            emp a1  
-            insert into a1(name,address)
-            select ename,job from emp;
-
-
-
-
-</code></pre>
-]]></content>
-      <categories>
-        <category>MYSQL</category>
-      </categories>
-  </entry>
-  <entry>
     <title>MySQL</title>
     <url>/2024/10/04/MySQL/</url>
     <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><span id="more"></span>
@@ -853,229 +748,204 @@ root@%: 123456
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/10/01/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <title>git</title>
+    <url>/2024/10/06/git/</url>
+    <content><![CDATA[<h1 id="git："><a href="#git：" class="headerlink" title="git："></a>git：</h1><span id="more"></span> 
+<h1 id="git是什么？"><a href="#git是什么？" class="headerlink" title="git是什么？"></a>git是什么？</h1><pre><code>官网地址： 
+    https://git-scm.com/
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+distributed version control system
+</code></pre>
+<h1 id="version-control-system？"><a href="#version-control-system？" class="headerlink" title="version control system？"></a>version control system？</h1><pre><code> Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later. 
+ 记录文件变化的 并且 之后可以指定版本进行恢复
 
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+1.论文： 
+    1.xxx_v1.doc 
+    2.xxx_v2.doc 
+    ...
+    xxx_最终版.doc 
 
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+2.种类： 
+    Local Version Control Systems： copy files into another directory
+        优点：
+            so simple
+        缺点： 
+            error prone 
+            1.代码集成效率低下
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    Centralized Version Control Systems 集中式版本控制系统： 
+        解决： 代码集成效率低下 
+            多人协同开发的问题
+        问题：
+            single point 单点故障
+
+    Distributed Version Control Systems： 
+            解决： 多人协同开发 单点故障
+        1.clients
+
+        2.server
+
+    git： 
+        1.efficiency.
+        2.performance.
+        3.分支操作、文件备份、定制工作流程
+</code></pre>
+<h1 id="文件版本控制："><a href="#文件版本控制：" class="headerlink" title="文件版本控制："></a>文件版本控制：</h1><pre><code>1.本地仓库
+2.远程仓库
+</code></pre>
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><pre><code>1.下载
+2.安装
+3.使用： 
+    1.git 软件 工具
+        1.可视化界面的方式进行操作 =》 git原理
+        2.git 命令操作 =》 linux 命令差不多
+
+        linux 内核 林纳斯 
+        git
+</code></pre>
+<h1 id="查看git版本"><a href="#查看git版本" class="headerlink" title="查看git版本"></a>查看git版本</h1><p>$ git -v<br>git version 2.38.0.windows.1</p>
+<p>使用： 版本控制<br>    1.使用的前的配置 </p>
+<pre><code>-- 要配置我们的项目开发人员的信息
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;zhangsan&quot;</span><br><span class="line">git config --global user.email &quot;zhangsan@qq.com&quot;</span><br><span class="line">	1.设置git参数 =》 本地仓库</span><br><span class="line">usage: git config [&lt;options&gt;]</span><br><span class="line"></span><br><span class="line">Config file location</span><br><span class="line">    --global              use global config file  --对当前用户 所有仓库都有效</span><br><span class="line">    --system              use system config file  -- 对系统所有登录用户有效</span><br><span class="line">    --local               use repository config file -- 对某个仓库有效</span><br></pre></td></tr></table></figure>
+<pre><code>思考： 
+    单单对某一个项目来说 上面哪个参数 有限级高？
+        --local
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config [options]</span><br><span class="line">option...</span><br><span class="line">查看配置参数： </span><br><span class="line">	git config --list </span><br><span class="line">	git config --list --global</span><br><span class="line">	git config --list --local</span><br></pre></td></tr></table></figure>
+<p>1.创建仓库<br>    项目：开发的代码文件<br>    仓库：本地仓库 用于进行文件的版本控制的</p>
+<pre><code>git init: 
+    1.创建一个仓库
+    2.重新初始化一个 以及存在的仓库
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init [-q | --quiet] [--bare] [--template=&lt;template-directory&gt;]</span><br><span class="line">          [--separate-git-dir &lt;git-dir&gt;] [--object-format=&lt;format&gt;]</span><br><span class="line">          [-b &lt;branch-name&gt; | --initial-branch=&lt;branch-name&gt;]</span><br><span class="line">          [--shared[=&lt;permissions&gt;]] [&lt;directory&gt;]</span><br><span class="line">	</span><br><span class="line">	git init [&lt;directory&gt;]</span><br></pre></td></tr></table></figure>
+
+<p>项目：《&#x3D;》 本地仓库 【一个项目 对应一个本地仓库】<br>    1.存在：<br>        cd 项目目录<br>        git init<br>    2.不存在：<br>         git init <project_name><br>         git init test01：<br>         	1.创建一个项目 test01<br>            2. test01目录下下面 创建一个本地仓库 </p>
+<pre><code>    .git 文件夹 本地仓库
+</code></pre>
+<p>使用<br>    git 管理版本控制的工作流程：<br>        工作区： 项目目录<br>        暂存区： 临时存储文件的地方 可以进行撤回<br>        本地仓库：版本控制</p>
+<p> 入门：<br>    1.vim 1.log<br>    2.git add 1.log  &#x3D;&gt; 添加到暂存区<br>    3.git commit -m “Add 1.log” &#x3D;&gt; 添加到 本地仓库<br>    4.git log 查看本地仓库历史 ：当前项目的 commit历史</p>
+<p>git commit  -m <msg></p>
+<pre><code>总结： 
+    本地仓库 ： 
+        如何进行版本控制？
+            commit 进行区分版本的
+
+切换版本： 可以使用
+    git reset --hard [&lt;commit&gt;]
+
+    git reset --hard d7db6e
+</code></pre>
+<p>了解：<br>     git log –reflog</p>
 ]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
   </entry>
   <entry>
-    <title>我的第一篇博客文章</title>
-    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>java api</title>
-    <url>/2024/10/02/java-api/</url>
-    <content><![CDATA[<h1 id="java-api"><a href="#java-api" class="headerlink" title="java api"></a>java api</h1><span id="more"></span>
-<h1 id="参数设置的优先级："><a href="#参数设置的优先级：" class="headerlink" title="参数设置的优先级："></a>参数设置的优先级：</h1><pre><code>1.默认配置文件
-    core-default.xml
-    hdfs-default.xml
-    mapred-default.xml
-    yarn-default.xml
-2.生产配置文件
-    core-site.xml
-    hdfs-site.xml
-    mapred-site.xml
-    yarn-site.xml
-3.代码里面设置的参数
-     Configuration
+    <title>MYSQL3</title>
+    <url>/2024/10/06/MYSQL3/</url>
+    <content><![CDATA[<h1 id="MYSQL3"><a href="#MYSQL3" class="headerlink" title="MYSQL3"></a>MYSQL3</h1><span id="more"></span>
+<h1 id="jdbc"><a href="#jdbc" class="headerlink" title="jdbc:"></a>jdbc:</h1><pre><code>java
+db 
+connction
+</code></pre>
+<h1 id="maven部署："><a href="#maven部署：" class="headerlink" title="maven部署："></a>maven部署：</h1><pre><code>1.下载 解压 
 
-优先级排序：代码里面设置的参数 》 生产配置文件 》 默认配置文件
+2.配置环境变量
+    MAVEN_HOME=D:\sxwang\app\apache-maven-3.8.1
+    PATH=%MAVEN_HOME%\bin
+3.cmd 
 </code></pre>
-<h1 id="1-使用java-api-操作-hdfs在-创建文件夹"><a href="#1-使用java-api-操作-hdfs在-创建文件夹" class="headerlink" title="1.使用java api 操作 hdfs在 创建文件夹"></a>1.使用java api 操作 hdfs在 创建文件夹</h1><pre><code> /data/dt=20221114
- /data/dt=20221115
- /data/dt=20221116
+<h1 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h1><pre><code>1.创建maven 项目 
+2.src =》 开发代码目录
+3.pom.xml : 
+    添加第三方依赖包
 </code></pre>
-<h1 id="2-使用java-api-上传本地-wc-data-到上面三个目录下"><a href="#2-使用java-api-上传本地-wc-data-到上面三个目录下" class="headerlink" title="2.使用java api 上传本地 wc.data 到上面三个目录下"></a>2.使用java api 上传本地 wc.data 到上面三个目录下</h1><h1 id="3-使用java-api-将"><a href="#3-使用java-api-将" class="headerlink" title="3.使用java api 将"></a>3.使用java api 将</h1><pre><code>/data/dt=20221114/wc.data
-/data/dt=20221115/wc.data
-/data/dt=20221116/wc.data
-目录下的文件移动到 指定目录 并进行改名字
-/data/hive/20221114-01.data
-/data/hive/20221115-01.data
-/data/hive/20221116-01.data
+<h1 id="如何获取mysql连接？"><a href="#如何获取mysql连接？" class="headerlink" title="如何获取mysql连接？"></a>如何获取mysql连接？</h1><pre><code>1.url ： 
+    mysql ip 
+    mysql db 
+2.mysql 用户名 
+3.mysql 密码
 </code></pre>
-<h1 id="创建文件夹-上传-改名字"><a href="#创建文件夹-上传-改名字" class="headerlink" title="创建文件夹  上传 改名字"></a>创建文件夹  上传 改名字</h1><p> path:<br>    hdfspath  上传的path<br>    localpath  本地path<br>    filename   文件名字<br>    renamepath  修改文件的路径的path<br>    renamesufname 修改后文件的结尾<br>    dt         </p>
-<p>hadoop jar &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;DL2262-hdfsapi-1.0.jar <br>com.bigdata.HomeWork01 <br>“&#x2F;data&#x2F;dt&#x3D;” “file:&#x2F;&#x2F;&#x2F;&#x2F;home&#x2F;hadoop” “1.log” “&#x2F;data&#x2F;flink” “-01.data” “20221117”</p>
-<p>start.sh<br>if [ $# -lt 6 ];then<br>    echo “Usage:put file to hdfs”<br>    echo “Usage:$0 <hdfspath> <localpath> <filename> <renamepath> <suffname> <dt>“<br>    echo “Usage:<hdfspath> is hdfs path”<br>    echo “eg:$0 ‘&#x2F;data&#x2F;dt&#x3D;’ ‘file:&#x2F;&#x2F;&#x2F;&#x2F;home&#x2F;hadoop’ ‘1.log’ ‘&#x2F;data&#x2F;flink’ ‘-01.data’ ‘20221117’”<br>    exit;<br>fi</p>
-<p>hadoop jar &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;DL2262-hdfsapi-1.0.jar <br>com.bigdata.HomeWork01 <br>“${1}” “${2}” “${3}” “${4}” “${5}” “${6}”</p>
-<h1 id="HDFS：负责存储数据"><a href="#HDFS：负责存储数据" class="headerlink" title="HDFS：负责存储数据"></a>HDFS：负责存储数据</h1><pre><code>1.文件进行拆分 文件块
-2.存储 拆分 文件块
-</code></pre>
-<h1 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h1><pre><code>hdfs主要存储文件 大文件  不是说 不能存储小文件
-存储小文件 影响hdfs 性能
-</code></pre>
-<h1 id="block-块-："><a href="#block-块-：" class="headerlink" title="block 块 ："></a>block 块 ：</h1><pre><code>1.怎么来的？
-    文件拆分来的 【按照 块大小 进行拆分】
-2.属性：
-    1.块大小 128M blocksize
-    2.块的副本数:
-        1.伪分布式 1
-        2.完全分布式 3
-            1.3  3
-            2.&gt;3 3
+<h1 id="添加第三方依赖包"><a href="#添加第三方依赖包" class="headerlink" title="添加第三方依赖包:"></a>添加第三方依赖包:</h1><pre><code>mysql的驱动包： 
+    maven进行第三方jar管理： 
+        mysql-
 
-本地文件大小：260M
-块大小 ：128m
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;5.1.28&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<p>问题：<br>    1.pom.xml:<br>        可能正在下载第三方jar  </p>
+<pre><code>2.更改本地maven 仓库地址 
+    D:\sxwang\app\apache-maven-3.8.1\conf\settings.xml
+</code></pre>
+<h1 id="操作mysql"><a href="#操作mysql" class="headerlink" title="操作mysql:"></a>操作mysql:</h1><pre><code>1.crud 
+ insert、delete、update、select 
 
-      块实际存储      规格【块大小】 128M
+    获取连接：
+        1.准备sql
+            1. insert、delete、update
+            2.select
+        2.执行sql
+            1. insert、delete、update
+            2.select
 </code></pre>
-<p> 第一块	   128M				128M<br> 第二块	   128M				128M<br> 第三块		4M				128M</p>
-<h1 id="S假如："><a href="#S假如：" class="headerlink" title="S假如："></a>S假如：</h1><pre><code>一缸水 260L
-一个瓶子 128l
-</code></pre>
-<p>第一个瓶子  128l   128L<br>第二个瓶子  128l<br>第三个瓶子  4L</p>
-<p>160M 2个副本 问：<br>    1.文件拆分了块在hdfs上存了多少个块？<br>160M：<br>128M  &#x3D;&gt; 1<br>32M   &#x3D;&gt; 1<br>1+1 &#x3D;2 块  * 2 &#x3D; 4个块</p>
-<pre><code>2.实际存储到hdfs 存储的大小是多少？
-    160m * 2 = 320M
-</code></pre>
-<p>[hadoop@bigdata32 subdir0]$ pwd<br>&#x2F;home&#x2F;hadoop&#x2F;data&#x2F;hadoop&#x2F;dfs&#x2F;data&#x2F;current&#x2F;BP-155707757-192.168.41.32-1668441906801&#x2F;current&#x2F;finalized&#x2F;subdir0&#x2F;subdir0</p>
-<p>练习：<br>    hdfs api 完成wordcount 统计</p>
-<p>大数据处理：<br>    1.input<br>    2.处理<br>    3.output</p>
-<pre><code>hdfs 存储一堆文件 让你统计每个单词出现的次数？
-1.input
-    hdfs 一些文件
-    fs.open
-2.处理
-    词频统计
-    1.读取进来的内容 一行一行的 ，按照某个规则指定分隔符 进行拆分 =》一个一个单词
-    2.给每个单词 赋值为1
-        a,a,a,b,b
-     =&gt;
-     	(a,1)
-        (a,1)
-        (a,1)
-        (b,1)
-        (b,1)
-    3.将相同的单词 存起来 一个集合里面
-        进行聚合统计 每个单词出现的次数
-        &lt;a,1,1,1&gt;
-        &lt;b,1,1&gt;
-        =&gt;
-        &lt;a,3&gt;
-        &lt;b,2&gt;
-3.output
-    1.打印到控制台
-    2.输出到hdfs上
+<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL:"></a>MySQL:</h1><pre><code>    1.ddl: 
+        1.alter: 
+            1.db 
+                ALTER &#123;DATABASE | SCHEMA&#125; [db_name]
+                alter database bigdata CHARACTER SET = &#39;utf8&#39;;
+            2.table: 
+                1.添加字段
+                    alter table a1 add column column_add varchar(20) after address;
+                    alter table a1 add column column_add01 varchar(20) first ;
+                2.修改字段：
+                    1.name 
+                    2.type 
+                    alter table a1 CHANGE COLUMN column_add01 column_add01 int(3);
+                3.删除字段：【一般不会发生】 
+                    alter table a1 DROP  column_add01;
+
+        2.truncate  =&gt; 清空表
+            delete
+                1.truncate table a1;
+
+        3.create table 
+            1.CREATE TABLE ... LIKE Statement =&gt; 只拷贝 表结构
+                eg:
+                    CREATE TABLE emp_dev LIKE emp;
+            2.CREATE TABLE ... SELECT Statement =》 比较多 临时查询的结果 临时生成一个表
+                ctas：
+                    CREATE TABLE new_tbl [AS] SELECT * FROM orig_tbl;
+                create table emp_dev01 as select ename,job from emp;
+```		
+    2.dml
+        1.insert 
+        insert into table_name [(columns)]values(value_list,...)
+
+        a b 表结构是一样： 
+            需求： 
+                两张表 ， a有数据，b没有数据 
+                把a表数据导入b数据？ 
+            
+            insert into b (name,age) 
+            select name,age from a;
+
+            emp a1  
+            insert into a1(name,address)
+            select ename,job from emp;
+
+
+
+
 </code></pre>
 ]]></content>
-  </entry>
-  <entry>
-    <title>数据类型</title>
-    <url>/2024/10/03/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<h1 id="java的数据类型"><a href="#java的数据类型" class="headerlink" title="java的数据类型"></a>java的数据类型</h1><span id="more"></span>
-<p>基本类型：8个基本类型。 类型首字母小写</p>
-<p>引用类型： 对象类型。</p>
-<h2 id="1-1-八个基本类型"><a href="#1-1-八个基本类型" class="headerlink" title="1.1 八个基本类型"></a>1.1 八个基本类型</h2><p> &#x2F;&#x2F; 0开头时8进制， 0b时二进制， 0x十六进制</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>byte 字节</td>
-<td>8位，   8bit</td>
-<td>-128-127<br />0111 1111     127<br /><br />1000 0000     -128</td>
-<td>网络传输，文件的大小</td>
-</tr>
-<tr>
-<td>short 短整型</td>
-<td>2byte  16位</td>
-<td>（-2的n-1次方~2的n-1次方-1）</td>
-<td>16位计算机用</td>
-</tr>
-<tr>
-<td>int 整型</td>
-<td>4byte  32位</td>
-<td></td>
-<td>字面量</td>
-</tr>
-<tr>
-<td>long 长整型</td>
-<td>8byte  64位</td>
-<td></td>
-<td>毫秒数（1970-1-1凌晨到现在的毫秒数）</td>
-</tr>
-<tr>
-<td>float 单精度浮点型</td>
-<td>32位</td>
-<td>默认大于整数</td>
-<td>有效位数8位</td>
-</tr>
-<tr>
-<td>double双精度浮点型</td>
-<td>64</td>
-<td></td>
-<td>字面量。 浮点型都<code>不能</code>参与运算</td>
-</tr>
-<tr>
-<td>boolean布尔型</td>
-<td>1bit</td>
-<td>true, false</td>
-<td></td>
-</tr>
-<tr>
-<td>char字符型</td>
-<td>2byte 16位</td>
-<td></td>
-<td>和整数隐式转换， 可以参与运算</td>
-</tr>
-</tbody></table>
-<h2 id="1-2-字符型"><a href="#1-2-字符型" class="headerlink" title="1.2 字符型"></a>1.2 字符型</h2><ul>
-<li>ASCII码: 1byte范围 0~127</li>
-</ul>
-<p>0: 空字符<code> ‘’</code></p>
-<p>32: 空格 <code>&#39; &#39;</code></p>
-<p>49:  字符<code>&#39;1&#39;</code></p>
-<p>65: ‘A’</p>
-<p>97: ‘a’</p>
-<ul>
-<li>转义字符：</li>
-</ul>
-<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">\&#x27;   \&quot;  \r  \n  \t   \\</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Unicode码：  <code>\uFFFF</code> 四个十六进制数表示 两个字节的字符</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test2</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// 定义byte型变量时 a1</span></span><br><span class="line">		<span class="type">byte</span> a1;</span><br><span class="line">		<span class="comment">// （编译时隐式转换） </span></span><br><span class="line">		a1 = <span class="number">127</span>; <span class="comment">// 0开头时8进制， 0b时二进制， 0x十六进制</span></span><br><span class="line">		<span class="comment">// byte a2 = 128; 超过范围</span></span><br><span class="line">		System.out.println(a1);</span><br><span class="line">		<span class="type">short</span> <span class="variable">a3</span> <span class="operator">=</span> <span class="number">1024</span>; <span class="comment">// 字面量常亮数值1024 默认时int型的</span></span><br><span class="line">		System.out.println(a3);		</span><br><span class="line">		<span class="type">long</span> <span class="variable">a4</span> <span class="operator">=</span> <span class="number">120</span>; <span class="comment">// 120 是32位</span></span><br><span class="line">		a4 = <span class="number">120L</span>; <span class="comment">// 120L 是64位</span></span><br><span class="line">		System.out.println(a4);</span><br><span class="line">		System.out.println(<span class="string">&quot;==============================&quot;</span>);</span><br><span class="line">		<span class="type">float</span> <span class="variable">f</span> <span class="operator">=</span> <span class="number">0.12345678901234567f</span>;</span><br><span class="line">		System.out.println(f);</span><br><span class="line">		<span class="type">double</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">0.12345678901234567</span>;</span><br><span class="line">		System.out.println(d);</span><br><span class="line">		System.out.println(<span class="number">0.1</span> + <span class="number">0.2</span>);</span><br><span class="line">		System.out.println(<span class="number">0.1</span> + <span class="number">0.2</span> == <span class="number">0.3</span>);</span><br><span class="line"></span><br><span class="line">		<span class="type">char</span> <span class="variable">a</span> <span class="operator">=</span> <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">		System.out.println(a + <span class="number">0</span>);</span><br><span class="line">		<span class="type">char</span> <span class="variable">a5</span> <span class="operator">=</span> <span class="number">65</span>;</span><br><span class="line">		System.out.println( (<span class="type">char</span>)a5 );</span><br><span class="line">		<span class="type">char</span> <span class="variable">a6</span> <span class="operator">=</span> <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">		System.out.println(a6 + <span class="number">0</span>);</span><br><span class="line">		System.out.println( (<span class="type">char</span>) <span class="number">57</span>);</span><br><span class="line">		System.out.println( <span class="string">&#x27;A&#x27;</span> &gt; <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;==============================&quot;</span>);</span><br><span class="line">		System.out.println( <span class="string">&#x27;\&#x27;&#x27;</span>);</span><br><span class="line">		System.out.println( <span class="string">&#x27;	&#x27;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;==============================&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="type">char</span> <span class="variable">a7</span> <span class="operator">=</span> <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">		System.out.println(a7);</span><br><span class="line">		</span><br><span class="line">		<span class="type">char</span> <span class="variable">a8</span> <span class="operator">=</span> <span class="string">&#x27;丁&#x27;</span>;</span><br><span class="line">		System.out.println(a8 + <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="type">char</span> <span class="variable">a9</span> <span class="operator">=</span> <span class="string">&#x27;\u4E01&#x27;</span>; <span class="comment">// Unicode码</span></span><br><span class="line">		System.out.println(a9);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="1-3-基本类型转换"><a href="#1-3-基本类型转换" class="headerlink" title="1.3 基本类型转换"></a>1.3 基本类型转换</h2><p>小 转 大  隐式</p>
-<p>大 转 小  强制转换<code>a = (byte) b;</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">byte</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">11</span>;</span><br><span class="line"></span><br><span class="line">b = a; <span class="comment">// 小 转 大  隐式</span></span><br><span class="line"></span><br><span class="line">a = <span class="number">11</span>;</span><br><span class="line">a = (<span class="type">byte</span>) b; <span class="comment">// 大 转 小  强制转换</span></span><br><span class="line">System.out.println(a);</span><br><span class="line"></span><br><span class="line">a = (<span class="type">byte</span>) <span class="number">128</span>;</span><br><span class="line">System.out.println(a); <span class="comment">// ???</span></span><br><span class="line"></span><br><span class="line">a = (<span class="type">byte</span>) <span class="number">1234</span>;</span><br><span class="line">System.out.println(a); <span class="comment">// ???</span></span><br><span class="line"></span><br><span class="line"><span class="type">float</span> <span class="variable">f1</span> <span class="operator">=</span> <span class="number">1</span>; <span class="comment">// 32int ===&gt; 32浮点</span></span><br><span class="line"><span class="type">long</span> <span class="variable">a1</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">a1 = (<span class="type">long</span>) f1; <span class="comment">// 32浮点  ===&gt; 64long </span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-]]></content>
+      <categories>
+        <category>MYSQL</category>
+      </categories>
   </entry>
   <entry>
     <title>Shell</title>
@@ -1364,5 +1234,230 @@ done
 <h2 id="2-hostname"><a href="#2-hostname" class="headerlink" title="2.hostname"></a>2.hostname</h2><pre><code>        vim /etc/hostname
 </code></pre>
 <h2 id="3-重启机器"><a href="#3-重启机器" class="headerlink" title="3.重启机器"></a>3.重启机器</h2>]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/10/01/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>java api</title>
+    <url>/2024/10/02/java-api/</url>
+    <content><![CDATA[<h1 id="java-api"><a href="#java-api" class="headerlink" title="java api"></a>java api</h1><span id="more"></span>
+<h1 id="参数设置的优先级："><a href="#参数设置的优先级：" class="headerlink" title="参数设置的优先级："></a>参数设置的优先级：</h1><pre><code>1.默认配置文件
+    core-default.xml
+    hdfs-default.xml
+    mapred-default.xml
+    yarn-default.xml
+2.生产配置文件
+    core-site.xml
+    hdfs-site.xml
+    mapred-site.xml
+    yarn-site.xml
+3.代码里面设置的参数
+     Configuration
+
+优先级排序：代码里面设置的参数 》 生产配置文件 》 默认配置文件
+</code></pre>
+<h1 id="1-使用java-api-操作-hdfs在-创建文件夹"><a href="#1-使用java-api-操作-hdfs在-创建文件夹" class="headerlink" title="1.使用java api 操作 hdfs在 创建文件夹"></a>1.使用java api 操作 hdfs在 创建文件夹</h1><pre><code> /data/dt=20221114
+ /data/dt=20221115
+ /data/dt=20221116
+</code></pre>
+<h1 id="2-使用java-api-上传本地-wc-data-到上面三个目录下"><a href="#2-使用java-api-上传本地-wc-data-到上面三个目录下" class="headerlink" title="2.使用java api 上传本地 wc.data 到上面三个目录下"></a>2.使用java api 上传本地 wc.data 到上面三个目录下</h1><h1 id="3-使用java-api-将"><a href="#3-使用java-api-将" class="headerlink" title="3.使用java api 将"></a>3.使用java api 将</h1><pre><code>/data/dt=20221114/wc.data
+/data/dt=20221115/wc.data
+/data/dt=20221116/wc.data
+目录下的文件移动到 指定目录 并进行改名字
+/data/hive/20221114-01.data
+/data/hive/20221115-01.data
+/data/hive/20221116-01.data
+</code></pre>
+<h1 id="创建文件夹-上传-改名字"><a href="#创建文件夹-上传-改名字" class="headerlink" title="创建文件夹  上传 改名字"></a>创建文件夹  上传 改名字</h1><p> path:<br>    hdfspath  上传的path<br>    localpath  本地path<br>    filename   文件名字<br>    renamepath  修改文件的路径的path<br>    renamesufname 修改后文件的结尾<br>    dt         </p>
+<p>hadoop jar &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;DL2262-hdfsapi-1.0.jar <br>com.bigdata.HomeWork01 <br>“&#x2F;data&#x2F;dt&#x3D;” “file:&#x2F;&#x2F;&#x2F;&#x2F;home&#x2F;hadoop” “1.log” “&#x2F;data&#x2F;flink” “-01.data” “20221117”</p>
+<p>start.sh<br>if [ $# -lt 6 ];then<br>    echo “Usage:put file to hdfs”<br>    echo “Usage:$0 <hdfspath> <localpath> <filename> <renamepath> <suffname> <dt>“<br>    echo “Usage:<hdfspath> is hdfs path”<br>    echo “eg:$0 ‘&#x2F;data&#x2F;dt&#x3D;’ ‘file:&#x2F;&#x2F;&#x2F;&#x2F;home&#x2F;hadoop’ ‘1.log’ ‘&#x2F;data&#x2F;flink’ ‘-01.data’ ‘20221117’”<br>    exit;<br>fi</p>
+<p>hadoop jar &#x2F;home&#x2F;hadoop&#x2F;project&#x2F;DL2262-hdfsapi-1.0.jar <br>com.bigdata.HomeWork01 <br>“${1}” “${2}” “${3}” “${4}” “${5}” “${6}”</p>
+<h1 id="HDFS：负责存储数据"><a href="#HDFS：负责存储数据" class="headerlink" title="HDFS：负责存储数据"></a>HDFS：负责存储数据</h1><pre><code>1.文件进行拆分 文件块
+2.存储 拆分 文件块
+</code></pre>
+<h1 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h1><pre><code>hdfs主要存储文件 大文件  不是说 不能存储小文件
+存储小文件 影响hdfs 性能
+</code></pre>
+<h1 id="block-块-："><a href="#block-块-：" class="headerlink" title="block 块 ："></a>block 块 ：</h1><pre><code>1.怎么来的？
+    文件拆分来的 【按照 块大小 进行拆分】
+2.属性：
+    1.块大小 128M blocksize
+    2.块的副本数:
+        1.伪分布式 1
+        2.完全分布式 3
+            1.3  3
+            2.&gt;3 3
+
+本地文件大小：260M
+块大小 ：128m
+
+      块实际存储      规格【块大小】 128M
+</code></pre>
+<p> 第一块	   128M				128M<br> 第二块	   128M				128M<br> 第三块		4M				128M</p>
+<h1 id="S假如："><a href="#S假如：" class="headerlink" title="S假如："></a>S假如：</h1><pre><code>一缸水 260L
+一个瓶子 128l
+</code></pre>
+<p>第一个瓶子  128l   128L<br>第二个瓶子  128l<br>第三个瓶子  4L</p>
+<p>160M 2个副本 问：<br>    1.文件拆分了块在hdfs上存了多少个块？<br>160M：<br>128M  &#x3D;&gt; 1<br>32M   &#x3D;&gt; 1<br>1+1 &#x3D;2 块  * 2 &#x3D; 4个块</p>
+<pre><code>2.实际存储到hdfs 存储的大小是多少？
+    160m * 2 = 320M
+</code></pre>
+<p>[hadoop@bigdata32 subdir0]$ pwd<br>&#x2F;home&#x2F;hadoop&#x2F;data&#x2F;hadoop&#x2F;dfs&#x2F;data&#x2F;current&#x2F;BP-155707757-192.168.41.32-1668441906801&#x2F;current&#x2F;finalized&#x2F;subdir0&#x2F;subdir0</p>
+<p>练习：<br>    hdfs api 完成wordcount 统计</p>
+<p>大数据处理：<br>    1.input<br>    2.处理<br>    3.output</p>
+<pre><code>hdfs 存储一堆文件 让你统计每个单词出现的次数？
+1.input
+    hdfs 一些文件
+    fs.open
+2.处理
+    词频统计
+    1.读取进来的内容 一行一行的 ，按照某个规则指定分隔符 进行拆分 =》一个一个单词
+    2.给每个单词 赋值为1
+        a,a,a,b,b
+     =&gt;
+     	(a,1)
+        (a,1)
+        (a,1)
+        (b,1)
+        (b,1)
+    3.将相同的单词 存起来 一个集合里面
+        进行聚合统计 每个单词出现的次数
+        &lt;a,1,1,1&gt;
+        &lt;b,1,1&gt;
+        =&gt;
+        &lt;a,3&gt;
+        &lt;b,2&gt;
+3.output
+    1.打印到控制台
+    2.输出到hdfs上
+</code></pre>
+]]></content>
+  </entry>
+  <entry>
+    <title>我的第一篇博客文章</title>
+    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>数据类型</title>
+    <url>/2024/10/03/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="java的数据类型"><a href="#java的数据类型" class="headerlink" title="java的数据类型"></a>java的数据类型</h1><span id="more"></span>
+<p>基本类型：8个基本类型。 类型首字母小写</p>
+<p>引用类型： 对象类型。</p>
+<h2 id="1-1-八个基本类型"><a href="#1-1-八个基本类型" class="headerlink" title="1.1 八个基本类型"></a>1.1 八个基本类型</h2><p> &#x2F;&#x2F; 0开头时8进制， 0b时二进制， 0x十六进制</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte 字节</td>
+<td>8位，   8bit</td>
+<td>-128-127<br />0111 1111     127<br /><br />1000 0000     -128</td>
+<td>网络传输，文件的大小</td>
+</tr>
+<tr>
+<td>short 短整型</td>
+<td>2byte  16位</td>
+<td>（-2的n-1次方~2的n-1次方-1）</td>
+<td>16位计算机用</td>
+</tr>
+<tr>
+<td>int 整型</td>
+<td>4byte  32位</td>
+<td></td>
+<td>字面量</td>
+</tr>
+<tr>
+<td>long 长整型</td>
+<td>8byte  64位</td>
+<td></td>
+<td>毫秒数（1970-1-1凌晨到现在的毫秒数）</td>
+</tr>
+<tr>
+<td>float 单精度浮点型</td>
+<td>32位</td>
+<td>默认大于整数</td>
+<td>有效位数8位</td>
+</tr>
+<tr>
+<td>double双精度浮点型</td>
+<td>64</td>
+<td></td>
+<td>字面量。 浮点型都<code>不能</code>参与运算</td>
+</tr>
+<tr>
+<td>boolean布尔型</td>
+<td>1bit</td>
+<td>true, false</td>
+<td></td>
+</tr>
+<tr>
+<td>char字符型</td>
+<td>2byte 16位</td>
+<td></td>
+<td>和整数隐式转换， 可以参与运算</td>
+</tr>
+</tbody></table>
+<h2 id="1-2-字符型"><a href="#1-2-字符型" class="headerlink" title="1.2 字符型"></a>1.2 字符型</h2><ul>
+<li>ASCII码: 1byte范围 0~127</li>
+</ul>
+<p>0: 空字符<code> ‘’</code></p>
+<p>32: 空格 <code>&#39; &#39;</code></p>
+<p>49:  字符<code>&#39;1&#39;</code></p>
+<p>65: ‘A’</p>
+<p>97: ‘a’</p>
+<ul>
+<li>转义字符：</li>
+</ul>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">\&#x27;   \&quot;  \r  \n  \t   \\</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Unicode码：  <code>\uFFFF</code> 四个十六进制数表示 两个字节的字符</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test2</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// 定义byte型变量时 a1</span></span><br><span class="line">		<span class="type">byte</span> a1;</span><br><span class="line">		<span class="comment">// （编译时隐式转换） </span></span><br><span class="line">		a1 = <span class="number">127</span>; <span class="comment">// 0开头时8进制， 0b时二进制， 0x十六进制</span></span><br><span class="line">		<span class="comment">// byte a2 = 128; 超过范围</span></span><br><span class="line">		System.out.println(a1);</span><br><span class="line">		<span class="type">short</span> <span class="variable">a3</span> <span class="operator">=</span> <span class="number">1024</span>; <span class="comment">// 字面量常亮数值1024 默认时int型的</span></span><br><span class="line">		System.out.println(a3);		</span><br><span class="line">		<span class="type">long</span> <span class="variable">a4</span> <span class="operator">=</span> <span class="number">120</span>; <span class="comment">// 120 是32位</span></span><br><span class="line">		a4 = <span class="number">120L</span>; <span class="comment">// 120L 是64位</span></span><br><span class="line">		System.out.println(a4);</span><br><span class="line">		System.out.println(<span class="string">&quot;==============================&quot;</span>);</span><br><span class="line">		<span class="type">float</span> <span class="variable">f</span> <span class="operator">=</span> <span class="number">0.12345678901234567f</span>;</span><br><span class="line">		System.out.println(f);</span><br><span class="line">		<span class="type">double</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">0.12345678901234567</span>;</span><br><span class="line">		System.out.println(d);</span><br><span class="line">		System.out.println(<span class="number">0.1</span> + <span class="number">0.2</span>);</span><br><span class="line">		System.out.println(<span class="number">0.1</span> + <span class="number">0.2</span> == <span class="number">0.3</span>);</span><br><span class="line"></span><br><span class="line">		<span class="type">char</span> <span class="variable">a</span> <span class="operator">=</span> <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">		System.out.println(a + <span class="number">0</span>);</span><br><span class="line">		<span class="type">char</span> <span class="variable">a5</span> <span class="operator">=</span> <span class="number">65</span>;</span><br><span class="line">		System.out.println( (<span class="type">char</span>)a5 );</span><br><span class="line">		<span class="type">char</span> <span class="variable">a6</span> <span class="operator">=</span> <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">		System.out.println(a6 + <span class="number">0</span>);</span><br><span class="line">		System.out.println( (<span class="type">char</span>) <span class="number">57</span>);</span><br><span class="line">		System.out.println( <span class="string">&#x27;A&#x27;</span> &gt; <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;==============================&quot;</span>);</span><br><span class="line">		System.out.println( <span class="string">&#x27;\&#x27;&#x27;</span>);</span><br><span class="line">		System.out.println( <span class="string">&#x27;	&#x27;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;==============================&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="type">char</span> <span class="variable">a7</span> <span class="operator">=</span> <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">		System.out.println(a7);</span><br><span class="line">		</span><br><span class="line">		<span class="type">char</span> <span class="variable">a8</span> <span class="operator">=</span> <span class="string">&#x27;丁&#x27;</span>;</span><br><span class="line">		System.out.println(a8 + <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="type">char</span> <span class="variable">a9</span> <span class="operator">=</span> <span class="string">&#x27;\u4E01&#x27;</span>; <span class="comment">// Unicode码</span></span><br><span class="line">		System.out.println(a9);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1-3-基本类型转换"><a href="#1-3-基本类型转换" class="headerlink" title="1.3 基本类型转换"></a>1.3 基本类型转换</h2><p>小 转 大  隐式</p>
+<p>大 转 小  强制转换<code>a = (byte) b;</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">byte</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">11</span>;</span><br><span class="line"></span><br><span class="line">b = a; <span class="comment">// 小 转 大  隐式</span></span><br><span class="line"></span><br><span class="line">a = <span class="number">11</span>;</span><br><span class="line">a = (<span class="type">byte</span>) b; <span class="comment">// 大 转 小  强制转换</span></span><br><span class="line">System.out.println(a);</span><br><span class="line"></span><br><span class="line">a = (<span class="type">byte</span>) <span class="number">128</span>;</span><br><span class="line">System.out.println(a); <span class="comment">// ???</span></span><br><span class="line"></span><br><span class="line">a = (<span class="type">byte</span>) <span class="number">1234</span>;</span><br><span class="line">System.out.println(a); <span class="comment">// ???</span></span><br><span class="line"></span><br><span class="line"><span class="type">float</span> <span class="variable">f1</span> <span class="operator">=</span> <span class="number">1</span>; <span class="comment">// 32int ===&gt; 32浮点</span></span><br><span class="line"><span class="type">long</span> <span class="variable">a1</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">a1 = (<span class="type">long</span>) f1; <span class="comment">// 32浮点  ===&gt; 64long </span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></content>
   </entry>
 </search>
