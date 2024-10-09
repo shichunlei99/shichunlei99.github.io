@@ -458,138 +458,109 @@ curl localhost:80
       </tags>
   </entry>
   <entry>
-    <title>MySQL</title>
-    <url>/2024/10/04/MySQL/</url>
-    <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><span id="more"></span>
-<h1 id="使用场景？"><a href="#使用场景？" class="headerlink" title="使用场景？"></a>使用场景？</h1><pre><code>1.java开发人员 业务数据库
-2.大数据组件 元数据 、结果数据 
+    <title>MYSQL3</title>
+    <url>/2024/10/06/MYSQL3/</url>
+    <content><![CDATA[<h1 id="MYSQL3"><a href="#MYSQL3" class="headerlink" title="MYSQL3"></a>MYSQL3</h1><span id="more"></span>
+<h1 id="jdbc"><a href="#jdbc" class="headerlink" title="jdbc:"></a>jdbc:</h1><pre><code>java
+db 
+connction
 </code></pre>
-<h1 id="2-什么是mysql？"><a href="#2-什么是mysql？" class="headerlink" title="2.什么是mysql？"></a>2.什么是mysql？</h1><pre><code>1.关系型数据库： RDBMS  非关系型数据库NoSQL
-    1.存储数据
-    2.查询
-2.类似表格
-3.有行有列
-</code></pre>
-<h1 id="3-背景："><a href="#3-背景：" class="headerlink" title="3.背景："></a>3.背景：</h1><pre><code>处理数据 ：excel 
-mysql： 
-    存储数据，数据分析
-    一堆类似excel的表格
-</code></pre>
-<h1 id="4-官网"><a href="#4-官网" class="headerlink" title="4.官网"></a>4.官网</h1><pre><code>www.mysql.com
-</code></pre>
-<h1 id="5-版本："><a href="#5-版本：" class="headerlink" title="5.版本："></a>5.版本：</h1><pre><code>8.x 不是主流、java团队 
-5.7  it java 大数据 主流
-5.6 目前公司也有
-</code></pre>
-<p>补充：<br>    上传下载：<br>        [root@bigdata31 software]# yum install -y lrzsz</p>
-<pre><code>上传： rz 
-下载 ：sz xxx
-</code></pre>
-<h1 id="6-部署："><a href="#6-部署：" class="headerlink" title="6.部署："></a>6.部署：</h1><pre><code>1.下载安装包  
-    5.7
-    安装包种类：
-        rpm包 ：mysql source code =》 rpm包
-            mysql-5.7.38-1.el7.x86_64.rpm-bundle.tar
+<h1 id="maven部署："><a href="#maven部署：" class="headerlink" title="maven部署："></a>maven部署：</h1><pre><code>1.下载 解压 
 
-        tar包：mysql source code +开发加的mysql代码 =》 编译打包生成 tar包
-
-            mysql-5.7.38-el7-x86_64.tar.gz
-
-准备好了： 
+2.配置环境变量
+    MAVEN_HOME=D:\sxwang\app\apache-maven-3.8.1
+    PATH=%MAVEN_HOME%\bin
+3.cmd 
 </code></pre>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">	<span class="number">2.</span>安装部署</span><br><span class="line">		<span class="number">1.</span>上传mysql 安装包</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# ll</span><br><span class="line">			total <span class="number">595272</span></span><br><span class="line">			-rw-r--r--. <span class="number">1</span> root root <span class="number">609556480</span> Aug <span class="number">26</span>  <span class="number">2021</span> mysql-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm-bundle.tar</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# pwd</span><br><span class="line">			/root/software</span><br><span class="line"></span><br><span class="line">		<span class="number">2.</span>部署 </span><br><span class="line">			<span class="number">1.</span>解压</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# tar -xvf ./mysql-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm-bundle.tar </span><br><span class="line">mysql-community-embedded-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-compat-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-devel-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-compat-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-test-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-common-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-devel-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-client-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-server-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
-<pre><code>2.安装 
-    1.卸载 mariadb 相关的东西
-    [root@bigdata31 software]# rpm -qa | grep mariadb
+<h1 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h1><pre><code>1.创建maven 项目 
+2.src =》 开发代码目录
+3.pom.xml : 
+    添加第三方依赖包
 </code></pre>
-<p>mariadb-libs-5.5.56-2.el7.x86_64<br>        [root@bigdata31 software]# rpm -e –nodeps mariadb-libs-5.5.56-2.el7.x86_64<br>[root@bigdata31 software]# rpm -qa | grep mariadb</p>
-<pre><code>rpm -ivh mysql-community-common-5.7.28-1.el7.x86_64.rpm 
-注意： 
-    package mariadb-libs conflicts with 
+<h1 id="如何获取mysql连接？"><a href="#如何获取mysql连接？" class="headerlink" title="如何获取mysql连接？"></a>如何获取mysql连接？</h1><pre><code>1.url ： 
+    mysql ip 
+    mysql db 
+2.mysql 用户名 
+3.mysql 密码
 </code></pre>
-<p>rpm -ivh mysql-community-libs-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-libs-compat-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-client-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-server-5.7.28-1.el7.x86_64.rpm</p>
-<pre><code>3.有一个 配置文件 管控mysql 
-    /etc/my.cnf
+<h1 id="添加第三方依赖包"><a href="#添加第三方依赖包" class="headerlink" title="添加第三方依赖包:"></a>添加第三方依赖包:</h1><pre><code>mysql的驱动包： 
+    maven进行第三方jar管理： 
+        mysql-
 
-    mysql运行日志文件：log-error=/var/log/mysqld.log
-4.初始化mysql 
-        mysqld --initialize --user=mysql
-    
-     A temporary password is generated for root@localhost: rfnYYHj0jc,R
-
-5.启动mysql 
-    systemctl start mysqld 
-    mysql 可以对外提供服务：
-        port： 3306
-6.登录mysql 使用
-    mysql -uroot -prfnYYHj0jc,R
-
-7.修改mysql 软件 root用户 密码
-    set password = password(&#39;123456&#39;);
-8.赋予权限 
-    flush privileges;
-
-补充： 
-    卸载： 
-        1.mysql 停掉 
-            systemctl stop mysqld 
-        2.mysql卸载 
-            rpm -qa | grep mysql
-            rpm -qa | grep mysql | xargs -n1 rpm -e --nodeps 
-        3.linux存储目录删掉 
-            find / -name &quot;*mysql*&quot; 
-            注意：/sys/
-        4.重装
-    
-    mysql 全部卸载重装
-
-
-    shift + alt =&gt;多行编辑
-    alt + tab 
-    rm -rf xx 
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;5.1.28&lt;/version&gt;
+        &lt;/dependency&gt;
 </code></pre>
-<p>mysql 数据库：<br>       excel 表格<br>       win：<br>       	 文件夹：<br>            一堆表格</p>
-<p>MySQL:<br>    数据库：&#x3D;》文件夹 database<br>        一堆表格 table</p>
-<p>远程登录工具：<br>    navcat 【选择】<br>    sqlyog<br>    dbvear工具 【选择】</p>
-<pre><code>root@localhost: 123456
-    只允许 当前机器登录
-root@%: 123456
+<p>问题：<br>    1.pom.xml:<br>        可能正在下载第三方jar  </p>
+<pre><code>2.更改本地maven 仓库地址 
+    D:\sxwang\app\apache-maven-3.8.1\conf\settings.xml
 </code></pre>
-<p>远程登录访问：<br>    1.修改 mysql 登录 运行用户的ip &#x3D;》 任意ip </p>
-<p>mysql语法：【了解】<br>    1.查看数据库<br>        show databases;<br>    2.切换数据库<br>        use mysql;<br>    3.查看库下面有哪些表<br>        show tables;<br>    4.查看表中数据<br>    select host,user<br>    from user;<br>    5.修改表中数据<br>    update mysql.user set  host&#x3D;”%” where user&#x3D;”root”;<br>    6.刷新权限<br>    flush privileges; </p>
-<p>基本语法：<br>    1.sql进行开发<br>        sql类型：<br>            ddl 数据定义语言 ：create drop  alter<br>            dml 数据操作语言 : insert select update delete<br>            dcl 数据控制语言 :grant [了解]<br>2.查看数据库<br>    SHOW {DATABASES | SCHEMAS}<br>    [LIKE ‘pattern’ | WHERE expr]</p>
-<p>{} 必选参数 | 可选<br>[] 可选<br>    SHOW DATABASES;</p>
-<p>mysql&gt; SHOW DATABASES;<br>+——————–+<br>| Database           |<br>+——————–+<br>| information_schema |<br>| mysql              |<br>| performance_schema |<br>| sys                |<br>+——————–+<br>4 rows in set (0.00 sec)</p>
-<p>3.切换数据库<br>    use dbname;</p>
-<p>4.查看数据库下面的表<br>    SHOW [FULL] TABLES<br>    [{FROM | IN} db_name]<br>    [LIKE ‘pattern’ | WHERE expr]<br>    SHOW TABLES;</p>
-<p>mysql&gt; show tables FROM sys;</p>
-<p>5.创建数据库<br>    CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name<br>    [create_option] …</p>
-<p>create_option: [DEFAULT] {<br>    CHARACTER SET [&#x3D;] charset_name<br>  | COLLATE [&#x3D;] collation_name<br>}</p>
-<p>CREATE DATABASE bigdata;</p>
-<p>6.创建表<br>    excel ： </p>
-<pre><code>字段：column : 
-        1.名称
-        2.字段类型
+<h1 id="操作mysql"><a href="#操作mysql" class="headerlink" title="操作mysql:"></a>操作mysql:</h1><pre><code>1.crud 
+ insert、delete、update、select 
+
+    获取连接：
+        1.准备sql
+            1. insert、delete、update
+            2.select
+        2.执行sql
+            1. insert、delete、update
+            2.select
 </code></pre>
-<p>常用字段类型：<br>    数值类型：<br>        整数：<br>            int 整型<br>            long 长整型<br>        小数：<br>            float 单精度<br>            double 双精度<br>            decimal 小数 &#x3D;》 跟钱挂钩的<br>    字符串：<br>        char 字节  长度 0-255  bigdataxxxxxxx 255<br>        varchar 字符串 长度范围<br>    日期：<br>        date  日期： YYYY-MM-DD<br>        time 时间 ： HH:mm:SS<br>        datetime 年月日时分秒 ： YYYY-MM-DD HH:mm:SS<br>        timestamp 年月日时分秒【时间戳】:YYYY-MM-DD HH:mm:SS</p>
-<p>列的名字、字段的名字<br>mysql&gt; CREATE TABLE user_table(<br>    -&gt; id int(3),<br>    -&gt; name varchar(10),<br>    -&gt; age int(3)<br>    -&gt; );<br>Query OK, 0 rows affected (0.01 sec)</p>
-<p>mysql&gt; show tables;<br>+——————-+<br>| Tables_in_bigdata |<br>+——————-+<br>| user_table        |<br>+——————-+<br>1 row in set (0.00 sec)</p>
-<p>7.表中插入数据 </p>
-<p>INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]<br>    [INTO] tbl_name<br>    [(col_name [, col_name] …)]<br>    {VALUES | VALUE} (value_list) [, (value_list)] …<br>    [ON DUPLICATE KEY UPDATE assignment_list]</p>
-<p>INSERT into user_table (id,name,age)VALUES (1,’zhangsan’,10);</p>
-<p>8.查看数据</p>
-<ul>
-<li>表示所有字段</li>
-</ul>
-<p>select *<br>from user_table;</p>
-<p>select name,age from user_table;</p>
+<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL:"></a>MySQL:</h1><pre><code>    1.ddl: 
+        1.alter: 
+            1.db 
+                ALTER &#123;DATABASE | SCHEMA&#125; [db_name]
+                alter database bigdata CHARACTER SET = &#39;utf8&#39;;
+            2.table: 
+                1.添加字段
+                    alter table a1 add column column_add varchar(20) after address;
+                    alter table a1 add column column_add01 varchar(20) first ;
+                2.修改字段：
+                    1.name 
+                    2.type 
+                    alter table a1 CHANGE COLUMN column_add01 column_add01 int(3);
+                3.删除字段：【一般不会发生】 
+                    alter table a1 DROP  column_add01;
+
+        2.truncate  =&gt; 清空表
+            delete
+                1.truncate table a1;
+
+        3.create table 
+            1.CREATE TABLE ... LIKE Statement =&gt; 只拷贝 表结构
+                eg:
+                    CREATE TABLE emp_dev LIKE emp;
+            2.CREATE TABLE ... SELECT Statement =》 比较多 临时查询的结果 临时生成一个表
+                ctas：
+                    CREATE TABLE new_tbl [AS] SELECT * FROM orig_tbl;
+                create table emp_dev01 as select ename,job from emp;
+```		
+    2.dml
+        1.insert 
+        insert into table_name [(columns)]values(value_list,...)
+
+        a b 表结构是一样： 
+            需求： 
+                两张表 ， a有数据，b没有数据 
+                把a表数据导入b数据？ 
+            
+            insert into b (name,age) 
+            select name,age from a;
+
+            emp a1  
+            insert into a1(name,address)
+            select ename,job from emp;
+
+
+
+
+</code></pre>
 ]]></content>
       <categories>
         <category>MYSQL</category>
       </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
   </entry>
   <entry>
     <title>MYSQL2</title>
@@ -755,209 +726,6 @@ full join
       <tags>
         <tag>mysql</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>git</title>
-    <url>/2024/10/06/git/</url>
-    <content><![CDATA[<h1 id="git"><a href="#git" class="headerlink" title="git"></a>git</h1><span id="more"></span> 
-<h1 id="git是什么？"><a href="#git是什么？" class="headerlink" title="git是什么？"></a>git是什么？</h1><pre><code>官网地址： 
-    https://git-scm.com/
-
-distributed version control system
-</code></pre>
-<h1 id="version-control-system？"><a href="#version-control-system？" class="headerlink" title="version control system？"></a>version control system？</h1><pre><code> Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later. 
- 记录文件变化的 并且 之后可以指定版本进行恢复
-
-1.论文： 
-    1.xxx_v1.doc 
-    2.xxx_v2.doc 
-    ...
-    xxx_最终版.doc 
-
-2.种类： 
-    Local Version Control Systems： copy files into another directory
-        优点：
-            so simple
-        缺点： 
-            error prone 
-            1.代码集成效率低下
-
-    Centralized Version Control Systems 集中式版本控制系统： 
-        解决： 代码集成效率低下 
-            多人协同开发的问题
-        问题：
-            single point 单点故障
-
-    Distributed Version Control Systems： 
-            解决： 多人协同开发 单点故障
-        1.clients
-
-        2.server
-
-    git： 
-        1.efficiency.
-        2.performance.
-        3.分支操作、文件备份、定制工作流程
-</code></pre>
-<h1 id="文件版本控制："><a href="#文件版本控制：" class="headerlink" title="文件版本控制："></a>文件版本控制：</h1><pre><code>1.本地仓库
-2.远程仓库
-</code></pre>
-<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><pre><code>1.下载
-2.安装
-3.使用： 
-    1.git 软件 工具
-        1.可视化界面的方式进行操作 =》 git原理
-        2.git 命令操作 =》 linux 命令差不多
-
-        linux 内核 林纳斯 
-        git
-</code></pre>
-<h1 id="查看git版本"><a href="#查看git版本" class="headerlink" title="查看git版本"></a>查看git版本</h1><p>$ git -v<br>git version 2.38.0.windows.1</p>
-<p>使用： 版本控制<br>    1.使用的前的配置 </p>
-<pre><code>-- 要配置我们的项目开发人员的信息
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;zhangsan&quot;</span><br><span class="line">git config --global user.email &quot;zhangsan@qq.com&quot;</span><br><span class="line">	1.设置git参数 =》 本地仓库</span><br><span class="line">usage: git config [&lt;options&gt;]</span><br><span class="line"></span><br><span class="line">Config file location</span><br><span class="line">    --global              use global config file  --对当前用户 所有仓库都有效</span><br><span class="line">    --system              use system config file  -- 对系统所有登录用户有效</span><br><span class="line">    --local               use repository config file -- 对某个仓库有效</span><br></pre></td></tr></table></figure>
-<pre><code>思考： 
-    单单对某一个项目来说 上面哪个参数 有限级高？
-        --local
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config [options]</span><br><span class="line">option...</span><br><span class="line">查看配置参数： </span><br><span class="line">	git config --list </span><br><span class="line">	git config --list --global</span><br><span class="line">	git config --list --local</span><br></pre></td></tr></table></figure>
-<p>1.创建仓库<br>    项目：开发的代码文件<br>    仓库：本地仓库 用于进行文件的版本控制的</p>
-<pre><code>git init: 
-    1.创建一个仓库
-    2.重新初始化一个 以及存在的仓库
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init [-q | --quiet] [--bare] [--template=&lt;template-directory&gt;]</span><br><span class="line">          [--separate-git-dir &lt;git-dir&gt;] [--object-format=&lt;format&gt;]</span><br><span class="line">          [-b &lt;branch-name&gt; | --initial-branch=&lt;branch-name&gt;]</span><br><span class="line">          [--shared[=&lt;permissions&gt;]] [&lt;directory&gt;]</span><br><span class="line">	</span><br><span class="line">	git init [&lt;directory&gt;]</span><br></pre></td></tr></table></figure>
-
-<p>项目：《&#x3D;》 本地仓库 【一个项目 对应一个本地仓库】<br>    1.存在：<br>        cd 项目目录<br>        git init<br>    2.不存在：<br>         git init <project_name><br>         git init test01：<br>         	1.创建一个项目 test01<br>            2. test01目录下下面 创建一个本地仓库 </p>
-<pre><code>    .git 文件夹 本地仓库
-</code></pre>
-<p>使用<br>    git 管理版本控制的工作流程：<br>        工作区： 项目目录<br>        暂存区： 临时存储文件的地方 可以进行撤回<br>        本地仓库：版本控制</p>
-<p> 入门：<br>    1.vim 1.log<br>    2.git add 1.log  &#x3D;&gt; 添加到暂存区<br>    3.git commit -m “Add 1.log” &#x3D;&gt; 添加到 本地仓库<br>    4.git log 查看本地仓库历史 ：当前项目的 commit历史</p>
-<p>git commit  -m <msg></p>
-<pre><code>总结： 
-    本地仓库 ： 
-        如何进行版本控制？
-            commit 进行区分版本的
-
-切换版本： 可以使用
-    git reset --hard [&lt;commit&gt;]
-
-    git reset --hard d7db6e
-</code></pre>
-<p>了解：<br>     git log –reflog</p>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MYSQL3</title>
-    <url>/2024/10/06/MYSQL3/</url>
-    <content><![CDATA[<h1 id="MYSQL3"><a href="#MYSQL3" class="headerlink" title="MYSQL3"></a>MYSQL3</h1><span id="more"></span>
-<h1 id="jdbc"><a href="#jdbc" class="headerlink" title="jdbc:"></a>jdbc:</h1><pre><code>java
-db 
-connction
-</code></pre>
-<h1 id="maven部署："><a href="#maven部署：" class="headerlink" title="maven部署："></a>maven部署：</h1><pre><code>1.下载 解压 
-
-2.配置环境变量
-    MAVEN_HOME=D:\sxwang\app\apache-maven-3.8.1
-    PATH=%MAVEN_HOME%\bin
-3.cmd 
-</code></pre>
-<h1 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h1><pre><code>1.创建maven 项目 
-2.src =》 开发代码目录
-3.pom.xml : 
-    添加第三方依赖包
-</code></pre>
-<h1 id="如何获取mysql连接？"><a href="#如何获取mysql连接？" class="headerlink" title="如何获取mysql连接？"></a>如何获取mysql连接？</h1><pre><code>1.url ： 
-    mysql ip 
-    mysql db 
-2.mysql 用户名 
-3.mysql 密码
-</code></pre>
-<h1 id="添加第三方依赖包"><a href="#添加第三方依赖包" class="headerlink" title="添加第三方依赖包:"></a>添加第三方依赖包:</h1><pre><code>mysql的驱动包： 
-    maven进行第三方jar管理： 
-        mysql-
-
-        &lt;dependency&gt;
-            &lt;groupId&gt;mysql&lt;/groupId&gt;
-            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-            &lt;version&gt;5.1.28&lt;/version&gt;
-        &lt;/dependency&gt;
-</code></pre>
-<p>问题：<br>    1.pom.xml:<br>        可能正在下载第三方jar  </p>
-<pre><code>2.更改本地maven 仓库地址 
-    D:\sxwang\app\apache-maven-3.8.1\conf\settings.xml
-</code></pre>
-<h1 id="操作mysql"><a href="#操作mysql" class="headerlink" title="操作mysql:"></a>操作mysql:</h1><pre><code>1.crud 
- insert、delete、update、select 
-
-    获取连接：
-        1.准备sql
-            1. insert、delete、update
-            2.select
-        2.执行sql
-            1. insert、delete、update
-            2.select
-</code></pre>
-<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL:"></a>MySQL:</h1><pre><code>    1.ddl: 
-        1.alter: 
-            1.db 
-                ALTER &#123;DATABASE | SCHEMA&#125; [db_name]
-                alter database bigdata CHARACTER SET = &#39;utf8&#39;;
-            2.table: 
-                1.添加字段
-                    alter table a1 add column column_add varchar(20) after address;
-                    alter table a1 add column column_add01 varchar(20) first ;
-                2.修改字段：
-                    1.name 
-                    2.type 
-                    alter table a1 CHANGE COLUMN column_add01 column_add01 int(3);
-                3.删除字段：【一般不会发生】 
-                    alter table a1 DROP  column_add01;
-
-        2.truncate  =&gt; 清空表
-            delete
-                1.truncate table a1;
-
-        3.create table 
-            1.CREATE TABLE ... LIKE Statement =&gt; 只拷贝 表结构
-                eg:
-                    CREATE TABLE emp_dev LIKE emp;
-            2.CREATE TABLE ... SELECT Statement =》 比较多 临时查询的结果 临时生成一个表
-                ctas：
-                    CREATE TABLE new_tbl [AS] SELECT * FROM orig_tbl;
-                create table emp_dev01 as select ename,job from emp;
-```		
-    2.dml
-        1.insert 
-        insert into table_name [(columns)]values(value_list,...)
-
-        a b 表结构是一样： 
-            需求： 
-                两张表 ， a有数据，b没有数据 
-                把a表数据导入b数据？ 
-            
-            insert into b (name,age) 
-            select name,age from a;
-
-            emp a1  
-            insert into a1(name,address)
-            select ename,job from emp;
-
-
-
-
-</code></pre>
-]]></content>
-      <categories>
-        <category>MYSQL</category>
-      </categories>
   </entry>
   <entry>
     <title>Shell</title>
@@ -1251,6 +1019,104 @@ done
       </tags>
   </entry>
   <entry>
+    <title>git</title>
+    <url>/2024/10/06/git/</url>
+    <content><![CDATA[<h1 id="git"><a href="#git" class="headerlink" title="git"></a>git</h1><span id="more"></span> 
+<h1 id="git是什么？"><a href="#git是什么？" class="headerlink" title="git是什么？"></a>git是什么？</h1><pre><code>官网地址： 
+    https://git-scm.com/
+
+distributed version control system
+</code></pre>
+<h1 id="version-control-system？"><a href="#version-control-system？" class="headerlink" title="version control system？"></a>version control system？</h1><pre><code> Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later. 
+ 记录文件变化的 并且 之后可以指定版本进行恢复
+
+1.论文： 
+    1.xxx_v1.doc 
+    2.xxx_v2.doc 
+    ...
+    xxx_最终版.doc 
+
+2.种类： 
+    Local Version Control Systems： copy files into another directory
+        优点：
+            so simple
+        缺点： 
+            error prone 
+            1.代码集成效率低下
+
+    Centralized Version Control Systems 集中式版本控制系统： 
+        解决： 代码集成效率低下 
+            多人协同开发的问题
+        问题：
+            single point 单点故障
+
+    Distributed Version Control Systems： 
+            解决： 多人协同开发 单点故障
+        1.clients
+
+        2.server
+
+    git： 
+        1.efficiency.
+        2.performance.
+        3.分支操作、文件备份、定制工作流程
+</code></pre>
+<h1 id="文件版本控制："><a href="#文件版本控制：" class="headerlink" title="文件版本控制："></a>文件版本控制：</h1><pre><code>1.本地仓库
+2.远程仓库
+</code></pre>
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><pre><code>1.下载
+2.安装
+3.使用： 
+    1.git 软件 工具
+        1.可视化界面的方式进行操作 =》 git原理
+        2.git 命令操作 =》 linux 命令差不多
+
+        linux 内核 林纳斯 
+        git
+</code></pre>
+<h1 id="查看git版本"><a href="#查看git版本" class="headerlink" title="查看git版本"></a>查看git版本</h1><p>$ git -v<br>git version 2.38.0.windows.1</p>
+<p>使用： 版本控制<br>    1.使用的前的配置 </p>
+<pre><code>-- 要配置我们的项目开发人员的信息
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;zhangsan&quot;</span><br><span class="line">git config --global user.email &quot;zhangsan@qq.com&quot;</span><br><span class="line">	1.设置git参数 =》 本地仓库</span><br><span class="line">usage: git config [&lt;options&gt;]</span><br><span class="line"></span><br><span class="line">Config file location</span><br><span class="line">    --global              use global config file  --对当前用户 所有仓库都有效</span><br><span class="line">    --system              use system config file  -- 对系统所有登录用户有效</span><br><span class="line">    --local               use repository config file -- 对某个仓库有效</span><br></pre></td></tr></table></figure>
+<pre><code>思考： 
+    单单对某一个项目来说 上面哪个参数 有限级高？
+        --local
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config [options]</span><br><span class="line">option...</span><br><span class="line">查看配置参数： </span><br><span class="line">	git config --list </span><br><span class="line">	git config --list --global</span><br><span class="line">	git config --list --local</span><br></pre></td></tr></table></figure>
+<p>1.创建仓库<br>    项目：开发的代码文件<br>    仓库：本地仓库 用于进行文件的版本控制的</p>
+<pre><code>git init: 
+    1.创建一个仓库
+    2.重新初始化一个 以及存在的仓库
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init [-q | --quiet] [--bare] [--template=&lt;template-directory&gt;]</span><br><span class="line">          [--separate-git-dir &lt;git-dir&gt;] [--object-format=&lt;format&gt;]</span><br><span class="line">          [-b &lt;branch-name&gt; | --initial-branch=&lt;branch-name&gt;]</span><br><span class="line">          [--shared[=&lt;permissions&gt;]] [&lt;directory&gt;]</span><br><span class="line">	</span><br><span class="line">	git init [&lt;directory&gt;]</span><br></pre></td></tr></table></figure>
+
+<p>项目：《&#x3D;》 本地仓库 【一个项目 对应一个本地仓库】<br>    1.存在：<br>        cd 项目目录<br>        git init<br>    2.不存在：<br>         git init <project_name><br>         git init test01：<br>         	1.创建一个项目 test01<br>            2. test01目录下下面 创建一个本地仓库 </p>
+<pre><code>    .git 文件夹 本地仓库
+</code></pre>
+<p>使用<br>    git 管理版本控制的工作流程：<br>        工作区： 项目目录<br>        暂存区： 临时存储文件的地方 可以进行撤回<br>        本地仓库：版本控制</p>
+<p> 入门：<br>    1.vim 1.log<br>    2.git add 1.log  &#x3D;&gt; 添加到暂存区<br>    3.git commit -m “Add 1.log” &#x3D;&gt; 添加到 本地仓库<br>    4.git log 查看本地仓库历史 ：当前项目的 commit历史</p>
+<p>git commit  -m <msg></p>
+<pre><code>总结： 
+    本地仓库 ： 
+        如何进行版本控制？
+            commit 进行区分版本的
+
+切换版本： 可以使用
+    git reset --hard [&lt;commit&gt;]
+
+    git reset --hard d7db6e
+</code></pre>
+<p>了解：<br>     git log –reflog</p>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git2</title>
     <url>/2024/10/06/git2/</url>
     <content><![CDATA[<h1 id="git2"><a href="#git2" class="headerlink" title="git2"></a>git2</h1><span id="more"></span>
@@ -1365,22 +1231,138 @@ git config --local user.name           =》 get操作
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/10/01/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <title>MySQL</title>
+    <url>/2024/10/04/MySQL/</url>
+    <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><span id="more"></span>
+<h1 id="使用场景？"><a href="#使用场景？" class="headerlink" title="使用场景？"></a>使用场景？</h1><pre><code>1.java开发人员 业务数据库
+2.大数据组件 元数据 、结果数据 
+</code></pre>
+<h1 id="2-什么是mysql？"><a href="#2-什么是mysql？" class="headerlink" title="2.什么是mysql？"></a>2.什么是mysql？</h1><pre><code>1.关系型数据库： RDBMS  非关系型数据库NoSQL
+    1.存储数据
+    2.查询
+2.类似表格
+3.有行有列
+</code></pre>
+<h1 id="3-背景："><a href="#3-背景：" class="headerlink" title="3.背景："></a>3.背景：</h1><pre><code>处理数据 ：excel 
+mysql： 
+    存储数据，数据分析
+    一堆类似excel的表格
+</code></pre>
+<h1 id="4-官网"><a href="#4-官网" class="headerlink" title="4.官网"></a>4.官网</h1><pre><code>www.mysql.com
+</code></pre>
+<h1 id="5-版本："><a href="#5-版本：" class="headerlink" title="5.版本："></a>5.版本：</h1><pre><code>8.x 不是主流、java团队 
+5.7  it java 大数据 主流
+5.6 目前公司也有
+</code></pre>
+<p>补充：<br>    上传下载：<br>        [root@bigdata31 software]# yum install -y lrzsz</p>
+<pre><code>上传： rz 
+下载 ：sz xxx
+</code></pre>
+<h1 id="6-部署："><a href="#6-部署：" class="headerlink" title="6.部署："></a>6.部署：</h1><pre><code>1.下载安装包  
+    5.7
+    安装包种类：
+        rpm包 ：mysql source code =》 rpm包
+            mysql-5.7.38-1.el7.x86_64.rpm-bundle.tar
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+        tar包：mysql source code +开发加的mysql代码 =》 编译打包生成 tar包
 
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+            mysql-5.7.38-el7-x86_64.tar.gz
 
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+准备好了： 
+</code></pre>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">	<span class="number">2.</span>安装部署</span><br><span class="line">		<span class="number">1.</span>上传mysql 安装包</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# ll</span><br><span class="line">			total <span class="number">595272</span></span><br><span class="line">			-rw-r--r--. <span class="number">1</span> root root <span class="number">609556480</span> Aug <span class="number">26</span>  <span class="number">2021</span> mysql-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm-bundle.tar</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# pwd</span><br><span class="line">			/root/software</span><br><span class="line"></span><br><span class="line">		<span class="number">2.</span>部署 </span><br><span class="line">			<span class="number">1.</span>解压</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# tar -xvf ./mysql-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm-bundle.tar </span><br><span class="line">mysql-community-embedded-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-compat-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-devel-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-compat-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-test-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-common-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-devel-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-client-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-server-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<pre><code>2.安装 
+    1.卸载 mariadb 相关的东西
+    [root@bigdata31 software]# rpm -qa | grep mariadb
+</code></pre>
+<p>mariadb-libs-5.5.56-2.el7.x86_64<br>        [root@bigdata31 software]# rpm -e –nodeps mariadb-libs-5.5.56-2.el7.x86_64<br>[root@bigdata31 software]# rpm -qa | grep mariadb</p>
+<pre><code>rpm -ivh mysql-community-common-5.7.28-1.el7.x86_64.rpm 
+注意： 
+    package mariadb-libs conflicts with 
+</code></pre>
+<p>rpm -ivh mysql-community-libs-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-libs-compat-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-client-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-server-5.7.28-1.el7.x86_64.rpm</p>
+<pre><code>3.有一个 配置文件 管控mysql 
+    /etc/my.cnf
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    mysql运行日志文件：log-error=/var/log/mysqld.log
+4.初始化mysql 
+        mysqld --initialize --user=mysql
+    
+     A temporary password is generated for root@localhost: rfnYYHj0jc,R
+
+5.启动mysql 
+    systemctl start mysqld 
+    mysql 可以对外提供服务：
+        port： 3306
+6.登录mysql 使用
+    mysql -uroot -prfnYYHj0jc,R
+
+7.修改mysql 软件 root用户 密码
+    set password = password(&#39;123456&#39;);
+8.赋予权限 
+    flush privileges;
+
+补充： 
+    卸载： 
+        1.mysql 停掉 
+            systemctl stop mysqld 
+        2.mysql卸载 
+            rpm -qa | grep mysql
+            rpm -qa | grep mysql | xargs -n1 rpm -e --nodeps 
+        3.linux存储目录删掉 
+            find / -name &quot;*mysql*&quot; 
+            注意：/sys/
+        4.重装
+    
+    mysql 全部卸载重装
+
+
+    shift + alt =&gt;多行编辑
+    alt + tab 
+    rm -rf xx 
+</code></pre>
+<p>mysql 数据库：<br>       excel 表格<br>       win：<br>       	 文件夹：<br>            一堆表格</p>
+<p>MySQL:<br>    数据库：&#x3D;》文件夹 database<br>        一堆表格 table</p>
+<p>远程登录工具：<br>    navcat 【选择】<br>    sqlyog<br>    dbvear工具 【选择】</p>
+<pre><code>root@localhost: 123456
+    只允许 当前机器登录
+root@%: 123456
+</code></pre>
+<p>远程登录访问：<br>    1.修改 mysql 登录 运行用户的ip &#x3D;》 任意ip </p>
+<p>mysql语法：【了解】<br>    1.查看数据库<br>        show databases;<br>    2.切换数据库<br>        use mysql;<br>    3.查看库下面有哪些表<br>        show tables;<br>    4.查看表中数据<br>    select host,user<br>    from user;<br>    5.修改表中数据<br>    update mysql.user set  host&#x3D;”%” where user&#x3D;”root”;<br>    6.刷新权限<br>    flush privileges; </p>
+<p>基本语法：<br>    1.sql进行开发<br>        sql类型：<br>            ddl 数据定义语言 ：create drop  alter<br>            dml 数据操作语言 : insert select update delete<br>            dcl 数据控制语言 :grant [了解]<br>2.查看数据库<br>    SHOW {DATABASES | SCHEMAS}<br>    [LIKE ‘pattern’ | WHERE expr]</p>
+<p>{} 必选参数 | 可选<br>[] 可选<br>    SHOW DATABASES;</p>
+<p>mysql&gt; SHOW DATABASES;<br>+——————–+<br>| Database           |<br>+——————–+<br>| information_schema |<br>| mysql              |<br>| performance_schema |<br>| sys                |<br>+——————–+<br>4 rows in set (0.00 sec)</p>
+<p>3.切换数据库<br>    use dbname;</p>
+<p>4.查看数据库下面的表<br>    SHOW [FULL] TABLES<br>    [{FROM | IN} db_name]<br>    [LIKE ‘pattern’ | WHERE expr]<br>    SHOW TABLES;</p>
+<p>mysql&gt; show tables FROM sys;</p>
+<p>5.创建数据库<br>    CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name<br>    [create_option] …</p>
+<p>create_option: [DEFAULT] {<br>    CHARACTER SET [&#x3D;] charset_name<br>  | COLLATE [&#x3D;] collation_name<br>}</p>
+<p>CREATE DATABASE bigdata;</p>
+<p>6.创建表<br>    excel ： </p>
+<pre><code>字段：column : 
+        1.名称
+        2.字段类型
+</code></pre>
+<p>常用字段类型：<br>    数值类型：<br>        整数：<br>            int 整型<br>            long 长整型<br>        小数：<br>            float 单精度<br>            double 双精度<br>            decimal 小数 &#x3D;》 跟钱挂钩的<br>    字符串：<br>        char 字节  长度 0-255  bigdataxxxxxxx 255<br>        varchar 字符串 长度范围<br>    日期：<br>        date  日期： YYYY-MM-DD<br>        time 时间 ： HH:mm:SS<br>        datetime 年月日时分秒 ： YYYY-MM-DD HH:mm:SS<br>        timestamp 年月日时分秒【时间戳】:YYYY-MM-DD HH:mm:SS</p>
+<p>列的名字、字段的名字<br>mysql&gt; CREATE TABLE user_table(<br>    -&gt; id int(3),<br>    -&gt; name varchar(10),<br>    -&gt; age int(3)<br>    -&gt; );<br>Query OK, 0 rows affected (0.01 sec)</p>
+<p>mysql&gt; show tables;<br>+——————-+<br>| Tables_in_bigdata |<br>+——————-+<br>| user_table        |<br>+——————-+<br>1 row in set (0.00 sec)</p>
+<p>7.表中插入数据 </p>
+<p>INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]<br>    [INTO] tbl_name<br>    [(col_name [, col_name] …)]<br>    {VALUES | VALUE} (value_list) [, (value_list)] …<br>    [ON DUPLICATE KEY UPDATE assignment_list]</p>
+<p>INSERT into user_table (id,name,age)VALUES (1,’zhangsan’,10);</p>
+<p>8.查看数据</p>
+<ul>
+<li>表示所有字段</li>
+</ul>
+<p>select *<br>from user_table;</p>
+<p>select name,age from user_table;</p>
 ]]></content>
+      <categories>
+        <category>MYSQL</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
   </entry>
   <entry>
     <title>git3</title>
@@ -1690,6 +1672,42 @@ git remote:
 ]]></content>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2024/10/01/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>java面试题</title>
+    <url>/2024/10/09/java%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="java面试题"><a href="#java面试题" class="headerlink" title="java面试题"></a>java面试题</h1><span id="more"></span>
+<h2 id="我们通常所说的E-Learning，它的全称是什么？"><a href="#我们通常所说的E-Learning，它的全称是什么？" class="headerlink" title="我们通常所说的E-Learning，它的全称是什么？"></a>我们通常所说的E-Learning，它的全称是什么？</h2><p>继承Thread，实现Runnable接口</p>
+<h2 id="java中标识符的命名规则是什么？"><a href="#java中标识符的命名规则是什么？" class="headerlink" title="java中标识符的命名规则是什么？"></a>java中标识符的命名规则是什么？</h2><p>由字母，数字，下划线_,美元符号$<br>不能数字开头<br>区分大小写<br>不能是java中关键字和保留字</p>
+<h2 id="Java-语言中的数据类型转换有哪两种？"><a href="#Java-语言中的数据类型转换有哪两种？" class="headerlink" title="Java 语言中的数据类型转换有哪两种？"></a>Java 语言中的数据类型转换有哪两种？</h2><p>自动类型转换：编译器自动完成类型转换，不需要在程序中编写代码。<br>强制类型转换：强制编译器进行类型转换，必须在程序中编写代码。</p>
+<h2 id="在java-之中-break和continue的区别"><a href="#在java-之中-break和continue的区别" class="headerlink" title="在java 之中 break和continue的区别"></a>在java 之中 break和continue的区别</h2><p>在java之中，break和continue都可以用来跳出当前循环，但是两者的主要区别是：<br>当循环执行到break语句时，就退出整个循环，然后执行循环外的语句。<br>当循环语句执行到continue时，当次循环结束，重新开始下一轮循环。如果已经是最后一轮循环了，那么这是的continue就与break效果一样了</p>
+<h2 id="for-while-do-while三种循环有什么特点和区别？"><a href="#for-while-do-while三种循环有什么特点和区别？" class="headerlink" title="for while do-while三种循环有什么特点和区别？"></a>for while do-while三种循环有什么特点和区别？</h2><p>这三种都是循环语句，其中，for和while语句基本上是一样的，也可以互相替换。但从使用经验上来说，for循环通常用在有固定循环次数的循环语句中，而while语句则用在满足某种条件时才循环的语句中，它们都是先判断条件是否满足再执行语句，所以，如果一开始条件就不满足，循环语句有可能一次也不执行。do-while语句和while基本相同，所不同的是，它先执行循环语句，再判断条件是否满足，也就是说，循环语句至少能执行一次。</p>
+<h2 id="类和对象的关系？"><a href="#类和对象的关系？" class="headerlink" title="类和对象的关系？"></a>类和对象的关系？</h2><p>类是模板，是具有相同属性和行为的对象的集合，对象是类的实例</p>
+]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>java面试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>变量和运算</title>
     <url>/2024/10/08/%E5%8F%98%E9%87%8F%E5%92%8C%E8%BF%90%E7%AE%97/</url>
     <content><![CDATA[<h1 id="变量和运算"><a href="#变量和运算" class="headerlink" title="变量和运算"></a>变量和运算</h1><span id="more"></span>
@@ -1798,6 +1816,11 @@ git remote:
       </tags>
   </entry>
   <entry>
+    <title>我的第一篇博客文章</title>
+    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>数据类型</title>
     <url>/2024/10/03/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<h1 id="java的数据类型"><a href="#java的数据类型" class="headerlink" title="java的数据类型"></a>java的数据类型</h1><span id="more"></span>
@@ -1902,10 +1925,5 @@ git remote:
 
 
 ]]></content>
-  </entry>
-  <entry>
-    <title>我的第一篇博客文章</title>
-    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>
