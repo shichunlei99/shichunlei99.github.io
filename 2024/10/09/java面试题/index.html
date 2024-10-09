@@ -28,7 +28,7 @@
 <meta property="og:description" content="java面试题">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-09T11:40:38.000Z">
-<meta property="article:modified_time" content="2024-10-09T11:49:37.967Z">
+<meta property="article:modified_time" content="2024-10-09T12:26:50.556Z">
 <meta property="article:author" content="shichunlei99">
 <meta property="article:tag" content="java面试">
 <meta name="twitter:card" content="summary">
@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-10-09 19:40:38 / 修改时间：19:49:37" itemprop="dateCreated datePublished" datetime="2024-10-09T19:40:38+08:00">2024-10-09</time>
+              <time title="创建时间：2024-10-09 19:40:38 / 修改时间：20:26:50" itemprop="dateCreated datePublished" datetime="2024-10-09T19:40:38+08:00">2024-10-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -236,14 +236,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>646</span>
+              <span>2.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -262,7 +262,19 @@
 <h2 id="在java-之中-break和continue的区别"><a href="#在java-之中-break和continue的区别" class="headerlink" title="在java 之中 break和continue的区别"></a>在java 之中 break和continue的区别</h2><p>在java之中，break和continue都可以用来跳出当前循环，但是两者的主要区别是：<br>当循环执行到break语句时，就退出整个循环，然后执行循环外的语句。<br>当循环语句执行到continue时，当次循环结束，重新开始下一轮循环。如果已经是最后一轮循环了，那么这是的continue就与break效果一样了</p>
 <h2 id="for-while-do-while三种循环有什么特点和区别？"><a href="#for-while-do-while三种循环有什么特点和区别？" class="headerlink" title="for while do-while三种循环有什么特点和区别？"></a>for while do-while三种循环有什么特点和区别？</h2><p>这三种都是循环语句，其中，for和while语句基本上是一样的，也可以互相替换。但从使用经验上来说，for循环通常用在有固定循环次数的循环语句中，而while语句则用在满足某种条件时才循环的语句中，它们都是先判断条件是否满足再执行语句，所以，如果一开始条件就不满足，循环语句有可能一次也不执行。do-while语句和while基本相同，所不同的是，它先执行循环语句，再判断条件是否满足，也就是说，循环语句至少能执行一次。</p>
 <h2 id="类和对象的关系？"><a href="#类和对象的关系？" class="headerlink" title="类和对象的关系？"></a>类和对象的关系？</h2><p>类是模板，是具有相同属性和行为的对象的集合，对象是类的实例</p>
-
+<h2 id="StringBuffered、StringBuilder和String的区别。"><a href="#StringBuffered、StringBuilder和String的区别。" class="headerlink" title="StringBuffered、StringBuilder和String的区别。"></a>StringBuffered、StringBuilder和String的区别。</h2><p> String(JDK1.0)：不可变字符序列，底层使用char[]存储<br>​ StringBuffer(JDK1.0)：可变字符序列、效率低、线程安全，底层使用char[]存储<br>​ StringBuilder(JDK 5.0)：&#x3D;&#x3D;可变字符序列、效率高、线程不安全&#x3D;&#x3D;，底层使用char[]存储</p>
+<h2 id="请列举5个常见的异常，并写出其中文意思"><a href="#请列举5个常见的异常，并写出其中文意思" class="headerlink" title="请列举5个常见的异常，并写出其中文意思"></a>请列举5个常见的异常，并写出其中文意思</h2><p>1、ArithmeticExecption  算术异常类<br>2、NullPointerException 空指针异常类<br>3、ClassCastException  类型强制转换异常<br>4、FileNotFoundException 文件未找到异常<br>5、NumberFormatException 字符串转换为数字异常<br>6、IOException   输入输出异常</p>
+<h2 id="类型擦除"><a href="#类型擦除" class="headerlink" title="类型擦除"></a>类型擦除</h2><p>泛型只在编译过程有效，成功编译过后的 class 文件中是不包含任何泛型信息的<br>看下面的例子：返回结果为 true，原因在于编译时 Box<String> 和 Box<Integer> 的类型都被擦除了<br>，编译后只有 Box 类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Box&lt;String&gt; b1 = <span class="keyword">new</span> <span class="title class_">Box</span>&lt;String&gt;(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">Box&lt;Integer&gt; b2 = <span class="keyword">new</span> <span class="title class_">Box</span>&lt;Integer&gt;(<span class="number">2</span>);</span><br><span class="line">System.out.println(b1.getClass() == b2.getClass());</span><br></pre></td></tr></table></figure>
+<h2 id="数组和集合的区别"><a href="#数组和集合的区别" class="headerlink" title="数组和集合的区别"></a>数组和集合的区别</h2><p>数组：长度是不可改变的，可以存放任意类型的数据。<br>集合：大小是可变的，只能存引用类型的数据。</p>
+<h2 id="集合体系结构"><a href="#集合体系结构" class="headerlink" title="集合体系结构"></a>集合体系结构</h2><p>Collection(接口)，存储的是单一对象。<br>Map(接口)，存储的是 key-value(键值对)形式的数据。</p>
+<p>Iterator(迭代器)，主要用于遍历 Colleciton<br>Collecitons(工具类)，Colleciton 集合的工具类<br>Comparator&#x2F;Comparable(比较器)， 用于对象之间的比较排序</p>
+<h2 id="error和exception有什么区别？"><a href="#error和exception有什么区别？" class="headerlink" title="error和exception有什么区别？"></a>error和exception有什么区别？</h2><p>Error：通常表示严重的系统级错误，这些错误通常是不可恢复的，程序无法通过常规的异常处理机制来处理。例如，OutOfMemoryError 和 StackOverflowError 都是典型的 Error。这些错误通常会导致程序终止或需要虚拟机进行处理。<br>Exception：表示程序在正常运行过程中遇到的可预料的意外情况，这些情况可能并且应该被捕获和处理。Exception 包括受检查异常（Checked Exception）和非受检查异常（Unchecked Exception）。受检查异常需要在代码中显式地处理，而非受检查异常通常是运行时异常（Runtime Exception），如 NullPointerException 和 ArrayIndexOutOfBoundsException。</p>
+<h2 id="和eqals的区别"><a href="#和eqals的区别" class="headerlink" title="&#x3D;&#x3D;和eqals的区别"></a>&#x3D;&#x3D;和eqals的区别</h2><h3 id="1-基本数据类型与引用类型的区别："><a href="#1-基本数据类型与引用类型的区别：" class="headerlink" title="1.基本数据类型与引用类型的区别："></a>1.基本数据类型与引用类型的区别：</h3><p>对于基本数据类型（如 int, double, char 等），&#x3D;&#x3D; 比较的是它们的值是否相等。例如，int a &#x3D; 5; int b &#x3D; 5;，a &#x3D;&#x3D; b 会返回 true，因为它们的值相同。<br>对于引用类型（如 String, Integer 等），&#x3D;&#x3D; 比较的是两个对象的引用是否指向内存中的同一个对象，即比较的是对象的内存地址。例如，String str1 &#x3D; new String(“hello”); String str2 &#x3D; new String(“hello”);，str1 &#x3D;&#x3D; str2 会返回 false，因为它们指向不同的对象。</p>
+<h3 id="2-equals-方法："><a href="#2-equals-方法：" class="headerlink" title="2.equals() 方法："></a>2.equals() 方法：</h3><p>equals() 方法默认情况下是比较两个对象的引用是否相同，但许多类（如 String, Integer 等）重写了 equals() 方法，使其比较对象的内容是否相同。例如，String str1 &#x3D; “hello”; String str2 &#x3D; “hello”;，str1.equals(str2) 会返回 true，因为它们的内容相同。<br>equals() 方法不能用于基本数据类型的比较，只能用于引用数据类型的比较。</p>
+<h3 id="3-Object-类中的-equals-方法："><a href="#3-Object-类中的-equals-方法：" class="headerlink" title="3.Object 类中的 equals() 方法："></a>3.Object 类中的 equals() 方法：</h3><p>equals() 方法是 Object 类的一个方法，默认实现是比较两个对象的引用是否相同。如果需要比较对象的内容，通常需要重写 equals() 方法。</p>
+<h3 id="4-使用场景："><a href="#4-使用场景：" class="headerlink" title="4.使用场景："></a>4.使用场景：</h3><p>当需要比较基本数据类型的值时，使用 &#x3D;&#x3D;。<br>当需要比较对象的内容时，使用 equals() 方法。<br>当需要比较对象的引用时，使用 &#x3D;&#x3D;。</p>
+<h2 id="用于比较基本数据类型的值或对象的引用，而-equals-方法用于比较对象的内容。理解这两者的区别对于编写正确的Java代码至关重要。"><a href="#用于比较基本数据类型的值或对象的引用，而-equals-方法用于比较对象的内容。理解这两者的区别对于编写正确的Java代码至关重要。" class="headerlink" title="&#x3D;&#x3D; 用于比较基本数据类型的值或对象的引用，而 equals() 方法用于比较对象的内容。理解这两者的区别对于编写正确的Java代码至关重要。"></a>&#x3D;&#x3D; 用于比较基本数据类型的值或对象的引用，而 equals() 方法用于比较对象的内容。理解这两者的区别对于编写正确的Java代码至关重要。</h2>
     </div>
 
     
@@ -362,7 +374,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">java面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E4%BB%AC%E9%80%9A%E5%B8%B8%E6%89%80%E8%AF%B4%E7%9A%84E-Learning%EF%BC%8C%E5%AE%83%E7%9A%84%E5%85%A8%E7%A7%B0%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">我们通常所说的E-Learning，它的全称是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java%E4%B8%AD%E6%A0%87%E8%AF%86%E7%AC%A6%E7%9A%84%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">java中标识符的命名规则是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%9C%89%E5%93%AA%E4%B8%A4%E7%A7%8D%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">Java 语言中的数据类型转换有哪两种？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8java-%E4%B9%8B%E4%B8%AD-break%E5%92%8Ccontinue%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.4.</span> <span class="nav-text">在java 之中 break和continue的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for-while-do-while%E4%B8%89%E7%A7%8D%E5%BE%AA%E7%8E%AF%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%E5%92%8C%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.5.</span> <span class="nav-text">for while do-while三种循环有什么特点和区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="nav-number">1.6.</span> <span class="nav-text">类和对象的关系？</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">java面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E4%BB%AC%E9%80%9A%E5%B8%B8%E6%89%80%E8%AF%B4%E7%9A%84E-Learning%EF%BC%8C%E5%AE%83%E7%9A%84%E5%85%A8%E7%A7%B0%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">我们通常所说的E-Learning，它的全称是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java%E4%B8%AD%E6%A0%87%E8%AF%86%E7%AC%A6%E7%9A%84%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">java中标识符的命名规则是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%9C%89%E5%93%AA%E4%B8%A4%E7%A7%8D%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">Java 语言中的数据类型转换有哪两种？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8java-%E4%B9%8B%E4%B8%AD-break%E5%92%8Ccontinue%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.4.</span> <span class="nav-text">在java 之中 break和continue的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for-while-do-while%E4%B8%89%E7%A7%8D%E5%BE%AA%E7%8E%AF%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%E5%92%8C%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.5.</span> <span class="nav-text">for while do-while三种循环有什么特点和区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="nav-number">1.6.</span> <span class="nav-text">类和对象的关系？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StringBuffered%E3%80%81StringBuilder%E5%92%8CString%E7%9A%84%E5%8C%BA%E5%88%AB%E3%80%82"><span class="nav-number">1.7.</span> <span class="nav-text">StringBuffered、StringBuilder和String的区别。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%97%E4%B8%BE5%E4%B8%AA%E5%B8%B8%E8%A7%81%E7%9A%84%E5%BC%82%E5%B8%B8%EF%BC%8C%E5%B9%B6%E5%86%99%E5%87%BA%E5%85%B6%E4%B8%AD%E6%96%87%E6%84%8F%E6%80%9D"><span class="nav-number">1.8.</span> <span class="nav-text">请列举5个常见的异常，并写出其中文意思</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4"><span class="nav-number">1.9.</span> <span class="nav-text">类型擦除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%92%8C%E9%9B%86%E5%90%88%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.10.</span> <span class="nav-text">数组和集合的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.11.</span> <span class="nav-text">集合体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#error%E5%92%8Cexception%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.12.</span> <span class="nav-text">error和exception有什么区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%92%8Ceqals%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.13.</span> <span class="nav-text">&#x3D;&#x3D;和eqals的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-number">1.13.1.</span> <span class="nav-text">1.基本数据类型与引用类型的区别：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-equals-%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">1.13.2.</span> <span class="nav-text">2.equals() 方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Object-%E7%B1%BB%E4%B8%AD%E7%9A%84-equals-%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">1.13.3.</span> <span class="nav-text">3.Object 类中的 equals() 方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9A"><span class="nav-number">1.13.4.</span> <span class="nav-text">4.使用场景：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E4%BA%8E%E6%AF%94%E8%BE%83%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%80%BC%E6%88%96%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BC%95%E7%94%A8%EF%BC%8C%E8%80%8C-equals-%E6%96%B9%E6%B3%95%E7%94%A8%E4%BA%8E%E6%AF%94%E8%BE%83%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AE%B9%E3%80%82%E7%90%86%E8%A7%A3%E8%BF%99%E4%B8%A4%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB%E5%AF%B9%E4%BA%8E%E7%BC%96%E5%86%99%E6%AD%A3%E7%A1%AE%E7%9A%84Java%E4%BB%A3%E7%A0%81%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81%E3%80%82"><span class="nav-number">1.14.</span> <span class="nav-text">&#x3D;&#x3D; 用于比较基本数据类型的值或对象的引用，而 equals() 方法用于比较对象的内容。理解这两者的区别对于编写正确的Java代码至关重要。</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -412,12 +424,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">40k</span>
+    <span title="站点总字数">42k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">36 分钟</span>
+    <span title="站点阅读时长">38 分钟</span>
 </div>
 <!--
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
