@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shichunlei99.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="集合">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集合">
+<meta property="og:url" content="https://shichunlei99.github.io/2024/10/08/%E9%9B%86%E5%90%88/index.html">
+<meta property="og:site_name" content="scl&#39;Blog">
+<meta property="og:description" content="集合">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-10-08T11:27:41.000Z">
+<meta property="article:modified_time" content="2024-10-12T13:09:31.695Z">
+<meta property="article:author" content="shichunlei99">
+<meta property="article:tag" content="LinuX,java,hadoop,Mysql,hive">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://shichunlei99.github.io/2024/10/08/%E9%9B%86%E5%90%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>集合 | scl'Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">scl'Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">早熟的人通常都晚熟，骄傲的人又都很急性</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/shichunlei99.github.io/" class="github-corner" title="shichunlei99 GitHub" aria-label="shichunlei99 GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://shichunlei99.github.io/2024/10/08/%E9%9B%86%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/scl.png">
+      <meta itemprop="name" content="shichunlei99">
+      <meta itemprop="description" content="涉猎的主要编程语言为 Java、Python、Rust、C++、Go、服务研发和对象存储等。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="scl'Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          集合
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-10-08 19:27:41" itemprop="dateCreated datePublished" datetime="2024-10-08T19:27:41+08:00">2024-10-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-10-12 21:09:31" itemprop="dateModified" datetime="2024-10-12T21:09:31+08:00">2024-10-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><span id="more"></span>
+<h1 id="1-泛型"><a href="#1-泛型" class="headerlink" title="1. 泛型"></a>1. 泛型</h1><p><strong>泛型是JDK1.5提出的新特效，核心优点如下代码复用减少拆箱和装箱，提高效率和类型安全</strong></p>
+<h2 id="1-1-泛型类"><a href="#1-1-泛型类" class="headerlink" title="1.1  泛型类"></a>1.1  泛型类</h2><p>关于泛型的理解先看一个案例，定义一个简单的Box类存放字符串。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Box</span> &#123;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> String obj;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Box</span><span class="params">(String obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">super</span>();</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> String <span class="title function_">getObj</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">return</span> obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setObj</span><span class="params">(String obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的Box类里面现在只能装入String类型的元素，今后如果我们需要装入Integer等其他类型的元素，还必须要另外重写一个Box，代码得不到复用。如果将String改成Object，又会涉及类型转换的问题。很多初学者在封装工具类的时候，为了达到通用型，会采用Object的方式，其实这样做是不对的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Box</span> &#123;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> Object obj;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Box</span><span class="params">(Object obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">super</span>();</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> Object <span class="title function_">getObj</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">return</span> obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setObj</span><span class="params">(Object obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上的问题可以采用泛型类的方式加以处理。泛型类的写法是在类名后面加上 <T> ，这里的T是泛型形参，可以代表任意的引用类型。使用该类的时候，必须指明具体的引用类型，即泛型实参。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Box</span>&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> T obj;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Box</span><span class="params">(T obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">super</span>();</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> T <span class="title function_">getObj</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">return</span> obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setObj</span><span class="params">(T obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Box&lt;String&gt; box = <span class="keyword">new</span> <span class="title class_">Box</span>&lt;&gt;(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">obj</span> <span class="operator">=</span> box.getObj();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Box&lt;Integer&gt; box2 = <span class="keyword">new</span> <span class="title class_">Box</span>&lt;&gt;(<span class="number">123</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">obj2</span> <span class="operator">=</span> box2.getObj();</span><br></pre></td></tr></table></figure>
+<p>泛型不支持基本数据类型，只能是引用类型</p>
+<p>泛型可以有多个，用逗号分隔，如&lt;T,V&gt;等</p>
+<p>泛型形参可以使用T、E、K、V等形式，一般根据意义来选择</p>
+<p>T： Type（类型）</p>
+<p>E： Element (元素)</p>
+<p>K： Key（键）</p>
+<p>V： Value（值）</p>
+<p>N： Number（数值类型）</p>
+<h2 id="1-2-泛型方法"><a href="#1-2-泛型方法" class="headerlink" title="1.2 泛型方法"></a>1.2 泛型方法</h2><p>泛型方法的实现方式也比较简单，只需要在方法返回类型前面加上泛型形参即可。 泛型方法使得该方法能独立于类而产生变化。如果使用泛型方法可以取代将整个类泛型化，那么建议只使用泛型方法。</p>
+<p>public static <T> void show(T t) {</p>
+<p>  System.out.println(t);</p>
+<p>}</p>
+<h2 id="1-3-泛型接口"><a href="#1-3-泛型接口" class="headerlink" title="1.3 泛型接口"></a>1.3 泛型接口</h2><p>在实际开发中，泛型最多的应用场景应该是在接口中使用了，我们称为泛型接口。比如当我们定义Person类或者Animal类的使用，都有eat的动作，我们会把eat的行为抽象成接口。但吃什么不确定，这个时候就可以使用上泛型接口了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">IEatable</span>&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">(T t)</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Mouse</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> <span class="keyword">implements</span> <span class="title class_">IEatable</span>&lt;Mouse&gt;&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">(Mouse t)</span> &#123;</span><br><span class="line"></span><br><span class="line">​    System.out.println(<span class="string">&quot;猫吃&quot;</span> + t);  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="1-4-类型擦除"><a href="#1-4-类型擦除" class="headerlink" title="1.4 类型擦除"></a>1.4 类型擦除</h2><p>泛型只在编译过程有效，成功编译过后的class文件中是不包含任何泛型信息的。</p>
+<p>看下面的例子：返回结果为true，原因在于编译时Box<String> 和 Box<Integer> 的类型都被擦除了，编译后只有Box类型。</p>
+<p>Box<String> b1 &#x3D; new Box<String>(“abc”);</p>
+<p>Box<Integer> b2 &#x3D; new Box<Integer>(2);</p>
+<p>System.out.println(b1.getClass() &#x3D;&#x3D; b2.getClass());</p>
+<h2 id="1-5-通配符"><a href="#1-5-通配符" class="headerlink" title="1.5 通配符"></a>1.5 通配符</h2><p>​    在使用泛型作为参数的时候，可以用通配符 <strong>?</strong> 来表示未知类型，如Box&lt;?&gt;就声明了Box中包含的元素类型是未知的。 </p>
+<p><strong>Box&lt;?&gt;并不等同于Box<Object>。</strong></p>
+<p><strong>Box<Object>实际上确定了Box中包含的是Object，在使用的时候必须通过Object来进行引用。</strong></p>
+<p><strong>而Box&lt;?&gt;则其中所包含的元素类型是不确定。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">   Box&lt;String&gt; box = <span class="keyword">new</span> <span class="title class_">Box</span>&lt;&gt;(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line"></span><br><span class="line">   show(box); <span class="comment">// 编译错误</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">(Box&lt;Object&gt; box)</span> &#123;</span><br><span class="line"></span><br><span class="line">   System.out.println(box);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">修改如下，将方法参数的Box&lt;Object&gt;改成Box&lt;?&gt;即可。</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">(Box&lt;?&gt; box)</span> &#123;</span><br><span class="line"></span><br><span class="line">   System.out.println(box);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>通配符与上下限</strong></p>
+<p>？：通配符，可以接收任意引用类型</p>
+<p>？extends E：上限通配符，可以接收E类型或者E的子类型</p>
+<p>？super E：下限通配符，可以接收E类型或者E的父类型</p>
+<h1 id="2-集合概述"><a href="#2-集合概述" class="headerlink" title="2. 集合概述"></a>2. 集合概述</h1><h2 id="2-1-数组和集合的区别"><a href="#2-1-数组和集合的区别" class="headerlink" title="2.1 数组和集合的区别"></a>2.1 数组和集合的区别</h2><p>数组：长度是不可改变的，可以存放任意类型的数据。</p>
+<p>集合：大小是可变的，只能存引用类型的数据。</p>
+<h2 id="2-2-集合体系结构"><a href="#2-2-集合体系结构" class="headerlink" title="2.2 集合体系结构"></a>2.2 集合体系结构</h2><p><strong>两大家族</strong></p>
+<p>Collection(接口)，存储的是单一对象。</p>
+<p>Map(接口)，存储的是key-value(键值对)形式的数据。</p>
+<p><strong>三个辅助</strong></p>
+<p>Iterator(迭代器)，主要用于遍历Colleciton</p>
+<p>Collecitons(工具类)，Colleciton集合的工具类</p>
+<p>Comparator&#x2F;Comparable(比较器)， 用于对象之间的比较排序</p>
+<h1 id="3-Collection"><a href="#3-Collection" class="headerlink" title="3. Collection"></a>3. Collection</h1><p>Collection存储的是单一对象，接口中定义了操作对象的基本方法。</p>
+<h2 id="3-1-Collection子接口"><a href="#3-1-Collection子接口" class="headerlink" title="3.1 Collection子接口"></a>3.1 Collection子接口</h2><p>List：集合的元素<strong>有序允许重复</strong></p>
+<p>Set：集合的元素<strong>无序不允许重复</strong></p>
+<p>Queue：集合的元素以队列的数据结构存储。</p>
+<h2 id="3-2-常用方法"><a href="#3-2-常用方法" class="headerlink" title="3.2 常用方法"></a>3.2 常用方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean add(E element)</td>
+<td>向集合添加元素</td>
+</tr>
+<tr>
+<td>boolean addAll(Collection  c)</td>
+<td>向集合添加另外集合的元素</td>
+</tr>
+<tr>
+<td>boolean remove(E element)</td>
+<td>从集合中移除指定的元素</td>
+</tr>
+<tr>
+<td>boolean removeAll(Collection  c)</td>
+<td>从集合中移除另外集合的元素</td>
+</tr>
+<tr>
+<td>boolean contains(E element)</td>
+<td>判断此集合是否包含指定的元素</td>
+</tr>
+<tr>
+<td>boolean containsAll(Collection  c)</td>
+<td>判断此集合是否包含另外集合的元素</td>
+</tr>
+<tr>
+<td>void clear()</td>
+<td>移除此集合中所有的元素</td>
+</tr>
+<tr>
+<td>int size()</td>
+<td>返回此集合中的元素数</td>
+</tr>
+<tr>
+<td>boolean isEmpty()</td>
+<td>判断此集合是否为空</td>
+</tr>
+<tr>
+<td>Object[] toArray()</td>
+<td>把此集合转成数组</td>
+</tr>
+<tr>
+<td>Iterator iterator()</td>
+<td>返回在此集合的迭代器</td>
+</tr>
+</tbody></table>
+<h1 id="4-List"><a href="#4-List" class="headerlink" title="4. List"></a>4. List</h1><p>List集合中的元素是允许重复。List集合中的每个元素都有索引，索引从0开始。</p>
+<h2 id="4-1-List子类"><a href="#4-1-List子类" class="headerlink" title="4.1 List子类"></a>4.1 List子类</h2><p>ArrayList</p>
+<p>ArrayList底层使用<strong>数组结构</strong>实现，读取效率高，删除和添加效率低。</p>
+<p>原理：ArrayList使用连续的内存单元存储数据元素，当添加或删除数据元素时，ArrayList需要移动其被添加（或删除）元素后面的全部元素，因此效率较低。在遍历所有元素方面，ArrayList具有很好的效率，因为其数据元素的连续性，所有只需要获取到第一个元素的地址，再使用地址指针下移的方式即可获取全部元素。</p>
+<p>LinkedList</p>
+<p>LinkedList是使用<strong>双向链表</strong>实现的集合。读取效率低，删除和添加效率高。</p>
+<p>原理：LinkedList是使用指针关联的双向链表，其获取下一个元素的方式是通过指向下一个元素的地址对象获取的，由于它的链式存储结构，LinkedList在任意位置的元素插入（或删除）效率都比较快，因为元素插入（或删除）不需要移动集合中的其它元素。由于存储数据单元的内存地址不连续，因此遍历元素效率比较低。</p>
+<p>Vector</p>
+<p>Vector称为向量，是线程安全的效率低。Vector提供一个Stack子类，它模拟了“<strong>栈</strong>”这种数据结构，“栈”通常是指“后进先出”（LIFO）。</p>
+<h2 id="4-2-构造方法"><a href="#4-2-构造方法" class="headerlink" title="4.2 构造方法"></a>4.2 构造方法</h2><table>
+<thead>
+<tr>
+<th><strong>构造方法</strong></th>
+<th><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public  ArrayList()</td>
+<td>构造一个空列表。</td>
+</tr>
+<tr>
+<td>public  ArrayList(int  initialCapacity)</td>
+<td>构造具有指定初始容量的空列表。</td>
+</tr>
+<tr>
+<td>ArrayList(Collection&lt;?  extends E&gt; c)</td>
+<td>构造一个包含指定集合元素的列表，按照它们由集合的迭代器返回的顺序。</td>
+</tr>
+</tbody></table>
+<h2 id="4-3-新增方法"><a href="#4-3-新增方法" class="headerlink" title="4.3 新增方法"></a>4.3 新增方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void add(int index, E  element)</td>
+<td>在列表的指定位置插入元素</td>
+</tr>
+<tr>
+<td>E set(int index, E new)</td>
+<td>用指定元素替换列表中指定位置的元素</td>
+</tr>
+<tr>
+<td>E remove(int index)</td>
+<td>移除列表中指定位置的元素</td>
+</tr>
+<tr>
+<td>E get(int index)</td>
+<td>返回列表中的元素数</td>
+</tr>
+</tbody></table>
+<h2 id="4-4-遍历"><a href="#4-4-遍历" class="headerlink" title="4.4 遍历"></a>4.4 遍历</h2><p>普通for循环</p>
+<p>增强for循环</p>
+<p>java8的forEach循环</p>
+<p>迭代器</p>
+<h2 id="4-5-LinkedList新增方法"><a href="#4-5-LinkedList新增方法" class="headerlink" title="4.5 LinkedList新增方法"></a>4.5 LinkedList新增方法</h2><table>
+<thead>
+<tr>
+<th><strong>方法</strong></th>
+<th><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public  void addFirst(E e)</td>
+<td>将指定元素插入此列表的开头</td>
+</tr>
+<tr>
+<td>public  void addLast(E e)</td>
+<td>将指定元素添加到此列表的结尾</td>
+</tr>
+<tr>
+<td>public  E getFirst()</td>
+<td>返回此列表的第一个元素</td>
+</tr>
+<tr>
+<td>public  E  getLast()</td>
+<td>返回此列表的最后一个元素</td>
+</tr>
+<tr>
+<td>public E removeFirst()</td>
+<td>移除并返回此列表的第一个元素</td>
+</tr>
+<tr>
+<td>public E removeLast()</td>
+<td>移除并返回此列表的最后一个元素</td>
+</tr>
+</tbody></table>
+<h1 id="5-Iterator"><a href="#5-Iterator" class="headerlink" title="5. Iterator"></a>5. Iterator</h1><p>Iterator(迭代器)用于遍<strong>历Collection集合中的元素</strong></p>
+<h2 id="5-1-Iterator实例的获取"><a href="#5-1-Iterator实例的获取" class="headerlink" title="5.1 Iterator实例的获取"></a>5.1 Iterator实例的获取</h2><p>调用集合对象的i<strong>terator()方</strong>法，可以获得一个与该集合对象关联的迭代器对象。</p>
+<p>Iterator<String> iterator &#x3D; names.iterator();</p>
+<h2 id="5-2-常用方法"><a href="#5-2-常用方法" class="headerlink" title="5.2 常用方法"></a>5.2 常用方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>boolean  hasNext()</strong></td>
+<td>判断游标右边是否有元素。如果有返回true，否则false</td>
+</tr>
+<tr>
+<td><strong>Object  next()</strong></td>
+<td>返回游标右边的元素并将游标移动到下一个位置</td>
+</tr>
+</tbody></table>
+<h1 id="6-Collections"><a href="#6-Collections" class="headerlink" title="6. Collections"></a>6. Collections</h1><p>Collections工具类提供了大量针对集合的操作，都为静态方法。</p>
+<h2 id="6-1-针对Collection接口"><a href="#6-1-针对Collection接口" class="headerlink" title="6.1 针对Collection接口"></a>6.1 针对Collection接口</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>max(Collection coll)</td>
+<td>返回最大元素，要求元素实现Comparable接口</td>
+</tr>
+<tr>
+<td>max(Collection coll, Comparator comp)</td>
+<td>根据自定义比较器，返回最大元素</td>
+</tr>
+<tr>
+<td>min(Collection coll)</td>
+<td>返回最小元素，要求元素实现Comparable接口</td>
+</tr>
+<tr>
+<td>min(Collection coll, Comparator comp)</td>
+<td>根据自定义比较器，返回最小元素</td>
+</tr>
+<tr>
+<td>frequency(Collection c,  Object o)</td>
+<td>返回指定集合中指定对象出现的次数</td>
+</tr>
+</tbody></table>
+<h2 id="6-2-针对List接口"><a href="#6-2-针对List接口" class="headerlink" title="6.2 针对List接口"></a>6.2 针对List接口</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>reverse(List list)</td>
+<td>反转</td>
+</tr>
+<tr>
+<td>shuffle(List list)</td>
+<td>随机排序</td>
+</tr>
+<tr>
+<td>sort(List list)</td>
+<td>升序排序，要求元素实现Comparable接口</td>
+</tr>
+<tr>
+<td>sort(List list, Comparator c)</td>
+<td>排序</td>
+</tr>
+<tr>
+<td>swap(List list, int i, int j)</td>
+<td>元素互换</td>
+</tr>
+<tr>
+<td>rotate(List list, int distance)</td>
+<td>右移</td>
+</tr>
+<tr>
+<td>binarySearch(List list, Object key)</td>
+<td>二分法搜索，前提是集合已经排序</td>
+</tr>
+<tr>
+<td>replaceAll(List list, Object old, Object new)</td>
+<td>替换</td>
+</tr>
+</tbody></table>
+<h1 id="7-Comparable和Comparator"><a href="#7-Comparable和Comparator" class="headerlink" title="7. Comparable和Comparator"></a>7. Comparable和Comparator</h1><p>Comparable和Comparator都是用来实现集合元素排序的</p>
+<h2 id="7-1-Comparable"><a href="#7-1-Comparable" class="headerlink" title="7.1 Comparable"></a>7.1 Comparable</h2><p>Comparable位于包java.lang下</p>
+<p>对象本身需要实现的接口，内部定义排序(重写compareTo（）方法)</p>
+<p><strong>比较规则：返回0&#x3D;顺序相同，返回正数&#x3D;顺序靠后，返回负数&#x3D;顺序靠前</strong></p>
+<h2 id="7-2-Comparator"><a href="#7-2-Comparator" class="headerlink" title="7.2 Comparator"></a>7.2 Comparator</h2><p>Comparator位于包Java.util下</p>
+<p>在一个独立的类中实现Comparator接口(重写compareTo（）方法)，对象外部实现的排序</p>
+<p><strong>比较规则：返回0&#x3D;顺序相同，返回正数&#x3D;顺序靠后，返回负数&#x3D;顺序靠前</strong></p>
+<h1 id="8-Set"><a href="#8-Set" class="headerlink" title="8. Set"></a>8. Set</h1><p>Set集合中的元素是不可重复的。Set集合中的元素是无索引的（无序）。Set集合的方法均继承于Collection。</p>
+<h2 id="8-1-Set-子类"><a href="#8-1-Set-子类" class="headerlink" title="8.1 Set 子类"></a>8.1 Set 子类</h2><p>HashSet</p>
+<p>基于哈希表实现的，是散列结构。数据是无序的。可以放入1个空值null。</p>
+<p>TreeSet</p>
+<p>基于二叉树实现的，是红黑二叉树结构。数据是有序的。不允许放入null值。</p>
+<h2 id="8-2-构造方法"><a href="#8-2-构造方法" class="headerlink" title="8.2 构造方法"></a>8.2 构造方法</h2><table>
+<thead>
+<tr>
+<th><strong>构造方法</strong></th>
+<th><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public  HashSet()</td>
+<td>构造一个空集合</td>
+</tr>
+<tr>
+<td>public  HashSet(int  initialCapacity)</td>
+<td>构造具有指定初始容量的空集合</td>
+</tr>
+<tr>
+<td>public HashSet(Collection&lt;?  extends E&gt; c)</td>
+<td>构造一个包含指定集合元素的集合</td>
+</tr>
+</tbody></table>
+<h2 id="8-3-集合遍历"><a href="#8-3-集合遍历" class="headerlink" title="8.3 集合遍历"></a>8.3 集合遍历</h2><p>增强for循环</p>
+<p>Iterator</p>
+<h2 id="8-4-Set唯一性的判断规则"><a href="#8-4-Set唯一性的判断规则" class="headerlink" title="8.4 Set唯一性的判断规则"></a>8.4 Set唯一性的判断规则</h2><p>分别进行&#x3D;&#x3D;和equals()判断，如果都不相等，则把该对象存入集合中。</p>
+<p>根据项目需求，一般会重写hashCode()和equals()方法。</p>
+<h2 id="8-5-TreeSet排序"><a href="#8-5-TreeSet排序" class="headerlink" title="8.5 TreeSet排序"></a>8.5 TreeSet排序</h2><p>可以利用TreeSet的二叉树存储特性，将无序的数据存入TreeSet集合中，读取结果会排序。</p>
+<h1 id="9-Map"><a href="#9-Map" class="headerlink" title="9. Map"></a>9. Map</h1><h2 id="9-1-Map概述"><a href="#9-1-Map概述" class="headerlink" title="9.1 Map概述"></a>9.1 Map概述</h2><p>实现Map接口的集合类用来存储“<strong>键-值</strong>”映射对（key - value）。</p>
+<p>Map通过key来唯一标识，其中key不得重复，而value部分可以重复可以组成一个List。</p>
+<p>常用的实现子类有HashMap、TreeMap，它们的区别与HashSet、TreeSet的区别完全一致。</p>
+<h2 id="9-2-常用方法"><a href="#9-2-常用方法" class="headerlink" title="9.2 常用方法"></a>9.2 常用方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V put(K key, V value)</td>
+<td>将指定的“键-值”对存入Map中。如果key已经存在，则更新value。</td>
+</tr>
+<tr>
+<td>V get(Object key)</td>
+<td>返回指定键所映射的值</td>
+</tr>
+<tr>
+<td>V remove(Object key)</td>
+<td>根据指定的键把此“键-值”对从Map中移除。</td>
+</tr>
+<tr>
+<td>boolean  containsKey(Object key)</td>
+<td>判断此Map是否包含指定键的“键-值”对。</td>
+</tr>
+<tr>
+<td>boolean  containsValue(Object value)</td>
+<td>判断此Map是否包含指定值的“键-值”对。</td>
+</tr>
+<tr>
+<td>boolean  isEmpty()</td>
+<td>判断集合是否为空</td>
+</tr>
+<tr>
+<td>int  size()</td>
+<td>获得些Map中“键-值”对的数量。</td>
+</tr>
+<tr>
+<td>void  clear**()**</td>
+<td>清空Map中的所有“键-值”对。</td>
+</tr>
+</tbody></table>
+<h2 id="9-3-Map遍历"><a href="#9-3-Map遍历" class="headerlink" title="9.3 Map遍历"></a>9.3 Map遍历</h2><p><strong>方式1：keySet方式</strong></p>
+<p>step1: 通过keySet()获得key的集合</p>
+<p>setp2: 遍历key的集合，通过get(Object key)获得Value</p>
+<p><strong>方式2：Map.Entry方式</strong></p>
+<p>step1:</p>
+<p> Map.Entry是Map中内部定义的一个接口，专门用来保存key和value的内容。entrySet()，通过map集合的entrySet()方法来获得所有的Map.Entry组成的set集合。</p>
+<p>step2: Map.Entry常用方法</p>
+<p>public K getKey()  : 获得key</p>
+<p>public V getValue() : 获得Value</p>
+<p><strong>方式3：java8的forEach循环</strong></p>
+<h2 id="10-线程安全"><a href="#10-线程安全" class="headerlink" title="10. 线程安全"></a>10. 线程安全</h2><p>HashSet、ArrayList、HashMap等开发中常用的集合都是线程不安全的，处理数据效率高。</p>
+<p>Collections中封装了SynchronizedSet、SynchronizedList、SynchronizedMap等内部类，属于线程安全的，处理数据效率低。同时Collections提供了多个synchronizedXxx()方法，该方法返回指定集合对象对应的同步对象，从而解决多线程并发访问集合时线程的安全问题。</p>
+<p>另外，比如HashTable、Vector 都属于线程安全的。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="shichunlei99 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="shichunlei99 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/10/08/Java-%E5%B8%B8%E7%94%A8-API/" rel="prev" title="Java 常用 API">
+      <i class="fa fa-chevron-left"></i> Java 常用 API
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/10/08/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" rel="next" title="异常处理">
+      异常处理 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-number">1.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%B3%9B%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">1. 泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E6%B3%9B%E5%9E%8B%E7%B1%BB"><span class="nav-number">2.1.</span> <span class="nav-text">1.1  泛型类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 泛型方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E6%B3%9B%E5%9E%8B%E6%8E%A5%E5%8F%A3"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 泛型接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4"><span class="nav-number">2.4.</span> <span class="nav-text">1.4 类型擦除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="nav-number">2.5.</span> <span class="nav-text">1.5 通配符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E9%9B%86%E5%90%88%E6%A6%82%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">2. 集合概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E6%95%B0%E7%BB%84%E5%92%8C%E9%9B%86%E5%90%88%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 数组和集合的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E9%9B%86%E5%90%88%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 集合体系结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Collection"><span class="nav-number">4.</span> <span class="nav-text">3. Collection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Collection%E5%AD%90%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 Collection子接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 常用方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-List"><span class="nav-number">5.</span> <span class="nav-text">4. List</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-List%E5%AD%90%E7%B1%BB"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 List子类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 构造方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95"><span class="nav-number">5.3.</span> <span class="nav-text">4.3 新增方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-%E9%81%8D%E5%8E%86"><span class="nav-number">5.4.</span> <span class="nav-text">4.4 遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-LinkedList%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95"><span class="nav-number">5.5.</span> <span class="nav-text">4.5 LinkedList新增方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Iterator"><span class="nav-number">6.</span> <span class="nav-text">5. Iterator</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-Iterator%E5%AE%9E%E4%BE%8B%E7%9A%84%E8%8E%B7%E5%8F%96"><span class="nav-number">6.1.</span> <span class="nav-text">5.1 Iterator实例的获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">6.2.</span> <span class="nav-text">5.2 常用方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Collections"><span class="nav-number">7.</span> <span class="nav-text">6. Collections</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E9%92%88%E5%AF%B9Collection%E6%8E%A5%E5%8F%A3"><span class="nav-number">7.1.</span> <span class="nav-text">6.1 针对Collection接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E9%92%88%E5%AF%B9List%E6%8E%A5%E5%8F%A3"><span class="nav-number">7.2.</span> <span class="nav-text">6.2 针对List接口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-Comparable%E5%92%8CComparator"><span class="nav-number">8.</span> <span class="nav-text">7. Comparable和Comparator</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-Comparable"><span class="nav-number">8.1.</span> <span class="nav-text">7.1 Comparable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-Comparator"><span class="nav-number">8.2.</span> <span class="nav-text">7.2 Comparator</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-Set"><span class="nav-number">9.</span> <span class="nav-text">8. Set</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-Set-%E5%AD%90%E7%B1%BB"><span class="nav-number">9.1.</span> <span class="nav-text">8.1 Set 子类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="nav-number">9.2.</span> <span class="nav-text">8.2 构造方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-%E9%9B%86%E5%90%88%E9%81%8D%E5%8E%86"><span class="nav-number">9.3.</span> <span class="nav-text">8.3 集合遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-Set%E5%94%AF%E4%B8%80%E6%80%A7%E7%9A%84%E5%88%A4%E6%96%AD%E8%A7%84%E5%88%99"><span class="nav-number">9.4.</span> <span class="nav-text">8.4 Set唯一性的判断规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-5-TreeSet%E6%8E%92%E5%BA%8F"><span class="nav-number">9.5.</span> <span class="nav-text">8.5 TreeSet排序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-Map"><span class="nav-number">10.</span> <span class="nav-text">9. Map</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-Map%E6%A6%82%E8%BF%B0"><span class="nav-number">10.1.</span> <span class="nav-text">9.1 Map概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">10.2.</span> <span class="nav-text">9.2 常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-Map%E9%81%8D%E5%8E%86"><span class="nav-number">10.3.</span> <span class="nav-text">9.3 Map遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8"><span class="nav-number">10.4.</span> <span class="nav-text">10. 线程安全</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="shichunlei99"
+      src="/images/scl.png">
+  <p class="site-author-name" itemprop="name">shichunlei99</p>
+  <div class="site-description" itemprop="description">涉猎的主要编程语言为 Java、Python、Rust、C++、Go、服务研发和对象存储等。</div>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shichunlei99/shichunlei99.github.io" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shichunlei99&#x2F;shichunlei99.github.io" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:425223657@qq.com" title="E-Mail → mailto:425223657@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shichunlei99</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">80k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:13</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+--><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+<script type="text/javascript" src="/js/clicklove.js"></script>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
+
