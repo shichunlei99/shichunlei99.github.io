@@ -1,6 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>File和IO</title>
+    <url>/2024/10/08/File%E5%92%8CIO/</url>
+    <content><![CDATA[<h1 id="File和IO"><a href="#File和IO" class="headerlink" title="File和IO"></a>File和IO</h1><span id="more"></span>
+<h1 id="1-File"><a href="#1-File" class="headerlink" title="1. File"></a>1. File</h1><h2 id="1-1-File-概述"><a href="#1-1-File-概述" class="headerlink" title="1.1 File 概述"></a><strong>1.1 File 概述</strong></h2><p>l  java.io.File 类是专门对文件进行操作的类</p>
+<p>l  Java中目录被看成是一个特殊的文件</p>
+<p>l  File类只能对文件本身进行操作，不能对文件内容操作(I&#x2F;O 流）</p>
+<h2 id="1-2-File-对象的创建"><a href="#1-2-File-对象的创建" class="headerlink" title="1.2 File 对象的创建"></a>1.2 File 对象的创建</h2><p>public  File(String pathname)</p>
+<p>l  pathname表示文件的路径，该路径可以是绝对路径，也可以是相对路径。</p>
+<p>l  在不同操作系统中，分隔符的表示不同。为了实现代码跨平台，建议是有<strong>File.separator</strong>来表示<strong>。</strong></p>
+<h2 id="1-3-获取路径及文件名"><a href="#1-3-获取路径及文件名" class="headerlink" title="1.3 获取路径及文件名"></a><strong>1.3 获取路径及文件名</strong></h2><p>l  public String getName()  获得文件名包括后缀名</p>
+<p>l  public String getAbsolutePath()  获得绝对路径</p>
+<p>l  public String getParent()  获得父目录路径</p>
+<p>l  public File getParentFile()  获得父目录</p>
+<h2 id="1-4-获取属性"><a href="#1-4-获取属性" class="headerlink" title="1.4 获取属性"></a><strong>1.4 获取属性</strong></h2><p>l  public boolean exists()  是否存在</p>
+<p>l  public boolean isDirectory()  是否是目录</p>
+<p>l  public boolean isFile()  是否是文件</p>
+<p>l  public long length()   文件长度，以字节为单位</p>
+<h2 id="1-5-文件创建和删除"><a href="#1-5-文件创建和删除" class="headerlink" title="1.5 文件创建和删除"></a><strong>1.5 文件创建和删除</strong></h2><p>l  public boolean createNewFile()  创建文件，要求目录存在。文件存在则不会重新创建</p>
+<p>l  public boolean delete()   删除文件，如果是目录必须是空才能删除</p>
+<p>l  public boolean renameTo(File dest) 重新命名文件，原路径文件删除，相当于剪切复制</p>
+<p>l  public boolean mkdir() 创建单层目录</p>
+<p>l  public boolean mkdirs()  创建多层目录</p>
+<h2 id="1-6-文件遍历"><a href="#1-6-文件遍历" class="headerlink" title="1.6 文件遍历"></a><strong>1.6 文件遍历</strong></h2><p>l  public String[] list()  返回此目录中的子文件名数组</p>
+<p>l  public File[] listFiles()  返回此目录中的子文件数组</p>
+<p><strong>递归</strong></p>
+<p>l  所谓递归是指方法内部在某个条件下调用自身的过程</p>
+<p>l  递归必须有终止递归的条件，否则会形成死循环</p>
+<h2 id="1-7-过滤器"><a href="#1-7-过滤器" class="headerlink" title="1.7 过滤器"></a><strong>1.7 过滤器</strong></h2><p>l  File[] listFiles(FilenameFilter filter)  返回符合过滤条件的文件&#x2F;目录</p>
+<p>FilenameFilter 接口内部方法：</p>
+<p>public boolean accept(File dir, String name) { &#x2F;&#x2F;dir表示文件目录，name表示文件名</p>
+<p>​    return true; &#x2F;&#x2F;true表示符合过滤条件</p>
+<p>}</p>
+<p>l  public File[] listFiles(FileFilter filter)  返回此目录中满足过滤器的文件&#x2F;目录</p>
+<p>FileFilter 接口内部方法：</p>
+<p>public boolean accept(File pathname) {&#x2F;&#x2F;表示过滤文件的绝对路径</p>
+<p>​    return true; &#x2F;&#x2F;true表示符合过滤条件</p>
+<p>}</p>
+<h1 id="2-I-O-流"><a href="#2-I-O-流" class="headerlink" title="2. I&#x2F;O 流"></a>2. I&#x2F;O 流</h1><h2 id="2-1-概述"><a href="#2-1-概述" class="headerlink" title="2.1 概述"></a><strong>2.1 概述</strong></h2><p>流是从数据源到接收端的有序数据。在Java程序中，对于数据的传输以流的方式进行。</p>
+<p>I 指 input 输入，O 指 output 输出。I&#x2F;O流就是指输入输出流。</p>
+<h3 id="2-1-1-IO流的分类"><a href="#2-1-1-IO流的分类" class="headerlink" title="2.1.1 IO流的分类"></a><strong>2.1.1 IO流的分类</strong></h3><p>l  按传输方向划分</p>
+<p><strong>输入流</strong>：程序可以从中读取数据的流</p>
+<p><strong>输出流</strong>：程序能向其中写入数据的流</p>
+<p>l  按传输单位划分：</p>
+<p><strong>字节流</strong>：以字节为单位传输数据的流</p>
+<p><strong>字符流</strong>：以字符为单位传输数据的流</p>
+<p>l  按传输方式划分：</p>
+<p><strong>节点流</strong>：用于直接操作目标设备的流</p>
+<p><strong>处理流</strong>：是对一个已存在的流的连接和封装，通过对数据的处理为程序提供</p>
+<h2 id="2-1-2-IO流的基类"><a href="#2-1-2-IO流的基类" class="headerlink" title="2.1.2 IO流的基类"></a><strong>2.1.2 IO流的基类</strong></h2><p>在java中所有的流都继承自以上四个类，这四个类是抽象类，封装了流操作的基本方法。</p>
+<p>l  InputStream 字节输入流 和 <strong>OutputStream</strong> <strong>字节输出流</strong></p>
+<p>l  Reader 字符输入流 和 Writer 字符输出流</p>
+<h3 id="2-2-文件流"><a href="#2-2-文件流" class="headerlink" title="2.2 文件流"></a><strong>2.2 文件流</strong></h3><p>文件流属于节点流，一般为创建处理流做准备。</p>
+<p><strong>2.3.1 FileInputStream</strong></p>
+<p>l  FileInputStream(String filepath)</p>
+<p>l  FileInputStream(File fileObj)</p>
+<p>两个构造方法都可能引发FileNotFoundException异常。filepath是文件的绝对路径，也可是相对路径。</p>
+<h3 id="2-3-2-FileOutputStream"><a href="#2-3-2-FileOutputStream" class="headerlink" title="2.3.2 FileOutputStream"></a><strong>2.3.2 FileOutputStream</strong></h3><p>l  FileOutputStream(String filePath)</p>
+<p>l  FileOutputStream(String filePath, boolean append)，a<strong>ppend****为true，表示是否追加写，默认为false</strong>。</p>
+<p>l  FileOutputStream(File fileObj)</p>
+<p>三个构造方法都可能引发IOException或SecurityException异常。如试图打开一个只读文件，会引发一个IOException异常。</p>
+<p>FileOutputStream 的创建不依赖于文件是否存在。在创建对象时，FileOutputStream会在打开输出文件之前就创建它。</p>
+<h3 id="2-3-3-FileReader"><a href="#2-3-3-FileReader" class="headerlink" title="2.3.3 FileReader"></a><strong>2.3.3 FileReader</strong></h3><p>l  FileReader(String filePath)</p>
+<p>l  FileReader(File fileObj)</p>
+<h3 id="2-3-4-FileWriter"><a href="#2-3-4-FileWriter" class="headerlink" title="2.3.4 FileWriter"></a><strong>2.3.4 FileWriter</strong></h3><p>l  FileWriter(String filePath)</p>
+<p>l  FileWriter(String filePath, boolean append)</p>
+<p>l  FileWriter(File fileObj)</p>
+<h2 id="2-3-缓冲流"><a href="#2-3-缓冲流" class="headerlink" title="2.3 缓冲流"></a><strong>2.3 缓冲流</strong></h2><p>缓冲流是建立在相应的节点流之上，<strong>对读写的数据提供了缓冲的功能</strong>，<strong>提高了读写的效率</strong>，还增加了一些新的方法。</p>
+<h3 id="2-3-1-BufferedInputStream"><a href="#2-3-1-BufferedInputStream" class="headerlink" title="2.3.1 BufferedInputStream"></a><strong>2.3.1 BufferedInputStream</strong></h3><p><strong>构造方法</strong></p>
+<p>l  public BufferedInputStream(InputStream is) 参数是一个节点流。</p>
+<p><strong>常用方法</strong></p>
+<p>l  public int read(byte[] b) 将数据读取到指定的 byte 数组中。如果返回-1，表示数据读取完毕。</p>
+<p>l  public void close() throws IOException 关闭此输入流并释放与此流关联的所有系统资源。<strong>即关闭缓冲流，它所关联的节点流也将关闭</strong>。</p>
+<h3 id="2-3-2-Buffer"><a href="#2-3-2-Buffer" class="headerlink" title="2.3.2 Buffer"></a><strong>2.3.2 Buffer</strong></h3><p><strong>构造方法</strong> </p>
+<p>l  public BufferedOutputStream(OutputStream os); </p>
+<p><strong>常用方法</strong></p>
+<p>l  public int write(byte[] b); </p>
+<p>l  public int write(byte[] b, int off, int len); </p>
+<p>l  public void close() throws IOException 关闭此输出流并释放与此流关联的所有系统资源。</p>
+<h3 id="2-3-3-BufferedReader"><a href="#2-3-3-BufferedReader" class="headerlink" title="2.3.3 BufferedReader"></a><strong>2.3.3 BufferedReader</strong></h3><p>l  public String readLine() 读取一行数据</p>
+<h3 id="2-3-4-BufferedWriter"><a href="#2-3-4-BufferedWriter" class="headerlink" title="2.3.4 BufferedWriter"></a><strong>2.3.4 BufferedWriter</strong></h3><p>l  public void write(String str) 写入字符串</p>
+<p>l  public void newLine() 写入换行</p>
+<h2 id="2-4-序列化"><a href="#2-4-序列化" class="headerlink" title="2.4 序列化"></a><strong>2.4 序列化</strong></h2><h3 id="2-4-1-序列化和反序列化"><a href="#2-4-1-序列化和反序列化" class="headerlink" title="2.4.1 序列化和反序列化"></a><strong>2.4.1 序列化和反序列化</strong></h3><p>l  序列化：将对象写入到IO流中(以二进制数组写入的)</p>
+<p>l  反序列化：从IO流中(读取二进制数据)恢复对象</p>
+<h3 id="2-4-2-对象流"><a href="#2-4-2-对象流" class="headerlink" title="2.4.2 对象流"></a><strong>2.4.2 对象流</strong></h3><p>l  ObjectOutputStream 实现序列化</p>
+<p>l  ObjectInputStream 实现反序列化</p>
+<h3 id="2-4-3-Serializable"><a href="#2-4-3-Serializable" class="headerlink" title="2.4.3 Serializable"></a><strong>2.4.3 Serializable</strong></h3><p>Serializable接口是一个标记接口，一旦实现了此接口，该类的对象就可以进行序列化操作了。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 序列化</span></span><br><span class="line">    <span class="type">Person</span> <span class="variable">p</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;小张&quot;</span>, <span class="number">22</span>);</span><br><span class="line">    <span class="type">ObjectOutputStream</span> <span class="variable">oos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;d:\\test\\test.txt&quot;</span>));</span><br><span class="line">    oos.writeObject(p);</span><br><span class="line">    <span class="comment">// 反序列化</span></span><br><span class="line">    <span class="type">ObjectInputStream</span> <span class="variable">ois</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;d:\\test\\test.txt&quot;</span>));</span><br><span class="line">    <span class="type">Person</span> <span class="variable">readP</span> <span class="operator">=</span> (Person) ois.readObject();</span><br><span class="line">    System.out.println(readP);</span><br><span class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Java 常用 API</title>
     <url>/2024/10/08/Java-%E5%B8%B8%E7%94%A8-API/</url>
     <content><![CDATA[<h1 id="Java-常用-API"><a href="#Java-常用-API" class="headerlink" title="Java 常用 API"></a>Java 常用 API</h1><span id="more"></span>
@@ -386,111 +480,6 @@
       </categories>
   </entry>
   <entry>
-    <title>MYSQL3</title>
-    <url>/2024/10/06/MYSQL3/</url>
-    <content><![CDATA[<h1 id="MYSQL3"><a href="#MYSQL3" class="headerlink" title="MYSQL3"></a>MYSQL3</h1><span id="more"></span>
-<h1 id="jdbc"><a href="#jdbc" class="headerlink" title="jdbc:"></a>jdbc:</h1><pre><code>java
-db 
-connction
-</code></pre>
-<h1 id="maven部署："><a href="#maven部署：" class="headerlink" title="maven部署："></a>maven部署：</h1><pre><code>1.下载 解压 
-
-2.配置环境变量
-    MAVEN_HOME=D:\sxwang\app\apache-maven-3.8.1
-    PATH=%MAVEN_HOME%\bin
-3.cmd 
-</code></pre>
-<h1 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h1><pre><code>1.创建maven 项目 
-2.src =》 开发代码目录
-3.pom.xml : 
-    添加第三方依赖包
-</code></pre>
-<h1 id="如何获取mysql连接？"><a href="#如何获取mysql连接？" class="headerlink" title="如何获取mysql连接？"></a>如何获取mysql连接？</h1><pre><code>1.url ： 
-    mysql ip 
-    mysql db 
-2.mysql 用户名 
-3.mysql 密码
-</code></pre>
-<h1 id="添加第三方依赖包"><a href="#添加第三方依赖包" class="headerlink" title="添加第三方依赖包:"></a>添加第三方依赖包:</h1><pre><code>mysql的驱动包： 
-    maven进行第三方jar管理： 
-        mysql-
-
-        &lt;dependency&gt;
-            &lt;groupId&gt;mysql&lt;/groupId&gt;
-            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-            &lt;version&gt;5.1.28&lt;/version&gt;
-        &lt;/dependency&gt;
-</code></pre>
-<p>问题：<br>    1.pom.xml:<br>        可能正在下载第三方jar  </p>
-<pre><code>2.更改本地maven 仓库地址 
-    D:\sxwang\app\apache-maven-3.8.1\conf\settings.xml
-</code></pre>
-<h1 id="操作mysql"><a href="#操作mysql" class="headerlink" title="操作mysql:"></a>操作mysql:</h1><pre><code>1.crud 
- insert、delete、update、select 
-
-    获取连接：
-        1.准备sql
-            1. insert、delete、update
-            2.select
-        2.执行sql
-            1. insert、delete、update
-            2.select
-</code></pre>
-<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL:"></a>MySQL:</h1><pre><code>    1.ddl: 
-        1.alter: 
-            1.db 
-                ALTER &#123;DATABASE | SCHEMA&#125; [db_name]
-                alter database bigdata CHARACTER SET = &#39;utf8&#39;;
-            2.table: 
-                1.添加字段
-                    alter table a1 add column column_add varchar(20) after address;
-                    alter table a1 add column column_add01 varchar(20) first ;
-                2.修改字段：
-                    1.name 
-                    2.type 
-                    alter table a1 CHANGE COLUMN column_add01 column_add01 int(3);
-                3.删除字段：【一般不会发生】 
-                    alter table a1 DROP  column_add01;
-
-        2.truncate  =&gt; 清空表
-            delete
-                1.truncate table a1;
-
-        3.create table 
-            1.CREATE TABLE ... LIKE Statement =&gt; 只拷贝 表结构
-                eg:
-                    CREATE TABLE emp_dev LIKE emp;
-            2.CREATE TABLE ... SELECT Statement =》 比较多 临时查询的结果 临时生成一个表
-                ctas：
-                    CREATE TABLE new_tbl [AS] SELECT * FROM orig_tbl;
-                create table emp_dev01 as select ename,job from emp;
-```		
-    2.dml
-        1.insert 
-        insert into table_name [(columns)]values(value_list,...)
-
-        a b 表结构是一样： 
-            需求： 
-                两张表 ， a有数据，b没有数据 
-                把a表数据导入b数据？ 
-            
-            insert into b (name,age) 
-            select name,age from a;
-
-            emp a1  
-            insert into a1(name,address)
-            select ename,job from emp;
-
-
-
-
-</code></pre>
-]]></content>
-      <categories>
-        <category>MYSQL</category>
-      </categories>
-  </entry>
-  <entry>
     <title>MYSQL2</title>
     <url>/2024/10/05/MYSQL2/</url>
     <content><![CDATA[<h1 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h1><span id="more"></span>
@@ -656,117 +645,348 @@ full join
       </tags>
   </entry>
   <entry>
-    <title>git2</title>
-    <url>/2024/10/06/git2/</url>
-    <content><![CDATA[<h1 id="git2"><a href="#git2" class="headerlink" title="git2"></a>git2</h1><span id="more"></span>
-<p>练习：<br>    编写一个小项目 ，提交到git本地仓库 </p>
-<pre><code>工作区： 开发代码 
-        =》 git add xxx
-暂存区 ： 暂时存放我们开发的代码文件 
-        =》 git commit 
-本地仓库:存放各个版本的历史
-
--- 前端项目 github 下载 html 项目
+    <title>Java8新特性</title>
+    <url>/2024/10/08/Java8%E6%96%B0%E7%89%B9%E6%80%A7/</url>
+    <content><![CDATA[<h1 id="Java8新特性"><a href="#Java8新特性" class="headerlink" title="Java8新特性"></a>Java8新特性</h1><span id="more"></span>]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>MySQL</title>
+    <url>/2024/10/04/MySQL/</url>
+    <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><span id="more"></span>
+<h1 id="使用场景？"><a href="#使用场景？" class="headerlink" title="使用场景？"></a>使用场景？</h1><pre><code>1.java开发人员 业务数据库
+2.大数据组件 元数据 、结果数据 
 </code></pre>
-<h1 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h1><p>git init music</p>
-<p>2.– 添加一个index.html文件<br>git add index.html<br>git commit -m “Add index.html”<br>git log</p>
-<h1 id="编写其他文件"><a href="#编写其他文件" class="headerlink" title="编写其他文件"></a>编写其他文件</h1><p>git status<br>git add font&#x2F;  icon&#x2F; image&#x2F; music&#x2F;<br>git status<br>git commit -m “Add other data”<br>git status<br>git log</p>
-<h1 id="添加页面样式"><a href="#添加页面样式" class="headerlink" title="添加页面样式"></a>添加页面样式</h1><p>git status<br>git add  script.js  style.css<br>git status<br>git commit -m “Add css&amp;js”<br>git status<br>git log</p>
-<h1 id="修改代码文件"><a href="#修改代码文件" class="headerlink" title="修改代码文件"></a>修改代码文件</h1><p>git status<br>修改了代码文件 新增文件<br>git status<br>git add -u<br>git status<br>git commit -m “Update”<br>git status<br>git log</p>
-<p>补充：<br>    1.git add -u </p>
-<pre><code>2.git log =&gt; 查看版本历史： 
+<h1 id="2-什么是mysql？"><a href="#2-什么是mysql？" class="headerlink" title="2.什么是mysql？"></a>2.什么是mysql？</h1><pre><code>1.关系型数据库： RDBMS  非关系型数据库NoSQL
+    1.存储数据
+    2.查询
+2.类似表格
+3.有行有列
 </code></pre>
-<p>git log  ：<br>    –reflog  &#x3D;》 查看所有操作的 commit 历史</p>
-<h1 id="指定输出格式"><a href="#指定输出格式" class="headerlink" title="指定输出格式"></a>指定输出格式</h1><pre><code>format
-git log --format=oneline 
-git log --oneline [常用]
-
-git log  --oneline --reflog 可以连用 
-git log --oneline -n 2  显示最近几个commit
-
--n 2： 
-    使用场景： 
-        1.commit 特别多的时候 
-        2.分支有关
+<h1 id="3-背景："><a href="#3-背景：" class="headerlink" title="3.背景："></a>3.背景：</h1><pre><code>处理数据 ：excel 
+mysql： 
+    存储数据，数据分析
+    一堆类似excel的表格
 </code></pre>
-<h1 id="分支："><a href="#分支：" class="headerlink" title="分支："></a>分支：</h1><pre><code>一个分支一条线 
-默认分支： 
-    主分支：主线 master
+<h1 id="4-官网"><a href="#4-官网" class="headerlink" title="4.官网"></a>4.官网</h1><pre><code>www.mysql.com
 </code></pre>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	git branch:</span><br><span class="line">		branch    List, create, or delete branches</span><br><span class="line">	</span><br><span class="line">	git branch [--color[=&lt;when&gt;] | --no-color] [--show-current]</span><br><span class="line">        [-v [--abbrev=&lt;n&gt; | --no-abbrev]]</span><br><span class="line">        [--column[=&lt;options&gt;] | --no-column] [--sort=&lt;key&gt;]</span><br><span class="line">        [--merged [&lt;commit&gt;]] [--no-merged [&lt;commit&gt;]]</span><br><span class="line">        [--contains [&lt;commit&gt;]] [--no-contains [&lt;commit&gt;]]</span><br><span class="line">        [--points-at &lt;object&gt;] [--format=&lt;format&gt;]</span><br><span class="line">        [(-r | --remotes) | (-a | --all)]</span><br><span class="line">        [--list] [&lt;pattern&gt;…​]</span><br><span class="line">git branch [--track[=(direct|inherit)] | --no-track] [-f]</span><br><span class="line">        [--recurse-submodules] &lt;branchname&gt; [&lt;start-point&gt;]</span><br><span class="line">git branch (--set-upstream-to=&lt;upstream&gt; | -u &lt;upstream&gt;) [&lt;branchname&gt;]</span><br><span class="line">git branch --unset-upstream [&lt;branchname&gt;]</span><br><span class="line">git branch (-m | -M) [&lt;oldbranch&gt;] &lt;newbranch&gt;</span><br><span class="line">git branch (-c | -C) [&lt;oldbranch&gt;] &lt;newbranch&gt;</span><br><span class="line">git branch (-d | -D) [-r] &lt;branchname&gt;…​</span><br><span class="line">git branch --edit-description [&lt;branchname&gt;]</span><br></pre></td></tr></table></figure>
-<pre><code>1.创建分支 
-  git branch -c dev  =&gt;默认从master直接复制来的
-2.查看分支 
-    git branch -v
-3.切换分支
-    git checkout dev 
+<h1 id="5-版本："><a href="#5-版本：" class="headerlink" title="5.版本："></a>5.版本：</h1><pre><code>8.x 不是主流、java团队 
+5.7  it java 大数据 主流
+5.6 目前公司也有
 </code></pre>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log --oneline  master  =&gt; 指定查看某个分支的 commit 历史 </span><br><span class="line">git log --oneline --gragh  =&gt; 以图形化界面展示 分支的commit 历史</span><br><span class="line">git log --oneline --gragh --all =&gt; 以图形化界面展示 所有分支 的commit 历史</span><br><span class="line">gitk --all ：</span><br></pre></td></tr></table></figure>
-<pre><code>1.历史树  分支线 
-2.path =》 记录当前commit 变更文件 
-3.tree =》 记录当前commit 下文件结构 
+<p>补充：<br>    上传下载：<br>        [root@bigdata31 software]# yum install -y lrzsz</p>
+<pre><code>上传： rz 
+下载 ：sz xxx
 </code></pre>
-<p>补充： 创建分支同时并切换分支<br>分支： </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout</span><br><span class="line"></span><br><span class="line">git checkout [-b|-B|--orphan] &lt;new-branch&gt;] [&lt;start-point&gt;]</span><br><span class="line">eg: </span><br><span class="line">	创建分支同时并切换分支</span><br><span class="line">git checkout -b bigdata 61b6bb8</span><br><span class="line">git branch -v</span><br><span class="line">gitk --all</span><br><span class="line">vim 1.log</span><br><span class="line"> git add 1.log</span><br><span class="line"> git status</span><br><span class="line">  git commit -m &quot;Add 1.log&quot;</span><br><span class="line">   git log --oneline --graph --all</span><br><span class="line">gitk --all</span><br></pre></td></tr></table></figure>
+<h1 id="6-部署："><a href="#6-部署：" class="headerlink" title="6.部署："></a>6.部署：</h1><pre><code>1.下载安装包  
+    5.7
+    安装包种类：
+        rpm包 ：mysql source code =》 rpm包
+            mysql-5.7.38-1.el7.x86_64.rpm-bundle.tar
 
+        tar包：mysql source code +开发加的mysql代码 =》 编译打包生成 tar包
 
-<pre><code>从工作区 =》 本地仓库 ：
-     git branch -c java
-     git checkout java
-     gitk --all
-      vim 1.log
-      git add -u
-       git commit -m &quot;Update 1.log&quot;
-       git log --oneline
-       vim 1.log
-        git status
-        git commit -am &quot;Updata 1.log add 3333&quot;  !!!! 
+            mysql-5.7.38-el7-x86_64.tar.gz
 
-注意：
-    git commit -am 
-        -a 表示 工作区 暂存区 文件都有的前提下 ，更改工作区文件 可以直接提交到本地仓库 
-            但是 新增文件 不可以
+准备好了： 
 </code></pre>
-<h1 id="S删除分支"><a href="#S删除分支" class="headerlink" title="S删除分支"></a>S删除分支</h1><pre><code>git branch (-d | -D)  &lt;branchname&gt;…
-    -d： 删除分支之前 要求merge 到主分支 
-    -D: 强制删除分支 
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">	<span class="number">2.</span>安装部署</span><br><span class="line">		<span class="number">1.</span>上传mysql 安装包</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# ll</span><br><span class="line">			total <span class="number">595272</span></span><br><span class="line">			-rw-r--r--. <span class="number">1</span> root root <span class="number">609556480</span> Aug <span class="number">26</span>  <span class="number">2021</span> mysql-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm-bundle.tar</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# pwd</span><br><span class="line">			/root/software</span><br><span class="line"></span><br><span class="line">		<span class="number">2.</span>部署 </span><br><span class="line">			<span class="number">1.</span>解压</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# tar -xvf ./mysql-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm-bundle.tar </span><br><span class="line">mysql-community-embedded-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-compat-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-devel-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-compat-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-test-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-common-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-devel-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-client-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-server-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<pre><code>2.安装 
+    1.卸载 mariadb 相关的东西
+    [root@bigdata31 software]# rpm -qa | grep mariadb
 </code></pre>
-<p>merge： 合并分支<br>    git branch -d java<br>error: The branch ‘java’ is not fully merged.<br>If you are sure you want to delete it, run ‘git branch -D java’</p>
-<pre><code> git branch -D java
- git branch -v
+<p>mariadb-libs-5.5.56-2.el7.x86_64<br>        [root@bigdata31 software]# rpm -e –nodeps mariadb-libs-5.5.56-2.el7.x86_64<br>[root@bigdata31 software]# rpm -qa | grep mariadb</p>
+<pre><code>rpm -ivh mysql-community-common-5.7.28-1.el7.x86_64.rpm 
+注意： 
+    package mariadb-libs conflicts with 
 </code></pre>
-<p>.git文件夹 目录介绍:<br>    1.HEAD 文件 当前项目 正在工作的分支是谁<br>        cat HEAD<br>        ref: refs&#x2F;heads&#x2F;master</p>
-<pre><code>2.config ： 
-    记录项目的一些参数 一些配置信息 
+<p>rpm -ivh mysql-community-libs-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-libs-compat-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-client-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-server-5.7.28-1.el7.x86_64.rpm</p>
+<pre><code>3.有一个 配置文件 管控mysql 
+    /etc/my.cnf
 
-git config --local user.name &quot;zihang&quot;  =》 set 设置参数 
-git config --local user.name           =》 get操作
-
-3.refs/ 
-    heads/  存储的是分支的指向 哪个commit
-
-        commit hash =》 对应存储的文件内容是什么？
+    mysql运行日志文件：log-error=/var/log/mysqld.log
+4.初始化mysql 
+        mysqld --initialize --user=mysql
     
-        git cat-file 
-                    -t  =》 文件类型 =》 git存储文件 有关系 
-                    -p  =&gt; 文件内容
+     A temporary password is generated for root@localhost: rfnYYHj0jc,R
 
-    object：是git存储的真正对象 种类有 如下
-        commit：
-            tree  =》 
-                tree =》文件夹
-                blob =》 文件
-            
-        git存储文件高效的原因：
-            不同的文件 只要文件内容有相同的部分 就是一个 blob 
-        
+5.启动mysql 
+    systemctl start mysqld 
+    mysql 可以对外提供服务：
+        port： 3306
+6.登录mysql 使用
+    mysql -uroot -prfnYYHj0jc,R
+
+7.修改mysql 软件 root用户 密码
+    set password = password(&#39;123456&#39;);
+8.赋予权限 
+    flush privileges;
+
+补充： 
+    卸载： 
+        1.mysql 停掉 
+            systemctl stop mysqld 
+        2.mysql卸载 
+            rpm -qa | grep mysql
+            rpm -qa | grep mysql | xargs -n1 rpm -e --nodeps 
+        3.linux存储目录删掉 
+            find / -name &quot;*mysql*&quot; 
+            注意：/sys/
+        4.重装
+    
+    mysql 全部卸载重装
+
+
+    shift + alt =&gt;多行编辑
+    alt + tab 
+    rm -rf xx 
 </code></pre>
+<p>mysql 数据库：<br>       excel 表格<br>       win：<br>       	 文件夹：<br>            一堆表格</p>
+<p>MySQL:<br>    数据库：&#x3D;》文件夹 database<br>        一堆表格 table</p>
+<p>远程登录工具：<br>    navcat 【选择】<br>    sqlyog<br>    dbvear工具 【选择】</p>
+<pre><code>root@localhost: 123456
+    只允许 当前机器登录
+root@%: 123456
+</code></pre>
+<p>远程登录访问：<br>    1.修改 mysql 登录 运行用户的ip &#x3D;》 任意ip </p>
+<p>mysql语法：【了解】<br>    1.查看数据库<br>        show databases;<br>    2.切换数据库<br>        use mysql;<br>    3.查看库下面有哪些表<br>        show tables;<br>    4.查看表中数据<br>    select host,user<br>    from user;<br>    5.修改表中数据<br>    update mysql.user set  host&#x3D;”%” where user&#x3D;”root”;<br>    6.刷新权限<br>    flush privileges; </p>
+<p>基本语法：<br>    1.sql进行开发<br>        sql类型：<br>            ddl 数据定义语言 ：create drop  alter<br>            dml 数据操作语言 : insert select update delete<br>            dcl 数据控制语言 :grant [了解]<br>2.查看数据库<br>    SHOW {DATABASES | SCHEMAS}<br>    [LIKE ‘pattern’ | WHERE expr]</p>
+<p>{} 必选参数 | 可选<br>[] 可选<br>    SHOW DATABASES;</p>
+<p>mysql&gt; SHOW DATABASES;<br>+——————–+<br>| Database           |<br>+——————–+<br>| information_schema |<br>| mysql              |<br>| performance_schema |<br>| sys                |<br>+——————–+<br>4 rows in set (0.00 sec)</p>
+<p>3.切换数据库<br>    use dbname;</p>
+<p>4.查看数据库下面的表<br>    SHOW [FULL] TABLES<br>    [{FROM | IN} db_name]<br>    [LIKE ‘pattern’ | WHERE expr]<br>    SHOW TABLES;</p>
+<p>mysql&gt; show tables FROM sys;</p>
+<p>5.创建数据库<br>    CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name<br>    [create_option] …</p>
+<p>create_option: [DEFAULT] {<br>    CHARACTER SET [&#x3D;] charset_name<br>  | COLLATE [&#x3D;] collation_name<br>}</p>
+<p>CREATE DATABASE bigdata;</p>
+<p>6.创建表<br>    excel ： </p>
+<pre><code>字段：column : 
+        1.名称
+        2.字段类型
+</code></pre>
+<p>常用字段类型：<br>    数值类型：<br>        整数：<br>            int 整型<br>            long 长整型<br>        小数：<br>            float 单精度<br>            double 双精度<br>            decimal 小数 &#x3D;》 跟钱挂钩的<br>    字符串：<br>        char 字节  长度 0-255  bigdataxxxxxxx 255<br>        varchar 字符串 长度范围<br>    日期：<br>        date  日期： YYYY-MM-DD<br>        time 时间 ： HH:mm:SS<br>        datetime 年月日时分秒 ： YYYY-MM-DD HH:mm:SS<br>        timestamp 年月日时分秒【时间戳】:YYYY-MM-DD HH:mm:SS</p>
+<p>列的名字、字段的名字<br>mysql&gt; CREATE TABLE user_table(<br>    -&gt; id int(3),<br>    -&gt; name varchar(10),<br>    -&gt; age int(3)<br>    -&gt; );<br>Query OK, 0 rows affected (0.01 sec)</p>
+<p>mysql&gt; show tables;<br>+——————-+<br>| Tables_in_bigdata |<br>+——————-+<br>| user_table        |<br>+——————-+<br>1 row in set (0.00 sec)</p>
+<p>7.表中插入数据 </p>
+<p>INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]<br>    [INTO] tbl_name<br>    [(col_name [, col_name] …)]<br>    {VALUES | VALUE} (value_list) [, (value_list)] …<br>    [ON DUPLICATE KEY UPDATE assignment_list]</p>
+<p>INSERT into user_table (id,name,age)VALUES (1,’zhangsan’,10);</p>
+<p>8.查看数据</p>
+<ul>
+<li>表示所有字段</li>
+</ul>
+<p>select *<br>from user_table;</p>
+<p>select name,age from user_table;</p>
+]]></content>
+      <categories>
+        <category>MYSQL</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MYSQL3</title>
+    <url>/2024/10/06/MYSQL3/</url>
+    <content><![CDATA[<h1 id="MYSQL3"><a href="#MYSQL3" class="headerlink" title="MYSQL3"></a>MYSQL3</h1><span id="more"></span>
+<h1 id="jdbc"><a href="#jdbc" class="headerlink" title="jdbc:"></a>jdbc:</h1><pre><code>java
+db 
+connction
+</code></pre>
+<h1 id="maven部署："><a href="#maven部署：" class="headerlink" title="maven部署："></a>maven部署：</h1><pre><code>1.下载 解压 
+
+2.配置环境变量
+    MAVEN_HOME=D:\sxwang\app\apache-maven-3.8.1
+    PATH=%MAVEN_HOME%\bin
+3.cmd 
+</code></pre>
+<h1 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h1><pre><code>1.创建maven 项目 
+2.src =》 开发代码目录
+3.pom.xml : 
+    添加第三方依赖包
+</code></pre>
+<h1 id="如何获取mysql连接？"><a href="#如何获取mysql连接？" class="headerlink" title="如何获取mysql连接？"></a>如何获取mysql连接？</h1><pre><code>1.url ： 
+    mysql ip 
+    mysql db 
+2.mysql 用户名 
+3.mysql 密码
+</code></pre>
+<h1 id="添加第三方依赖包"><a href="#添加第三方依赖包" class="headerlink" title="添加第三方依赖包:"></a>添加第三方依赖包:</h1><pre><code>mysql的驱动包： 
+    maven进行第三方jar管理： 
+        mysql-
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;5.1.28&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<p>问题：<br>    1.pom.xml:<br>        可能正在下载第三方jar  </p>
+<pre><code>2.更改本地maven 仓库地址 
+    D:\sxwang\app\apache-maven-3.8.1\conf\settings.xml
+</code></pre>
+<h1 id="操作mysql"><a href="#操作mysql" class="headerlink" title="操作mysql:"></a>操作mysql:</h1><pre><code>1.crud 
+ insert、delete、update、select 
+
+    获取连接：
+        1.准备sql
+            1. insert、delete、update
+            2.select
+        2.执行sql
+            1. insert、delete、update
+            2.select
+</code></pre>
+<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL:"></a>MySQL:</h1><pre><code>    1.ddl: 
+        1.alter: 
+            1.db 
+                ALTER &#123;DATABASE | SCHEMA&#125; [db_name]
+                alter database bigdata CHARACTER SET = &#39;utf8&#39;;
+            2.table: 
+                1.添加字段
+                    alter table a1 add column column_add varchar(20) after address;
+                    alter table a1 add column column_add01 varchar(20) first ;
+                2.修改字段：
+                    1.name 
+                    2.type 
+                    alter table a1 CHANGE COLUMN column_add01 column_add01 int(3);
+                3.删除字段：【一般不会发生】 
+                    alter table a1 DROP  column_add01;
+
+        2.truncate  =&gt; 清空表
+            delete
+                1.truncate table a1;
+
+        3.create table 
+            1.CREATE TABLE ... LIKE Statement =&gt; 只拷贝 表结构
+                eg:
+                    CREATE TABLE emp_dev LIKE emp;
+            2.CREATE TABLE ... SELECT Statement =》 比较多 临时查询的结果 临时生成一个表
+                ctas：
+                    CREATE TABLE new_tbl [AS] SELECT * FROM orig_tbl;
+                create table emp_dev01 as select ename,job from emp;
+```		
+    2.dml
+        1.insert 
+        insert into table_name [(columns)]values(value_list,...)
+
+        a b 表结构是一样： 
+            需求： 
+                两张表 ， a有数据，b没有数据 
+                把a表数据导入b数据？ 
+            
+            insert into b (name,age) 
+            select name,age from a;
+
+            emp a1  
+            insert into a1(name,address)
+            select ename,job from emp;
+
+
+
+
+</code></pre>
+]]></content>
+      <categories>
+        <category>MYSQL</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>git</title>
+    <url>/2024/10/06/git/</url>
+    <content><![CDATA[<h1 id="git"><a href="#git" class="headerlink" title="git"></a>git</h1><span id="more"></span> 
+<h1 id="git是什么？"><a href="#git是什么？" class="headerlink" title="git是什么？"></a>git是什么？</h1><pre><code>官网地址： 
+    https://git-scm.com/
+
+distributed version control system
+</code></pre>
+<h1 id="version-control-system？"><a href="#version-control-system？" class="headerlink" title="version control system？"></a>version control system？</h1><pre><code> Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later. 
+ 记录文件变化的 并且 之后可以指定版本进行恢复
+
+1.论文： 
+    1.xxx_v1.doc 
+    2.xxx_v2.doc 
+    ...
+    xxx_最终版.doc 
+
+2.种类： 
+    Local Version Control Systems： copy files into another directory
+        优点：
+            so simple
+        缺点： 
+            error prone 
+            1.代码集成效率低下
+
+    Centralized Version Control Systems 集中式版本控制系统： 
+        解决： 代码集成效率低下 
+            多人协同开发的问题
+        问题：
+            single point 单点故障
+
+    Distributed Version Control Systems： 
+            解决： 多人协同开发 单点故障
+        1.clients
+
+        2.server
+
+    git： 
+        1.efficiency.
+        2.performance.
+        3.分支操作、文件备份、定制工作流程
+</code></pre>
+<h1 id="文件版本控制："><a href="#文件版本控制：" class="headerlink" title="文件版本控制："></a>文件版本控制：</h1><pre><code>1.本地仓库
+2.远程仓库
+</code></pre>
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><pre><code>1.下载
+2.安装
+3.使用： 
+    1.git 软件 工具
+        1.可视化界面的方式进行操作 =》 git原理
+        2.git 命令操作 =》 linux 命令差不多
+
+        linux 内核 林纳斯 
+        git
+</code></pre>
+<h1 id="查看git版本"><a href="#查看git版本" class="headerlink" title="查看git版本"></a>查看git版本</h1><p>$ git -v<br>git version 2.38.0.windows.1</p>
+<p>使用： 版本控制<br>    1.使用的前的配置 </p>
+<pre><code>-- 要配置我们的项目开发人员的信息
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;zhangsan&quot;</span><br><span class="line">git config --global user.email &quot;zhangsan@qq.com&quot;</span><br><span class="line">	1.设置git参数 =》 本地仓库</span><br><span class="line">usage: git config [&lt;options&gt;]</span><br><span class="line"></span><br><span class="line">Config file location</span><br><span class="line">    --global              use global config file  --对当前用户 所有仓库都有效</span><br><span class="line">    --system              use system config file  -- 对系统所有登录用户有效</span><br><span class="line">    --local               use repository config file -- 对某个仓库有效</span><br></pre></td></tr></table></figure>
+<pre><code>思考： 
+    单单对某一个项目来说 上面哪个参数 有限级高？
+        --local
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config [options]</span><br><span class="line">option...</span><br><span class="line">查看配置参数： </span><br><span class="line">	git config --list </span><br><span class="line">	git config --list --global</span><br><span class="line">	git config --list --local</span><br></pre></td></tr></table></figure>
+<p>1.创建仓库<br>    项目：开发的代码文件<br>    仓库：本地仓库 用于进行文件的版本控制的</p>
+<pre><code>git init: 
+    1.创建一个仓库
+    2.重新初始化一个 以及存在的仓库
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init [-q | --quiet] [--bare] [--template=&lt;template-directory&gt;]</span><br><span class="line">          [--separate-git-dir &lt;git-dir&gt;] [--object-format=&lt;format&gt;]</span><br><span class="line">          [-b &lt;branch-name&gt; | --initial-branch=&lt;branch-name&gt;]</span><br><span class="line">          [--shared[=&lt;permissions&gt;]] [&lt;directory&gt;]</span><br><span class="line">	</span><br><span class="line">	git init [&lt;directory&gt;]</span><br></pre></td></tr></table></figure>
+
+<p>项目：《&#x3D;》 本地仓库 【一个项目 对应一个本地仓库】<br>    1.存在：<br>        cd 项目目录<br>        git init<br>    2.不存在：<br>         git init <project_name><br>         git init test01：<br>         	1.创建一个项目 test01<br>            2. test01目录下下面 创建一个本地仓库 </p>
+<pre><code>    .git 文件夹 本地仓库
+</code></pre>
+<p>使用<br>    git 管理版本控制的工作流程：<br>        工作区： 项目目录<br>        暂存区： 临时存储文件的地方 可以进行撤回<br>        本地仓库：版本控制</p>
+<p> 入门：<br>    1.vim 1.log<br>    2.git add 1.log  &#x3D;&gt; 添加到暂存区<br>    3.git commit -m “Add 1.log” &#x3D;&gt; 添加到 本地仓库<br>    4.git log 查看本地仓库历史 ：当前项目的 commit历史</p>
+<p>git commit  -m <msg></p>
+<pre><code>总结： 
+    本地仓库 ： 
+        如何进行版本控制？
+            commit 进行区分版本的
+
+切换版本： 可以使用
+    git reset --hard [&lt;commit&gt;]
+
+    git reset --hard d7db6e
+</code></pre>
+<p>了解：<br>     git log –reflog</p>
 ]]></content>
       <categories>
         <category>Git</category>
       </categories>
       <tags>
-        <tag>gittest</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -1230,140 +1450,6 @@ curl localhost:80
       </tags>
   </entry>
   <entry>
-    <title>MySQL</title>
-    <url>/2024/10/04/MySQL/</url>
-    <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><span id="more"></span>
-<h1 id="使用场景？"><a href="#使用场景？" class="headerlink" title="使用场景？"></a>使用场景？</h1><pre><code>1.java开发人员 业务数据库
-2.大数据组件 元数据 、结果数据 
-</code></pre>
-<h1 id="2-什么是mysql？"><a href="#2-什么是mysql？" class="headerlink" title="2.什么是mysql？"></a>2.什么是mysql？</h1><pre><code>1.关系型数据库： RDBMS  非关系型数据库NoSQL
-    1.存储数据
-    2.查询
-2.类似表格
-3.有行有列
-</code></pre>
-<h1 id="3-背景："><a href="#3-背景：" class="headerlink" title="3.背景："></a>3.背景：</h1><pre><code>处理数据 ：excel 
-mysql： 
-    存储数据，数据分析
-    一堆类似excel的表格
-</code></pre>
-<h1 id="4-官网"><a href="#4-官网" class="headerlink" title="4.官网"></a>4.官网</h1><pre><code>www.mysql.com
-</code></pre>
-<h1 id="5-版本："><a href="#5-版本：" class="headerlink" title="5.版本："></a>5.版本：</h1><pre><code>8.x 不是主流、java团队 
-5.7  it java 大数据 主流
-5.6 目前公司也有
-</code></pre>
-<p>补充：<br>    上传下载：<br>        [root@bigdata31 software]# yum install -y lrzsz</p>
-<pre><code>上传： rz 
-下载 ：sz xxx
-</code></pre>
-<h1 id="6-部署："><a href="#6-部署：" class="headerlink" title="6.部署："></a>6.部署：</h1><pre><code>1.下载安装包  
-    5.7
-    安装包种类：
-        rpm包 ：mysql source code =》 rpm包
-            mysql-5.7.38-1.el7.x86_64.rpm-bundle.tar
-
-        tar包：mysql source code +开发加的mysql代码 =》 编译打包生成 tar包
-
-            mysql-5.7.38-el7-x86_64.tar.gz
-
-准备好了： 
-</code></pre>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">	<span class="number">2.</span>安装部署</span><br><span class="line">		<span class="number">1.</span>上传mysql 安装包</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# ll</span><br><span class="line">			total <span class="number">595272</span></span><br><span class="line">			-rw-r--r--. <span class="number">1</span> root root <span class="number">609556480</span> Aug <span class="number">26</span>  <span class="number">2021</span> mysql-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm-bundle.tar</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# pwd</span><br><span class="line">			/root/software</span><br><span class="line"></span><br><span class="line">		<span class="number">2.</span>部署 </span><br><span class="line">			<span class="number">1.</span>解压</span><br><span class="line">			[root<span class="meta">@bigdata31</span> software]# tar -xvf ./mysql-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm-bundle.tar </span><br><span class="line">mysql-community-embedded-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-compat-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-devel-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-compat-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-test-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-common-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-devel-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-client-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br><span class="line">mysql-community-server-<span class="number">5.7</span><span class="number">.28</span>-<span class="number">1.</span>el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
-<pre><code>2.安装 
-    1.卸载 mariadb 相关的东西
-    [root@bigdata31 software]# rpm -qa | grep mariadb
-</code></pre>
-<p>mariadb-libs-5.5.56-2.el7.x86_64<br>        [root@bigdata31 software]# rpm -e –nodeps mariadb-libs-5.5.56-2.el7.x86_64<br>[root@bigdata31 software]# rpm -qa | grep mariadb</p>
-<pre><code>rpm -ivh mysql-community-common-5.7.28-1.el7.x86_64.rpm 
-注意： 
-    package mariadb-libs conflicts with 
-</code></pre>
-<p>rpm -ivh mysql-community-libs-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-libs-compat-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-client-5.7.28-1.el7.x86_64.rpm<br>rpm -ivh mysql-community-server-5.7.28-1.el7.x86_64.rpm</p>
-<pre><code>3.有一个 配置文件 管控mysql 
-    /etc/my.cnf
-
-    mysql运行日志文件：log-error=/var/log/mysqld.log
-4.初始化mysql 
-        mysqld --initialize --user=mysql
-    
-     A temporary password is generated for root@localhost: rfnYYHj0jc,R
-
-5.启动mysql 
-    systemctl start mysqld 
-    mysql 可以对外提供服务：
-        port： 3306
-6.登录mysql 使用
-    mysql -uroot -prfnYYHj0jc,R
-
-7.修改mysql 软件 root用户 密码
-    set password = password(&#39;123456&#39;);
-8.赋予权限 
-    flush privileges;
-
-补充： 
-    卸载： 
-        1.mysql 停掉 
-            systemctl stop mysqld 
-        2.mysql卸载 
-            rpm -qa | grep mysql
-            rpm -qa | grep mysql | xargs -n1 rpm -e --nodeps 
-        3.linux存储目录删掉 
-            find / -name &quot;*mysql*&quot; 
-            注意：/sys/
-        4.重装
-    
-    mysql 全部卸载重装
-
-
-    shift + alt =&gt;多行编辑
-    alt + tab 
-    rm -rf xx 
-</code></pre>
-<p>mysql 数据库：<br>       excel 表格<br>       win：<br>       	 文件夹：<br>            一堆表格</p>
-<p>MySQL:<br>    数据库：&#x3D;》文件夹 database<br>        一堆表格 table</p>
-<p>远程登录工具：<br>    navcat 【选择】<br>    sqlyog<br>    dbvear工具 【选择】</p>
-<pre><code>root@localhost: 123456
-    只允许 当前机器登录
-root@%: 123456
-</code></pre>
-<p>远程登录访问：<br>    1.修改 mysql 登录 运行用户的ip &#x3D;》 任意ip </p>
-<p>mysql语法：【了解】<br>    1.查看数据库<br>        show databases;<br>    2.切换数据库<br>        use mysql;<br>    3.查看库下面有哪些表<br>        show tables;<br>    4.查看表中数据<br>    select host,user<br>    from user;<br>    5.修改表中数据<br>    update mysql.user set  host&#x3D;”%” where user&#x3D;”root”;<br>    6.刷新权限<br>    flush privileges; </p>
-<p>基本语法：<br>    1.sql进行开发<br>        sql类型：<br>            ddl 数据定义语言 ：create drop  alter<br>            dml 数据操作语言 : insert select update delete<br>            dcl 数据控制语言 :grant [了解]<br>2.查看数据库<br>    SHOW {DATABASES | SCHEMAS}<br>    [LIKE ‘pattern’ | WHERE expr]</p>
-<p>{} 必选参数 | 可选<br>[] 可选<br>    SHOW DATABASES;</p>
-<p>mysql&gt; SHOW DATABASES;<br>+——————–+<br>| Database           |<br>+——————–+<br>| information_schema |<br>| mysql              |<br>| performance_schema |<br>| sys                |<br>+——————–+<br>4 rows in set (0.00 sec)</p>
-<p>3.切换数据库<br>    use dbname;</p>
-<p>4.查看数据库下面的表<br>    SHOW [FULL] TABLES<br>    [{FROM | IN} db_name]<br>    [LIKE ‘pattern’ | WHERE expr]<br>    SHOW TABLES;</p>
-<p>mysql&gt; show tables FROM sys;</p>
-<p>5.创建数据库<br>    CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name<br>    [create_option] …</p>
-<p>create_option: [DEFAULT] {<br>    CHARACTER SET [&#x3D;] charset_name<br>  | COLLATE [&#x3D;] collation_name<br>}</p>
-<p>CREATE DATABASE bigdata;</p>
-<p>6.创建表<br>    excel ： </p>
-<pre><code>字段：column : 
-        1.名称
-        2.字段类型
-</code></pre>
-<p>常用字段类型：<br>    数值类型：<br>        整数：<br>            int 整型<br>            long 长整型<br>        小数：<br>            float 单精度<br>            double 双精度<br>            decimal 小数 &#x3D;》 跟钱挂钩的<br>    字符串：<br>        char 字节  长度 0-255  bigdataxxxxxxx 255<br>        varchar 字符串 长度范围<br>    日期：<br>        date  日期： YYYY-MM-DD<br>        time 时间 ： HH:mm:SS<br>        datetime 年月日时分秒 ： YYYY-MM-DD HH:mm:SS<br>        timestamp 年月日时分秒【时间戳】:YYYY-MM-DD HH:mm:SS</p>
-<p>列的名字、字段的名字<br>mysql&gt; CREATE TABLE user_table(<br>    -&gt; id int(3),<br>    -&gt; name varchar(10),<br>    -&gt; age int(3)<br>    -&gt; );<br>Query OK, 0 rows affected (0.01 sec)</p>
-<p>mysql&gt; show tables;<br>+——————-+<br>| Tables_in_bigdata |<br>+——————-+<br>| user_table        |<br>+——————-+<br>1 row in set (0.00 sec)</p>
-<p>7.表中插入数据 </p>
-<p>INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]<br>    [INTO] tbl_name<br>    [(col_name [, col_name] …)]<br>    {VALUES | VALUE} (value_list) [, (value_list)] …<br>    [ON DUPLICATE KEY UPDATE assignment_list]</p>
-<p>INSERT into user_table (id,name,age)VALUES (1,’zhangsan’,10);</p>
-<p>8.查看数据</p>
-<ul>
-<li>表示所有字段</li>
-</ul>
-<p>select *<br>from user_table;</p>
-<p>select name,age from user_table;</p>
-]]></content>
-      <categories>
-        <category>MYSQL</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Shell</title>
     <url>/2024/10/04/Shell/</url>
     <content><![CDATA[<h1 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h1><span id="more"></span>
@@ -1658,122 +1744,6 @@ done
       </tags>
   </entry>
   <entry>
-    <title>git</title>
-    <url>/2024/10/06/git/</url>
-    <content><![CDATA[<h1 id="git"><a href="#git" class="headerlink" title="git"></a>git</h1><span id="more"></span> 
-<h1 id="git是什么？"><a href="#git是什么？" class="headerlink" title="git是什么？"></a>git是什么？</h1><pre><code>官网地址： 
-    https://git-scm.com/
-
-distributed version control system
-</code></pre>
-<h1 id="version-control-system？"><a href="#version-control-system？" class="headerlink" title="version control system？"></a>version control system？</h1><pre><code> Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later. 
- 记录文件变化的 并且 之后可以指定版本进行恢复
-
-1.论文： 
-    1.xxx_v1.doc 
-    2.xxx_v2.doc 
-    ...
-    xxx_最终版.doc 
-
-2.种类： 
-    Local Version Control Systems： copy files into another directory
-        优点：
-            so simple
-        缺点： 
-            error prone 
-            1.代码集成效率低下
-
-    Centralized Version Control Systems 集中式版本控制系统： 
-        解决： 代码集成效率低下 
-            多人协同开发的问题
-        问题：
-            single point 单点故障
-
-    Distributed Version Control Systems： 
-            解决： 多人协同开发 单点故障
-        1.clients
-
-        2.server
-
-    git： 
-        1.efficiency.
-        2.performance.
-        3.分支操作、文件备份、定制工作流程
-</code></pre>
-<h1 id="文件版本控制："><a href="#文件版本控制：" class="headerlink" title="文件版本控制："></a>文件版本控制：</h1><pre><code>1.本地仓库
-2.远程仓库
-</code></pre>
-<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><pre><code>1.下载
-2.安装
-3.使用： 
-    1.git 软件 工具
-        1.可视化界面的方式进行操作 =》 git原理
-        2.git 命令操作 =》 linux 命令差不多
-
-        linux 内核 林纳斯 
-        git
-</code></pre>
-<h1 id="查看git版本"><a href="#查看git版本" class="headerlink" title="查看git版本"></a>查看git版本</h1><p>$ git -v<br>git version 2.38.0.windows.1</p>
-<p>使用： 版本控制<br>    1.使用的前的配置 </p>
-<pre><code>-- 要配置我们的项目开发人员的信息
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;zhangsan&quot;</span><br><span class="line">git config --global user.email &quot;zhangsan@qq.com&quot;</span><br><span class="line">	1.设置git参数 =》 本地仓库</span><br><span class="line">usage: git config [&lt;options&gt;]</span><br><span class="line"></span><br><span class="line">Config file location</span><br><span class="line">    --global              use global config file  --对当前用户 所有仓库都有效</span><br><span class="line">    --system              use system config file  -- 对系统所有登录用户有效</span><br><span class="line">    --local               use repository config file -- 对某个仓库有效</span><br></pre></td></tr></table></figure>
-<pre><code>思考： 
-    单单对某一个项目来说 上面哪个参数 有限级高？
-        --local
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config [options]</span><br><span class="line">option...</span><br><span class="line">查看配置参数： </span><br><span class="line">	git config --list </span><br><span class="line">	git config --list --global</span><br><span class="line">	git config --list --local</span><br></pre></td></tr></table></figure>
-<p>1.创建仓库<br>    项目：开发的代码文件<br>    仓库：本地仓库 用于进行文件的版本控制的</p>
-<pre><code>git init: 
-    1.创建一个仓库
-    2.重新初始化一个 以及存在的仓库
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init [-q | --quiet] [--bare] [--template=&lt;template-directory&gt;]</span><br><span class="line">          [--separate-git-dir &lt;git-dir&gt;] [--object-format=&lt;format&gt;]</span><br><span class="line">          [-b &lt;branch-name&gt; | --initial-branch=&lt;branch-name&gt;]</span><br><span class="line">          [--shared[=&lt;permissions&gt;]] [&lt;directory&gt;]</span><br><span class="line">	</span><br><span class="line">	git init [&lt;directory&gt;]</span><br></pre></td></tr></table></figure>
-
-<p>项目：《&#x3D;》 本地仓库 【一个项目 对应一个本地仓库】<br>    1.存在：<br>        cd 项目目录<br>        git init<br>    2.不存在：<br>         git init <project_name><br>         git init test01：<br>         	1.创建一个项目 test01<br>            2. test01目录下下面 创建一个本地仓库 </p>
-<pre><code>    .git 文件夹 本地仓库
-</code></pre>
-<p>使用<br>    git 管理版本控制的工作流程：<br>        工作区： 项目目录<br>        暂存区： 临时存储文件的地方 可以进行撤回<br>        本地仓库：版本控制</p>
-<p> 入门：<br>    1.vim 1.log<br>    2.git add 1.log  &#x3D;&gt; 添加到暂存区<br>    3.git commit -m “Add 1.log” &#x3D;&gt; 添加到 本地仓库<br>    4.git log 查看本地仓库历史 ：当前项目的 commit历史</p>
-<p>git commit  -m <msg></p>
-<pre><code>总结： 
-    本地仓库 ： 
-        如何进行版本控制？
-            commit 进行区分版本的
-
-切换版本： 可以使用
-    git reset --hard [&lt;commit&gt;]
-
-    git reset --hard d7db6e
-</code></pre>
-<p>了解：<br>     git log –reflog</p>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/10/01/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>git3</title>
     <url>/2024/10/06/git3/</url>
     <content><![CDATA[<h1 id="git3"><a href="#git3" class="headerlink" title="git3"></a>git3</h1><span id="more"></span>
@@ -1985,6 +1955,120 @@ git remote:
       </tags>
   </entry>
   <entry>
+    <title>git2</title>
+    <url>/2024/10/06/git2/</url>
+    <content><![CDATA[<h1 id="git2"><a href="#git2" class="headerlink" title="git2"></a>git2</h1><span id="more"></span>
+<p>练习：<br>    编写一个小项目 ，提交到git本地仓库 </p>
+<pre><code>工作区： 开发代码 
+        =》 git add xxx
+暂存区 ： 暂时存放我们开发的代码文件 
+        =》 git commit 
+本地仓库:存放各个版本的历史
+
+-- 前端项目 github 下载 html 项目
+</code></pre>
+<h1 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h1><p>git init music</p>
+<p>2.– 添加一个index.html文件<br>git add index.html<br>git commit -m “Add index.html”<br>git log</p>
+<h1 id="编写其他文件"><a href="#编写其他文件" class="headerlink" title="编写其他文件"></a>编写其他文件</h1><p>git status<br>git add font&#x2F;  icon&#x2F; image&#x2F; music&#x2F;<br>git status<br>git commit -m “Add other data”<br>git status<br>git log</p>
+<h1 id="添加页面样式"><a href="#添加页面样式" class="headerlink" title="添加页面样式"></a>添加页面样式</h1><p>git status<br>git add  script.js  style.css<br>git status<br>git commit -m “Add css&amp;js”<br>git status<br>git log</p>
+<h1 id="修改代码文件"><a href="#修改代码文件" class="headerlink" title="修改代码文件"></a>修改代码文件</h1><p>git status<br>修改了代码文件 新增文件<br>git status<br>git add -u<br>git status<br>git commit -m “Update”<br>git status<br>git log</p>
+<p>补充：<br>    1.git add -u </p>
+<pre><code>2.git log =&gt; 查看版本历史： 
+</code></pre>
+<p>git log  ：<br>    –reflog  &#x3D;》 查看所有操作的 commit 历史</p>
+<h1 id="指定输出格式"><a href="#指定输出格式" class="headerlink" title="指定输出格式"></a>指定输出格式</h1><pre><code>format
+git log --format=oneline 
+git log --oneline [常用]
+
+git log  --oneline --reflog 可以连用 
+git log --oneline -n 2  显示最近几个commit
+
+-n 2： 
+    使用场景： 
+        1.commit 特别多的时候 
+        2.分支有关
+</code></pre>
+<h1 id="分支："><a href="#分支：" class="headerlink" title="分支："></a>分支：</h1><pre><code>一个分支一条线 
+默认分支： 
+    主分支：主线 master
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	git branch:</span><br><span class="line">		branch    List, create, or delete branches</span><br><span class="line">	</span><br><span class="line">	git branch [--color[=&lt;when&gt;] | --no-color] [--show-current]</span><br><span class="line">        [-v [--abbrev=&lt;n&gt; | --no-abbrev]]</span><br><span class="line">        [--column[=&lt;options&gt;] | --no-column] [--sort=&lt;key&gt;]</span><br><span class="line">        [--merged [&lt;commit&gt;]] [--no-merged [&lt;commit&gt;]]</span><br><span class="line">        [--contains [&lt;commit&gt;]] [--no-contains [&lt;commit&gt;]]</span><br><span class="line">        [--points-at &lt;object&gt;] [--format=&lt;format&gt;]</span><br><span class="line">        [(-r | --remotes) | (-a | --all)]</span><br><span class="line">        [--list] [&lt;pattern&gt;…​]</span><br><span class="line">git branch [--track[=(direct|inherit)] | --no-track] [-f]</span><br><span class="line">        [--recurse-submodules] &lt;branchname&gt; [&lt;start-point&gt;]</span><br><span class="line">git branch (--set-upstream-to=&lt;upstream&gt; | -u &lt;upstream&gt;) [&lt;branchname&gt;]</span><br><span class="line">git branch --unset-upstream [&lt;branchname&gt;]</span><br><span class="line">git branch (-m | -M) [&lt;oldbranch&gt;] &lt;newbranch&gt;</span><br><span class="line">git branch (-c | -C) [&lt;oldbranch&gt;] &lt;newbranch&gt;</span><br><span class="line">git branch (-d | -D) [-r] &lt;branchname&gt;…​</span><br><span class="line">git branch --edit-description [&lt;branchname&gt;]</span><br></pre></td></tr></table></figure>
+<pre><code>1.创建分支 
+  git branch -c dev  =&gt;默认从master直接复制来的
+2.查看分支 
+    git branch -v
+3.切换分支
+    git checkout dev 
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log --oneline  master  =&gt; 指定查看某个分支的 commit 历史 </span><br><span class="line">git log --oneline --gragh  =&gt; 以图形化界面展示 分支的commit 历史</span><br><span class="line">git log --oneline --gragh --all =&gt; 以图形化界面展示 所有分支 的commit 历史</span><br><span class="line">gitk --all ：</span><br></pre></td></tr></table></figure>
+<pre><code>1.历史树  分支线 
+2.path =》 记录当前commit 变更文件 
+3.tree =》 记录当前commit 下文件结构 
+</code></pre>
+<p>补充： 创建分支同时并切换分支<br>分支： </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout</span><br><span class="line"></span><br><span class="line">git checkout [-b|-B|--orphan] &lt;new-branch&gt;] [&lt;start-point&gt;]</span><br><span class="line">eg: </span><br><span class="line">	创建分支同时并切换分支</span><br><span class="line">git checkout -b bigdata 61b6bb8</span><br><span class="line">git branch -v</span><br><span class="line">gitk --all</span><br><span class="line">vim 1.log</span><br><span class="line"> git add 1.log</span><br><span class="line"> git status</span><br><span class="line">  git commit -m &quot;Add 1.log&quot;</span><br><span class="line">   git log --oneline --graph --all</span><br><span class="line">gitk --all</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>从工作区 =》 本地仓库 ：
+     git branch -c java
+     git checkout java
+     gitk --all
+      vim 1.log
+      git add -u
+       git commit -m &quot;Update 1.log&quot;
+       git log --oneline
+       vim 1.log
+        git status
+        git commit -am &quot;Updata 1.log add 3333&quot;  !!!! 
+
+注意：
+    git commit -am 
+        -a 表示 工作区 暂存区 文件都有的前提下 ，更改工作区文件 可以直接提交到本地仓库 
+            但是 新增文件 不可以
+</code></pre>
+<h1 id="S删除分支"><a href="#S删除分支" class="headerlink" title="S删除分支"></a>S删除分支</h1><pre><code>git branch (-d | -D)  &lt;branchname&gt;…
+    -d： 删除分支之前 要求merge 到主分支 
+    -D: 强制删除分支 
+</code></pre>
+<p>merge： 合并分支<br>    git branch -d java<br>error: The branch ‘java’ is not fully merged.<br>If you are sure you want to delete it, run ‘git branch -D java’</p>
+<pre><code> git branch -D java
+ git branch -v
+</code></pre>
+<p>.git文件夹 目录介绍:<br>    1.HEAD 文件 当前项目 正在工作的分支是谁<br>        cat HEAD<br>        ref: refs&#x2F;heads&#x2F;master</p>
+<pre><code>2.config ： 
+    记录项目的一些参数 一些配置信息 
+
+git config --local user.name &quot;zihang&quot;  =》 set 设置参数 
+git config --local user.name           =》 get操作
+
+3.refs/ 
+    heads/  存储的是分支的指向 哪个commit
+
+        commit hash =》 对应存储的文件内容是什么？
+    
+        git cat-file 
+                    -t  =》 文件类型 =》 git存储文件 有关系 
+                    -p  =&gt; 文件内容
+
+    object：是git存储的真正对象 种类有 如下
+        commit：
+            tree  =》 
+                tree =》文件夹
+                blob =》 文件
+            
+        git存储文件高效的原因：
+            不同的文件 只要文件内容有相同的部分 就是一个 blob 
+        
+</code></pre>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>gittest</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java api</title>
     <url>/2024/10/02/java-api/</url>
     <content><![CDATA[<h1 id="java-api"><a href="#java-api" class="headerlink" title="java api"></a>java api</h1><span id="more"></span>
@@ -2111,6 +2195,230 @@ git remote:
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2024/10/01/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>反射、内省、注解</title>
+    <url>/2024/10/12/%E5%8F%8D%E5%B0%84%E3%80%81%E5%86%85%E7%9C%81%E3%80%81%E6%B3%A8%E8%A7%A3/</url>
+    <content><![CDATA[<h1 id="反射、内省、注解"><a href="#反射、内省、注解" class="headerlink" title="反射、内省、注解"></a>反射、内省、注解</h1><span id="more"></span>]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>多线程</title>
+    <url>/2024/10/10/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><span id="more"></span>
+<h2 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h2><h3 id="进程-Process"><a href="#进程-Process" class="headerlink" title="进程(Process)"></a>进程(Process)</h3><p>每个独立执行的程序称为进程<br>在操作系统中进程是进行系统资源分配、调度和管理的最小单位<br>进程在执行过程中拥有独立的内存单元。</p>
+<h3 id="线程-Thread"><a href="#线程-Thread" class="headerlink" title="线程(Thread)"></a>线程(Thread)</h3><p>线程是一个程序内部的一条执行路径，进程内部单一的一个顺序控制流。<br>Java 虚拟机允许应用程序并发地运行多个执行路径，称为多线程。<br>进程中不同的线程共享内存单元。<br>操作系统是以进程为单位的，而进程是以线程为单位的，进程中必须有一个主线程 main</p>
+<h2 id="线程的创建与启动（三种方式）"><a href="#线程的创建与启动（三种方式）" class="headerlink" title="线程的创建与启动（三种方式）"></a>线程的创建与启动（三种方式）</h2><h3 id="方式-1：继承-Thread"><a href="#方式-1：继承-Thread" class="headerlink" title="方式 1：继承 Thread"></a>方式 1：继承 Thread</h3><p>创建线程类： 继承 Thread 类，重写 run 方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.scl.java.demo01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CountThread</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 写线程的业务逻辑</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i&lt;<span class="number">100</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;我是子线程&quot;</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">调用 start()方法启动线程，会自动触发 run 方法</span><br><span class="line"><span class="type">CustomThread</span> <span class="variable">th</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyThread</span>();</span><br><span class="line">th.start();</span><br></pre></td></tr></table></figure>
+
+<h3 id="方式-2：实现-Runnable-接口"><a href="#方式-2：实现-Runnable-接口" class="headerlink" title="方式 2：实现 Runnable 接口"></a>方式 2：实现 Runnable 接口</h3><p>创建 Runnable 接口实现类，重写 run 方法。Ruannable 的本质是线程中执行的任务<br>实现步骤：</p>
+<ol>
+<li>实现Runnable 接口，重写run()方法。<br>Runnable是线程Thread执行的任务。</li>
+<li>创建线程<br>Thread th &#x3D; new Thread(Runnable r);</li>
+<li>启动<br>th.start();<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.scl.java.demo02;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CountRunnable</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i&lt;<span class="number">100</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;子线程&quot;</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.scl.java.demo02;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">th</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">CountRunnable</span>());</span><br><span class="line">        th.start();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="方式-3：实现-Callable-接口"><a href="#方式-3：实现-Callable-接口" class="headerlink" title="方式 3：实现 Callable 接口"></a>方式 3：实现 Callable<T> 接口</h3><p>创建 Callable 接口实现类，重新 call()方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.scl.java.demo03;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Callable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SumCallable</span> <span class="keyword">implements</span> <span class="title class_">Callable</span>&lt;Integer&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i&lt;<span class="number">100</span>; i++) &#123;</span><br><span class="line">            sum += i;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.scl.java.demo06;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.FutureTask;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建任务FutureTask</span></span><br><span class="line">        FutureTask&lt;Integer&gt; futureTask = <span class="keyword">new</span> <span class="title class_">FutureTask</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">SumCallable</span>());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建线程</span></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">th</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(futureTask);</span><br><span class="line">        th.start();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获得线程的执行结果</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">Integer</span> <span class="variable">sum</span> <span class="operator">=</span> futureTask.get();</span><br><span class="line">            System.out.println(sum);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="线程的基本方法"><a href="#线程的基本方法" class="headerlink" title="线程的基本方法"></a>线程的基本方法</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Thread <span class="title function_">currentThread</span><span class="params">()</span> 返回对当前正在执行的线程对象的引用</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> 设置线程名称</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title function_">getName</span><span class="params">()</span> 返回该线程的名称</span><br></pre></td></tr></table></figure>
+<h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><p>五种状态，即创建、就绪、运行、阻塞、终止。</p>
+<ol>
+<li><p>概念：进程和线程</p>
+</li>
+<li><p>*** 线程的三种创建方式</p>
+</li>
+<li><p>线程的常用方法</p>
+</li>
+<li><p>*** 线程的生命周期</p>
+</li>
+<li><p>*** 线程的调度</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>线程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>变量和运算</title>
+    <url>/2024/10/08/%E5%8F%98%E9%87%8F%E5%92%8C%E8%BF%90%E7%AE%97/</url>
+    <content><![CDATA[<h1 id="变量和运算"><a href="#变量和运算" class="headerlink" title="变量和运算"></a>变量和运算</h1><span id="more"></span>
+<h1 id="1-变量和常量"><a href="#1-变量和常量" class="headerlink" title="1.   变量和常量"></a>1.   变量和常量</h1><h2 id="1-1-内存和硬盘"><a href="#1-1-内存和硬盘" class="headerlink" title="1.1  内存和硬盘"></a>1.1  内存和硬盘</h2><p>硬盘是以文件的形式永久存储数据的。内存用于临时存放在CPU中的运算数据。</p>
+<h2 id="1-2-变量概述"><a href="#1-2-变量概述" class="headerlink" title="1.2  变量概述"></a>1.2  变量概述</h2><p>变量是通过内存来临时保存数据的。</p>
+<p>变量的信息包括变量名（数据名）和变量值（数据值）。</p>
+<h2 id="1-3-变量的声明和赋值"><a href="#1-3-变量的声明和赋值" class="headerlink" title="1.3  变量的声明和赋值"></a>1.3  变量的声明和赋值</h2><p>声明：给变量起个名字。<br>语法：数据类型 变量名;</p>
+<p><strong>命名方式：变量名采用小驼峰式命名，如****“bookName”</strong><br>  赋值：给变量赋予一个值。<br>  语法：变量名 &#x3D; 值;<br>声明和赋值可以一次完成。</p>
+<p>多个变量类型相同可以同时声明。<br>当类型相同且同类作用的变量可以一起声明和赋值<br>变量初始化之后，可以重新赋值。</p>
+<h2 id="1-4-常量"><a href="#1-4-常量" class="headerlink" title="1.4  常量"></a>1.4  常量</h2><p>固定的值或者不能改变值的变量，称为常量。<br>固定值，如10。<br><strong>final</strong> 修饰的变量<br><strong>常量命名方式：全部大写，不同单词间使用下划线分割</strong></p>
+<h1 id="2-标识符"><a href="#2-标识符" class="headerlink" title="2.   标识符"></a>2.   标识符</h1><h2 id="2-1-标识符概念"><a href="#2-1-标识符概念" class="headerlink" title="2.1  标识符概念"></a>2.1  标识符概念</h2><p>Java对包、类、方法、参数和变量等要素命名时使用的字符序列称为标识符。简单理解，标识符就是程序员自己起的名字。</p>
+<h2 id="2-2-命名规则"><a href="#2-2-命名规则" class="headerlink" title="2.2  命名规则"></a>2.2  命名规则</h2><p>由字母、数字、下划线（_）和美元符号（$）组成<br>不能以数字开头<br>区分大小写<br>不能是Java中的关键字和保留字</p>
+<h2 id="2-3-关键字和保留字"><a href="#2-3-关键字和保留字" class="headerlink" title="2.3  关键字和保留字"></a>2.3  关键字和保留字</h2><p>关键字：Java中已使用的有专门用途的字符串<br>保留字：Java中预留的但暂未使用的字符串，如goto，const</p>
+<h2 id="2-4-命名规约"><a href="#2-4-命名规约" class="headerlink" title="2.4  命名规约"></a>2.4  命名规约</h2><p>包名：多单词组成时所有字母都小写。如com.baidu.map。<br>类名、接口名：多单词组成时，所有单词的首字母大写。如AnimalDemo。<br>变量名、方法名：多单词组成时，第一个单词首字母小写，第二个单词开始每个单词首字母大写（驼峰命名法）。如stuAge。<br>常量名：所有字母都大写。多单词时每个单词用下划线连接。如PI_VALUE。</p>
+<h1 id="3-数据类型"><a href="#3-数据类型" class="headerlink" title="3.   数据类型"></a>3.   数据类型</h1><h2 id="3-1-数据类型的作用"><a href="#3-1-数据类型的作用" class="headerlink" title="3.1  数据类型的作用"></a>3.1  数据类型的作用</h2><p>对数据进行分类管理<br>为数据申请不同的内存空间</p>
+<h2 id="3-2-数据类型的分类"><a href="#3-2-数据类型的分类" class="headerlink" title="3.2  数据类型的分类"></a>3.2  数据类型的分类</h2><p>Java的数据类型分为基本类型和引用类型（复合类型）。</p>
+<h2 id="3-3-整数类型（byte、short、int、long）"><a href="#3-3-整数类型（byte、short、int、long）" class="headerlink" title="3.3  整数类型（byte、short、int、long）"></a>3.3  整数类型（byte、short、int、long）</h2><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>中文名称</th>
+<th>内存大小</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td>字节型</td>
+<td>8位（1字节）</td>
+<td>0</td>
+</tr>
+<tr>
+<td>short</td>
+<td>短整型</td>
+<td>16位</td>
+<td>0</td>
+</tr>
+<tr>
+<td>int</td>
+<td>整型</td>
+<td>32位</td>
+<td>0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>长整型</td>
+<td>64位</td>
+<td>0L</td>
+</tr>
+</tbody></table>
+<p>整数默认是int类型<br>声明long型需要加‘l’或‘ L’<br><code>long d = 12l;</code><br><code>long d = 12L;</code></p>
+<h2 id="3-4-浮点数类型（float、double）"><a href="#3-4-浮点数类型（float、double）" class="headerlink" title="3.4  浮点数类型（float、double）"></a>3.4  浮点数类型（float、double）</h2><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>中文名称</th>
+<th>内存大小</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>float</td>
+<td>单精度浮点数</td>
+<td>32位</td>
+<td>0.0F</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度浮点数</td>
+<td>64位</td>
+<td>0.0</td>
+</tr>
+</tbody></table>
+<p>float，后面必须加F或者f<br><code>float f1 = 3.2f;</code><br><code>float f2 = 3.5F;</code></p>
+<p>double，后面可以加D或d或者不加（即浮点类型默认是double类型）<br><code>double d1 = 2.0D;</code><br><code>double d2 = 2.1d;</code><br><code>double d3 = 2.0;</code></p>
+<p>浮点型精度不准确</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.println(<span class="number">10.0F</span>/<span class="number">3</span>);	<span class="comment">//	3.3333333</span></span><br><span class="line">System.out.println(<span class="number">10.0</span>/<span class="number">3</span>);	<span class="comment">//	3.3333333333333335</span></span><br></pre></td></tr></table></figure>
+<p>浮点数其他表示</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//科学计数法</span></span><br><span class="line"><span class="type">double</span> <span class="variable">d2</span> <span class="operator">=</span> <span class="number">1.2E2</span>;</span><br><span class="line">System.out.println(d2);</span><br><span class="line"><span class="type">double</span> <span class="variable">d3</span> <span class="operator">=</span> <span class="number">.12</span>;</span><br><span class="line">System.out.println(d3);</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-5-字符类型（char）"><a href="#3-5-字符类型（char）" class="headerlink" title="3.5  字符类型（char）"></a>3.5  字符类型（char）</h2><p>Java中的字符采用Unicode字符集，支持中文字符，每个字符占16位。<br>字符是用单引号包含的一个字符。</p>
+<p>char c &#x3D;	‘a’；</p>
+<p>char和int互相转换<br><code>char c = 97； //c = &#39;a&#39;</code><br><code>int x = &#39;a&#39;; //x = 97</code></p>
+<p>转义字符</p>
+<p>转义字符\，将其后的字符转变为其它的特殊含义。</p>
+<table>
+<thead>
+<tr>
+<th>转移字符</th>
+<th>作用</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\n</td>
+<td>换行</td>
+<td>将光标移到下一行的首位</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>回车</td>
+<td>将光标移到当前行的首位</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>水平制表</td>
+<td>将光标移到下一个水平制表位置，相等于按了Tab键盘</td>
+</tr>
+<tr>
+<td>&#39;</td>
+<td>单引号</td>
+<td></td>
+</tr>
+<tr>
+<td>&quot;</td>
+<td>双引号</td>
+<td></td>
+</tr>
+<tr>
+<td>\</td>
+<td>斜杠</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="3-6-布尔类型（boolean）"><a href="#3-6-布尔类型（boolean）" class="headerlink" title="3.6  布尔类型（boolean）"></a>3.6  布尔类型（boolean）</h2><p>布尔类型数据用来保存真与假。真为true，假为false。</p>
+<h2 id="3-7-基本数据类型之间的转换"><a href="#3-7-基本数据类型之间的转换" class="headerlink" title="3.7  基本数据类型之间的转换"></a>3.7  基本数据类型之间的转换</h2><p>自动类型转换</p>
+<p>容量小（低位）的类型自动转换成容量大（高位）的数据类型</p>
+<p>强制类型转换</p>
+<p>容量大（高位）的类型强制转换成容量小（低位）的数据类型强制类型转换有可能造成精度降低(数据溢出)</p>
+<h2 id="3-8-字符串（String）"><a href="#3-8-字符串（String）" class="headerlink" title="3.8  字符串（String）"></a>3.8  字符串（String）</h2><p>字符串是用双引号包含的一串字符</p>
+<p>字符串Sting属于引用类型。字符串拼接符，“+”</p>
+<h1 id="4-运算符"><a href="#4-运算符" class="headerlink" title="4.   运算符"></a>4.   运算符</h1><h2 id="4-1-算术运算符"><a href="#4-1-算术运算符" class="headerlink" title="4.1  算术运算符"></a>4.1  算术运算符</h2><p><strong>+、 - 、 * 、 &#x2F; 、 % 、 ++ 、 –</strong></p>
+<p>参与运算的都是数值型数据，运算结果的数据类型以参与运算的高位为准</p>
+<p>只有整数参数的除法运算结果只保留整数部分<br>除数不能为0<br>% （取余&#x2F;求模）：整数进行除法运算后的余数。</p>
+<p>  ++ 和 – （自增和自减）：自身加1或者减1</p>
+<p>单独使用在前在后无差别。</p>
+<p>参与其他运算，在前是“先己后人”，在后是“先人后己”。</p>
+<h2 id="4-2-赋值运算符"><a href="#4-2-赋值运算符" class="headerlink" title="4.2  赋值运算符"></a>4.2  赋值运算符</h2><p>赋值运算是将运算结果重新给变量赋值，比如 a +&#x3D; b，运算类似于a &#x3D; a + b。 其他运算符以此类推。<br>**&#x3D; 、 +&#x3D; 、 -&#x3D; 、 <em>&#x3D; 、 &#x2F;&#x3D; 、 %&#x3D;</em>*</p>
+<h2 id="4-3-关系运算符"><a href="#4-3-关系运算符" class="headerlink" title="4.3  关系运算符"></a>4.3  关系运算符</h2><p>关系运算符又称为比较运算符，是比较两个数的大小，运算结果为布尔类型。<br><strong>&gt;、 &lt; 、 &gt;&#x3D; 、 &lt;&#x3D; 、 &#x3D;&#x3D; 、 !&#x3D;</strong><br>&#x3D;&#x3D;，判断是否相等，相等为true<br>!&#x3D;， 判断是否不等，不等为true</p>
+<h2 id="4-4-逻辑运算符"><a href="#4-4-逻辑运算符" class="headerlink" title="4.4  逻辑运算符"></a>4.4  逻辑运算符</h2><p>逻辑运算符是比较两个布尔类型数据的逻辑关系，运算结果依旧是布尔类型。<br><strong>&amp;、| 、! 、^、&amp;&amp;、 ||</strong><br>&amp;， 逻辑与&#x2F;单与：两边同时为true，结果为true<br>| ， 逻辑或&#x2F;单或：两边有一个为true，结果为true<br>！， 逻辑非（取反）：true变false，false变true^， 逻辑异或：两边不同为true，相同为false</p>
+<p>&amp;&amp;， 短路与&#x2F;双与：两边同时为true，结果为true<br>||， 短路或&#x2F;双或：两边有一个为true，结果为true &amp;，| 和&amp;&amp; 、 ||的区别<br>&amp;，| ：左边能得到结果，右边也需要计算<br>&amp;&amp;，|| ：左边能得到结果，右边不再计算</p>
+<h2 id="4-5-三元运算符"><a href="#4-5-三元运算符" class="headerlink" title="4.5  三元运算符"></a>4.5  三元运算符</h2><p>三元运算符又称三目运算符或条件运算符。<br>布尔类型表达式1 ? 表达式2 : 表达式3<br>运算法则：如果表达式1成立，则结果为表达式2，否则结果为表达式3</p>
+<h2 id="4-6-位运算符"><a href="#4-6-位运算符" class="headerlink" title="4.6  位运算符"></a>4.6  位运算符</h2><p><strong>4.6.1</strong>  <strong>二进制</strong><br>计算机内部采用二进制存储数据。二进制由0和1组成，逢2进1。正数十进制转二进制：对于正数，除2倒序取余，不足用0补齐 正数二进制转十进制：对于正数，按位乘以2的n次幂</p>
+<h2 id="4-6-2-按位运算"><a href="#4-6-2-按位运算" class="headerlink" title="4.6.2  按位运算"></a>4.6.2  按位运算</h2><p>按位运算是将十进制数据先转化为二进制数，再逐位（bit）按规则计算，最后将运算结果转换成十进制。</p>
+<p>&amp; 、 | 、~ 、 ^<br>异或加密算法</p>
+<p>异或算法是可逆的，如果对某个数据进行两次相同的异或运算，则结果会还原为数据本身。</p>
+<h2 id="4-6-3-移位运算符"><a href="#4-6-3-移位运算符" class="headerlink" title="4.6.3  移位运算符"></a>4.6.3  移位运算符</h2><p><code>&gt;&gt; 、 &lt;&lt; 、 &gt;&gt;&gt;</code><br>对于正数，右移n位相当于除以2的n次幂，左移n位相当于乘以2的n次幂</p>
+<h2 id="4-7-运算符优先级"><a href="#4-7-运算符优先级" class="headerlink" title="4.7  运算符优先级"></a>4.7  运算符优先级</h2><p>小括号优先级最高 赋值运算优先级最低</p>
+<h1 id="5-表达式"><a href="#5-表达式" class="headerlink" title="5.   表达式"></a>5.   表达式</h1><p>表达式：表达式是符合一定语法规则的运算符和操作数的序列<br>表达式值 ：对表达式中操作数进行运算得到的结果称为表达式的值<br>表达式类型：表达式的值的数据类型即为表达式的类型 。比如 10 &gt; 20，称为布尔表达式，表达式值为false，表达式类型是布尔型。</p>
+]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>异常处理</title>
     <url>/2024/10/08/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[<h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><span id="more"></span>
@@ -2186,515 +2494,6 @@ git remote:
       <categories>
         <category>JAVA</category>
       </categories>
-  </entry>
-  <entry>
-    <title>变量和运算</title>
-    <url>/2024/10/08/%E5%8F%98%E9%87%8F%E5%92%8C%E8%BF%90%E7%AE%97/</url>
-    <content><![CDATA[<h1 id="变量和运算"><a href="#变量和运算" class="headerlink" title="变量和运算"></a>变量和运算</h1><span id="more"></span>
-<h1 id="1-变量和常量"><a href="#1-变量和常量" class="headerlink" title="1.   变量和常量"></a>1.   变量和常量</h1><h2 id="1-1-内存和硬盘"><a href="#1-1-内存和硬盘" class="headerlink" title="1.1  内存和硬盘"></a>1.1  内存和硬盘</h2><p>硬盘是以文件的形式永久存储数据的。内存用于临时存放在CPU中的运算数据。</p>
-<h2 id="1-2-变量概述"><a href="#1-2-变量概述" class="headerlink" title="1.2  变量概述"></a>1.2  变量概述</h2><p>变量是通过内存来临时保存数据的。</p>
-<p>变量的信息包括变量名（数据名）和变量值（数据值）。</p>
-<h2 id="1-3-变量的声明和赋值"><a href="#1-3-变量的声明和赋值" class="headerlink" title="1.3  变量的声明和赋值"></a>1.3  变量的声明和赋值</h2><p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image001.gif" alt="img">声明：给变量起个名字。</p>
-<h2 id="语法：数据类型-变量名"><a href="#语法：数据类型-变量名" class="headerlink" title="语法：数据类型 变量名;"></a><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image002.gif" alt="img">语法：数据类型 变量名;</h2><p><strong>命名方式：变量名采用小驼峰式命名，如****“bookName”</strong></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image003.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">赋值：给变量赋予一个值。</p>
-<h2 id="语法：变量名-值"><a href="#语法：变量名-值" class="headerlink" title="语法：变量名 &#x3D; 值;"></a><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image005.gif" alt="img">语法：变量名 &#x3D; 值;</h2><table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image006.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">声明和赋值可以一次完成。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image007.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">多个变量类型相同可以同时声明。</p>
-<h2 id="当类型相同且同类作用的变量可以一起声明和赋值"><a href="#当类型相同且同类作用的变量可以一起声明和赋值" class="headerlink" title="当类型相同且同类作用的变量可以一起声明和赋值"></a><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image005.gif" alt="img">当类型相同且同类作用的变量可以一起声明和赋值</h2><p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image008.gif" alt="img"></p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image009.gif" alt="img">变量初始化之后，可以重新赋值。</p>
-<h2 id="1-4-常量"><a href="#1-4-常量" class="headerlink" title="1.4  常量"></a>1.4  常量</h2><p>固定的值或者不能改变值的变量，称为常量。</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image009.gif" alt="img">固定值，如10。</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img"><strong>final</strong> 修饰的变量</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image005.gif" alt="img"><strong>常量命名方式：全部大写，不同单词间使用下划线分割</strong></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image010.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<h1 id="2-标识符"><a href="#2-标识符" class="headerlink" title="2.   标识符"></a>2.   标识符</h1><h2 id="2-1-标识符概念"><a href="#2-1-标识符概念" class="headerlink" title="2.1  标识符概念"></a>2.1  标识符概念</h2><p>Java对包、类、方法、参数和变量等要素命名时使用的字符序列称为标识符。简单理解，标识符就是程序员自己起的名字。</p>
-<h2 id="2-2-命名规则"><a href="#2-2-命名规则" class="headerlink" title="2.2  命名规则"></a>2.2  命名规则</h2><p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image011.gif" alt="img"><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image011.gif" alt="img"><strong>由字母、数字、下划线（</strong>**_<strong><strong>）和美元符号（</strong></strong>$**<strong>）组成不能以数字开头</strong></p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image012.gif" alt="img"><strong>区分大小写</strong></p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image013.gif" alt="img"><strong>不能是<strong><strong>Java</strong></strong>中的关键字和保留字</strong></p>
-<h2 id="2-3-关键字和保留字"><a href="#2-3-关键字和保留字" class="headerlink" title="2.3  关键字和保留字"></a>2.3  关键字和保留字</h2><p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image009.gif" alt="img">关键字：Java中已使用的有专门用途的字符串</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">保留字：Java中预留的但暂未使用的字符串，如goto，const</p>
-<h2 id="2-4-命名规约"><a href="#2-4-命名规约" class="headerlink" title="2.4  命名规约"></a>2.4  命名规约</h2><p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image009.gif" alt="img">包名：多单词组成时所有字母都小写。如com.baidu.map。</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">类名、接口名：多单词组成时，所有单词的首字母大写。如AnimalDemo。</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image001.gif" alt="img">变量名、方法名：多单词组成时，第一个单词首字母小写，第二个单词开始每个单词首字母大写（驼峰命名法）。如stuAge。</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">常量名：所有字母都大写。多单词时每个单词用下划线连接。如PI_VALUE。</p>
-<h1 id="3-数据类型"><a href="#3-数据类型" class="headerlink" title="3.   数据类型"></a>3.   数据类型</h1><h2 id="3-1-数据类型的作用"><a href="#3-1-数据类型的作用" class="headerlink" title="3.1  数据类型的作用"></a>3.1  数据类型的作用</h2><p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image001.gif" alt="img">对数据进行分类管理</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">为数据申请不同的内存空间</p>
-<h2 id="3-2-数据类型的分类"><a href="#3-2-数据类型的分类" class="headerlink" title="3.2  数据类型的分类"></a>3.2  数据类型的分类</h2><p>Java的数据类型分为基本类型和引用类型（复合类型）。</p>
-<h2 id="3-3-整数类型（byte、short、int、long）"><a href="#3-3-整数类型（byte、short、int、long）" class="headerlink" title="3.3  整数类型（byte、short、int、long）"></a>3.3  整数类型（byte、short、int、long）</h2><table>
-<thead>
-<tr>
-<th>数据类型</th>
-<th>中文名称</th>
-<th>内存大小</th>
-<th>默认值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>byte</td>
-<td>字节型</td>
-<td>8位（1字节）</td>
-<td>0</td>
-</tr>
-<tr>
-<td>short</td>
-<td>短整型</td>
-<td>16位</td>
-<td>0</td>
-</tr>
-<tr>
-<td>int</td>
-<td>整型</td>
-<td>32位</td>
-<td>0</td>
-</tr>
-<tr>
-<td>long</td>
-<td>长整型</td>
-<td>64位</td>
-<td>0L</td>
-</tr>
-</tbody></table>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image014.gif" alt="img">整数默认是int类型</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image012.gif" alt="img">声明long型需要加‘l’或‘ L’</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image015.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<h2 id="3-4-浮点数类型（float、double）"><a href="#3-4-浮点数类型（float、double）" class="headerlink" title="3.4  浮点数类型（float、double）"></a>3.4  浮点数类型（float、double）</h2><table>
-<thead>
-<tr>
-<th>数据类型</th>
-<th>中文名称</th>
-<th>内存大小</th>
-<th>默认值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>float</td>
-<td>单精度浮点数</td>
-<td>32位</td>
-<td>0.0F</td>
-</tr>
-<tr>
-<td>double</td>
-<td>双精度浮点数</td>
-<td>64位</td>
-<td>0.0</td>
-</tr>
-</tbody></table>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">float，后面必须加F或者f</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image016.gif" alt="img"></p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image001.gif" alt="img">double，后面可以加D或d或者不加（即浮点类型默认是double类型）</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image017.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">浮点型精度不准确</p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>System.out.println(10.0F&#x2F;3);</th>
-<th>&#x2F;&#x2F;</th>
-<th>3.3333333</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2</td>
-<td>System.out.println(10.0&#x2F;3);</td>
-<td>&#x2F;&#x2F;</td>
-<td>3.3333333333333335</td>
-</tr>
-</tbody></table>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image018.gif" alt="img"><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">浮点数其他表示</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image019.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<h2 id="3-5-字符类型（char）"><a href="#3-5-字符类型（char）" class="headerlink" title="3.5  字符类型（char）"></a>3.5  字符类型（char）</h2><p>Java中的字符采用Unicode字符集，支持中文字符，每个字符占16位。</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image001.gif" alt="img">字符是用单引号包含的一个字符。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image020.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">char和int互相转换</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image021.gif" alt="img"></p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image001.gif" alt="img">转义字符</p>
-<p>转义字符\，将其后的字符转变为其它的特殊含义。</p>
-<table>
-<thead>
-<tr>
-<th>转移字符</th>
-<th>作用</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>\n</td>
-<td>换行</td>
-<td>将光标移到下一行的首位</td>
-</tr>
-<tr>
-<td>\r</td>
-<td>回车</td>
-<td>将光标移到当前行的首位</td>
-</tr>
-<tr>
-<td>\t</td>
-<td>水平制表</td>
-<td>将光标移到下一个水平制表位置，相等于按了Tab键盘</td>
-</tr>
-<tr>
-<td>&#39;</td>
-<td>单引号</td>
-<td></td>
-</tr>
-<tr>
-<td>&quot;</td>
-<td>双引号</td>
-<td></td>
-</tr>
-<tr>
-<td>\</td>
-<td>斜杠</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id="3-6-布尔类型（boolean）"><a href="#3-6-布尔类型（boolean）" class="headerlink" title="3.6  布尔类型（boolean）"></a>3.6  布尔类型（boolean）</h2><p>布尔类型数据用来保存真与假。真为true，假为false。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image022.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<h2 id="3-7-基本数据类型之间的转换"><a href="#3-7-基本数据类型之间的转换" class="headerlink" title="3.7  基本数据类型之间的转换"></a>3.7  基本数据类型之间的转换</h2><p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image009.gif" alt="img">自动类型转换</p>
-<p>容量小（低位）的类型自动转换成容量大（高位）的数据类型</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image023.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">强制类型转换</p>
-<p>容量大（高位）的类型强制转换成容量小（低位）的数据类型强制类型转换有可能造成精度降低(数据溢出)</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image024.gif" alt="img"></p>
-<h2 id="3-8-字符串（String）"><a href="#3-8-字符串（String）" class="headerlink" title="3.8  字符串（String）"></a>3.8  字符串（String）</h2><p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image001.gif" alt="img">字符串是用双引号包含的一串字符</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image025.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img"><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">字符串Sting属于引用类型。字符串拼接符，“+”</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image026.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image027.gif" alt="img"><strong>案例：定义变量保存人的信息：姓名、年龄、性别、身份证号</strong></p>
-<h1 id="4-运算符"><a href="#4-运算符" class="headerlink" title="4.   运算符"></a>4.   运算符</h1><h2 id="4-1-算术运算符"><a href="#4-1-算术运算符" class="headerlink" title="4.1  算术运算符"></a>4.1  算术运算符</h2><p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image027.gif" alt="img">**+**<strong>、</strong> <strong>-</strong> <strong>、</strong> ***** <strong>、</strong> <strong>&#x2F;</strong> <strong>、</strong> <strong>%</strong> <strong>、</strong> <strong>++</strong> <strong>、</strong> <strong>–</strong></p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image009.gif" alt="img">参与运算的都是数值型数据，运算结果的数据类型以参与运算的高位为准</p>
-<p>只有整数参数的除法运算结果只保留整数部分</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image028.gif" alt="img"></p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">除数不能为0</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">% （取余&#x2F;求模）：整数进行除法运算后的余数。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image029.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">++ 和 – （自增和自减）：自身加1或者减1</p>
-<p>单独使用在前在后无差别。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image030.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<p>参与其他运算，在前是“先己后人”，在后是“先人后己”。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image031.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<h2 id="4-2-赋值运算符"><a href="#4-2-赋值运算符" class="headerlink" title="4.2  赋值运算符"></a>4.2  赋值运算符</h2><p>赋值运算是将运算结果重新给变量赋值，比如 a +&#x3D; b，运算类似于a &#x3D; a + b。 其他运算符以此类推。</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image005.gif" alt="img"><strong>&#x3D;</strong> <strong>、</strong> <strong>+&#x3D;</strong> <strong>、</strong> <strong>-&#x3D;</strong> <strong>、</strong> ***&#x3D;** <strong>、</strong> <strong>&#x2F;&#x3D;</strong> <strong>、</strong> <strong>%&#x3D;</strong></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image032.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<h2 id="4-3-关系运算符"><a href="#4-3-关系运算符" class="headerlink" title="4.3  关系运算符"></a>4.3  关系运算符</h2><p>关系运算符又称为比较运算符，是比较两个数的大小，运算结果为布尔类型。</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image027.gif" alt="img">**&gt;**<strong>、</strong> <strong>&lt;** **、** **&gt;&#x3D;</strong> <strong>、</strong> <strong>&lt;&#x3D;</strong> <strong>、</strong> <strong>&#x3D;&#x3D;</strong> <strong>、</strong> <strong>!&#x3D;</strong></p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image001.gif" alt="img">&#x3D;&#x3D;，判断是否相等，相等为true</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">!&#x3D;， 判断是否不等，不等为true</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image033.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<h2 id="4-4-逻辑运算符"><a href="#4-4-逻辑运算符" class="headerlink" title="4.4  逻辑运算符"></a>4.4  逻辑运算符</h2><p>逻辑运算符是比较两个布尔类型数据的逻辑关系，运算结果依旧是布尔类型。</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image027.gif" alt="img"><strong>&amp;<strong><strong>、</strong></strong>|</strong> <strong>、</strong><strong>!</strong> <strong>、<strong><strong>^</strong></strong>、**</strong>&amp;&amp;**<strong>、</strong> <strong>||</strong></p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image009.gif" alt="img">&amp;， 逻辑与&#x2F;单与：两边同时为true，结果为true</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">| ， 逻辑或&#x2F;单或：两边有一个为true，结果为true</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">！， 逻辑非（取反）：true变false，false变true</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">^， 逻辑异或：两边不同为true，相同为false</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image034.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image001.gif" alt="img">&amp;&amp;， 短路与&#x2F;双与：两边同时为true，结果为true</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img"><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">||， 短路或&#x2F;双或：两边有一个为true，结果为true &amp;，| 和&amp;&amp; 、 ||的区别</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image035.gif" alt="img">&amp;，| ：左边能得到结果，右边也需要计算</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image035.gif" alt="img">&amp;&amp;，|| ：左边能得到结果，右边不再计算</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image036.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<h2 id="4-5-三元运算符"><a href="#4-5-三元运算符" class="headerlink" title="4.5  三元运算符"></a>4.5  三元运算符</h2><p>三元运算符又称三目运算符或条件运算符。</p>
-<h2 id="布尔类型表达式1-表达式2-表达式3"><a href="#布尔类型表达式1-表达式2-表达式3" class="headerlink" title="布尔类型表达式1 ? 表达式2 : 表达式3"></a><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image027.gif" alt="img">布尔类型表达式1 ? 表达式2 : 表达式3</h2><p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image009.gif" alt="img">运算法则：如果表达式1成立，则结果为表达式2，否则结果为表达式3</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image037.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<h2 id="4-6-位运算符"><a href="#4-6-位运算符" class="headerlink" title="4.6  位运算符"></a>4.6  位运算符</h2><p><strong>4.6.1</strong>  <strong>二进制</strong></p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image009.gif" alt="img"><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image009.gif" alt="img"><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image009.gif" alt="img">计算机内部采用二进制存储数据。二进制由0和1组成，逢2进1。正数十进制转二进制：对于正数，除2倒序取余，不足用0补齐 正数二进制转十进制：对于正数，按位乘以2的n次幂</p>
-<h2 id="4-6-2-按位运算"><a href="#4-6-2-按位运算" class="headerlink" title="4.6.2  按位运算"></a>4.6.2  按位运算</h2><p>按位运算是将十进制数据先转化为二进制数，再逐位（bit）按规则计算，最后将运算结果转换成十进制。</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image038.gif" alt="img">&amp; 、 | 、~ 、 ^</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">异或加密算法</p>
-<p>异或算法是可逆的，如果对某个数据进行两次相同的异或运算，则结果会还原为数据本身。</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image039.gif" alt="img"></p>
-<h2 id="4-6-3-移位运算符"><a href="#4-6-3-移位运算符" class="headerlink" title="4.6.3  移位运算符"></a>4.6.3  移位运算符</h2><p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image001.gif" alt="img">&gt;&gt; 、 &lt;&lt; 、 &gt;&gt;&gt;</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">对于正数，右移n位相当于除以2的n次幂，左移n位相当于乘以2的n次幂</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image040.gif" alt="img"></td>
-</tr>
-</tbody></table>
-<h2 id="4-7-运算符优先级"><a href="#4-7-运算符优先级" class="headerlink" title="4.7  运算符优先级"></a>4.7  运算符优先级</h2><p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image009.gif" alt="img"><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image009.gif" alt="img">小括号优先级最高 赋值运算优先级最低</p>
-<h1 id="5-表达式"><a href="#5-表达式" class="headerlink" title="5.   表达式"></a>5.   表达式</h1><p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image038.gif" alt="img">表达式：表达式是符合一定语法规则的运算符和操作数的序列</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">表达式值 ：对表达式中操作数进行运算得到的结果称为表达式的值</p>
-<p><img src="file:///C:\Users\ASUS\AppData\Local\Temp\msohtmlclip1\01\clip_image004.gif" alt="img">表达式类型：表达式的值的数据类型即为表达式的类型 。比如 10 &gt; 20，称为布尔表达式，表达式值为false，表达式类型是布尔型。</p>
-]]></content>
-      <categories>
-        <category>JAVA</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的第一篇博客文章</title>
-    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>多线程</title>
-    <url>/2024/10/10/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><span id="more"></span>
-<h2 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h2><h3 id="进程-Process"><a href="#进程-Process" class="headerlink" title="进程(Process)"></a>进程(Process)</h3><p>每个独立执行的程序称为进程<br>在操作系统中进程是进行系统资源分配、调度和管理的最小单位<br>进程在执行过程中拥有独立的内存单元。</p>
-<h3 id="线程-Thread"><a href="#线程-Thread" class="headerlink" title="线程(Thread)"></a>线程(Thread)</h3><p>线程是一个程序内部的一条执行路径，进程内部单一的一个顺序控制流。<br>Java 虚拟机允许应用程序并发地运行多个执行路径，称为多线程。<br>进程中不同的线程共享内存单元。<br>操作系统是以进程为单位的，而进程是以线程为单位的，进程中必须有一个主线程 main</p>
-<h2 id="线程的创建与启动（三种方式）"><a href="#线程的创建与启动（三种方式）" class="headerlink" title="线程的创建与启动（三种方式）"></a>线程的创建与启动（三种方式）</h2><h3 id="方式-1：继承-Thread"><a href="#方式-1：继承-Thread" class="headerlink" title="方式 1：继承 Thread"></a>方式 1：继承 Thread</h3><p>创建线程类： 继承 Thread 类，重写 run 方法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.scl.java.demo01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CountThread</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 写线程的业务逻辑</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i&lt;<span class="number">100</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;我是子线程&quot;</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">调用 start()方法启动线程，会自动触发 run 方法</span><br><span class="line"><span class="type">CustomThread</span> <span class="variable">th</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyThread</span>();</span><br><span class="line">th.start();</span><br></pre></td></tr></table></figure>
-
-<h3 id="方式-2：实现-Runnable-接口"><a href="#方式-2：实现-Runnable-接口" class="headerlink" title="方式 2：实现 Runnable 接口"></a>方式 2：实现 Runnable 接口</h3><p>创建 Runnable 接口实现类，重写 run 方法。Ruannable 的本质是线程中执行的任务<br>实现步骤：</p>
-<ol>
-<li>实现Runnable 接口，重写run()方法。<br>Runnable是线程Thread执行的任务。</li>
-<li>创建线程<br>Thread th &#x3D; new Thread(Runnable r);</li>
-<li>启动<br>th.start();<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.scl.java.demo02;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CountRunnable</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i&lt;<span class="number">100</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;子线程&quot;</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.scl.java.demo02;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">th</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">CountRunnable</span>());</span><br><span class="line">        th.start();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="方式-3：实现-Callable-接口"><a href="#方式-3：实现-Callable-接口" class="headerlink" title="方式 3：实现 Callable 接口"></a>方式 3：实现 Callable<T> 接口</h3><p>创建 Callable 接口实现类，重新 call()方法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.scl.java.demo03;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Callable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SumCallable</span> <span class="keyword">implements</span> <span class="title class_">Callable</span>&lt;Integer&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i&lt;<span class="number">100</span>; i++) &#123;</span><br><span class="line">            sum += i;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.scl.java.demo06;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.FutureTask;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建任务FutureTask</span></span><br><span class="line">        FutureTask&lt;Integer&gt; futureTask = <span class="keyword">new</span> <span class="title class_">FutureTask</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">SumCallable</span>());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建线程</span></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">th</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(futureTask);</span><br><span class="line">        th.start();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获得线程的执行结果</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">Integer</span> <span class="variable">sum</span> <span class="operator">=</span> futureTask.get();</span><br><span class="line">            System.out.println(sum);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="线程的基本方法"><a href="#线程的基本方法" class="headerlink" title="线程的基本方法"></a>线程的基本方法</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Thread <span class="title function_">currentThread</span><span class="params">()</span> 返回对当前正在执行的线程对象的引用</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> 设置线程名称</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title function_">getName</span><span class="params">()</span> 返回该线程的名称</span><br></pre></td></tr></table></figure>
-<h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><p>五种状态，即创建、就绪、运行、阻塞、终止。</p>
-<ol>
-<li><p>概念：进程和线程</p>
-</li>
-<li><p>*** 线程的三种创建方式</p>
-</li>
-<li><p>线程的常用方法</p>
-</li>
-<li><p>*** 线程的生命周期</p>
-</li>
-<li><p>*** 线程的调度</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>JAVA</category>
-      </categories>
-      <tags>
-        <tag>线程</tag>
-      </tags>
   </entry>
   <entry>
     <title>数据类型</title>
@@ -2801,6 +2600,11 @@ git remote:
 
 
 ]]></content>
+  </entry>
+  <entry>
+    <title>我的第一篇博客文章</title>
+    <url>/2024/10/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>数组</title>
@@ -2926,57 +2730,18 @@ git remote:
       </categories>
   </entry>
   <entry>
-    <title>流程控制语句</title>
-    <url>/2024/10/08/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/</url>
-    <content><![CDATA[<h1 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h1><span id="more"></span>
-<h1 id="1-系统输入"><a href="#1-系统输入" class="headerlink" title="1. 系统输入"></a>1. 系统输入</h1><p>创建扫描器</p>
-<p><code>Scanner sc = new Scanner(System.in); //创建扫描器，扫描系统输入</code></p>
-<p>读取数据<br>读取数值：nextByte(), nextShort(), nextInt(), nextLong(), nextFloat(), nextDouble()<br>读取字符串：next()<br>int num &#x3D; sc.nextInt(); &#x2F;&#x2F;如果用户没有输入，程序会一直等待<br>String str &#x3D; sc.next();<br>关闭扫描器<br>sc.close(); &#x2F;&#x2F;关闭扫描器，释放资源</p>
-<h1 id="2-流程控制的三种结构"><a href="#2-流程控制的三种结构" class="headerlink" title="2.流程控制的三种结构"></a>2.流程控制的三种结构</h1><p>顺序结构：默认的，从上到下依次执行</p>
-<p>分支结构：满足某个条件会被执行</p>
-<p>循环结构：满足某个条件反复执行</p>
-<h1 id="3-if"><a href="#3-if" class="headerlink" title="3. if"></a>3. if</h1><h2 id="3-1-语法格式"><a href="#3-1-语法格式" class="headerlink" title="3.1 语法格式"></a>3.1 语法格式</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (条件) &#123; </span><br><span class="line">    <span class="comment">//条件成立时执行的代码块</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (条件) &#123; </span><br><span class="line">    <span class="comment">//条件成立时执行的代码块</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123; </span><br><span class="line">    <span class="comment">//条件不成立时执行的代码块</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (条件<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">//条件1成立时执行的代码块</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (条件<span class="number">2</span>) &#123; </span><br><span class="line">    <span class="comment">//条件2成立时执行的代码块</span></span><br><span class="line">&#125; <span class="keyword">else</span>  <span class="keyword">if</span> (条件<span class="number">3</span>) &#123; </span><br><span class="line">    <span class="comment">//条件3成立时执行的代码块</span></span><br><span class="line">&#125; ...<span class="keyword">else</span> &#123; </span><br><span class="line">    <span class="comment">//如果以上条件都不成立时执行的代码块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3-2-语法规则"><a href="#3-2-语法规则" class="headerlink" title="3.2 语法规则"></a>3.2 语法规则</h2><p>判断if条件是否成立，如果成立则执行该分支，然后结束if语句。如果不成立，则判断以下else if条件是否成立，如果成立则执行，如果不成立则继续向下判断，以此类推…. 以上都不成立，则执行else分支。</p>
-<p>案例1：输入年龄判断是否成年案例<br>案例2：输入成绩，判断成绩等级</p>
-<h2 id="3-3-注意事项"><a href="#3-3-注意事项" class="headerlink" title="3.3 注意事项"></a>3.3 注意事项</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> 后面的大括号如果不加，则默认为只将第一行语句放入 <span class="keyword">if</span> 中</span><br><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="keyword">if</span>(num &lt; <span class="number">0</span>)</span><br><span class="line">    System.out.println(<span class="string">&quot;aaa&quot;</span>); <span class="comment">//不会执行</span></span><br><span class="line">     System.out.println(<span class="string">&quot;bbb&quot;</span>); <span class="comment">//会执行</span></span><br><span class="line"><span class="keyword">if</span> 语句彼此之间可以相互嵌套</span><br><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="keyword">if</span>(num &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(num &lt; <span class="number">100</span>)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;aaa&quot;</span>); <span class="comment">//会执行</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="4-switch"><a href="#4-switch" class="headerlink" title="4. switch"></a>4. switch</h1><h2 id="4-1-语法格式"><a href="#4-1-语法格式" class="headerlink" title="4.1 语法格式"></a>4.1 语法格式</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span>(变量/表达式) &#123; </span><br><span class="line"><span class="keyword">case</span> 常量<span class="number">1</span> : </span><br><span class="line">    <span class="comment">//变量等于常量1时执行的代码块</span></span><br><span class="line"><span class="keyword">break</span>; </span><br><span class="line"><span class="keyword">case</span> 常量<span class="number">2</span> : </span><br><span class="line">    <span class="comment">//变量等于常量2时执行的代码块</span></span><br><span class="line"><span class="keyword">break</span>;   </span><br><span class="line">    .....  </span><br><span class="line"><span class="keyword">default</span>: </span><br><span class="line">    <span class="comment">//以上都不成立时执行的代码块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="4-2-执行流程"><a href="#4-2-执行流程" class="headerlink" title="4.2 执行流程"></a>4.2 执行流程</h2><p>判断变量&#x2F;表达式的值是否等于case的常量，如果相等则执行该分支，然后碰到break终止switch语句。如果不相等，则继续向下判断，以此类推。。。以上条件都不成立时，执行default。</p>
-<p>案例：输入数字，输入1则打印“开始游戏”，输入2则打印“暂停游戏”，输入3则打印“退出游戏”。其他输入则打印“输入错误”</p>
-<h2 id="4-3-注意事项"><a href="#4-3-注意事项" class="headerlink" title="4.3 注意事项"></a>4.3 注意事项</h2><p>表达式支持的类型：byte、short、int、 char、String、枚举<br>case子句中的取值必须是常量，且取值必须是不同的<br>default子句是可选的<br>break语句用来在执行完一个case分支后使程序跳出switch语句块<br>如果不加break，则语句会继续执行，直到找到break<br>当多个条件采用相同处理方式时，可以共用break</p>
-<h1 id="5-while"><a href="#5-while" class="headerlink" title="5. while"></a>5. while</h1><h2 id="5-1-语法格式"><a href="#5-1-语法格式" class="headerlink" title="5.1 语法格式"></a>5.1 语法格式</h2><p>while(循环条件)｛<br>    循环体;<br>}</p>
-<h2 id="5-2-执行流程"><a href="#5-2-执行流程" class="headerlink" title="5.2 执行流程"></a>5.2 执行流程</h2><p>循环条件是一个布尔表达式，先判断循环条件是否成立，如果成立执行循环语句。循环后再次判断循环条件是否成立，以此类推…</p>
-<p>案例：一根绳子100米，每次剪断1半，问多少次后长度小于5米（不考虑浮点数）#</p>
-<h1 id="6-do-while"><a href="#6-do-while" class="headerlink" title="6. do-while"></a>6. do-while</h1><h2 id="6-1-语法格式"><a href="#6-1-语法格式" class="headerlink" title="6.1 语法格式"></a>6.1 语法格式</h2><p>do {<br>    循环体;<br>} while (循环条件); </p>
-<h2 id="6-2-执行流程"><a href="#6-2-执行流程" class="headerlink" title="6.2 执行流程"></a>6.2 执行流程</h2><p>先执行一次循环体，再判断循环条件是否成立，如果成立再次执行循环语句。然后再次判断循环条件是否成立，以此类推…</p>
-<h1 id="7-for"><a href="#7-for" class="headerlink" title="7. for"></a>7. for</h1><h2 id="7-1-语法格式"><a href="#7-1-语法格式" class="headerlink" title="7.1 语法格式"></a>7.1 语法格式</h2><p>for (初始化①;  循环条件②; 条件变更③)｛<br>    循环语句④;<br>｝</p>
-<h2 id="7-2-执行流程"><a href="#7-2-执行流程" class="headerlink" title="7.2 执行流程"></a>7.2 执行流程</h2><p>首先执行初始化①，然后判断循环条件②。如果不成立，循环结束。如果成立执行循环语句④。然后执行条件变更③。然后再次判断循环条件。以此类推…</p>
-<p>案例1：打印0到9的数字<br>案例2：计算0到9的和</p>
-<h2 id="7-3-for-和-while"><a href="#7-3-for-和-while" class="headerlink" title="7.3 for 和 while"></a>7.3 for 和 while</h2><p>for循环和while循环对于循环逻辑都可以实现，for循环一般用于循环次数已知的情况，while循环一般用于循环次数未知的情况。</p>
-<h2 id="7-4-for循环嵌套"><a href="#7-4-for循环嵌套" class="headerlink" title="7.4 for循环嵌套"></a>7.4 for循环嵌套</h2><p>for循环可以嵌套。一般外层相当于对行循环，内层相当于对列循环。<br>&#x2F;&#x2F;需求：输入行数和列数，打印如下图行</p>
-<hr>
-<hr>
-<h1 id="8-终止循环"><a href="#8-终止循环" class="headerlink" title="8. 终止循环"></a>8. 终止循环</h1><h2 id="8-1-break-语句"><a href="#8-1-break-语句" class="headerlink" title="8.1 break 语句"></a>8.1 break 语句</h2><p>终止本层循环</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(i == <span class="number">5</span>)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="8-2-break-标志位"><a href="#8-2-break-标志位" class="headerlink" title="8.2 break 标志位"></a>8.2 break 标志位</h2><p>终止指定标志位的循环，开发中使用较少</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">z:</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line"><span class="keyword">if</span> (j == <span class="number">5</span>) &#123;</span><br><span class="line"><span class="keyword">break</span> z;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(i + <span class="string">&quot; - &quot;</span> + j);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="8-3-continue-语句"><a href="#8-3-continue-语句" class="headerlink" title="8.3 continue 语句"></a>8.3 continue 语句</h2><p>终止本次循环</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(i == <span class="number">5</span>)&#123;</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>JAVA</category>
-      </categories>
-  </entry>
-  <entry>
     <title>集合</title>
     <url>/2024/10/08/%E9%9B%86%E5%90%88/</url>
     <content><![CDATA[<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><span id="more"></span>
 <h1 id="1-泛型"><a href="#1-泛型" class="headerlink" title="1. 泛型"></a>1. 泛型</h1><p><strong>泛型是JDK1.5提出的新特效，核心优点如下代码复用减少拆箱和装箱，提高效率和类型安全</strong></p>
 <h2 id="1-1-泛型类"><a href="#1-1-泛型类" class="headerlink" title="1.1  泛型类"></a>1.1  泛型类</h2><p>关于泛型的理解先看一个案例，定义一个简单的Box类存放字符串。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Box</span> &#123;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> String obj;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Box</span><span class="params">(String obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">super</span>();</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> String <span class="title function_">getObj</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">return</span> obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setObj</span><span class="params">(String obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Box</span> &#123;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> String obj;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Box</span><span class="params">(String obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line"></span><br><span class="line">   <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> String <span class="title function_">getObj</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setObj</span><span class="params">(String obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面的Box类里面现在只能装入String类型的元素，今后如果我们需要装入Integer等其他类型的元素，还必须要另外重写一个Box，代码得不到复用。如果将String改成Object，又会涉及类型转换的问题。很多初学者在封装工具类的时候，为了达到通用型，会采用Object的方式，其实这样做是不对的。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Box</span> &#123;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> Object obj;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Box</span><span class="params">(Object obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">super</span>();</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> Object <span class="title function_">getObj</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">return</span> obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setObj</span><span class="params">(Object obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Box</span> &#123;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> Object obj;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Box</span><span class="params">(Object obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> Object <span class="title function_">getObj</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setObj</span><span class="params">(Object obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>以上的问题可以采用泛型类的方式加以处理。泛型类的写法是在类名后面加上 <T> ，这里的T是泛型形参，可以代表任意的引用类型。使用该类的时候，必须指明具体的引用类型，即泛型实参。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Box</span>&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> T obj;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Box</span><span class="params">(T obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">super</span>();</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> T <span class="title function_">getObj</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">return</span> obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setObj</span><span class="params">(T obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Box&lt;String&gt; box = <span class="keyword">new</span> <span class="title class_">Box</span>&lt;&gt;(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">obj</span> <span class="operator">=</span> box.getObj();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Box&lt;Integer&gt; box2 = <span class="keyword">new</span> <span class="title class_">Box</span>&lt;&gt;(<span class="number">123</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">obj2</span> <span class="operator">=</span> box2.getObj();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Box</span>&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> T obj;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Box</span><span class="params">(T obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> T <span class="title function_">getObj</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setObj</span><span class="params">(T obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.obj = obj;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Box&lt;String&gt; box = <span class="keyword">new</span> <span class="title class_">Box</span>&lt;&gt;(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">obj</span> <span class="operator">=</span> box.getObj();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Box&lt;Integer&gt; box2 = <span class="keyword">new</span> <span class="title class_">Box</span>&lt;&gt;(<span class="number">123</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">obj2</span> <span class="operator">=</span> box2.getObj();</span><br></pre></td></tr></table></figure>
+
+
 <p>泛型不支持基本数据类型，只能是引用类型</p>
 <p>泛型可以有多个，用逗号分隔，如&lt;T,V&gt;等</p>
 <p>泛型形参可以使用T、E、K、V等形式，一般根据意义来选择</p>
@@ -2990,17 +2755,22 @@ git remote:
 <p>  System.out.println(t);</p>
 <p>}</p>
 <h2 id="1-3-泛型接口"><a href="#1-3-泛型接口" class="headerlink" title="1.3 泛型接口"></a>1.3 泛型接口</h2><p>在实际开发中，泛型最多的应用场景应该是在接口中使用了，我们称为泛型接口。比如当我们定义Person类或者Animal类的使用，都有eat的动作，我们会把eat的行为抽象成接口。但吃什么不确定，这个时候就可以使用上泛型接口了。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">IEatable</span>&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">(T t)</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Mouse</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> <span class="keyword">implements</span> <span class="title class_">IEatable</span>&lt;Mouse&gt;&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">(Mouse t)</span> &#123;</span><br><span class="line"></span><br><span class="line">​    System.out.println(<span class="string">&quot;猫吃&quot;</span> + t);  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">IEatable</span>&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">(T t)</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Mouse</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cat</span> <span class="keyword">implements</span> <span class="title class_">IEatable</span>&lt;Mouse&gt;&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">(Mouse t)</span> &#123;</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">&quot;猫吃&quot;</span> + t);  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 <h2 id="1-4-类型擦除"><a href="#1-4-类型擦除" class="headerlink" title="1.4 类型擦除"></a>1.4 类型擦除</h2><p>泛型只在编译过程有效，成功编译过后的class文件中是不包含任何泛型信息的。</p>
 <p>看下面的例子：返回结果为true，原因在于编译时Box<String> 和 Box<Integer> 的类型都被擦除了，编译后只有Box类型。</p>
 <p>Box<String> b1 &#x3D; new Box<String>(“abc”);</p>
 <p>Box<Integer> b2 &#x3D; new Box<Integer>(2);</p>
 <p>System.out.println(b1.getClass() &#x3D;&#x3D; b2.getClass());</p>
-<h2 id="1-5-通配符"><a href="#1-5-通配符" class="headerlink" title="1.5 通配符"></a>1.5 通配符</h2><p>​    在使用泛型作为参数的时候，可以用通配符 <strong>?</strong> 来表示未知类型，如Box&lt;?&gt;就声明了Box中包含的元素类型是未知的。 </p>
+<h2 id="1-5-通配符"><a href="#1-5-通配符" class="headerlink" title="1.5 通配符"></a>1.5 通配符</h2><pre><code>在使用泛型作为参数的时候，可以用通配符 **?** 来表示未知类型，如Box&lt;?&gt;就声明了Box中包含的元素类型是未知的。 
+</code></pre>
 <p><strong>Box&lt;?&gt;并不等同于Box<Object>。</strong></p>
 <p><strong>Box<Object>实际上确定了Box中包含的是Object，在使用的时候必须通过Object来进行引用。</strong></p>
 <p><strong>而Box&lt;?&gt;则其中所包含的元素类型是不确定。</strong></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">   Box&lt;String&gt; box = <span class="keyword">new</span> <span class="title class_">Box</span>&lt;&gt;(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line"></span><br><span class="line">   show(box); <span class="comment">// 编译错误</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">(Box&lt;Object&gt; box)</span> &#123;</span><br><span class="line"></span><br><span class="line">   System.out.println(box);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">修改如下，将方法参数的Box&lt;Object&gt;改成Box&lt;?&gt;即可。</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">(Box&lt;?&gt; box)</span> &#123;</span><br><span class="line"></span><br><span class="line">   System.out.println(box);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 <p><strong>通配符与上下限</strong></p>
 <p>？：通配符，可以接收任意引用类型</p>
 <p>？extends E：上限通配符，可以接收E类型或者E的子类型</p>
@@ -3341,6 +3111,47 @@ git remote:
 <p>Collections中封装了SynchronizedSet、SynchronizedList、SynchronizedMap等内部类，属于线程安全的，处理数据效率低。同时Collections提供了多个synchronizedXxx()方法，该方法返回指定集合对象对应的同步对象，从而解决多线程并发访问集合时线程的安全问题。</p>
 <p>另外，比如HashTable、Vector 都属于线程安全的。</p>
 ]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>流程控制语句</title>
+    <url>/2024/10/08/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/</url>
+    <content><![CDATA[<h1 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h1><span id="more"></span>
+<h1 id="1-系统输入"><a href="#1-系统输入" class="headerlink" title="1. 系统输入"></a>1. 系统输入</h1><p>创建扫描器</p>
+<p><code>Scanner sc = new Scanner(System.in); //创建扫描器，扫描系统输入</code></p>
+<p>读取数据<br>读取数值：nextByte(), nextShort(), nextInt(), nextLong(), nextFloat(), nextDouble()<br>读取字符串：next()<br>int num &#x3D; sc.nextInt(); &#x2F;&#x2F;如果用户没有输入，程序会一直等待<br>String str &#x3D; sc.next();<br>关闭扫描器<br>sc.close(); &#x2F;&#x2F;关闭扫描器，释放资源</p>
+<h1 id="2-流程控制的三种结构"><a href="#2-流程控制的三种结构" class="headerlink" title="2.流程控制的三种结构"></a>2.流程控制的三种结构</h1><p>顺序结构：默认的，从上到下依次执行</p>
+<p>分支结构：满足某个条件会被执行</p>
+<p>循环结构：满足某个条件反复执行</p>
+<h1 id="3-if"><a href="#3-if" class="headerlink" title="3. if"></a>3. if</h1><h2 id="3-1-语法格式"><a href="#3-1-语法格式" class="headerlink" title="3.1 语法格式"></a>3.1 语法格式</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (条件) &#123; </span><br><span class="line">    <span class="comment">//条件成立时执行的代码块</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (条件) &#123; </span><br><span class="line">    <span class="comment">//条件成立时执行的代码块</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123; </span><br><span class="line">    <span class="comment">//条件不成立时执行的代码块</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (条件<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">//条件1成立时执行的代码块</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (条件<span class="number">2</span>) &#123; </span><br><span class="line">    <span class="comment">//条件2成立时执行的代码块</span></span><br><span class="line">&#125; <span class="keyword">else</span>  <span class="keyword">if</span> (条件<span class="number">3</span>) &#123; </span><br><span class="line">    <span class="comment">//条件3成立时执行的代码块</span></span><br><span class="line">&#125; ...<span class="keyword">else</span> &#123; </span><br><span class="line">    <span class="comment">//如果以上条件都不成立时执行的代码块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-语法规则"><a href="#3-2-语法规则" class="headerlink" title="3.2 语法规则"></a>3.2 语法规则</h2><p>判断if条件是否成立，如果成立则执行该分支，然后结束if语句。如果不成立，则判断以下else if条件是否成立，如果成立则执行，如果不成立则继续向下判断，以此类推…. 以上都不成立，则执行else分支。</p>
+<p>案例1：输入年龄判断是否成年案例<br>案例2：输入成绩，判断成绩等级</p>
+<h2 id="3-3-注意事项"><a href="#3-3-注意事项" class="headerlink" title="3.3 注意事项"></a>3.3 注意事项</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> 后面的大括号如果不加，则默认为只将第一行语句放入 <span class="keyword">if</span> 中</span><br><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="keyword">if</span>(num &lt; <span class="number">0</span>)</span><br><span class="line">    System.out.println(<span class="string">&quot;aaa&quot;</span>); <span class="comment">//不会执行</span></span><br><span class="line">     System.out.println(<span class="string">&quot;bbb&quot;</span>); <span class="comment">//会执行</span></span><br><span class="line"><span class="keyword">if</span> 语句彼此之间可以相互嵌套</span><br><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="keyword">if</span>(num &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(num &lt; <span class="number">100</span>)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;aaa&quot;</span>); <span class="comment">//会执行</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-switch"><a href="#4-switch" class="headerlink" title="4. switch"></a>4. switch</h1><h2 id="4-1-语法格式"><a href="#4-1-语法格式" class="headerlink" title="4.1 语法格式"></a>4.1 语法格式</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span>(变量/表达式) &#123; </span><br><span class="line"><span class="keyword">case</span> 常量<span class="number">1</span> : </span><br><span class="line">    <span class="comment">//变量等于常量1时执行的代码块</span></span><br><span class="line"><span class="keyword">break</span>; </span><br><span class="line"><span class="keyword">case</span> 常量<span class="number">2</span> : </span><br><span class="line">    <span class="comment">//变量等于常量2时执行的代码块</span></span><br><span class="line"><span class="keyword">break</span>;   </span><br><span class="line">    .....  </span><br><span class="line"><span class="keyword">default</span>: </span><br><span class="line">    <span class="comment">//以上都不成立时执行的代码块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-2-执行流程"><a href="#4-2-执行流程" class="headerlink" title="4.2 执行流程"></a>4.2 执行流程</h2><p>判断变量&#x2F;表达式的值是否等于case的常量，如果相等则执行该分支，然后碰到break终止switch语句。如果不相等，则继续向下判断，以此类推。。。以上条件都不成立时，执行default。</p>
+<p>案例：输入数字，输入1则打印“开始游戏”，输入2则打印“暂停游戏”，输入3则打印“退出游戏”。其他输入则打印“输入错误”</p>
+<h2 id="4-3-注意事项"><a href="#4-3-注意事项" class="headerlink" title="4.3 注意事项"></a>4.3 注意事项</h2><p>表达式支持的类型：byte、short、int、 char、String、枚举<br>case子句中的取值必须是常量，且取值必须是不同的<br>default子句是可选的<br>break语句用来在执行完一个case分支后使程序跳出switch语句块<br>如果不加break，则语句会继续执行，直到找到break<br>当多个条件采用相同处理方式时，可以共用break</p>
+<h1 id="5-while"><a href="#5-while" class="headerlink" title="5. while"></a>5. while</h1><h2 id="5-1-语法格式"><a href="#5-1-语法格式" class="headerlink" title="5.1 语法格式"></a>5.1 语法格式</h2><p>while(循环条件)｛<br>    循环体;<br>}</p>
+<h2 id="5-2-执行流程"><a href="#5-2-执行流程" class="headerlink" title="5.2 执行流程"></a>5.2 执行流程</h2><p>循环条件是一个布尔表达式，先判断循环条件是否成立，如果成立执行循环语句。循环后再次判断循环条件是否成立，以此类推…</p>
+<p>案例：一根绳子100米，每次剪断1半，问多少次后长度小于5米（不考虑浮点数）#</p>
+<h1 id="6-do-while"><a href="#6-do-while" class="headerlink" title="6. do-while"></a>6. do-while</h1><h2 id="6-1-语法格式"><a href="#6-1-语法格式" class="headerlink" title="6.1 语法格式"></a>6.1 语法格式</h2><p>do {<br>    循环体;<br>} while (循环条件); </p>
+<h2 id="6-2-执行流程"><a href="#6-2-执行流程" class="headerlink" title="6.2 执行流程"></a>6.2 执行流程</h2><p>先执行一次循环体，再判断循环条件是否成立，如果成立再次执行循环语句。然后再次判断循环条件是否成立，以此类推…</p>
+<h1 id="7-for"><a href="#7-for" class="headerlink" title="7. for"></a>7. for</h1><h2 id="7-1-语法格式"><a href="#7-1-语法格式" class="headerlink" title="7.1 语法格式"></a>7.1 语法格式</h2><p>for (初始化①;  循环条件②; 条件变更③)｛<br>    循环语句④;<br>｝</p>
+<h2 id="7-2-执行流程"><a href="#7-2-执行流程" class="headerlink" title="7.2 执行流程"></a>7.2 执行流程</h2><p>首先执行初始化①，然后判断循环条件②。如果不成立，循环结束。如果成立执行循环语句④。然后执行条件变更③。然后再次判断循环条件。以此类推…</p>
+<p>案例1：打印0到9的数字<br>案例2：计算0到9的和</p>
+<h2 id="7-3-for-和-while"><a href="#7-3-for-和-while" class="headerlink" title="7.3 for 和 while"></a>7.3 for 和 while</h2><p>for循环和while循环对于循环逻辑都可以实现，for循环一般用于循环次数已知的情况，while循环一般用于循环次数未知的情况。</p>
+<h2 id="7-4-for循环嵌套"><a href="#7-4-for循环嵌套" class="headerlink" title="7.4 for循环嵌套"></a>7.4 for循环嵌套</h2><p>for循环可以嵌套。一般外层相当于对行循环，内层相当于对列循环。<br>&#x2F;&#x2F;需求：输入行数和列数，打印如下图行</p>
+<hr>
+<hr>
+<h1 id="8-终止循环"><a href="#8-终止循环" class="headerlink" title="8. 终止循环"></a>8. 终止循环</h1><h2 id="8-1-break-语句"><a href="#8-1-break-语句" class="headerlink" title="8.1 break 语句"></a>8.1 break 语句</h2><p>终止本层循环</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(i == <span class="number">5</span>)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="8-2-break-标志位"><a href="#8-2-break-标志位" class="headerlink" title="8.2 break 标志位"></a>8.2 break 标志位</h2><p>终止指定标志位的循环，开发中使用较少</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">z:</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line"><span class="keyword">if</span> (j == <span class="number">5</span>) &#123;</span><br><span class="line"><span class="keyword">break</span> z;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(i + <span class="string">&quot; - &quot;</span> + j);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="8-3-continue-语句"><a href="#8-3-continue-语句" class="headerlink" title="8.3 continue 语句"></a>8.3 continue 语句</h2><p>终止本次循环</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(i == <span class="number">5</span>)&#123;</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>JAVA</category>
       </categories>
