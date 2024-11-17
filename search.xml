@@ -3906,4 +3906,178 @@ git config --local user.name           =》 get操作
         <category>前端</category>
       </categories>
   </entry>
+  <entry>
+    <title>JavaScript基础方法整理</title>
+    <url>/2024/11/17/JavaScript%E5%9F%BA%E7%A1%80%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<h1 id="JavaScript基础方法整理"><a href="#JavaScript基础方法整理" class="headerlink" title="JavaScript基础方法整理"></a>JavaScript基础方法整理</h1><span id="more"></span>
+
+<ol>
+<li><strong>变量声明与作用域相关方法</strong><ul>
+<li><code>var</code>：在ES6之前用于声明变量，作用域为全局或函数级，可重复声明。</li>
+<li><code>let</code>：ES6中用于声明变量，作用域为块级，不能重复声明。</li>
+<li><code>const</code>：ES6中用于声明常量，值一旦设定不能更改，作用域为块级。</li>
+</ul>
+</li>
+<li><strong>数据类型判断方法</strong><ul>
+<li><code>typeof</code>：用于检测数据类型，返回值为字符串，如<code>typeof 20</code>返回<code>&quot;number&quot;</code>。</li>
+<li><code>isNaN()</code>：判断是否为非数字，只判断字面的数值，如<code>isNaN(&#39;abc&#39;)</code>返回<code>true</code>。</li>
+</ul>
+</li>
+<li><strong>字符串方法</strong><ul>
+<li><code>charAt(index)</code>：返回指定位置的字符。</li>
+<li><code>concat(stringX,stringX,...,stringX)</code>：连接字符串。</li>
+<li><code>indexOf(searchvalue,fromindex)</code>：从前往后检索字符串，返回首次出现的下标，找不到返回 -1。</li>
+<li><code>lastIndexOf(searchvalue,fromindex)</code>：从后向前搜索字符串，返回首次出现的下标，找不到返回 -1。</li>
+<li><code>match(subst/regexp)</code>：找到一个或多个正则表达式的匹配。</li>
+<li><code>replace(regexp/substr,replacement)</code>：替换与正则表达式匹配的子串。</li>
+<li><code>search(regexp)</code>：检索与正则表达式相匹配的值，返回下标，找不到返回 -1。</li>
+<li><code>split(separator,howmany)</code>：把字符串分割为字符串数组。</li>
+<li><code>slice(start,end)</code>：提取字符串的片断，并在新的字符串中返回被提取的部分。</li>
+<li><code>substr(start,length)</code>：从起始索引号提取字符串中指定数目的字符。</li>
+<li><code>substring(start,end)</code>：提取字符串中两个指定的索引号之间的字符。</li>
+<li><code>toLowerCase()</code>：把字符串转换为小写。</li>
+<li><code>toUpperCase()</code>：把字符串转换为大写。</li>
+<li><code>Number.parseInt(str)</code>：将字符串转换为整数。</li>
+<li><code>Number.parseFloat(str)</code>：将字符串转换为浮点数。</li>
+<li><code>new String(str).toString()</code>：将Number对象转换为字符串（Number对象本身也有<code>toString</code>方法）。</li>
+</ul>
+</li>
+<li><strong>数组方法</strong><ul>
+<li><code>concat(arrayX,arrayX,......,arrayX)</code>：连接两个或更多的数组，并返回结果。</li>
+<li><code>join(separator)</code>：把数组的所有元素放入一个字符串，元素通过指定的分隔符进行分隔。</li>
+<li><code>reverse()</code>：颠倒数组中元素的顺序。</li>
+<li><code>sort()</code>：对数组的元素进行排序。</li>
+<li><code>pop()</code>：删除并返回数组的最后一个元素。</li>
+<li><code>push(newelement1,....,newelementX)</code>：向数组的末尾添加一个或更多元素，并返回新的长度。</li>
+<li><code>shift()</code>：删除并返回数组的第一个元素。</li>
+<li><code>unshift(newelement1,....,newelementX)</code>：向数组的开头添加一个或更多元素，并返回新的长度。</li>
+<li><code>splice(index,count,item1,.....,itemX)</code>：删除元素，并向数组添加新元素。</li>
+<li><code>forEach((item, index, arr) =&gt; &#123;&#125;)</code>：遍历数组，参数为回调函数，回调函数参数1是数组元素，参数2是元素下标，参数3是循环的数组。</li>
+<li><code>map((item, index, arr) =&gt; &#123;&#125;)</code>：映射数组，一般与<code>return</code>配合，返回新的映射数组。</li>
+<li><code>filter((item) =&gt; &#123;&#125;)</code>：过滤数组，返回符合条件的元素组成的新数组。</li>
+<li><code>find((item) =&gt; &#123;&#125;)</code>：查找数组中符合条件的元素，若有多个符合条件的元素，则返回第一个元素，找不到返回<code>undefined</code>。</li>
+<li><code>findIndex((item) =&gt; &#123;&#125;)</code>：查找数组中符合条件的元素索引，若有多个符合条件的元素，则返回第一个元素索引，没找到返回 -1。</li>
+<li><code>indexOf(&#39;指定元素&#39;)</code>：查询指定元素的下标，找不到返回 -1。</li>
+<li><code>some((item) =&gt; &#123;&#125;)</code>：数组里面某一个元素符合条件，返回<code>true</code>。</li>
+<li><code>every((item) =&gt; &#123;&#125;)</code>：数组里面所有的元素都要符合条件，才返回<code>true</code>。</li>
+<li><code>includes(&#39;指定元素&#39;)</code>：判断数组是否包含指定数据，包含返回<code>true</code>，否则返回<code>false</code>。</li>
+<li><code>Array.from(&#39;类数组对象&#39;)</code>：把类数组对象转成数组。</li>
+<li><code>Array.of(1,2,3,4)</code>：把一组值转成数组。</li>
+<li><code>fill(填充的东西,开始位置,结束位置（不包含）)</code>：数组填充。</li>
+</ul>
+</li>
+<li><strong>对象相关方法</strong><ul>
+<li>对象赋值定义对象，如<code>var stu = &#123;name: &#39;小张&#39;, age: 22, eat: function() &#123;console.log(&#39;吃饭了...&#39;)&#125;, study: function() &#123;console.log(&#39;学习了...&#39;)&#125;&#125;</code>。</li>
+<li>使用<code>对象.属性</code>或<code>对象.方法()</code>调用对象的属性和方法。</li>
+<li><code>Object.assign(target, source_1,...)</code>：用于将源对象的所有可枚举属性复制到目标对象中。</li>
+</ul>
+</li>
+<li><strong>日期方法（Date类）</strong><ul>
+<li><code>new Date()</code>：创建当前时间的时间对象。</li>
+<li><code>new Date(时间戳)</code>：创建指定时间戳的时间对象。</li>
+<li><code>getDate()</code>：返回Date对象的一个月中的每一天，其值介于1 - 31之间。</li>
+<li><code>getDay()</code>：返回Date对象的星期中的每一天，其值介于0 - 6之间。</li>
+<li><code>getHours()</code>：返回Date对象的小时数，其值介于0 - 23之间。</li>
+<li><code>getMinutes()</code>：返回Date对象的分钟数，其值介于0 - 59之间。</li>
+<li><code>getSeconds()</code>：返回Date对象的秒数，其值介于0 - 59之间。</li>
+<li><code>getMonth()</code>：返回Date对象的月份，其值介于0 - 11之间。</li>
+<li><code>getFullYear()</code>：返回Date对象的年份，其值为4位数。</li>
+<li><code>getTime()</code>：返回自某一时刻（1970年1月1日）以来的毫秒数（时间戳）。</li>
+</ul>
+</li>
+<li><strong>数学方法（Math类）</strong><ul>
+<li><code>Math.PI</code>：圆周率。</li>
+<li><code>Math.abs(x)</code>：返回x的绝对值。</li>
+<li><code>Math.ceil(x)</code>：向上取整。</li>
+<li><code>Math.floor(x)</code>：向下取整。</li>
+<li><code>Math.round(x)</code>：四舍五入。</li>
+<li><code>Math.max(x,y,z,...)</code>：返回最大值。</li>
+<li><code>Math.min(x,y,z,...)</code>：返回最小值。</li>
+<li><code>Math.random()</code>：返回0（包括）到1（不包括）之间的随机小数。</li>
+<li><code>Math.pow(x,y)</code>：返回x的y次幂。</li>
+<li><code>Math.sqrt(x)</code>：返回x的平方根。</li>
+</ul>
+</li>
+<li><strong>函数相关方法（部分与函数特性相关）</strong><ul>
+<li>函数声明：<code>function函数名([参数1][,参数2]...)&#123;这里是要执行的代码[return返回值;]&#125;</code>。</li>
+<li>函数调用：函数名()。</li>
+<li>箭头函数：<code>(参数) =&gt; &#123;函数体&#125;</code>，当参数只有1时，可以省略（），当函数体内只有1条语句时，可以省略{}，函数体内有return时，且只有1行代码，可以省略return和{}。</li>
+</ul>
+</li>
+<li><strong>其他方法</strong><ul>
+<li><code>prompt(&quot;提示信息&quot;)</code>：获得键盘输入，返回值为字符串类型。</li>
+<li><code>parseInt(字符串)</code>：将字符串转换为整数。</li>
+<li><code>alert(信息)</code>：弹窗输出信息。</li>
+<li><code>document.write(内容)</code>：输出到页面，会以html语法解析。</li>
+<li><code>console.log(内容)</code>：将文本输出到控制台。</li>
+</ul>
+</li>
+</ol>
+<h3 id="ES6新增方法整理"><a href="#ES6新增方法整理" class="headerlink" title="ES6新增方法整理"></a>ES6新增方法整理</h3><ol>
+<li><strong>函数相关方法</strong><ul>
+<li>参数默认值：在函数定义时为参数设置默认值，如<code>function show(msg1, msg2=&quot;abc&quot;)&#123;console.log(msg1, msg2); &#125;</code>。</li>
+<li>可变参数：用<code>...变量名</code>表示，只能放在参数组最后且有且只有一个，在函数内部作为数组处理，如<code>function show(num1,...num2)&#123;console.log(num2);&#125;</code>。</li>
+</ul>
+</li>
+<li><strong>解构赋值方法</strong><ul>
+<li>数组解构：<ul>
+<li>基本解构：<code>let [a, b, c] = [1, 2, 3];</code>。</li>
+<li>嵌套解构：<code>let [a2, [b2, c2]] = [1, [2, 3]];</code>。</li>
+<li>配合扩展运算符：<code>let [a4,...b4] = [1, 2, 3];</code>。</li>
+<li>配合默认值：<code>let [a5, b5 = 10, c5 = 0] = [1, 2];</code>。</li>
+</ul>
+</li>
+<li>对象解构：<ul>
+<li>基本解构：<code>let &#123;name, age&#125; = &#123;&quot;name&quot;: &quot;abc&quot;, age: 12&#125;;</code>。</li>
+<li>嵌套解构：<code>let &#123;name2, age2, book2&#125; = &#123;name2: &quot;abc&quot;, age2: 12, book2: &#123;price: 100&#125;&#125;;</code>。</li>
+<li>配合扩展运算符：<code>let &#123;name3,...data3&#125; = &#123;name3: &quot;abc&quot;, age3: 12, sex3: true&#125;;</code>。</li>
+<li>配合默认值：<code>let &#123;name4, age4 = 18&#125; = &#123;name4: &quot;abc&quot;&#125;;</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>字符串方法</strong><ul>
+<li><code>includes(参数字符串)</code>：返回布尔值，判断是否找到参数字符串。</li>
+<li><code>startsWith(参数字符串)</code>：返回布尔值，判断参数字符串是否在原字符串的头部。</li>
+<li><code>endsWith(参数字符串)</code>：返回布尔值，判断参数字符串是否在原字符串的尾部。</li>
+<li><code>repeat(重复次数)</code>：返回新的字符串，表示将字符串重复指定次数返回。</li>
+<li><code>padStart(指定长度, 补全字符串)</code>：返回新的字符串，表示用参数字符串从头部（左侧）补全原字符串。</li>
+<li><code>padEnd(指定长度, 补全字符串)</code>：返回新的字符串，表示用参数字符串从尾部（右侧）补全原字符串。</li>
+<li>模板字符串：用反引号【 <code>】，可定义多行字符串，可在字符串中加入变量和表达式，如</code>let msg &#x3D; <code>$&#123;name&#125;今年$&#123;age + 1&#125;岁</code>;&#96;。</li>
+</ul>
+</li>
+<li><strong>数组方法</strong><ul>
+<li><code>Array.from(类数组对象)</code>：把类数组对象转成数组。</li>
+<li><code>Array.of(一组值)</code>：把一组值转成数组。</li>
+<li><code>fill(填充的东西,开始位置,结束位置（不包含）)</code>：数组填充。</li>
+</ul>
+</li>
+<li><strong>对象方法</strong><ul>
+<li>对象属性和方法简写：<code>let p2 = &#123;name, age, eat() &#123;console.log(&quot;吃饭了...&quot;); &#125;&#125;</code>。</li>
+<li>扩展运算符：<code>let newP = &#123;...person, sex: true&#125;;</code>，用于取出参数对象所有可遍历属性然后拷贝到当前对象，前后顺序无所谓，后面的属性会覆盖前面的属性。</li>
+</ul>
+</li>
+<li><strong>类相关方法（class关键字相关）</strong><ul>
+<li>类的定义：<code>class Person&#123;constructor(name, age) &#123;this.name = name;this.age = age;&#125; eat() &#123;console.log(&#39;吃饭了...&#39;); &#125; sleep() &#123;console.log(&#39;睡觉了...&#39;); &#125;&#125;</code>。</li>
+<li>继承：<code>class Student extends Person&#123;constructor(name, age, gender) &#123;super(name, age);this.gender = gender;&#125; eat() &#123;console.log(&#39;学生吃大餐了...&#39;); &#125;&#125;</code>。</li>
+</ul>
+</li>
+<li><strong>Promise相关方法</strong><ul>
+<li><code>new Promise((resolve, reject) =&gt; &#123;&#125;)</code>：Promise的参数是一个回调函数，内部有两个形参<code>resolve</code>（表示成功）和<code>reject</code>（表示失败）。</li>
+<li><code>then((result) =&gt; &#123;&#125;)</code>：接受成功回调信息。</li>
+<li><code>catch((error) =&gt; &#123;&#125;)</code>：接受失败信息。</li>
+<li><code>finally(() =&gt; &#123;&#125;)</code>：不论成功失败都会触发。</li>
+</ul>
+</li>
+<li><strong>异步处理相关方法（async&#x2F;await）</strong><ul>
+<li><code>async</code>：用于声明一个函数是异步的，函数会默认返回一个Promise对象。</li>
+<li><code>await</code>：用于等待一个Promise对象的结果，只能放在<code>async</code>函数内部使用。</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+  </entry>
 </search>
